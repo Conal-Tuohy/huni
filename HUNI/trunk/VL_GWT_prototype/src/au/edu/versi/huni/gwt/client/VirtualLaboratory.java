@@ -100,7 +100,8 @@ public class VirtualLaboratory implements EntryPoint {
 	protected DockLayoutPanel pageBuilder() {
 		
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
-		rootLayoutPanel.setStyleName((String) null);
+		//rootLayoutPanel.setStyleName((String) null);
+		rootLayoutPanel.setStylePrimaryName("rootLayoutPanel");
 		
 		DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Unit.EM);
 		dockLayoutPanel.setSize("767px", "699px");
