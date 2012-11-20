@@ -35,7 +35,7 @@ h1 {
 
 /** The div container for the whole web application */
 #gwtContainerBody {
-	background-color: #dddddd;
+	background-color: #FFF09B;
 	border: 15px 6px 6px;
 	border-color: #222222;
 	padding: 15px 6px 6px;
@@ -46,6 +46,7 @@ h1 {
 
 .rootLayoutPanel {
 	margin: 15px 10px 10px;
+	background-color: #FFF09B;
 }
 
 /** Header Name */

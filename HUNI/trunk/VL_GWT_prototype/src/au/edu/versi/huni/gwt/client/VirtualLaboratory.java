@@ -288,7 +288,8 @@ public class VirtualLaboratory implements EntryPoint {
 		toolDetailInlineLabel.setSize("100%", "20px");
 		toolDetailsPanel.addNorth(toolDetailInlineLabel, 1.8);
 		
-		Frame frame = new Frame("http://www.google.com");
+		
+		Frame frame = new Frame("/hello_dojo/index.html");
 		frame.setSize("98%", "98%");
 		toolDetailsPanel.add(frame);
 		
