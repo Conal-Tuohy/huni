@@ -35,31 +35,44 @@ h1 {
 
 /** The div container for the whole web application */
 #gwtContainerBody {
-	background-color: #FFF09B;
 	border: 15px 6px 6px;
 	border-color: #222222;
-	padding: 15px 6px 6px;
-	
-	font-family: Verdana, Times, serif;
-	
+	font-family: Verdana, Times, serif;	
 }
 
 .rootLayoutPanel {
-	margin: 15px 10px 10px;
-	background-color: #FFF09B;
+	margin: 10px 10px 10px;
+	/* background-color: #FFF09B; HuNI Yellow */
+}
+
+.headerLayoutPanel {
+	padding: 5px 5px 5px 5px;
+}
+
+.columnLayoutPanel {
+	padding: 10px 10px 10px 10px;
 }
 
 /** Header Name */
 .headerName {
 	font-size: 1.5em;
-	font-weight: bold;
 	color: #777777;
 	text-align: left;
 	margin: 15px 6px 6px;
 	font-family: Verdana, Times, serif;
 }
 
+.huni-vl-page-header {
+	background-image: url(resources/images/bg-texture.png);
+}
 
+.huni-vl-banner-title {
+	font-family: Signika, sans-serif;
+	font-size: 25px;
+	color: white;	
+	background-color: rgba(3, 143, 166, 0.898438);
+	padding: 5px 20px 5px 20px;
+}
 
 /* Get those round corners in the decorator panel */
  .gwt-DecoratorPanel .middleCenter {
