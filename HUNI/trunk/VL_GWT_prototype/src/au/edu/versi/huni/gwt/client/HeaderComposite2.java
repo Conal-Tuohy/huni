@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.HTML;
 
 public class HeaderComposite2 extends Composite implements ClickHandler {
 
@@ -102,11 +101,11 @@ public class HeaderComposite2 extends Composite implements ClickHandler {
 		virtualLaboratoryInlineLabel.setDirectionEstimator(true);
 		virtualLaboratoryInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		virtualLaboratoryInlineLabel.setStyleName("huni-vl-banner-title");
-		virtualLaboratoryInlineLabel.setSize("400px", "40px");
+		virtualLaboratoryInlineLabel.setSize("350px", "40px");
 		
 		bannerContainerPanel.add(virtualLaboratoryInlineLabel);
-		bannerContainerPanel.setWidgetTopHeight(virtualLaboratoryInlineLabel, 10.0, Unit.PX, 40.0, Unit.PX);
-		bannerContainerPanel.setWidgetLeftWidth(virtualLaboratoryInlineLabel, 37.0, Unit.PX, 800.0, Unit.PX);
+		bannerContainerPanel.setWidgetTopHeight(virtualLaboratoryInlineLabel, 10.0, Unit.PX, 38.0, Unit.PX);
+		bannerContainerPanel.setWidgetLeftWidth(virtualLaboratoryInlineLabel, 18.0, Unit.PX, 440.0, Unit.PX);
 		
 		return bannerContainerPanel;
 	}

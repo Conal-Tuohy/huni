@@ -38,7 +38,8 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		searchInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		searchInlineLabel.setSize("60px", "24px");
 		layoutPanel_1.add(searchInlineLabel);
-		layoutPanel_1.setWidgetTopHeight(searchInlineLabel, 0.0, Unit.PX, 24.0, Unit.PX);
+		layoutPanel_1.setWidgetRightWidth(searchInlineLabel, 230.0, Unit.PX, 60.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(searchInlineLabel, 6.0, Unit.PX, 24.0, Unit.PX);
 
 		searchTextBox = new TextBox();
 		searchTextBox.setDirectionEstimator(true);

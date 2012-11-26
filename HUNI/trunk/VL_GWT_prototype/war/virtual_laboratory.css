@@ -74,6 +74,10 @@ h1 {
 	padding: 5px 20px 5px 20px;
 }
 
+.huni-crud-button-bar {
+	margin: 5px 0px 5px 0px;
+}
+
 /* Get those round corners in the decorator panel */
  .gwt-DecoratorPanel .middleCenter {
    height: 100%;

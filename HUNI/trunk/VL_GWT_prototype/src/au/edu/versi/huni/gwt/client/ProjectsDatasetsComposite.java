@@ -3,23 +3,23 @@ package au.edu.versi.huni.gwt.client;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
-public class ProjectsDatasetsComposite extends Composite implements
+public class ProjectsDatasetsComposite extends ResizeComposite implements
 		ClickHandler {
 	
 	private DockLayoutPanel projectsDatasourcesDockLayoutPanel;
+	private CrudButtonComposite crudButtonPanel;
 	
 	public ProjectsDatasetsComposite()
 	{
+		crudButtonPanel = new CrudButtonComposite();
 		projectsDatasourcesDockLayoutPanel = projectsDatasetsPanelBuilder();
 	      // All composites must call initWidget() in their constructors.
 	      initWidget(projectsDatasourcesDockLayoutPanel);
@@ -37,29 +37,13 @@ public class ProjectsDatasetsComposite extends Composite implements
 		// The container label
 		InlineLabel projectsDatasetsInlinelabel = new InlineLabel("Projects/Datasets");
 		projectsDatasetsInlinelabel.setSize("100%", "20px");
-		projectsDatasourcesDockLayoutPanel.addNorth(projectsDatasetsInlinelabel, 1.7);
-
-		// The button container populated with buttons
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		horizontalPanel.setWidth("75%");
+		projectsDatasourcesDockLayoutPanel.addNorth(projectsDatasetsInlinelabel, 1.9);
 		
-		Button newButton = new Button("New");
-		newButton.addClickHandler(this);
-		horizontalPanel.add(newButton);	
-		
-		Button editButton = new Button("Edit");
-		editButton.addClickHandler(this);
-		horizontalPanel.add(editButton);
-		
-		Button deleteButton = new Button("Delete");
-		deleteButton.addClickHandler(this);
-		horizontalPanel.add(deleteButton);	
-		
-		projectsDatasourcesDockLayoutPanel.addSouth(horizontalPanel, 2.8);		
+		projectsDatasourcesDockLayoutPanel.addSouth(crudButtonPanel, 3.1);		
 		
 		// The tree widget container. Decorate outline plus tree widget.
 		DecoratorPanel projectsDatasourcesDecoratorPanel = new DecoratorPanel();
-		projectsDatasourcesDecoratorPanel.setSize("95%", "95%");		
+		projectsDatasourcesDecoratorPanel.setSize("95%", "100%");		
 		Tree projectsDatasourcesTree = new Tree();
 		projectsDatasourcesDecoratorPanel.setWidget(projectsDatasourcesTree);
 		projectsDatasourcesTree.setSize("100%", "190px");

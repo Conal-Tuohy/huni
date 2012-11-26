@@ -3,12 +3,12 @@ package au.edu.versi.huni.gwt.client;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.ResizeComposite;
 
-public class ToolComposite extends Composite implements ClickHandler {
+public class ToolComposite extends ResizeComposite implements ClickHandler {
 
 	private DockLayoutPanel toolDetailsDockLayoutPanel;
 	
