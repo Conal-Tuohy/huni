@@ -4,6 +4,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -22,7 +23,7 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		layoutPanel = buildSearchBox();
 	     // All composites must call initWidget() in their constructors.
 	      initWidget(layoutPanel);
-	      layoutPanel_1.setSize("290px", "24px");
+	      layoutPanel_1.setSize("392px", "25px");
 
 	      // Give the overall composite a style name.
 	      setStyleName("huni-search-box");
@@ -38,7 +39,7 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		searchInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		searchInlineLabel.setSize("60px", "24px");
 		layoutPanel_1.add(searchInlineLabel);
-		layoutPanel_1.setWidgetRightWidth(searchInlineLabel, 230.0, Unit.PX, 60.0, Unit.PX);
+		layoutPanel_1.setWidgetRightWidth(searchInlineLabel, 338.0, Unit.PX, 60.0, Unit.PX);
 		layoutPanel_1.setWidgetTopHeight(searchInlineLabel, 6.0, Unit.PX, 24.0, Unit.PX);
 
 		searchTextBox = new TextBox();
@@ -51,6 +52,12 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		layoutPanel_1.add(searchTextBox);
 		layoutPanel_1.setWidgetLeftWidth(searchTextBox, 66.0, Unit.PX, 211.0, Unit.PX);
 		layoutPanel_1.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
+		
+		InlineHyperlink advanceSearchHyperlink = new InlineHyperlink("Advanced search", false, "newHistoryToken");
+		layoutPanel_1.add(advanceSearchHyperlink);
+
+		layoutPanel_1.setWidgetLeftWidth(advanceSearchHyperlink, 285.0, Unit.PX, 101.0, Unit.PX);
+		layoutPanel_1.setWidgetBottomHeight(advanceSearchHyperlink, 1.0, Unit.PX, 18.0, Unit.PX);
 
 		return layoutPanel_1;
 	}

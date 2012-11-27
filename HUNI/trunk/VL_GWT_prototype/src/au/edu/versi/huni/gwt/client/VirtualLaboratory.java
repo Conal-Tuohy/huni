@@ -28,7 +28,7 @@ public class VirtualLaboratory implements EntryPoint {
 	private final VirtualLaboratoryServiceAsync laboratoryService = GWT
 			.create(VirtualLaboratoryService.class);
 	
-	private HeaderComposite2 headerComposite;
+	private HeaderComposite headerComposite;
 	private ProjectsDatasetsComposite projectsDatasetsComposite;
 	private ToolkitsToolsComposite toolkitsToolsComposite;
 	private HistoryComposite historyComposite;
@@ -47,7 +47,7 @@ public class VirtualLaboratory implements EntryPoint {
 		
 		// Header
 		
-		headerComposite = new HeaderComposite2();				
+		headerComposite = new HeaderComposite();				
 		headerComposite.setStylePrimaryName("headerLayoutPanel");
 		mainLayoutPanel.addNorth(headerComposite, 15.2);
 		headerComposite.setWidth("790px");

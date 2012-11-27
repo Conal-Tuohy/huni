@@ -47,6 +47,7 @@ h1 {
 
 .headerLayoutPanel {
 	padding: 5px 5px 5px 5px;
+	background-image: url('resources/images/bg-texture.png');
 }
 
 .columnLayoutPanel {
@@ -63,7 +64,7 @@ h1 {
 }
 
 .huni-vl-page-header {
-	background-image: url(resources/images/bg-texture.png);
+	background-image: url('resources/images/bg-texture.png');
 }
 
 .huni-vl-banner-title {

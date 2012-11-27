@@ -11,13 +11,13 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class HeaderComposite2 extends Composite implements ClickHandler {
+public class HeaderComposite extends Composite implements ClickHandler {
 
 	private VerticalPanel headerDockLayoutPanel;
 	private SearchBoxComposite searchTextBox;
 	private Image logoImage;
 	
-	public HeaderComposite2()
+	public HeaderComposite()
 	{
 		headerDockLayoutPanel = headerBuilder();
 	      // All composites must call initWidget() in their constructors.
@@ -59,15 +59,6 @@ public class HeaderComposite2 extends Composite implements ClickHandler {
 
 		layoutPanel.setWidgetLeftWidth(searchTextBox, 0.0, Unit.PX, 358.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
-
-//		layoutPanel.setWidgetLeftWidth(searchTextBox, 57.0, Unit.PX, 173.0, Unit.PX);
-//		layoutPanel.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
-
-		InlineHyperlink advanceSearchHyperlink = new InlineHyperlink("Advanced search", false, "newHistoryToken");
-		layoutPanel.add(advanceSearchHyperlink);
-
-		layoutPanel.setWidgetLeftWidth(advanceSearchHyperlink, 409.0, Unit.PX, 101.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(advanceSearchHyperlink, 6.0, Unit.PX, 18.0, Unit.PX);
 
 		InlineHyperlink registerHyperlink = new InlineHyperlink("Register", false, "newHistoryToken");
 		layoutPanel.add(registerHyperlink);
