@@ -40,18 +40,9 @@ h1 {
 	font-family: Verdana, Times, serif;	
 }
 
-.rootLayoutPanel {
+.huni-vl-root-layout {
 	margin: 10px 10px 10px;
 	/* background-color: #FFF09B; HuNI Yellow */
-}
-
-.headerLayoutPanel {
-	padding: 5px 5px 5px 5px;
-	background-image: url('resources/images/bg-texture.png');
-}
-
-.columnLayoutPanel {
-	padding: 10px 10px 10px 10px;
 }
 
 /** Header Name */
@@ -64,6 +55,7 @@ h1 {
 }
 
 .huni-vl-page-header {
+	padding: 5px 5px 5px 5px;
 	background-image: url('resources/images/bg-texture.png');
 }
 

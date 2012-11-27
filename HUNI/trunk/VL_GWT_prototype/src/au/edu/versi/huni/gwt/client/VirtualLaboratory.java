@@ -39,8 +39,6 @@ public class VirtualLaboratory implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 
-		//configureRootPanel();
-		
 		final Label errorLabel = configureErrorPanel();
 		
 		DockLayoutPanel mainLayoutPanel = pageBuilder();
@@ -48,7 +46,6 @@ public class VirtualLaboratory implements EntryPoint {
 		// Header
 		
 		headerComposite = new HeaderComposite();				
-		headerComposite.setStylePrimaryName("headerLayoutPanel");
 		mainLayoutPanel.addNorth(headerComposite, 15.2);
 		headerComposite.setWidth("790px");
 		
@@ -69,22 +66,11 @@ public class VirtualLaboratory implements EntryPoint {
 		
 		historyComposite = new HistoryComposite();
 		mainLayoutPanel.addEast(historyComposite, 16.5);
-		//mainLayoutPanel.setCellHorizontalAlignment(historyComposite, );
 		
 		// Middle column and contents
 
 		toolsDetailsComposite = new ToolComposite();		
-		//toolsDetailsPanel.addStyleName("columnLayoutPanel");
 		mainLayoutPanel.add(toolsDetailsComposite);
-	}
-
-	protected void configureRootPanel() {
-		// Add the nameField and sendButton to the RootPanel
-		// Use RootPanel.get() to get the entire body element
-		RootPanel rootPanel = RootPanel.get("virtualLabContainer");
-		rootPanel.setSize("800px", "900px");
-		rootPanel.setStyleName("#gwtContainerBody");
-		rootPanel.getElement().getStyle().setPosition(Position.RELATIVE);
 	}
 
 	protected Label configureErrorPanel() {
@@ -102,7 +88,7 @@ public class VirtualLaboratory implements EntryPoint {
 		
 		DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Unit.EM);
 		dockLayoutPanel.setSize("800px", "800px");
-		dockLayoutPanel.setStylePrimaryName("rootLayoutPanel");
+		dockLayoutPanel.setStylePrimaryName("huni-vl-root-layout");
 		
 		rootLayoutPanel.add(dockLayoutPanel);
 
