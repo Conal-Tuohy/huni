@@ -57,8 +57,8 @@ public class HeaderComposite extends Composite implements ClickHandler {
 		searchTextBox = new SearchBoxComposite();
 		layoutPanel.add(searchTextBox);
 
-		layoutPanel.setWidgetLeftWidth(searchTextBox, 0.0, Unit.PX, 358.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(searchTextBox, 0.0, Unit.PX, 423.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 25.0, Unit.PX);
 
 		InlineHyperlink registerHyperlink = new InlineHyperlink("Register", false, "newHistoryToken");
 		layoutPanel.add(registerHyperlink);
@@ -107,7 +107,7 @@ public class HeaderComposite extends Composite implements ClickHandler {
 		String logoHeight = "80px";
 		
 		LayoutPanel logoContainerPanel = new LayoutPanel();		
-		logoContainerPanel.setSize(logoWidth, logoHeight);
+		logoContainerPanel.setSize("780px", "80px");
 		
 		logoImage = new Image("resources/images/huni-logo-21.png");
 		logoImage.setAltText("HuNI Logo");
