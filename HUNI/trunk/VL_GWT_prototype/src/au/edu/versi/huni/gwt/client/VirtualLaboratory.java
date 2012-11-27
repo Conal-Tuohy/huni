@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
+import com.google.gwt.user.client.ui.TabLayoutPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -29,10 +30,7 @@ public class VirtualLaboratory implements EntryPoint {
 			.create(VirtualLaboratoryService.class);
 	
 	private HeaderComposite headerComposite;
-	private ProjectsDatasetsComposite projectsDatasetsComposite;
-	private ToolkitsToolsComposite toolkitsToolsComposite;
-	private HistoryComposite historyComposite;
-	private ToolComposite toolsDetailsComposite;
+	private WorkspaceComposite workspaceComposite;
 
 	/**
 	 * This is the entry point method.
@@ -41,36 +39,29 @@ public class VirtualLaboratory implements EntryPoint {
 
 		final Label errorLabel = configureErrorPanel();
 		
-		DockLayoutPanel mainLayoutPanel = pageBuilder();
+		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
+		rootLayoutPanel.setSize("800px", "900px");
+		
+		DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Unit.EM);
+		dockLayoutPanel.setSize("800px", "800px");
+		dockLayoutPanel.setStylePrimaryName("huni-vl-root-layout");
+		rootLayoutPanel.add(dockLayoutPanel);
 		
 		// Header
 		
 		headerComposite = new HeaderComposite();				
-		mainLayoutPanel.addNorth(headerComposite, 15.2);
+		dockLayoutPanel.addNorth(headerComposite, 15.2);
 		headerComposite.setWidth("790px");
 		
-		// Left column and contents
+		// Body
 				
-		SplitLayoutPanel verticalSplitPanel = new SplitLayoutPanel();
-		verticalSplitPanel.setSize("200px", "100%");		
-		// Projects and data sets
-		projectsDatasetsComposite = new ProjectsDatasetsComposite();;
-		verticalSplitPanel.addNorth(projectsDatasetsComposite, 291.0);
-		// Toolkits and tools
-		toolkitsToolsComposite = new ToolkitsToolsComposite();		
-		verticalSplitPanel.add(toolkitsToolsComposite);
-		// Add to parent panel
-		mainLayoutPanel.addWest(verticalSplitPanel, 16.5);
+		TabLayoutPanel tabLayoutPanel = new TabLayoutPanel(1.5, Unit.EM);
+		dockLayoutPanel.add(tabLayoutPanel);
 		
-		// Right column and contents
-		
-		historyComposite = new HistoryComposite();
-		mainLayoutPanel.addEast(historyComposite, 16.5);
-		
-		// Middle column and contents
+		workspaceComposite = new WorkspaceComposite();
+		tabLayoutPanel.add(workspaceComposite, "Workspace", false);
 
-		toolsDetailsComposite = new ToolComposite();		
-		mainLayoutPanel.add(toolsDetailsComposite);
+		
 	}
 
 	protected Label configureErrorPanel() {
@@ -79,19 +70,5 @@ public class VirtualLaboratory implements EntryPoint {
 		rootPanel.setSize("800px", "800px");
 		rootPanel.add(errorLabel);
 		return errorLabel;
-	}
-
-	protected DockLayoutPanel pageBuilder() {
-		
-		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
-		rootLayoutPanel.setSize("800px", "900px");
-		
-		DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Unit.EM);
-		dockLayoutPanel.setSize("800px", "800px");
-		dockLayoutPanel.setStylePrimaryName("huni-vl-root-layout");
-		
-		rootLayoutPanel.add(dockLayoutPanel);
-
-		return dockLayoutPanel;
 	}
 }

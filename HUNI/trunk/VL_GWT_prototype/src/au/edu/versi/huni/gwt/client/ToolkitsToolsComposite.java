@@ -1,5 +1,7 @@
 package au.edu.versi.huni.gwt.client;
 
+import java.beans.Beans;
+
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -20,6 +22,14 @@ public class ToolkitsToolsComposite extends ResizeComposite implements ClickHand
 		toolKitsToolsDockLayoutPanel = toolkitsToolsPanelBuilder();
 	      // All composites must call initWidget() in their constructors.
 	      initWidget(toolKitsToolsDockLayoutPanel);
+	      
+		 if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
+			 toolKitsToolsDockLayoutPanel.setSize("250px", "600px");
+	        }
+		 else
+		 {
+			 toolKitsToolsDockLayoutPanel.setSize("100%", "100%");
+		 }
 
 	      // Give the overall composite a style name.
 	      setStyleName("huni-toolkits-tools-list");
@@ -28,7 +38,6 @@ public class ToolkitsToolsComposite extends ResizeComposite implements ClickHand
 	protected DockLayoutPanel toolkitsToolsPanelBuilder() {
 		
 		DockLayoutPanel toolKitsToolsDockLayoutPanel = new DockLayoutPanel(Unit.EM);
-		toolKitsToolsDockLayoutPanel.setSize("100%", "100%");
 		
 		// The container label
 		InlineLabel toolkitsToolsInlineLabel = new InlineLabel("Toolkits/Tools");
@@ -39,7 +48,7 @@ public class ToolkitsToolsComposite extends ResizeComposite implements ClickHand
 
 		// The tree widget container. Decorate outline plus tree widget.
 		DecoratorPanel toolKitsToolsDecoratorPanel = new DecoratorPanel();		
-		toolKitsToolsDecoratorPanel.setSize("95%", "100%");	
+		toolKitsToolsDecoratorPanel.setSize("100%", "100%");	
 		//toolKitsToolsDecoratorPanel.setWidth("95%");	
 		Tree toolKitsToolsTree = new Tree();
 		toolKitsToolsDecoratorPanel.setWidget(toolKitsToolsTree);
@@ -54,5 +63,10 @@ public class ToolkitsToolsComposite extends ResizeComposite implements ClickHand
 		// TODO Auto-generated method stub
 
 	}
+	
+	// Implement the following method exactly as-is
+    private static final boolean isDesignTime() {
+        return Beans.isDesignTime(); // GWT 2.4 and above
+    }
 
 }

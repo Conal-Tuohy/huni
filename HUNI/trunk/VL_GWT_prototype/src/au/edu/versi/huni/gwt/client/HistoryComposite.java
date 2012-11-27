@@ -1,5 +1,7 @@
 package au.edu.versi.huni.gwt.client;
 
+import java.beans.Beans;
+
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -20,6 +22,14 @@ public class HistoryComposite extends ResizeComposite implements ClickHandler {
 		historyDockLayoutPanel = historyPanelBuilder();
 	      // All composites must call initWidget() in their constructors.
 	      initWidget(historyDockLayoutPanel);
+	      
+			 if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
+				 historyDockLayoutPanel.setSize("400px", "600px");
+		        }
+			 else
+			 {
+				 historyDockLayoutPanel.setSize("100%", "100%");
+			 }
 
 	      // Give the overall composite a style name.
 	      setStyleName("huni-history-list");
@@ -28,7 +38,6 @@ public class HistoryComposite extends ResizeComposite implements ClickHandler {
 	protected DockLayoutPanel historyPanelBuilder() {
 		
 		DockLayoutPanel historyDockLayoutPanel = new DockLayoutPanel(Unit.EM);
-		historyDockLayoutPanel.setSize("200px", "100%");
 		
 		InlineLabel historyInlineLable = new InlineLabel("History");
 		historyInlineLable.setSize("100%", "20px");
@@ -51,5 +60,10 @@ public class HistoryComposite extends ResizeComposite implements ClickHandler {
 		// TODO Auto-generated method stub
 
 	}
+	
+	// Implement the following method exactly as-is
+    private static final boolean isDesignTime() {
+        return Beans.isDesignTime(); // GWT 2.4 and above
+    }
 
 }

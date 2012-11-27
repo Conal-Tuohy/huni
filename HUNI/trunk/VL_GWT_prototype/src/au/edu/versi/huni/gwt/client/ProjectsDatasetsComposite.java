@@ -1,5 +1,7 @@
 package au.edu.versi.huni.gwt.client;
 
+import java.beans.Beans;
+
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -32,7 +34,14 @@ public class ProjectsDatasetsComposite extends ResizeComposite implements
 		
 		// The outermost container
 		DockLayoutPanel projectsDatasourcesDockLayoutPanel = new DockLayoutPanel(Unit.EM);
-		projectsDatasourcesDockLayoutPanel.setSize("100%", "100%");
+
+		 if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
+			 projectsDatasourcesDockLayoutPanel.setSize("250px", "600px");
+	        }
+		 else
+		 {
+			 projectsDatasourcesDockLayoutPanel.setSize("100%", "100%");
+		 }
 
 		// The container label
 		InlineLabel projectsDatasetsInlinelabel = new InlineLabel("Projects/Datasets");
@@ -43,7 +52,7 @@ public class ProjectsDatasetsComposite extends ResizeComposite implements
 		
 		// The tree widget container. Decorate outline plus tree widget.
 		DecoratorPanel projectsDatasourcesDecoratorPanel = new DecoratorPanel();
-		projectsDatasourcesDecoratorPanel.setSize("95%", "100%");		
+		projectsDatasourcesDecoratorPanel.setSize("100%", "100%");		
 		Tree projectsDatasourcesTree = new Tree();
 		projectsDatasourcesDecoratorPanel.setWidget(projectsDatasourcesTree);
 		projectsDatasourcesTree.setSize("100%", "190px");
@@ -69,5 +78,10 @@ public class ProjectsDatasetsComposite extends ResizeComposite implements
 
 
 	}
+	
+	// Implement the following method exactly as-is
+    private static final boolean isDesignTime() {
+        return Beans.isDesignTime(); // GWT 2.4 and above
+    }
 
 }

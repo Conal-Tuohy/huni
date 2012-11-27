@@ -71,6 +71,32 @@ h1 {
 	margin: 5px 0px 5px 0px;
 }
 
+
+.huni-toolkits-tools-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-projects-datasources-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-tool-details {
+	margin: 0px 0px 0px 0px;
+	padding: 10px 10px 10px 10px;
+}
+
+.huni-tool-frame  .middleCenter{
+	margin: 0px 2px 0px 10px;
+}
+
+
+.huni-history-list {
+	margin: 0px 5px 0px 5px;
+}
+
+
+
+
 /* Get those round corners in the decorator panel */
  .gwt-DecoratorPanel .middleCenter {
    height: 100%;
