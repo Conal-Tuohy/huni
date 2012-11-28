@@ -1,6 +1,10 @@
 
-.huni-introduction-frame {
+.huni-introduction-frame-content {
 	font-family: Signika, sans-serif;
 	font-size: 12px;
 	background-color: #CCCCFF;
+}
+
+h1.huni-introduction-frame-content {
+	font-size: 14px;
 }

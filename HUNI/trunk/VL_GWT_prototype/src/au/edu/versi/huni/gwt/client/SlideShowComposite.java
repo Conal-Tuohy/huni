@@ -43,8 +43,9 @@ public class SlideShowComposite extends ResizeComposite implements ClickHandler 
 		
 		// Temporary place holder.
 		Frame frame = new Frame("/slide-show/slide-show.html");
-		frame.setWidth("100%");
 		frame.setStylePrimaryName("huni-slide-show-frame");
+		frame.setWidth("100%");
+		frame.setHeight("400px");
 		slideshowPanel.add(frame);
 		
 		return slideshowPanel;

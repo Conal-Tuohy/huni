@@ -39,14 +39,14 @@ public class HomeComposite extends ResizeComposite {
 			    homeLayoutPanel.setSize("800px", "800px");
 	        }
 						
-		// Right column and contents
+		// Activity panel to the right of the container
 		
 		activityComposite = new ActivityComposite();
 		activityComposite.setSize("100%", "100%");
 
 		homeLayoutPanel.addEast(activityComposite, 13.8);
 		
-		// Middle/centre column and contents
+		// Layout the table for 4 panels and add it to the center/left of the container.
 		
 		grid = new Grid(2, 2);
 		grid.setSize("100%", "100%");
@@ -71,10 +71,7 @@ public class HomeComposite extends ResizeComposite {
 		cellFormatter.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_LEFT);
 
 		
-		// Toolkits and tools
-		// Left column and contents
-		
-		// Data set catalog
+		// Fill the 4 table cells with the panels
 		
 		catalogComposite = new CatalogComposite();
 		catalogComposite.setSize("100%", "100%");
@@ -82,15 +79,14 @@ public class HomeComposite extends ResizeComposite {
 		
 		aboutComposite = new AboutComposite();
 		aboutComposite.setSize("200px", "200px");
+		grid.setWidget(1, 0, aboutComposite);
 
 		introductionComposite = new IntroductionComposite();
 		introductionComposite.setSize("100%", "400px");
+		grid.setWidget(0, 1, introductionComposite);
 		
 		slideShowComposite = new SlideShowComposite();
-		catalogComposite.setSize("100%", "100%");
-
-		grid.setWidget(0, 1, introductionComposite);
-		grid.setWidget(1, 0, aboutComposite);
+		slideShowComposite.setSize("100%", "400px");
 		grid.setWidget(1, 1, slideShowComposite);
 
 		return homeLayoutPanel;

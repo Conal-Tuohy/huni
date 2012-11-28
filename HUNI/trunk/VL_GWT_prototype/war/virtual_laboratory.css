@@ -124,20 +124,24 @@ h1.huni-popup {
 
 .huni-introduction-frame   .middleCenter{
 	margin: 5px 5px 5px 5px;
+	width: 100%;
+	height: 400px;
 }
 
 .huni-slide-show {
-	background-color: #CCFFFF;
 	margin: 0px 5px 0px 5px;
+}
+
+.huni-slide-show-frame  .middleCenter{
+	margin: 5px 5px 5px 5px;
+	width: 100%;
+	height: 400px;
 }
 
 .huni-about-label {
 	color: #666633;
 	margin: 0px 5px 0px 5px;
 }
-
-
-
 
 /* Get those round corners in the decorator panel */
  .gwt-DecoratorPanel .middleCenter {
