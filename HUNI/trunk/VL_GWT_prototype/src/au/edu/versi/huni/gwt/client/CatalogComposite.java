@@ -32,7 +32,7 @@ public class CatalogComposite extends ResizeComposite implements ClickHandler {
 			 }
 
 	      // Give the overall composite a style name.
-	      setStyleName("huni-catalog-list");
+	      setStylePrimaryName("huni-catalog-list");
 	}
 	
 	protected DockLayoutPanel contentBuilder() {

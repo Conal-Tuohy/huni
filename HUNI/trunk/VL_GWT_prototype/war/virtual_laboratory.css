@@ -89,6 +89,12 @@ h1 {
 	margin: 0px 2px 0px 10px;
 }
 
+
+.huni-catalog-list {
+	margin: 0px 5px 0px 5px;
+}
+
+
 .huni-history-list {
 	margin: 0px 5px 0px 5px;
 }
@@ -113,8 +119,11 @@ h1.huni-popup {
 
 
 .huni-introduction {
-	background-color: #CCFFFF;
 	margin: 0px 5px 0px 5px;
+}
+
+.huni-introduction-frame   .middleCenter{
+	margin: 5px 5px 5px 5px;
 }
 
 .huni-slide-show {

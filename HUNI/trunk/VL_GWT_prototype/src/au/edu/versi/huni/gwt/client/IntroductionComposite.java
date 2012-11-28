@@ -44,6 +44,7 @@ public class IntroductionComposite extends ResizeComposite implements ClickHandl
 		// Temporary place holder.
 		Frame frame = new Frame("/introduction/introduction.html");
 		frame.setWidth("100%");
+		frame.setHeight("400px");
 		frame.setStylePrimaryName("huni-introduction-frame");
 		introductionPanel.add(frame);
 		

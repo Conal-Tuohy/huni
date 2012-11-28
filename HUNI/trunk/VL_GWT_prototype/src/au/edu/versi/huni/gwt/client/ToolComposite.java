@@ -17,7 +17,7 @@ public class ToolComposite extends ResizeComposite implements ClickHandler {
 	
 	public ToolComposite()
 	{
-		toolDetailsDockLayoutPanel = toolDetailsBuilder();
+		toolDetailsDockLayoutPanel = contentBuilder();
 	      // All composites must call initWidget() in their constructors.
 	      initWidget(toolDetailsDockLayoutPanel);
 
@@ -33,7 +33,7 @@ public class ToolComposite extends ResizeComposite implements ClickHandler {
 	      setStyleName("huni-tool-details");
 	}
 	
-	protected DockLayoutPanel toolDetailsBuilder() {
+	protected DockLayoutPanel contentBuilder() {
 		DockLayoutPanel toolDetailsPanel = new DockLayoutPanel(Unit.EM);
 		
 		InlineLabel toolDetailInlineLabel = new InlineLabel("Tool");
