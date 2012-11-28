@@ -89,8 +89,41 @@ h1 {
 	margin: 0px 2px 0px 10px;
 }
 
-
 .huni-history-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-popup {
+	font-family: Signika, sans-serif;
+	font-size: 12px;
+	background-color: rgba(3, 143, 166, 0.898438);
+	color: white;
+	width: 200px;
+	overflow: auto;
+	padding: 5px 5px 5px 5px;
+}
+
+h1.huni-popup {
+	font-size: 14px;
+	color: white;
+	margin: 0px 0px 0px 0px;	
+	width: 180px;
+	text-align: left;
+}
+
+
+.huni-introduction {
+	background-color: #CCFFFF;
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-slide-show {
+	background-color: #CCFFFF;
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-about-label {
+	color: #666633;
 	margin: 0px 5px 0px 5px;
 }
 

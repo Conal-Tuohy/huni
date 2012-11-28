@@ -1,5 +1,8 @@
 package au.edu.versi.huni.gwt.client;
 
+import java.beans.Beans;
+
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
@@ -9,21 +12,19 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ValueBoxBase.TextAlignment;
-import com.google.gwt.dom.client.Style.Unit;
 
 public class SearchBoxComposite extends Composite implements ClickHandler {
 
 	private LayoutPanel layoutPanel;
 	private InlineLabel searchInlineLabel;
 	private TextBox searchTextBox;
-	private LayoutPanel layoutPanel_1;
 	
 	public SearchBoxComposite()
 	{
 		layoutPanel = buildSearchBox();
 	     // All composites must call initWidget() in their constructors.
 	      initWidget(layoutPanel);
-	      layoutPanel_1.setSize("392px", "25px");
+	      layoutPanel.setSize("392px", "25px");
 
 	      // Give the overall composite a style name.
 	      setStyleName("huni-search-box");
@@ -31,16 +32,16 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 
 	protected LayoutPanel buildSearchBox() {
 		
-		layoutPanel_1 = new LayoutPanel();
+		LayoutPanel layoutPanel = new LayoutPanel();
 		
 		searchInlineLabel = new InlineLabel("Search:");
 		searchInlineLabel.setDirectionEstimator(true);
 		searchInlineLabel.setWordWrap(false);
 		searchInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		searchInlineLabel.setSize("60px", "24px");
-		layoutPanel_1.add(searchInlineLabel);
-		layoutPanel_1.setWidgetRightWidth(searchInlineLabel, 338.0, Unit.PX, 60.0, Unit.PX);
-		layoutPanel_1.setWidgetTopHeight(searchInlineLabel, 6.0, Unit.PX, 24.0, Unit.PX);
+		layoutPanel.add(searchInlineLabel);
+		layoutPanel.setWidgetRightWidth(searchInlineLabel, 338.0, Unit.PX, 60.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(searchInlineLabel, 6.0, Unit.PX, 24.0, Unit.PX);
 
 		searchTextBox = new TextBox();
 		searchTextBox.setDirectionEstimator(true);
@@ -49,17 +50,17 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		searchTextBox.setName("searchForDataset");
 		searchTextBox.setAlignment(TextAlignment.LEFT);
 		searchTextBox.setSize("200px", "18px");
-		layoutPanel_1.add(searchTextBox);
-		layoutPanel_1.setWidgetLeftWidth(searchTextBox, 66.0, Unit.PX, 211.0, Unit.PX);
-		layoutPanel_1.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
+		layoutPanel.add(searchTextBox);
+		layoutPanel.setWidgetLeftWidth(searchTextBox, 66.0, Unit.PX, 211.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
 		
 		InlineHyperlink advanceSearchHyperlink = new InlineHyperlink("Advanced search", false, "newHistoryToken");
-		layoutPanel_1.add(advanceSearchHyperlink);
+		layoutPanel.add(advanceSearchHyperlink);
 
-		layoutPanel_1.setWidgetLeftWidth(advanceSearchHyperlink, 285.0, Unit.PX, 101.0, Unit.PX);
-		layoutPanel_1.setWidgetBottomHeight(advanceSearchHyperlink, 1.0, Unit.PX, 18.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(advanceSearchHyperlink, 285.0, Unit.PX, 101.0, Unit.PX);
+		layoutPanel.setWidgetBottomHeight(advanceSearchHyperlink, 1.0, Unit.PX, 18.0, Unit.PX);
 
-		return layoutPanel_1;
+		return layoutPanel;
 	}
 
 	@Override
@@ -67,5 +68,10 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		// TODO Auto-generated method stub
 
 	}
+	
+	// Implement the following method exactly as-is
+    private static final boolean isDesignTime() {
+        return Beans.isDesignTime(); // GWT 2.4 and above
+    }
 
 }

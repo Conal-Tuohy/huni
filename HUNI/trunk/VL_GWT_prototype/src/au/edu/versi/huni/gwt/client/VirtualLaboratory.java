@@ -2,13 +2,11 @@ package au.edu.versi.huni.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 
 /**
@@ -30,6 +28,7 @@ public class VirtualLaboratory implements EntryPoint {
 			.create(VirtualLaboratoryService.class);
 	
 	private HeaderComposite headerComposite;
+	private HomeComposite homeComposite;
 	private WorkspaceComposite workspaceComposite;
 
 	/**
@@ -58,10 +57,11 @@ public class VirtualLaboratory implements EntryPoint {
 		TabLayoutPanel tabLayoutPanel = new TabLayoutPanel(1.5, Unit.EM);
 		dockLayoutPanel.add(tabLayoutPanel);
 		
-		workspaceComposite = new WorkspaceComposite();
-		tabLayoutPanel.add(workspaceComposite, "Workspace", false);
-
+		homeComposite = new HomeComposite();
+		tabLayoutPanel.add(homeComposite, "Home", false);		
 		
+		workspaceComposite = new WorkspaceComposite();
+		tabLayoutPanel.add(workspaceComposite, "Workspace", false);		
 	}
 
 	protected Label configureErrorPanel() {
