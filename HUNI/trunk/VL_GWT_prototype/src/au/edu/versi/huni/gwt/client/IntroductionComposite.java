@@ -11,43 +11,37 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-public class IntroductionComposite extends ResizeComposite implements ClickHandler {
+public class IntroductionComposite extends ResizeComposite implements
+		ClickHandler {
 
 	private DockLayoutPanel introductionDockLayoutPanel;
-	
-	public IntroductionComposite()
-	{
+
+	public IntroductionComposite() {
 		introductionDockLayoutPanel = contentBuilder();
-	      // All composites must call initWidget() in their constructors.
-	      initWidget(introductionDockLayoutPanel);
+		// All composites must call initWidget() in their constructors.
+		initWidget(introductionDockLayoutPanel);
 
-			 if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
-				 introductionDockLayoutPanel.setSize("400px", "600px");
-		        }
-			 else
-			 {
-				 introductionDockLayoutPanel.setWidth("100%");
-			 }
+		if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
+			setSize("400px", "300px");
+		}
 
-	      // Give the overall composite a style name.
-	      setStyleName("huni-introduction");
+		// Give the overall composite a style name.
+		setStyleName("huni-introduction");
 	}
-	
+
 	protected DockLayoutPanel contentBuilder() {
 		DockLayoutPanel introductionPanel = new DockLayoutPanel(Unit.EM);
-		
+
 		InlineLabel toolDetailInlineLabel = new InlineLabel("Introduction");
 		toolDetailInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		toolDetailInlineLabel.setSize("100%", "20px");
 		introductionPanel.addNorth(toolDetailInlineLabel, 1.8);
-		
+
 		// Temporary place holder.
 		Frame frame = new Frame("/introduction/introduction.html");
-		frame.setWidth("100%");
-		frame.setHeight("400px");
-		frame.setStylePrimaryName("huni-introduction-frame");
+		frame.setStyleName("huni-introduction-frame");
 		introductionPanel.add(frame);
-		
+
 		return introductionPanel;
 	}
 
@@ -56,10 +50,10 @@ public class IntroductionComposite extends ResizeComposite implements ClickHandl
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	// Implement the following method exactly as-is
-    private static final boolean isDesignTime() {
-        return Beans.isDesignTime(); // GWT 2.4 and above
-    }
+	private static final boolean isDesignTime() {
+		return Beans.isDesignTime(); // GWT 2.4 and above
+	}
 
 }

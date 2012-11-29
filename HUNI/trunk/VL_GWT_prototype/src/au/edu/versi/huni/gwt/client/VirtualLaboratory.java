@@ -27,10 +27,8 @@ public class VirtualLaboratory implements EntryPoint {
 	private final VirtualLaboratoryServiceAsync laboratoryService = GWT
 			.create(VirtualLaboratoryService.class);
 	
-	private HeaderComposite headerComposite;
-	private HomeComposite homeComposite;
-	private WorkspaceComposite workspaceComposite;
-
+	private VirtualLaboratoryComposite vlComposite;
+	
 	/**
 	 * This is the entry point method.
 	 */
@@ -41,27 +39,10 @@ public class VirtualLaboratory implements EntryPoint {
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		rootLayoutPanel.setSize("800px", "900px");
 		
-		DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Unit.EM);
-		dockLayoutPanel.setSize("800px", "800px");
-		dockLayoutPanel.setStylePrimaryName("huni-vl-root-layout");
-		rootLayoutPanel.add(dockLayoutPanel);
+		vlComposite = new VirtualLaboratoryComposite();
 		
-		// Header
+		rootLayoutPanel.add(vlComposite);
 		
-		headerComposite = new HeaderComposite();				
-		dockLayoutPanel.addNorth(headerComposite, 15.2);
-		headerComposite.setWidth("790px");
-		
-		// Body
-				
-		TabLayoutPanel tabLayoutPanel = new TabLayoutPanel(1.5, Unit.EM);
-		dockLayoutPanel.add(tabLayoutPanel);
-		
-		homeComposite = new HomeComposite();
-		tabLayoutPanel.add(homeComposite, "Home", false);		
-		
-		workspaceComposite = new WorkspaceComposite();
-		tabLayoutPanel.add(workspaceComposite, "Workspace", false);		
 	}
 
 	protected Label configureErrorPanel() {

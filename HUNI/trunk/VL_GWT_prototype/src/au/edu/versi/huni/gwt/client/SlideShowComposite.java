@@ -14,40 +14,35 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 public class SlideShowComposite extends ResizeComposite implements ClickHandler {
 
 	private DockLayoutPanel slideShowDockLayoutPanel;
-	
-	public SlideShowComposite()
-	{
+
+	public SlideShowComposite() {
 		slideShowDockLayoutPanel = contentBuilder();
-	      // All composites must call initWidget() in their constructors.
-	      initWidget(slideShowDockLayoutPanel);
+		// All composites must call initWidget() in their constructors.
+		initWidget(slideShowDockLayoutPanel);
 
-			 if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
-				 slideShowDockLayoutPanel.setSize("400px", "600px");
-		        }
-			 else
-			 {
-				 slideShowDockLayoutPanel.setWidth("100%");
-			 }
+		if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
+			setSize("400px", "300px");
+		}
 
-	      // Give the overall composite a style name.
-	      setStyleName("huni-slide-show");
+		// Give the overall composite a style name.
+		setStyleName("huni-slide-show");
+
 	}
-	
+
 	protected DockLayoutPanel contentBuilder() {
 		DockLayoutPanel slideshowPanel = new DockLayoutPanel(Unit.EM);
-		
+		//slideshowPanel.setStyleName("huni-slide-show");
+
 		InlineLabel toolDetailInlineLabel = new InlineLabel("Slide show");
 		toolDetailInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		toolDetailInlineLabel.setSize("100%", "20px");
 		slideshowPanel.addNorth(toolDetailInlineLabel, 1.8);
-		
+
 		// Temporary place holder.
 		Frame frame = new Frame("/slide-show/slide-show.html");
-		frame.setStylePrimaryName("huni-slide-show-frame");
-		frame.setWidth("100%");
-		frame.setHeight("400px");
+		frame.setStyleName("huni-slide-show-frame");
 		slideshowPanel.add(frame);
-		
+
 		return slideshowPanel;
 	}
 
@@ -56,10 +51,10 @@ public class SlideShowComposite extends ResizeComposite implements ClickHandler 
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	// Implement the following method exactly as-is
-    private static final boolean isDesignTime() {
-        return Beans.isDesignTime(); // GWT 2.4 and above
-    }
+	private static final boolean isDesignTime() {
+		return Beans.isDesignTime(); // GWT 2.4 and above
+	}
 
 }

@@ -15,7 +15,6 @@ public class HomeComposite extends ResizeComposite {
 	private CatalogComposite catalogComposite;
 	private IntroductionComposite introductionComposite;
 	private ActivityComposite activityComposite;
-	private AboutComposite aboutComposite;
 	private SlideShowComposite slideShowComposite;
 	private DockLayoutPanel homeLayoutPanel;
 	private Grid grid;
@@ -50,44 +49,40 @@ public class HomeComposite extends ResizeComposite {
 		
 		grid = new Grid(2, 2);
 		grid.setSize("100%", "100%");
+		grid.setCellSpacing(5);
 		
 		homeLayoutPanel.add(grid);
 		
 		CellFormatter cellFormatter = grid.getCellFormatter();
 		
-		cellFormatter.setWidth(1, 0, "200px");
-		cellFormatter.setHeight(1, 0, "200px");		
-		
-		cellFormatter.setVerticalAlignment(0, 0, HasVerticalAlignment.ALIGN_TOP);
-		cellFormatter.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
+		cellFormatter.setWidth(1, 0, "240px");
+		cellFormatter.setHeight(1, 0, "200px");
 
 		cellFormatter.setVerticalAlignment(0, 1, HasVerticalAlignment.ALIGN_TOP);
-		cellFormatter.setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT);
 		
 		cellFormatter.setVerticalAlignment(1, 0, HasVerticalAlignment.ALIGN_TOP);
 		cellFormatter.setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_LEFT);
 		
 		cellFormatter.setVerticalAlignment(1, 1, HasVerticalAlignment.ALIGN_TOP);
-		cellFormatter.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_LEFT);
 
 		
 		// Fill the 4 table cells with the panels
 		
 		catalogComposite = new CatalogComposite();
-		catalogComposite.setSize("100%", "100%");
 		grid.setWidget(0, 0, catalogComposite);
-		
-		aboutComposite = new AboutComposite();
-		aboutComposite.setSize("200px", "200px");
-		grid.setWidget(1, 0, aboutComposite);
+		catalogComposite.setSize("200px", "500px");
 
 		introductionComposite = new IntroductionComposite();
-		introductionComposite.setSize("100%", "400px");
+		introductionComposite.setSize("400px", "400px");
 		grid.setWidget(0, 1, introductionComposite);
 		
 		slideShowComposite = new SlideShowComposite();
-		slideShowComposite.setSize("100%", "400px");
+		slideShowComposite.setSize("400px", "400px");
 		grid.setWidget(1, 1, slideShowComposite);
+		grid.getCellFormatter().setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT);
+		grid.getCellFormatter().setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_LEFT);
+		grid.getCellFormatter().setVerticalAlignment(0, 0, HasVerticalAlignment.ALIGN_TOP);
+		grid.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
 
 		return homeLayoutPanel;
 

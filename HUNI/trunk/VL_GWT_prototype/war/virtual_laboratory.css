@@ -59,6 +59,19 @@ h1 {
 	background-image: url('resources/images/bg-texture.png');
 }
 
+.huni-vl-page-footer {
+	background: none repeat scroll 0 0 #E6E7E8;
+	border-top: medium none;
+	color: #636466;
+	font-weight: normal;
+}
+
+.huni-vl-page-footer-credit {
+	height: 99px;
+	width: 314px;
+	background-image: url('http://dev.huni.net.au/wp-content/uploads/2012/10/NeCTAR+Deakin-logos1.png');
+}
+
 .huni-vl-banner-title {
 	font-family: Signika, sans-serif;
 	font-size: 25px;
@@ -85,8 +98,13 @@ h1 {
 	padding: 10px 10px 10px 10px;
 }
 
-.huni-tool-frame  .middleCenter{
-	margin: 0px 2px 0px 10px;
+.huni-tool-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
 }
 
 
@@ -97,6 +115,23 @@ h1 {
 
 .huni-history-list {
 	margin: 0px 5px 0px 5px;
+}
+
+.huni-about-box {
+	background: none repeat scroll 0 0 #EEEEEE;
+	padding: 5px 5px 5px 5px;
+}
+
+.huni-about-box-title {
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0px 0px 2px 0px;
+}
+
+.huni-about-label {
+	color: #666633;
+	margin: 0px 2px 0px 2px;
+	font-size: 10px;
 }
 
 .huni-popup {
@@ -119,28 +154,31 @@ h1.huni-popup {
 
 
 .huni-introduction {
-	margin: 0px 5px 0px 5px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
-.huni-introduction-frame   .middleCenter{
-	margin: 5px 5px 5px 5px;
-	width: 100%;
-	height: 400px;
+.huni-introduction-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
 }
 
 .huni-slide-show {
-	margin: 0px 5px 0px 5px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
-.huni-slide-show-frame  .middleCenter{
-	margin: 5px 5px 5px 5px;
-	width: 100%;
-	height: 400px;
-}
-
-.huni-about-label {
-	color: #666633;
-	margin: 0px 5px 0px 5px;
+.huni-slide-show-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
 }
 
 /* Get those round corners in the decorator panel */
