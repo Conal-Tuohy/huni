@@ -15,7 +15,7 @@ public class HomeComposite extends ResizeComposite {
 	private static final String SLIDESHOW_COMPOSITE_DEPTH = "18em";
 	
 	private static final double CATALOG_PANEL_WIDTH = 16.0;
-	private static final double ACTIVITY_PANEL_WIDTH = CATALOG_PANEL_WIDTH;
+	private static final double ACTIVITY_PANEL_WIDTH = CATALOG_PANEL_WIDTH + 1.0;
 	private static final double INTRODUCTION_PANEL_DEPTH = 20.0;
 	private static final double SLIDESHOW_PANEL_DEPTH = 19.0;
 
