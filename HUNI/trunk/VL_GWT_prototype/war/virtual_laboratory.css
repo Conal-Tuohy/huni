@@ -1,7 +1,6 @@
 /** Add css rules here for your application. */
 
 
-/** Example rules used by the template application (remove for your app) */
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -42,7 +41,6 @@ h1 {
 
 .huni-vl-root-layout {
 	margin: 10px 10px 10px;
-	/* background-color: #FFF09B; HuNI Yellow */
 }
 
 /** Header Name */
@@ -55,7 +53,8 @@ h1 {
 }
 
 .huni-vl-page-header {
-	padding: 5px 5px 5px 5px;
+	/* padding: 5px 5px 5px 5px; */
+	padding: 0;
 	background-image: url('resources/images/bg-texture.png');
 }
 
@@ -72,7 +71,14 @@ h1 {
 	background-image: url('http://dev.huni.net.au/wp-content/uploads/2012/10/NeCTAR+Deakin-logos1.png');
 }
 
+.huni-vl-banner {
+	overflow: hidden;
+	width:100%;
+}
+
 .huni-vl-banner-title {
+	width: 350px;
+	height: "40px";
 	font-family: Signika, sans-serif;
 	font-size: 25px;
 	color: white;	
@@ -180,6 +186,25 @@ h1.huni-popup {
 	scrolling: auto;
 	border: 0;
 }
+
+.huni-vl-home-layout {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
+}
+
+.huni-vl-workspace-layout {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
+}
+
 
 /* Get those round corners in the decorator panel */
  .gwt-DecoratorPanel .middleCenter {
