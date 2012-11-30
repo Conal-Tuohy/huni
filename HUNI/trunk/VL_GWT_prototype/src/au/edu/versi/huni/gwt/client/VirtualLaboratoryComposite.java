@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 public class VirtualLaboratoryComposite extends ResizeComposite {
 	
 	public static String COMPOSITE_INITIAL_DESIGN_WIDTH = "1000px";
-	public static String COMPOSITE_DEPTH = "1200px";
+	public static String COMPOSITE_DEPTH = "1000px";
 
 	private DockLayoutPanel wrapperPanel;
 	private HeaderComposite headerComposite;

@@ -37,8 +37,10 @@ public class VirtualLaboratory implements EntryPoint {
 		final Label errorLabel = configureErrorPanel();
 		
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
+		rootLayoutPanel.setHeight("1000px");
 		
-		vlComposite = new VirtualLaboratoryComposite();		
+		vlComposite = new VirtualLaboratoryComposite();
+		vlComposite.setWidth("100%");
 		rootLayoutPanel.add(vlComposite);
 		
 	}

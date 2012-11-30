@@ -41,6 +41,7 @@ h1 {
 
 .huni-vl-root-layout {
 	margin: 10px 10px 10px;
+	overflow: scroll;
 }
 
 /** Header Name */
