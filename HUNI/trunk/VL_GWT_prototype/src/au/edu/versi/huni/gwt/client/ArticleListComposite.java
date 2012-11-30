@@ -7,33 +7,32 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 
-public class IntroductionComposite extends ResizeComposite {
+public class ArticleListComposite extends ResizeComposite {
 
-	protected static final String COMPOSITE_INITIAL_DESIGN_WIDTH = "400px";
-	public static final String COMPOSITE_DEPTH = "500px";
+	public static String COMPOSITE_INITIAL_DESIGN_WIDTH = "600px";
+	public static String COMPOSITE_DEPTH = "600px";
 
 	private DockLayoutPanel wrapperPanel;
 
-	public IntroductionComposite() {
+	public ArticleListComposite() {
 		wrapperPanel = contentBuilder();
 		initWidget(wrapperPanel);
-		setStyleName("huni-introduction");
+		setStyleName("huni-article-list");
 		setSize(COMPOSITE_INITIAL_DESIGN_WIDTH, COMPOSITE_DEPTH);
 	}
 
 	protected DockLayoutPanel contentBuilder() {
-		DockLayoutPanel introductionPanel = new DockLayoutPanel(Unit.EM);
+		DockLayoutPanel layoutPanel = new DockLayoutPanel(Unit.EM);
 
-		InlineLabel toolDetailInlineLabel = new InlineLabel("Introduction");
+		InlineLabel toolDetailInlineLabel = new InlineLabel("Article list");
 		toolDetailInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		toolDetailInlineLabel.setSize("100%", "20px");
-		introductionPanel.addNorth(toolDetailInlineLabel, 1.8);
+		layoutPanel.addNorth(toolDetailInlineLabel, 1.8);
+		
+		Frame frame = new Frame("http://www.google.com");
+		frame.setStyleName("huni-article-list-frame");
+		layoutPanel.add(frame);
 
-		// Temporary place holder.
-		Frame frame = new Frame("/introduction/introduction.html");
-		frame.setStyleName("huni-introduction-frame");
-		introductionPanel.add(frame);
-
-		return introductionPanel;
+		return layoutPanel;
 	}
 }

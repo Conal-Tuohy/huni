@@ -1,37 +1,28 @@
 package au.edu.versi.huni.gwt.client;
 
-import java.beans.Beans;
-
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Frame;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.ResizeComposite;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
-public class SlideShowComposite extends ResizeComposite implements ClickHandler {
+public class SlideShowComposite extends ResizeComposite {
 
-	private DockLayoutPanel slideShowDockLayoutPanel;
+	protected static final String COMPOSITE_INITIAL_DESIGN_WIDTH = "400px";
+	public static final String COMPOSITE_DEPTH = "500px";
+
+	private DockLayoutPanel wrapperPanel;
 
 	public SlideShowComposite() {
-		slideShowDockLayoutPanel = contentBuilder();
-		// All composites must call initWidget() in their constructors.
-		initWidget(slideShowDockLayoutPanel);
-
-		if (isDesignTime()) { // or !Beans.isDesignTime() in GWT 2.4 or higher
-			setSize("400px", "300px");
-		}
-
-		// Give the overall composite a style name.
+		wrapperPanel = contentBuilder();
+		initWidget(wrapperPanel);
 		setStyleName("huni-slide-show");
-
+		setSize(COMPOSITE_INITIAL_DESIGN_WIDTH, COMPOSITE_DEPTH);
 	}
 
 	protected DockLayoutPanel contentBuilder() {
 		DockLayoutPanel slideshowPanel = new DockLayoutPanel(Unit.EM);
-		//slideshowPanel.setStyleName("huni-slide-show");
 
 		InlineLabel toolDetailInlineLabel = new InlineLabel("Slide show");
 		toolDetailInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
@@ -45,16 +36,4 @@ public class SlideShowComposite extends ResizeComposite implements ClickHandler 
 
 		return slideshowPanel;
 	}
-
-	@Override
-	public void onClick(ClickEvent event) {
-		// TODO Auto-generated method stub
-
-	}
-
-	// Implement the following method exactly as-is
-	private static final boolean isDesignTime() {
-		return Beans.isDesignTime(); // GWT 2.4 and above
-	}
-
 }

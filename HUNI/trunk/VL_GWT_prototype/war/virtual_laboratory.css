@@ -119,6 +119,10 @@ h1 {
 	margin: 0px 5px 0px 5px;
 }
 
+.huni-activity-list {
+	margin: 0px 5px 0px 5px;
+}
+
 
 .huni-history-list {
 	margin: 0px 5px 0px 5px;
@@ -163,6 +167,7 @@ h1.huni-popup {
 .huni-introduction {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
+	background-color: lime;
 }
 
 .huni-introduction-frame {
@@ -174,8 +179,24 @@ h1.huni-popup {
 	border: 0;
 }
 
-.huni-slide-show {
+
+.huni-article-list {
 	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color: lime;
+}
+
+.huni-article-list-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
+}
+
+.huni-slide-show {
+	margin: 10px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -205,6 +226,17 @@ h1.huni-popup {
 	scrolling: auto;
 	border: 0;
 }
+
+.huni-left-right-margins {
+	width:100%;
+	height:100%;
+	margin:0px 10px 0px 10px;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
+	background-color: fuchsia;
+}
+
 
 
 /* Get those round corners in the decorator panel */
