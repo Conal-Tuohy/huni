@@ -16,7 +16,6 @@ public class HomeComposite extends ResizeComposite {
 
 	public HomeComposite() {
 		homeLayoutPanel = buildContents();
-		// All composites must call initWidget() in their constructors.
 		initWidget(homeLayoutPanel);
 
 		// Give the overall composite a style name.
