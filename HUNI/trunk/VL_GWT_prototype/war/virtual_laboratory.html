@@ -14,7 +14,6 @@
 	<link href="http://fonts.googleapis.com/css?family=Signika:300,400,600" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="virtual_laboratory.css">
     <!--                                           -->
-    <!-- Any title is fine                         -->
     <!--                                           -->
     <title>HuNI Virtual Laboratory</title>
     
@@ -26,17 +25,11 @@
     <script type="text/javascript" language="javascript" src="virtual_laboratory/virtual_laboratory.nocache.js"></script>
   </head>
 
-  <!--                                           -->
-  <!-- The body can have arbitrary html, or      -->
-  <!-- you can leave the body empty if you want  -->
-  <!-- to create a completely dynamic UI.        -->
-  <!--                                           -->
   <body>
 
-    <!-- OPTIONAL: include this if you want history support -->
+    <!-- History support -->
     <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
     
-    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
     <noscript>
       <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
         Your web browser must have JavaScript enabled
@@ -44,8 +37,8 @@
       </div>
     </noscript>
 	<div>
-        <div id="virtualLabContainer"></div>
-        <div style="color:red;" id="errorLabelContainer"></div>
+        <div id="huni-vl-container"></div>
+        <div id= "huni-vl-global-error-message" class="huni-vl-error-message-container"></div>
 	</div>
   </body>
 </html>

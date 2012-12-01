@@ -57,6 +57,5 @@ public class HomeComposite extends ResizeComposite {
 		homeLayoutPanel.add(articleListComposite);
 
 		return homeLayoutPanel;
-
 	}
 }

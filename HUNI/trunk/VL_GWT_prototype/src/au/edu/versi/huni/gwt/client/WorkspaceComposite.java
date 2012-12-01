@@ -10,7 +10,7 @@ public class WorkspaceComposite extends ResizeComposite {
 	public static String COMPOSITE_INITIAL_DESIGN_WIDTH = "1000px";
 	public static String COMPOSITE_DEPTH = "1000px";
 
-	private static final double RIGHT_WORKSPACE_PANEL = 16.0;
+	private static final double RIGHT_WORKSPACE_PANEL = 17.0;
 	private static final double LEFT_WORKSPACE_PANEL_WIDTH = 16.0;
 	private static final String LEFT_WORKSPACE_COMPOSITE_WIDTH_EM = "16em";
 	private static final String PROJECTS_DATASETS_COMPOSITE_WIDTH_EM = "15em";

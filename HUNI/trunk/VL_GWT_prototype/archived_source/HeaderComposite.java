@@ -100,7 +100,7 @@ public class HeaderComposite extends Composite implements ClickHandler {
 		virtualLaboratoryInlineLabel.setWordWrap(false);
 		virtualLaboratoryInlineLabel.setDirectionEstimator(true);
 		virtualLaboratoryInlineLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		virtualLaboratoryInlineLabel.setStyleName("headerName");
+		virtualLaboratoryInlineLabel.setStyleName("huni-vl-header-title");
 		virtualLaboratoryInlineLabel.setSize("200", "50");
 		
 		bannerContainerPanel.add(virtualLaboratoryInlineLabel);

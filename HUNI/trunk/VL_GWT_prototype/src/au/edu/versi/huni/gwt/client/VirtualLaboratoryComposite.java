@@ -25,8 +25,15 @@ public class VirtualLaboratoryComposite extends ResizeComposite {
 	public VirtualLaboratoryComposite() {
 		wrapperPanel = contentBuilder();
 		initWidget(wrapperPanel);
-		setStyleName("huni-vl-root-layout");
+		setStyleName("huni-vl-application");
 		setSize(COMPOSITE_INITIAL_DESIGN_WIDTH, COMPOSITE_DEPTH);
+		
+		// Adding the composites to the tab adds the gwt tab styles from the theme
+		// We don't want that as the theme has different padding that mucks up the layout.
+		// Reseting the style name gets rid of the additional gwt styles.
+		// Refactor this.
+		homeComposite.setStyleName("huni-vl-home-layout");
+		workspaceComposite.setStyleName("huni-vl-home-layout");
 	}
 
 	protected DockLayoutPanel contentBuilder() {
@@ -49,17 +56,15 @@ public class VirtualLaboratoryComposite extends ResizeComposite {
 		TabLayoutPanel tabLayoutPanel = new TabLayoutPanel(2.0, Unit.EM);
 		tabLayoutPanel.setWidth("100%");
 		tabLayoutPanel.setHeight("100%");
-
+		
 		homeComposite = new HomeComposite();
 		homeComposite.setWidth("100%");
-		homeComposite.setHeight("100%");
-
+		homeComposite.setHeight("100%");		
 		tabLayoutPanel.add(homeComposite, "Home", false);
 
 		workspaceComposite = new WorkspaceComposite();
 		workspaceComposite.setWidth("100%");
 		workspaceComposite.setHeight("100%");
-
 		tabLayoutPanel.add(workspaceComposite, "Workspace", false);
 
 		dockLayoutPanel.add(tabLayoutPanel);

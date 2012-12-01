@@ -1,18 +1,57 @@
-/** Add css rules here for your application. */
+/*------------- General Styles -------------*/
 
 
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+/*------------- The GWT Root Containers -------------*/
+
+/* 
+Obsolete due to use of layout container. 
+*/
+
+/*------------- The GWT Components: Tabs -------------*/
+
+.gwt-TabLayoutPanel {
+ height: 100%;
 }
-
-.sendButton {
-  display: block;
-  font-size: 16pt;
+ 
+/** the tab bar */
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
 }
+ 
+/** the individual tab in the tab bar */
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+ cursor: pointer;
+ cursor: hand;
+ color: black;
+ min-width: 6em;
+ background-color: #C4D0DB;
+ font-size: 9pt;
+ text-align: center;
+ float: left;
+ margin-right: 0px;
+}
+ 
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
+ cursor: default;
+ background-color: #ABBCCF;
+}
+ 
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
+ border:0px;
+ padding: 0;
+}
+ 
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabInner {
+	}
+
+/*------------- The GWT Components: Decorator Panel -------------*/
+
+/* Get those round corners in the decorator panel */
+ .gwt-DecoratorPanel .middleCenter {
+   height: 100%;
+   width: 100%;
+ }
+
+/*------------- The GWT Components: Dialog Boxes -------------*/
 
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
@@ -23,8 +62,9 @@ h1 {
   margin: 5px;
 }
 
-.serverResponseLabelError {
-  color: red;
+.sendButton {
+  display: block;
+  font-size: 16pt;
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
@@ -32,20 +72,41 @@ h1 {
   margin: 15px 6px 6px;
 }
 
-/** The div container for the whole web application */
-#gwtContainerBody {
-	border: 15px 6px 6px;
+/*------------- The HuNI Application Styles for Composites -------------*/
+
+/* 
+	Obsolete: referenced by html in virtual_laboratory.html
+*/
+
+#huni-vl-container {
+	border: 15px 6px 6px 16px;
 	border-color: #222222;
-	font-family: Verdana, Times, serif;	
 }
 
-.huni-vl-root-layout {
-	margin: 10px 10px 10px;
-	overflow: scroll;
+.huni-vl-error-message-container {
+	color: red;
+}
+
+/* 
+	Active: used by RootLayoutPanel.
+*/
+
+.huni-vl-application-container {
+	width: 100%;
+	height: 1000px;
+}
+
+huni-vl-application-wrapper-panel {
+	overflow: auto;
+}
+
+.huni-vl-application {
+	margin: 0px;
+	overflow: auto;
 }
 
 /** Header Name */
-.headerName {
+.huni-vl-header-title {
 	font-size: 1.5em;
 	color: #777777;
 	text-align: left;
@@ -213,9 +274,8 @@ h1.huni-popup {
 .huni-vl-home-layout {
 	width:100%;
 	height:100%;
-	margin:0;
-	padding: 0;
-	scrolling: auto;
+	margin:0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	border: 0;
 }
 
@@ -224,7 +284,6 @@ h1.huni-popup {
 	height:100%;
 	margin:0;
 	padding: 0;
-	scrolling: auto;
 	border: 0;
 }
 
@@ -238,10 +297,3 @@ h1.huni-popup {
 	background-color: fuchsia;
 }
 
-
-
-/* Get those round corners in the decorator panel */
- .gwt-DecoratorPanel .middleCenter {
-   height: 100%;
-   width: 100%;
- }
