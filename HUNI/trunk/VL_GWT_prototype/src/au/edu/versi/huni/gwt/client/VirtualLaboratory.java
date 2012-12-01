@@ -1,5 +1,7 @@
 package au.edu.versi.huni.gwt.client;
 
+import au.edu.versi.huni.gwt.client.view.VirtualLaboratoryComposite;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Label;
@@ -17,6 +19,12 @@ public class VirtualLaboratory implements EntryPoint {
 	private VirtualLaboratoryComposite vlComposite;
 
 	public void onModuleLoad() {
+		
+//	    ContactsServiceAsync rpcService = GWT.create(ContactsService.class);
+//	    HandlerManager eventBus = new HandlerManager(null);
+//	    AppController appViewer = new AppController(rpcService, eventBus);
+//	    appViewer.go(RootPanel.get());
+
 
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		
