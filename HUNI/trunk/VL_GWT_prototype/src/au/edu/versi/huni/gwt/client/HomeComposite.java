@@ -9,13 +9,13 @@ public class HomeComposite extends ResizeComposite {
 	public static String COMPOSITE_INITIAL_DESIGN_WIDTH = "1000px";
 	public static String COMPOSITE_DEPTH = "1000px";
 
-	private static final String CATALOG_COMPOSITE_WIDTH = "15em";
+	private static final String CATALOG_COMPOSITE_WIDTH = "15.5em";
 	private static final String ACTIVITY_COMPOSITE_WIDTH = CATALOG_COMPOSITE_WIDTH;
 	private static final String INTRODUCTION_COMPOSITE_DEPTH = "19em";
 	private static final String SLIDESHOW_COMPOSITE_DEPTH = "18em";
 	
-	private static final double CATALOG_PANEL_WIDTH = 16.0;
-	private static final double ACTIVITY_PANEL_WIDTH = CATALOG_PANEL_WIDTH + 1.0;
+	private static final double CATALOG_PANEL_WIDTH = 17.0;
+	private static final double ACTIVITY_PANEL_WIDTH = CATALOG_PANEL_WIDTH ;
 	private static final double INTRODUCTION_PANEL_DEPTH = 20.0;
 	private static final double SLIDESHOW_PANEL_DEPTH = 19.0;
 

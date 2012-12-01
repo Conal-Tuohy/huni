@@ -1,6 +1,5 @@
 /*------------- General Styles -------------*/
 
-
 /*------------- The GWT Root Containers -------------*/
 
 /* 
@@ -164,7 +163,7 @@ huni-vl-application-wrapper-panel {
 .huni-tool-details {	
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	background-color: lime;
+	background-color: white;
 }
 
 .huni-tool-frame {
@@ -173,7 +172,7 @@ huni-vl-application-wrapper-panel {
 	margin:0;
 	padding: 0;
 	scrolling: auto;
-	border: 0;
+	border: #BBBBFF dotted;
 }
 
 
@@ -229,7 +228,7 @@ h1.huni-popup {
 .huni-introduction {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	background-color: lime;
+	background-color: white;
 }
 
 .huni-introduction-frame {
@@ -238,14 +237,14 @@ h1.huni-popup {
 	margin:0;
 	padding: 0;
 	scrolling: auto;
-	border: 0;
+	border: #BBBBFF dotted;
 }
 
 
 .huni-article-list {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	background-color: lime;
+	background-color: white;
 }
 
 .huni-article-list-frame {
@@ -254,7 +253,7 @@ h1.huni-popup {
 	margin:0;
 	padding: 0;
 	scrolling: auto;
-	border: 0;
+	border: #BBBBFF dotted;
 }
 
 .huni-slide-show {
@@ -268,7 +267,7 @@ h1.huni-popup {
 	margin:0;
 	padding: 0;
 	scrolling: auto;
-	border: 0;
+	border: #BBBBFF dotted;
 }
 
 .huni-vl-home-layout {

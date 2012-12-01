@@ -32,7 +32,7 @@ public class AdminBarComposite extends ResizeComposite {
 		InlineHyperlink registerHyperlink = new InlineHyperlink("Register", false, "newHistoryToken");
 		layoutPanel.add(registerHyperlink);
 
-		layoutPanel.setWidgetLeftWidth(registerHyperlink, 598.0, Unit.PX, 48.0, Unit.PX);
+		layoutPanel.setWidgetRightWidth(registerHyperlink, 135.0, Unit.PX, 67.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(registerHyperlink, 6.0, Unit.PX, 18.0, Unit.PX);
 
 		InlineHyperlink loginHyperlink = new InlineHyperlink("Login/AAF login", false, "newHistoryToken");
