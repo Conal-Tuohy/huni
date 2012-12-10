@@ -1,6 +1,6 @@
 package au.edu.versi.huni.gwt.client.event;
 
-import au.edu.versi.huni.gwt.domain.ToolReference;
+import au.edu.versi.huni.gwt.shared.ToolReference;
 
 import com.google.gwt.event.shared.GwtEvent;
 

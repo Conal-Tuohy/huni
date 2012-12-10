@@ -1,8 +1,15 @@
-package au.edu.versi.huni.gwt.domain;
+package au.edu.versi.huni.gwt.shared;
 
-public class HistoryItem {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class HistoryItem  implements Serializable{
 	
 	private String description;
+
+	public HistoryItem() {
+		super();
+	}
 
 	public HistoryItem(String description) {
 		super();

@@ -1,29 +1,32 @@
-package au.edu.versi.huni.gwt.domain;
+package au.edu.versi.huni.gwt.shared;
 
-import java.net.URL;
+import java.io.Serializable;
+import com.google.gwt.http.client.URL;
 import java.sql.Date;
 
-public class ToolReference {
+
+@SuppressWarnings("serial")
+public class ToolReference implements Serializable{
 	
 	private Long id;
 	private String name;
 	private String description;
-	private URL location;
+	// GWT client side does not have access to java.net.* so use the inbuilt gwt equivalent to URL..
+	//private URL location;
 	private String owner;
 	private String version;
 	private Date uploadDate;	
 
 	public ToolReference() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ToolReference(Long id, String name, String description,
-			URL location, String owner, String version, Date uploadDate) {
+			/* URL location,*/ String owner, String version, Date uploadDate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.location = location;
+//		this.location = location;
 		this.owner = owner;
 		this.version = version;
 		this.uploadDate = uploadDate;
@@ -53,13 +56,13 @@ public class ToolReference {
 		this.description = description;
 	}
 
-	public URL getLocation() {
-		return location;
-	}
-
-	public void setLocation(URL location) {
-		this.location = location;
-	}
+//	public URL getLocation() {
+//		return location;
+//	}
+//
+//	public void setLocation(URL location) {
+//		this.location = location;
+//	}
 
 	public String getOwner() {
 		return owner;
@@ -83,6 +86,10 @@ public class ToolReference {
 
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
+	}
+
+	public ToolReferenceDetails getSummary() {
+		return new ToolReferenceDetails(getId(), getName());
 	}
 
 }

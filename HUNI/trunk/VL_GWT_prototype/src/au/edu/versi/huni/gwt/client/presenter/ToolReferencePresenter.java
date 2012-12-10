@@ -6,7 +6,7 @@ import java.util.List;
 import au.edu.versi.huni.gwt.client.ToolReferencesServiceAsync;
 import au.edu.versi.huni.gwt.client.event.AddToolReferenceEvent;
 import au.edu.versi.huni.gwt.client.event.EditToolReferenceEvent;
-import au.edu.versi.huni.gwt.domain.ToolReferenceDetails;
+import au.edu.versi.huni.gwt.shared.ToolReferenceDetails;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -31,14 +31,14 @@ public class ToolReferencePresenter implements Presenter {
     Widget asWidget();
   }
   
-  private final ToolReferencesServiceAsync rpcService;
+  private final ToolReferencesServiceAsync roolReferencesService;
   private final HandlerManager eventBus;
   private final Display display;
   
-  public ToolReferencePresenter(ToolReferencesServiceAsync rpcService, HandlerManager eventBus, Display view) {
-    this.rpcService = rpcService;
+  public ToolReferencePresenter(ToolReferencesServiceAsync roolReferencesService, HandlerManager eventBus, Display display) {
+    this.roolReferencesService = roolReferencesService;
     this.eventBus = eventBus;
-    this.display = view;
+    this.display = display;
   }
   
   public void bind() {
@@ -99,7 +99,7 @@ public class ToolReferencePresenter implements Presenter {
   }
   
   private void fetchToolReferenceDetails() {
-    rpcService.getToolReferenceDetails(new AsyncCallback<ArrayList<ToolReferenceDetails>>() {
+    roolReferencesService.getToolReferenceDetails(new AsyncCallback<ArrayList<ToolReferenceDetails>>() {
       public void onSuccess(ArrayList<ToolReferenceDetails> result) {
           toolReferenceDetails = result;
           sortToolReferenceDetails();
@@ -126,7 +126,7 @@ public class ToolReferencePresenter implements Presenter {
       ids.add(toolReferenceDetails.get(selectedRows.get(i)).getId());
     }
     
-    rpcService.deleteToolReferences(ids, new AsyncCallback<ArrayList<ToolReferenceDetails>>() {
+    roolReferencesService.deleteToolReferences(ids, new AsyncCallback<ArrayList<ToolReferenceDetails>>() {
       public void onSuccess(ArrayList<ToolReferenceDetails> result) {
         toolReferenceDetails = result;
         sortToolReferenceDetails();

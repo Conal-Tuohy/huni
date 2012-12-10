@@ -1,11 +1,11 @@
 package au.edu.versi.huni.gwt.client.presenter;
 
-import java.net.URL;
+import com.google.gwt.http.client.URL;
 
 import au.edu.versi.huni.gwt.client.ToolReferencesServiceAsync;
 import au.edu.versi.huni.gwt.client.event.EditToolReferenceCancelledEvent;
 import au.edu.versi.huni.gwt.client.event.ToolReferenceUpdatedEvent;
-import au.edu.versi.huni.gwt.domain.ToolReference;
+import au.edu.versi.huni.gwt.shared.ToolReference;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -33,26 +33,26 @@ public class EditToolReferencePresenter implements Presenter{
   private final HandlerManager eventBus;
   private final Display display;
   
-  public EditToolReferencePresenter(ToolReferencesServiceAsync rpcService, HandlerManager eventBus, Display display) {
-    this.rpcService = rpcService;
+  public EditToolReferencePresenter(ToolReferencesServiceAsync toolReferencesService, HandlerManager eventBus, Display display) {
+    this.rpcService = toolReferencesService;
     this.eventBus = eventBus;
     this.toolReference = new ToolReference();
     this.display = display;
     bind();
   }
   
-  public EditToolReferencePresenter(ToolReferencesServiceAsync rpcService, HandlerManager eventBus, Display display, Long id) {
-    this.rpcService = rpcService;
+  public EditToolReferencePresenter(ToolReferencesServiceAsync toolReferencesService, HandlerManager eventBus, Display display, Long id) {
+    this.rpcService = toolReferencesService;
     this.eventBus = eventBus;
     this.display = display;
     bind();
     
-    rpcService.getToolReference(id, new AsyncCallback<ToolReference>() {
+    toolReferencesService.getToolReference(id, new AsyncCallback<ToolReference>() {
       public void onSuccess(ToolReference result) {
         toolReference = result;
         EditToolReferencePresenter.this.display.getName().setValue(toolReference.getName());
         EditToolReferencePresenter.this.display.getDescription().setValue(toolReference.getDescription());
-        EditToolReferencePresenter.this.display.getLocation().setValue(toolReference.getLocation());
+        //EditToolReferencePresenter.this.display.getLocation().setValue(toolReference.getLocation());
       }
       
       public void onFailure(Throwable caught) {
@@ -84,7 +84,7 @@ public class EditToolReferencePresenter implements Presenter{
   private void doSave() {
     toolReference.setName(display.getName().getValue());
     toolReference.setDescription(display.getDescription().getValue());
-    toolReference.setLocation(display.getLocation().getValue());
+    //toolReference.setLocation(display.getLocation().getValue());
     
     rpcService.updateToolReference(toolReference, new AsyncCallback<ToolReference>() {
         public void onSuccess(ToolReference result) {

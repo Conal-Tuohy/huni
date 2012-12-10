@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import au.edu.versi.huni.gwt.client.ToolkitsService;
-import au.edu.versi.huni.gwt.domain.ToolkitDetails;
+import au.edu.versi.huni.gwt.shared.ToolkitDetails;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

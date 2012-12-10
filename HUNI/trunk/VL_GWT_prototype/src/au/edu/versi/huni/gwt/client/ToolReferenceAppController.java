@@ -11,7 +11,7 @@ import au.edu.versi.huni.gwt.client.event.ToolReferenceUpdatedEventHandler;
 import au.edu.versi.huni.gwt.client.presenter.EditToolReferencePresenter;
 import au.edu.versi.huni.gwt.client.presenter.Presenter;
 import au.edu.versi.huni.gwt.client.presenter.ToolReferencePresenter;
-import au.edu.versi.huni.gwt.client.view.EditToolReferenceView;
+import au.edu.versi.huni.gwt.client.view.ToolReferenceEditView;
 import au.edu.versi.huni.gwt.client.view.ToolReferencesView;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -20,18 +20,20 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasWidgets;
 
-public class AppController implements Presenter, ValueChangeHandler<String> {
+public class ToolReferenceAppController implements Presenter, ValueChangeHandler<String> {
+	
   private final HandlerManager eventBus;
-  private final ToolReferencesServiceAsync rpcService; 
+  private final ToolReferencesServiceAsync toolReferencesService; 
   private HasWidgets container;
   
-  public AppController(ToolReferencesServiceAsync rpcService, HandlerManager eventBus) {
+  public ToolReferenceAppController(ToolReferencesServiceAsync toolReferencesService, HandlerManager eventBus) {
     this.eventBus = eventBus;
-    this.rpcService = rpcService;
+    this.toolReferencesService = toolReferencesService;
     bind();
   }
   
   private void bind() {
+	  
     History.addValueChangeHandler(this);
 
     eventBus.addHandler(AddToolReferenceEvent.TYPE,
@@ -69,7 +71,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
   
   private void doEditToolReference(Long id) {
     History.newItem("edit", false);
-    Presenter presenter = new EditToolReferencePresenter(rpcService, eventBus, new EditToolReferenceView(), id);
+    Presenter presenter = new EditToolReferencePresenter(toolReferencesService, eventBus, new ToolReferenceEditView(), id);
     presenter.go(container);
   }
   
@@ -99,13 +101,13 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
       Presenter presenter = null;
 
       if (token.equals("list")) {
-        presenter = new ToolReferencePresenter(rpcService, eventBus, new ToolReferencesView());
+        presenter = new ToolReferencePresenter(toolReferencesService, eventBus, new ToolReferencesView());
       }
       else if (token.equals("add")) {
-        presenter = new EditToolReferencePresenter(rpcService, eventBus, new EditToolReferenceView());
+        presenter = new EditToolReferencePresenter(toolReferencesService, eventBus, new ToolReferenceEditView());
       }
       else if (token.equals("edit")) {
-        presenter = new EditToolReferencePresenter(rpcService, eventBus, new EditToolReferenceView());
+        presenter = new EditToolReferencePresenter(toolReferencesService, eventBus, new ToolReferenceEditView());
       }
       
       if (presenter != null) {

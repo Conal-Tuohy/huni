@@ -1,7 +1,5 @@
 package au.edu.versi.huni.gwt.client.view;
 
-import java.beans.Beans;
-
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -18,22 +16,18 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 	private LayoutPanel layoutPanel;
 	private InlineLabel searchInlineLabel;
 	private TextBox searchTextBox;
-	
-	public SearchBoxComposite()
-	{
-		layoutPanel = buildSearchBox();
-	     // All composites must call initWidget() in their constructors.
-	      initWidget(layoutPanel);
-	      layoutPanel.setSize("392px", "25px");
 
-	      // Give the overall composite a style name.
-	      setStyleName("huni-search-box");
+	public SearchBoxComposite() {
+		layoutPanel = buildContent();
+		initWidget(layoutPanel);
+		layoutPanel.setSize("392px", "25px");
+		setStyleName("huni-search-box");
 	}
 
-	protected LayoutPanel buildSearchBox() {
-		
+	protected LayoutPanel buildContent() {
+
 		LayoutPanel layoutPanel = new LayoutPanel();
-		
+
 		searchInlineLabel = new InlineLabel("Search:");
 		searchInlineLabel.setDirectionEstimator(true);
 		searchInlineLabel.setWordWrap(false);
@@ -53,7 +47,7 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		layoutPanel.add(searchTextBox);
 		layoutPanel.setWidgetLeftWidth(searchTextBox, 66.0, Unit.PX, 211.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(searchTextBox, 0.0, Unit.PX, 24.0, Unit.PX);
-		
+
 		InlineHyperlink advanceSearchHyperlink = new InlineHyperlink("Advanced search", false, "newHistoryToken");
 		layoutPanel.add(advanceSearchHyperlink);
 
@@ -68,10 +62,4 @@ public class SearchBoxComposite extends Composite implements ClickHandler {
 		// TODO Auto-generated method stub
 
 	}
-	
-	// Implement the following method exactly as-is
-    private static final boolean isDesignTime() {
-        return Beans.isDesignTime(); // GWT 2.4 and above
-    }
-
 }

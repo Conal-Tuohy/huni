@@ -4,6 +4,7 @@ import au.edu.versi.huni.gwt.client.view.VirtualLaboratoryComposite;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -13,18 +14,15 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class VirtualLaboratory implements EntryPoint {
 
-	private final VirtualLaboratoryServiceAsync laboratoryService = GWT
-			.create(VirtualLaboratoryService.class);
+	//private final VirtualLaboratoryServiceAsync laboratoryService = GWT.create(VirtualLaboratoryService.class);
+	//private final ToolReferencesServiceAsync toolReferenceServiceService = GWT.create(ToolReferencesService.class);
 
 	private VirtualLaboratoryComposite vlComposite;
 
 	public void onModuleLoad() {
 		
-//	    ContactsServiceAsync rpcService = GWT.create(ContactsService.class);
-//	    HandlerManager eventBus = new HandlerManager(null);
-//	    AppController appViewer = new AppController(rpcService, eventBus);
-//	    appViewer.go(RootPanel.get());
-
+		// --------------------------------
+		// Layout views.
 
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		
@@ -37,6 +35,14 @@ public class VirtualLaboratory implements EntryPoint {
 		vlComposite.setWidth("100%");
 		vlComposite.setHeight("1000px");
 		rootLayoutPanel.add(vlComposite);
+		
+		// --------------------------------
+		// Implement MVP pattern.
+		
+//	    HandlerManager eventBus = new HandlerManager(null);
+//	    ToolReferenceAppController appController = new ToolReferenceAppController(toolReferenceServiceService, eventBus);
+//	    appController.go(rootLayoutPanel);
+
 	}
 
 	protected Label configureErrorPanel() {

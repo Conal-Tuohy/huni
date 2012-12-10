@@ -3,8 +3,8 @@ package au.edu.versi.huni.gwt.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import au.edu.versi.huni.gwt.domain.ToolReference;
-import au.edu.versi.huni.gwt.domain.ToolReferenceDetails;
+import au.edu.versi.huni.gwt.shared.ToolReference;
+import au.edu.versi.huni.gwt.shared.ToolReferenceDetails;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
