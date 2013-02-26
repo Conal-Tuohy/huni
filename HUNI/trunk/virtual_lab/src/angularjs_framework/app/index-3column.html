@@ -2,17 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>HuNI Virtual Laboratory: Workspace</title>
+    <meta name="description" content="A virtual laboratory for humanities researchers based on linked data principles.">
+    <meta name="Richard Rothwell, VeRSI" content="">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le styles -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <!-- Styles -->
+    
+    <link href="./css/3column.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -22,13 +24,16 @@
         padding: 9px 0;
       }
     </style>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+<!--     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+ -->
+    <!-- Favicon and iOS (touch) icons. -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	<link rel="stylesheet" href="css/app.css">
+
   </head>
 
   <body>
@@ -146,7 +151,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; VeRSI 2012</p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -154,8 +159,10 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
+	<script src="http://code.jquery.com/jquery.js"></script>
+
+<!--     
+	<script src="../assets/js/bootstrap-transition.js"></script>
     <script src="../assets/js/bootstrap-alert.js"></script>
     <script src="../assets/js/bootstrap-modal.js"></script>
     <script src="../assets/js/bootstrap-dropdown.js"></script>
@@ -167,6 +174,13 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
+ -->
+	<script src="lib/angular/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/services.js"></script>
+	<script src="lib/angular/angular-resource.js"></script>
 
   </body>
 </html>
