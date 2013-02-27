@@ -1,0 +1,88 @@
+{ "catalog":
+        [
+            {
+	            "name": "Map",
+	            "Description": "Use entity GIS coordinates to plot the location of the entity in Google Maps. ",
+	            "url": "/container/entities_on_google_maps.xml"
+	            "categories" : ["visualisation"]
+             },
+             {
+	            "name": "Timeline",
+	            "Description": "Use entity dates to plot the lifetime of the entity. ",
+	            "url": "/samplecontainer/examples/ActivityStreams/ActivityStreamGadget.xml"
+	            "categories" : ["visualisation"]
+	         },
+             {
+	            "name": "Network display",
+	            "Description": "Display an RDF graph using its network representation.",
+	            "url": "/samplecontainer/examples/media/Media.xml"
+	            "categories" : ["visualisation"]
+             },
+             {
+	             "name": "Full text search",
+	             "Description": "Use Lucene to return a list of entities containing specific text. ",
+	             "url": "http://www.google.com/ig/modules/horoscope.xml"
+	             "categories" : ["search"]
+             },
+             {
+	             "name": "SPARQL query",
+	             "Description": "Use SPARQL commands to find entities with specific properties or relationships. ",
+	             "url": "/samplecontainer/examples/media-openGadgets/Media.xml"
+		         "categories" : ["search"]
+             },
+             {
+	             "name": "Date query",
+	             "Description": "Find entities with a date within a certain data range",
+	             "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
+			     "categories" : ["search"]
+             },
+             {
+	             "name": "Location query",
+	             "Description": "Find entities with a location within a certain location range",
+	             "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
+			     "categories" : ["search"]
+             },
+             {
+	             "name": "Relationship query",
+	             "Description": "Find people related to a specified person",
+	             "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
+			     "categories" : ["search"]
+             },
+             {
+	             "name": "Import people from friend-of-a-friend",
+	             "Description": "Find people specified people in the friend-of-a-friend database and import them into the selected project. ",
+	             "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
+			     "categories" : ["import"]
+              },
+             {
+	             "name": "Import a CSV file",
+	             "Description": "Select a CSV file on the desktop and import it into the selected project. ",
+	             "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
+			     "categories" : ["import"]
+             },
+             {
+	             "name": "Export a CSV file",
+	             "Description": "Create a CSV file on the desktop and derive its contents from the selected project. ",
+	             "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
+			     "categories" : ["export"]
+             },
+             {
+	             "name" : "Data entry",
+	             "Description" : "Create an entity, fill in its fields and save it in the selected project. ",
+	             "url" : "/samplecontainer/examples/ContainerGadgetDomainTest.xml",
+			     "categories" : ["data_management"]
+             },
+             {
+	             "name" : "Data modification",
+	             "Description" : "Select an an entity in the selected project, change its fields and save it. ",
+	             "url" : "/samplecontainer/examples/ContainerGadgetDomainTest.xml",
+			     "categories" : ["data_management"]
+             },
+             {
+	             "name" : "Report on people",
+	             "Description" : "Count the number of people in the triple store. ",
+	             "url" : "/samplecontainer/examples/ContainerGadgetDomainTest.xml",
+			     "categories" : ["reporting"]
+             }
+         ]
+}
