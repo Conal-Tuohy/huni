@@ -45,20 +45,21 @@ $(function() {
 
 	//  Load the default collections stored and update the options with the collection name
 	$.ajax({
-			url: './toolLibrary/catalog.json',
+			url: '/app/toolLibrary/catalog.json',
 			dataType: 'json',
-			success: function(data) {
-			  $.each(data.collections, function(i,data) {
-				 var optionVal = [];
-				 $.each(data.apps, function(i,data) {
-				   if (data.url.indexOf('http') < 0 && data.url.indexOf('/') == 0) {
-					 optionVal.push(urlBase + data.url);
-				   }else {
-					 optionVal.push(data.url);
-				   }
-				 });
-			     $('#gadgetCollection').append('<option value="' + optionVal.toString() + '">' + data.name + '</option>');
+			success: function(catalog) {
+			  $.each(catalog.items, function(i, item) {
+				 var optionVal = '';
+				   if (item.url.indexOf('http') < 0 && item.url.indexOf('/') == 0) {
+						 optionVal = urlBase + item.url;
+					   }else {
+						 optionVal = item.url;
+					   }
+			     $('#toolKit').append('<option value="' + optionVal + '">' + item.name + '</option>');
 			   });
+			},
+			error: function( jqXHR, textStatus, errorThrown ) {
+				console.log('Ajax: ' + errorThrown);
 			}
 	});
 
@@ -134,7 +135,7 @@ $(function() {
       .append('<span id="collapse" class="ui-icon ui-icon-minusthick"></span>');
 
       return $('#gadget-site-'+curId).get([0]);
-    }
+    };
 
     //create a gadget with navigation tool bar header enabling gadget collapse, expand, remove, navigate to view actions.
     window.buildGadget = function(result,gadgetURL){

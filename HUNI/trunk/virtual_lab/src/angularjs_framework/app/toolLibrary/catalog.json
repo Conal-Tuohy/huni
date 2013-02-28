@@ -1,33 +1,33 @@
-{ "catalog":
+{ "items":
         [
             {
 	            "name": "Map",
 	            "Description": "Use entity GIS coordinates to plot the location of the entity in Google Maps. ",
-	            "url": "/container/entities_on_google_maps.xml"
+	            "url": "/container/entities_on_google_maps.xml",
 	            "categories" : ["visualisation"]
              },
              {
 	            "name": "Timeline",
 	            "Description": "Use entity dates to plot the lifetime of the entity. ",
-	            "url": "/samplecontainer/examples/ActivityStreams/ActivityStreamGadget.xml"
+	            "url": "/samplecontainer/examples/ActivityStreams/ActivityStreamGadget.xml",
 	            "categories" : ["visualisation"]
 	         },
              {
 	            "name": "Network display",
 	            "Description": "Display an RDF graph using its network representation.",
-	            "url": "/samplecontainer/examples/media/Media.xml"
+	            "url": "/samplecontainer/examples/media/Media.xml",
 	            "categories" : ["visualisation"]
              },
              {
 	             "name": "Full text search",
 	             "Description": "Use Lucene to return a list of entities containing specific text. ",
-	             "url": "http://www.google.com/ig/modules/horoscope.xml"
+	             "url": "http://www.google.com/ig/modules/horoscope.xml",
 	             "categories" : ["search"]
              },
              {
 	             "name": "SPARQL query",
 	             "Description": "Use SPARQL commands to find entities with specific properties or relationships. ",
-	             "url": "/samplecontainer/examples/media-openGadgets/Media.xml"
+	             "url": "/samplecontainer/examples/media-openGadgets/Media.xml",
 		         "categories" : ["search"]
              },
              {

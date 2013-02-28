@@ -47,6 +47,7 @@ function AdvancedSearchCtrl($scope, $routeParams, AdvancedSearch) {
 //------------------------------------
 
 function WorkspaceCtrl($scope, $routeParams, Workspace) {
+	CommonContainer.init();
 }
 
 //WorkspaceCtrl.$inject = ['$scope', '$routeParams', 'Workspace'];

@@ -49,7 +49,7 @@ CommonContainer.init = function() {
       return true;// return false to reject the request.
     },
     onUnsubscribe: function(topic, container) {
-      log(container.getClientID() + " unsubscribes from tthis topic '" + topic + "'");
+      log(container.getClientID() + " unsubscribes from this topic '" + topic + "'");
       return true;
     },
     onPublish: function(topic, data, pcont, scont) {
@@ -75,7 +75,7 @@ CommonContainer.init = function() {
       Container: {
         onSecurityAlert: function(source, alertType) { /* Handle client-side security alerts */ },
         onConnect: function(container) { /* Called when client connects */ },
-        onDisconnect: function(container) { /* Called when client connects */ }
+        onDisconnect: function(container) { /* Called when client disconnects */ }
       }
     });
     //connect to the inline client
