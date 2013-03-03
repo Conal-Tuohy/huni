@@ -43,6 +43,13 @@ angular.module('datasetdirectoryServices', ['ngResource']).
   return null;
 });
 
+angular.module('projectdirectoryServices', ['ngResource']).
+    factory('ProjectDirectory', function($resource){
+  	  return $resource('/app/projects/directory.json', {}, {
+		    query: {method:'GET', params:{}, isArray:true}
+		  });
+});
+
 angular.module('toolcatalogServices', ['ngResource']).
     factory('ToolCatalog', function($resource){
   return null;

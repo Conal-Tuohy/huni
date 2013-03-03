@@ -11,6 +11,7 @@ var virtualLab = angular.module('virtualab', [
                              'advancedsearchServices',
                              'workspaceServices',
                              'datasetdirectoryServices',
+                             'projectdirectoryServices',
                              'toolkitServices',
                              'toolcatalogServices',
                              'toolmanagerServices',
@@ -23,7 +24,6 @@ var virtualLab = angular.module('virtualab', [
                              'aboutServices',
                              'settingsServices',
                              'helpServices'
-                             //'toolKitListModule',
                              ]).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.

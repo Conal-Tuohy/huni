@@ -61,6 +61,22 @@ function DatasetDirectoryCtrl($scope, $routeParams, DatasetDirectory) {
 
 //------------------------------------
 
+function ProjectDirectoryCtrl($scope, $routeParams, ProjectDirectory) {
+	
+	this.scope = $scope;	
+	
+	this.scope.projects = ProjectDirectory.query();
+	
+	this.scope.projectDirectory = function() {
+		  return this.projects;
+	};
+}
+
+//ProjectDirectoryCtrl.$inject = ['$scope', '$routeParams', 'ProjectDirectory'];
+
+
+//------------------------------------
+
 function ToolKitCtrl($scope, $routeParams, ToolKit) {
 	
 	this.scope = $scope;	

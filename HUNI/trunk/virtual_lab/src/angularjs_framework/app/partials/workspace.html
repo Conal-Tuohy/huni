@@ -23,35 +23,12 @@
       <div class="row-fluid">
 
           <div class="well sidebar-nav left">
-          	<h3>Projects</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-			<div style='display: block;'>
-				<select id="projectList"> </select>
-				<button id="addproject">Add</button>
+			<div  ng-controller="ProjectDirectoryCtrl" >		 
+			 	<span  ng-include src="'partials/project-directory.html'"></span >
 			</div>
-		<div  ng-controller="ToolKitCtrl" >		 
-		 	<span  ng-include src="'partials/tool-kit.html'"></span >
-		</div>
- 
-<!-- 					<span tool-kit-list="true"></span>
- -->          
+			<div  ng-controller="ToolKitCtrl" >		 
+			 	<span  ng-include src="'partials/tool-kit.html'"></span >
+			</div>
  		</div><!--/.well -->
 
 
