@@ -48,7 +48,7 @@ $(function() {
 			url: '/app/toolLibrary/catalog.json',
 			dataType: 'json',
 			success: function(catalog) {
-			  $.each(catalog.items, function(i, item) {
+			  $.each(catalog, function(i, item) {
 				 var optionVal = '';
 				   if (item.url.indexOf('http') < 0 && item.url.indexOf('/') == 0) {
 						 optionVal = urlBase + item.url;

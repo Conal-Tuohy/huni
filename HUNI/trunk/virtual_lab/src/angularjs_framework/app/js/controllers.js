@@ -18,7 +18,7 @@ function ProjectDetailCtrl($scope, $routeParams, Project) {
 
   $scope.setImage = function(imageUrl) {
     $scope.mainImageUrl = imageUrl;
-  }
+  };
 }
 
 //ProjectDetailCtrl.$inject = ['$scope', '$routeParams', 'Project'];
@@ -58,6 +58,45 @@ function DatasetDirectoryCtrl($scope, $routeParams, DatasetDirectory) {
 }
 
 //DatasetDirectoryCtrl.$inject = ['$scope', '$routeParams', 'DatasetDirectory'];
+
+//------------------------------------
+
+function ToolKitCtrl($scope, $routeParams, ToolKit) {
+	
+	this.scope = $scope;	
+	
+	this.scope.toolKit = ToolKit.query();
+	
+	this.scope.categories = function() {
+		  var categories = [];
+		  var count =this.toolKit.length;
+		  if (count > 0) {
+			  this.toolKit.sort(
+					  function sortByCategory(item0, item1){
+						  var aCategory = item0.categories[0];
+						  var bCategory = item1.categories[0]; 
+						  return ((aCategory < bCategory) ? -1 : ((aCategory > bCategory) ? 1 : 0));
+						});
+			  var currentCategoryName = this.toolKit[0].categories[0];
+			  var currentCategory = {"name" : currentCategoryName, "tools": []};
+			  categories.push(currentCategory);
+			  // Extract the list of unique categories
+			  for (var index = 0; index < count; index++ ) {
+				  var item = this.toolKit[index];
+				  var categoryName = item.categories[0];
+				  if (categoryName != currentCategoryName) {
+					  currentCategoryName = categoryName;
+					  currentCategory = {"name" : currentCategoryName, "tools": []};
+					  categories.push(currentCategory);
+				  }
+				  currentCategory.tools.push({"name": item.name, "description": item.description, "url": item.url});
+			  } 
+		  }
+		  return categories;
+	};
+}
+
+//ToolKitCtrl.$inject = ['$scope', '$routeParams', 'ToolKit'];
 
 //------------------------------------
 

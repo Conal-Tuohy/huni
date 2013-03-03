@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('virtualab', [
+var virtualLab = angular.module('virtualab', [
                              'virtualabFilters', 
                              'virtualabServices',
                              'opensocialServices',
@@ -11,6 +11,7 @@ angular.module('virtualab', [
                              'advancedsearchServices',
                              'workspaceServices',
                              'datasetdirectoryServices',
+                             'toolkitServices',
                              'toolcatalogServices',
                              'toolmanagerServices',
                              'usermanagerServices',
@@ -22,6 +23,7 @@ angular.module('virtualab', [
                              'aboutServices',
                              'settingsServices',
                              'helpServices'
+                             //'toolKitListModule',
                              ]).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.

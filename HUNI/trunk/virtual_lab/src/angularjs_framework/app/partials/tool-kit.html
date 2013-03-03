@@ -1,0 +1,15 @@
+<h3>Toolkit</h3>
+<ul class="nav nav-list">
+    <li ng-repeat="category in $parent.categories()" class="nav-header">{{category.name}}
+    	<ul>
+	    	<li ng-repeat="tool in category.tools" >
+	          <a href="#/tools/{{tool.url}}">{{tool.name}}</a>
+	       </li>
+    	</ul>
+    </li>
+</ul>
+<div style='display: block;'>
+	<button id="addTool">Add</button>
+</div>
+
+ 

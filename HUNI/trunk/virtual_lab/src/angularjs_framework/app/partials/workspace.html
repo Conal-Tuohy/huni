@@ -23,6 +23,7 @@
       <div class="row-fluid">
 
           <div class="well sidebar-nav left">
+          	<h3>Projects</h3>
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
               <li class="active"><a href="#">Link</a></li>
@@ -42,10 +43,16 @@
               <li><a href="#">Link</a></li>
             </ul>
 			<div style='display: block;'>
-				<select id="toolKit"> </select>
-				<button id="addTool">Select tool</button>
+				<select id="projectList"> </select>
+				<button id="addproject">Add</button>
 			</div>
-          </div><!--/.well -->
+		<div  ng-controller="ToolKitCtrl" >		 
+		 	<span  ng-include src="'partials/tool-kit.html'"></span >
+		</div>
+ 
+<!-- 					<span tool-kit-list="true"></span>
+ -->          
+ 		</div><!--/.well -->
 
 
           <div class="well sidebar-nav right">

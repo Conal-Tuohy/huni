@@ -9,7 +9,7 @@ angular.module('virtualabServices', ['ngResource']).
   });
 });
 
-angular.module('opensocialServices', []).
+angular.module('opensocialServices', ['ngResource']).
     factory('OpenSocial', function($resource){
   return null;
 });
@@ -21,79 +21,86 @@ angular.module('landingServices', ['ngResource']).
 		  });
 });
 
-angular.module('globaldataServices', []).
+angular.module('globaldataServices', ['ngResource']).
     factory('GlobalData', function($resource){
   	  return $resource('projects/:projectId.json', {}, {
 		    query: {method:'GET', params:{projectId:'projects'}, isArray:true}
 		  });
 });
 
-angular.module('advancedsearchServices', []).
+angular.module('advancedsearchServices', ['ngResource']).
     factory('AdvancedSearch', function($resource){
   return null;
 });
 
-angular.module('workspaceServices', []).
+angular.module('workspaceServices', ['ngResource']).
     factory('Workspace', function($resource){
   return null;
 });
 
-angular.module('datasetdirectoryServices', []).
+angular.module('datasetdirectoryServices', ['ngResource']).
     factory('DatasetDirectory', function($resource){
   return null;
 });
 
-angular.module('toolcatalogServices', []).
+angular.module('toolcatalogServices', ['ngResource']).
     factory('ToolCatalog', function($resource){
   return null;
 });
 
-angular.module('toolmanagerServices', []).
+angular.module('toolkitServices', ['ngResource']).
+    factory('ToolKit', function($resource){
+	  return $resource('/app/toolLibrary/catalog.json', {}, {
+		    query: {method:'GET', params:{}, isArray:true}
+		  });
+});
+
+angular.module('toolmanagerServices', ['ngResource']).
     factory('ToolManager', function($resource){
   return null;
 });
 
-angular.module('usermanagerServices', []).
+angular.module('usermanagerServices', ['ngResource']).
     factory('UserManager', function($resource){
   return null;
 });
 
-angular.module('profileditorServices', []).
+angular.module('profileditorServices', ['ngResource']).
     factory('ProfileEditor', function($resource){
   return null;
 });
 
-angular.module('registrationServices', []).
+angular.module('registrationServices', ['ngResource']).
     factory('Registration', function($resource){
   return null;
 });
 
-angular.module('contactServices', []).
+angular.module('contactServices', ['ngResource']).
     factory('Contact', function($resource){
   return null;
 });
 
-angular.module('loginServices', []).
+angular.module('loginServices', ['ngResource']).
     factory('Login', function($resource){
   return null;
 });
 
-angular.module('memberpartnersServices', []).
+angular.module('memberpartnersServices', ['ngResource']).
     factory('MemberPartners', function($resource){
   return null;
 });
 
-angular.module('aboutServices', []).
+angular.module('aboutServices', ['ngResource']).
     factory('About', function($resource){
   return null;
 });
 
-angular.module('settingsServices', []).
+angular.module('settingsServices', ['ngResource']).
     factory('Settings', function($resource){
   return null;
 });
 
-angular.module('helpServices', []).
+angular.module('helpServices', ['ngResource']).
     factory('Help', function($resource){
   return null;
 });
