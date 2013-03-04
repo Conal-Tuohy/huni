@@ -110,6 +110,13 @@ function ToolKitCtrl($scope, $routeParams, ToolKit) {
 		  }
 		  return categories;
 	};
+	
+	this.scope.selectTool = function(event) {
+		       var target = event.target;
+		       var url = target.href;
+		       event.stopPropagation();
+		       event.preventDefault()
+	};
 }
 
 //ToolKitCtrl.$inject = ['$scope', '$routeParams', 'ToolKit'];

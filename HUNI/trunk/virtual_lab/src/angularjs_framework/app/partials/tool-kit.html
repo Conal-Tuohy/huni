@@ -4,7 +4,7 @@
 	    <li ng-repeat="category in $parent.categories()" class="nav-header">{{category.name}}
 	    	<ul>
 		    	<li ng-repeat="tool in category.tools" >
-		          <a href="#/tools/{{tool.url}}">{{tool.name}}</a>
+		          <a href="#/tools/{{tool.url}}" ng-click="$parent.selectTool($event);">{{tool.name}}</a>
 		       </li>
 	    	</ul>
 	    </li>
