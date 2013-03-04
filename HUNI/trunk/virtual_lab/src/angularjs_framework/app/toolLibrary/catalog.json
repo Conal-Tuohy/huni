@@ -1,86 +1,107 @@
 [
     {
+        "name": "Project Wizard",
+        "description": "Create a new project in the workspace by a step-by-step process. ",
+        "url": "/container/project-wizard.xml",
+        "categories" : ["_tutorial"],
+        "default" : true
+     },
+    {
         "name": "Map",
         "description": "Use entity GIS coordinates to plot the location of the entity in Google Maps. ",
         "url": "/container/entities_on_google_maps.xml",
-        "categories" : ["visualisation"]
+        "categories" : ["visualisation"],
+        "default" : false
      },
      {
         "name": "Timeline",
         "description": "Use entity dates to plot the lifetime of the entity. ",
         "url": "/samplecontainer/examples/ActivityStreams/ActivityStreamGadget.xml",
-        "categories" : ["visualisation"]
+        "categories" : ["visualisation"],
+        "default" : false
      },
      {
         "name": "Network display",
         "description": "Display an RDF graph using its network representation.",
         "url": "/samplecontainer/examples/media/Media.xml",
-        "categories" : ["visualisation"]
+        "categories" : ["visualisation"],
+        "default" : false
      },
      {
          "name": "Full text search",
          "description": "Use Lucene to return a list of entities containing specific text. ",
          "url": "http://www.google.com/ig/modules/horoscope.xml",
-         "categories" : ["search"]
+         "categories" : ["search"],
+        "default" : false
      },
      {
          "name": "SPARQL query",
          "description": "Use SPARQL commands to find entities with specific properties or relationships. ",
          "url": "/samplecontainer/examples/media-openGadgets/Media.xml",
-         "categories" : ["search"]
+         "categories" : ["search"],
+        "default" : false
      },
      {
          "name": "Date query",
          "description": "Find entities with a date within a certain data range",
          "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
-	     "categories" : ["search"]
+	     "categories" : ["search"],
+        "default" : false
      },
      {
          "name": "Location query",
          "description": "Find entities with a location within a certain location range",
          "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
-	     "categories" : ["search"]
+	     "categories" : ["search"],
+        "default" : false
      },
      {
          "name": "Relationship query",
          "description": "Find people related to a specified person",
          "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
-	     "categories" : ["search"]
+	     "categories" : ["search"],
+        "default" : false
      },
      {
          "name": "Import people from friend-of-a-friend",
          "description": "Find people specified people in the friend-of-a-friend database and import them into the selected project. ",
          "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
-	     "categories" : ["import"]
+	     "categories" : ["import"],
+        "default" : false
       },
      {
          "name": "Import a CSV file",
          "description": "Select a CSV file on the desktop and import it into the selected project. ",
          "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
-	     "categories" : ["import"]
+	     "categories" : ["import"],
+        "default" : false
      },
      {
          "name": "Export a CSV file",
          "description": "Create a CSV file on the desktop and derive its contents from the selected project. ",
          "url": "http://hosting.gmodules.com/ig/gadgets/file/109228598702359180066/twitterfinal.xml",
-	     "categories" : ["export"]
+	     "categories" : ["export"],
+        "default" : false
      },
      {
          "name" : "Data entry",
          "description" : "Create an entity, fill in its fields and save it in the selected project. ",
          "url" : "/samplecontainer/examples/ContainerGadgetDomainTest.xml",
-	     "categories" : ["data_management"]
+	     "categories" : ["data_management"],
+        "default" : false
      },
      {
          "name" : "Data modification",
          "description" : "Select an an entity in the selected project, change its fields and save it. ",
          "url" : "/samplecontainer/examples/ContainerGadgetDomainTest.xml",
-	     "categories" : ["data_management"]
+	     "categories" : ["data_management"],
+        "default" : false
      },
      {
          "name" : "Report on people",
          "description" : "Count the number of people in the triple store. ",
          "url" : "/samplecontainer/examples/ContainerGadgetDomainTest.xml",
-	     "categories" : ["reporting"]
+	     "categories" : ["reporting"],
+         "default" : false
      }
  ]
