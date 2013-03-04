@@ -1,13 +1,15 @@
 <h3>Projects</h3>
-<ul class="nav nav-list">
-    <li ng-repeat="project in $parent.projectDirectory()" class="nav-header">{{project.name}}
-    	<ul>
-	    	<li ng-repeat="dataSource in project.dataSources" >
-	          <a href="#/tools/{{dataSource.home}}">{{dataSource.name}}</a>
-	       </li>
-    	</ul>
-    </li>
-</ul>
+<div style= "{height:200px;}">
+	<ul class="nav nav-list">
+	    <li ng-repeat="project in $parent.projectDirectory()" class="nav-header">{{project.name}}
+	    	<ul>
+		    	<li ng-repeat="dataSource in project.dataSources" >
+		          <a href="#/tools/{{dataSource.home}}">{{dataSource.name}}</a>
+		       </li>
+	    	</ul>
+	    </li>
+	</ul>
+</div>
 <div style='display: block;'>
 	<button id="addProject">Add</button>
 </div>

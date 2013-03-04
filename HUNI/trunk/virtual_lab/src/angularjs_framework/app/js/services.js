@@ -50,6 +50,13 @@ angular.module('projectdirectoryServices', ['ngResource']).
 		  });
 });
 
+angular.module('historyServices', ['ngResource']).
+    factory('History', function($resource){
+  	  return $resource('/app/history/activities.json', {}, {
+		    query: {method:'GET', params:{}, isArray:true}
+		  });
+});
+
 angular.module('toolcatalogServices', ['ngResource']).
     factory('ToolCatalog', function($resource){
   return null;

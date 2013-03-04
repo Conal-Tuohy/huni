@@ -13,6 +13,7 @@ var virtualLab = angular.module('virtualab', [
                              'datasetdirectoryServices',
                              'projectdirectoryServices',
                              'toolkitServices',
+                             'historyServices',
                              'toolcatalogServices',
                              'toolmanagerServices',
                              'usermanagerServices',

@@ -114,6 +114,22 @@ function ToolKitCtrl($scope, $routeParams, ToolKit) {
 
 //ToolKitCtrl.$inject = ['$scope', '$routeParams', 'ToolKit'];
 
+
+//------------------------------------
+
+function HistoryCtrl($scope, $routeParams, History) {
+	
+	this.scope = $scope;	
+	
+	this.scope.history = History.query();
+	
+	this.scope.actions = function() {
+		  return this.history;
+	};
+}
+
+//ProjectDirectoryCtrl.$inject = ['$scope', '$routeParams', 'ProjectDirectory'];
+
 //------------------------------------
 
 function ToolCatalogCtrl($scope, $routeParams, ToolCatalog) {
