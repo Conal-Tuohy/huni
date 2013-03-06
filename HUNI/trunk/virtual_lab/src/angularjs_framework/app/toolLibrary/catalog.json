@@ -2,7 +2,7 @@
     {
         "name": "Project Wizard",
         "description": "Create a new project in the workspace by a step-by-step process. ",
-        "url": "/container/project-wizard.xml",
+        "url": "/project-wizard.xml",
         "categories" : ["_tutorial"],
         "default" : true
      },

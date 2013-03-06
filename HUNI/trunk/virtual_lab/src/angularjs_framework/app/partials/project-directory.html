@@ -4,7 +4,7 @@
 	    <li ng-repeat="project in $parent.projectDirectory()" class="nav-header">{{project.name}}
 	    	<ul>
 		    	<li ng-repeat="dataSource in project.dataSources" >
-		          <a href="#/tools/{{dataSource.home}}">{{dataSource.name}}</a>
+		          <a href="#/tools{{dataSource.home}}">{{dataSource.name}}</a>
 		       </li>
 	    	</ul>
 	    </li>

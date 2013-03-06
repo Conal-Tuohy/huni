@@ -65,7 +65,7 @@ angular.module('toolcatalogServices', ['ngResource']).
 angular.module('toolkitServices', ['ngResource']).
     factory('ToolKit', function($resource){
 	  return $resource('/app/toolLibrary/catalog.json', {}, {
-		    query: {method:'GET', params:{}, isArray:true}
+		    tools: {method:'GET', params:{}, isArray:true}
 		  });
 });
 

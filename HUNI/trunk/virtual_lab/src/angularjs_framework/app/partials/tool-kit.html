@@ -1,10 +1,10 @@
 <h3>Toolkit</h3>
 <div>
 	<ul class="nav nav-list"">
-	    <li ng-repeat="category in $parent.categories()" class="nav-header">{{category.name}}
+	    <li ng-repeat="category in $parent.toolKit" class="nav-header">{{category.name}}
 	    	<ul>
 		    	<li ng-repeat="tool in category.tools" >
-		          <a href="#/tools/{{tool.url}}" ng-click="$parent.selectTool($event);">{{tool.name}}</a>
+		          <a href="http://localhost:8000/app/toolLibrary/gadgets{{tool.url}}" ng-click="$parent.selectTool($event);">{{tool.name}}</a>
 		       </li>
 	    	</ul>
 	    </li>
