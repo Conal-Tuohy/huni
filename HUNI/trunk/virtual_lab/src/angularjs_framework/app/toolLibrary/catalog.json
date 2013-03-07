@@ -2,7 +2,7 @@
     {
         "name": "Project Wizard",
         "description": "Create a new project in the workspace by a step-by-step process. ",
-        "url": "/project-wizard.xml",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/project-wizard.xml",
         "categories" : ["_tutorial"],
         "default" : true
      },

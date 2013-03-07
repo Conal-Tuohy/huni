@@ -44,24 +44,24 @@ $(function() {
 	var curId = 0;
 
 	//  Load the default collections stored and update the options with the collection name
-	$.ajax({
-			url: '/app/toolLibrary/catalog.json',
-			dataType: 'json',
-			success: function(catalog) {
-			  $.each(catalog, function(i, item) {
-				 var optionVal = '';
-				   if (item.url.indexOf('http') < 0 && item.url.indexOf('/') == 0) {
-						 optionVal = urlBase + item.url;
-					   }else {
-						 optionVal = item.url;
-					   }
-			     $('#toolKit').append('<option value="' + optionVal + '">' + item.name + '</option>');
-			   });
-			},
-			error: function( jqXHR, textStatus, errorThrown ) {
-				console.log('Ajax: ' + errorThrown);
-			}
-	});
+//	$.ajax({
+//			url: '/virtual_lab/toolLibrary/catalog.json',
+//			dataType: 'json',
+//			success: function(catalog) {
+//			  $.each(catalog, function(i, item) {
+//				 var optionVal = '';
+//				   if (item.url.indexOf('http') < 0 && item.url.indexOf('/') == 0) {
+//						 optionVal = urlBase + item.url;
+//					   }else {
+//						 optionVal = item.url;
+//					   }
+//			     $('#toolKit').append('<option value="' + optionVal + '">' + item.name + '</option>');
+//			   });
+//			},
+//			error: function( jqXHR, textStatus, errorThrown ) {
+//				console.log('Ajax: ' + errorThrown);
+//			}
+//	});
 
 	$.ajax({
 		url: './opensocial/viewsMenu.json',

@@ -1,5 +1,8 @@
 'use strict';
 
+var baseServiceURL = '/virtual_lab';
+//var baseServiceURL = '/app';
+
 /* Services */
 
 angular.module('virtualabServices', ['ngResource']).
@@ -45,14 +48,14 @@ angular.module('datasetdirectoryServices', ['ngResource']).
 
 angular.module('projectdirectoryServices', ['ngResource']).
     factory('ProjectDirectory', function($resource){
-  	  return $resource('/app/projects/directory.json', {}, {
+  	  return $resource(baseServiceURL + '/projects/directory.json', {}, {
 		    query: {method:'GET', params:{}, isArray:true}
 		  });
 });
 
 angular.module('historyServices', ['ngResource']).
     factory('History', function($resource){
-  	  return $resource('/app/history/activities.json', {}, {
+  	  return $resource(baseServiceURL + '/history/activities.json', {}, {
 		    query: {method:'GET', params:{}, isArray:true}
 		  });
 });
@@ -64,7 +67,7 @@ angular.module('toolcatalogServices', ['ngResource']).
 
 angular.module('toolkitServices', ['ngResource']).
     factory('ToolKit', function($resource){
-	  return $resource('/app/toolLibrary/catalog.json', {}, {
+	  return $resource(baseServiceURL + '/toolLibrary/catalog.json', {}, {
 		    tools: {method:'GET', params:{}, isArray:true}
 		  });
 });
