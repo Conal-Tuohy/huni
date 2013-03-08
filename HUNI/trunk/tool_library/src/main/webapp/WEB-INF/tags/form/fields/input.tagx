@@ -66,6 +66,9 @@
         </c:when>
         <c:otherwise>
           <c:choose>
+            <c:when test="${type eq 'file'}">
+              <form:input type="file" id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
+            </c:when>
             <c:when test="${type eq 'password'}">
               <form:password id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
             </c:when>
