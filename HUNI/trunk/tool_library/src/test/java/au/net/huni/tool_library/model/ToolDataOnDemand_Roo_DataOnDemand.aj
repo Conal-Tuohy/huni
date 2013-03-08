@@ -24,7 +24,6 @@ privileged aspect ToolDataOnDemand_Roo_DataOnDemand {
     
     public Tool ToolDataOnDemand.getNewTransientTool(int index) {
         Tool obj = new Tool();
-        setContent(obj, index);
         setContentType(obj, index);
         setDescription(obj, index);
         setFilepath(obj, index);
@@ -33,11 +32,6 @@ privileged aspect ToolDataOnDemand_Roo_DataOnDemand {
         setName(obj, index);
         setUrl(obj, index);
         return obj;
-    }
-    
-    public void ToolDataOnDemand.setContent(Tool obj, int index) {
-        byte[] content = String.valueOf(index).getBytes();
-        obj.setContent(content);
     }
     
     public void ToolDataOnDemand.setContentType(Tool obj, int index) {

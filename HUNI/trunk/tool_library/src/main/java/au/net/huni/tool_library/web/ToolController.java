@@ -1,15 +1,20 @@
 package au.net.huni.tool_library.web;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import au.net.huni.tool_library.model.Tool;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import au.net.huni.tool_library.model.Tool;
 
 @RequestMapping("/tools")
 @Controller
@@ -28,9 +33,9 @@ public class ToolController {
         File dest = new File("/tmp/" + content.getOriginalFilename());
         try {
            content.transferTo(dest);
-           mediaUpload.setFilesize(content.getSize());
-           mediaUpload.setFilepath(dest.getAbsolutePath());
-           mediaUpload.setContentType(content.getContentType());
+           tool.setFilesize(content.getSize());
+           tool.setFilepath(dest.getAbsolutePath());
+           tool.setContentType(content.getContentType());
         } catch (Exception e) {
            e.printStackTrace();
            return "mediauploads/create";
