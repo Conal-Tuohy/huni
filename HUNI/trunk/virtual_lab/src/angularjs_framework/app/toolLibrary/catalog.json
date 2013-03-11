@@ -29,8 +29,8 @@
      },
      {
          "name" : "AustLit",
-         "description" : "Edit data on the Heurist web site. ",
-         "url" : "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/dataset-austlit.xml",
+         "description" : "Search free data on the Austlit web site. ",
+         "url" : "http://www.austlit.edu.au/browse",
 	     "categories" : ["dataset"],
          "default" : false
      },
@@ -116,6 +116,48 @@
         "description": "Display an RDF graph using its network representation.",
         "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/visualise-network.xml",
         "categories" : ["visualisation"],
+        "default" : false
+     },
+     {
+        "name": "Vocabulary Manager",
+        "description": "Manage SKOS vocabularies.",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-vocabulary-manager.xml",
+        "categories" : ["corbicula"],
+        "default" : false
+     },
+     {
+        "name": "Simile Gadget",
+        "description": "Bulk analysis of XML.",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-gadget.xml",
+        "categories" : ["corbicula"],
+        "default" : false
+     },
+     {
+        "name": "HuNI Ontology Reference",
+        "description": "OWL Mudmap ontology.",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology.xml",
+        "categories" : ["corbicula"],
+        "default" : false
+     },
+     {
+        "name": "HuNI Types",
+        "description": "HuNI Ontology data types.",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology-types.xml",
+        "categories" : ["corbicula"],
+        "default" : false
+     },
+     {
+        "name": "Search by occupation",
+        "description": "Search the HuNI aggregate by occupation.",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/huni-search-by-occupation.xml",
+        "categories" : ["corbicula"],
+        "default" : false
+     },
+     {
+        "name": "Search using SPARQL",
+        "description": "Search the HuNI aggregate using an arbitrary SPARQL query.",
+        "url": "http://localhost:8080/virtual_lab/toolLibrary/opensocial-gadgets/huni-sparql-query.xml",
+        "categories" : ["corbicula"],
         "default" : false
      }
  ]
