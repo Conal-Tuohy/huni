@@ -23,8 +23,10 @@
  */
 
 
-var urlBase = 'http://localhost:8080/shindig-server';
-var contextRoot = urlBase.substr(urlBase.indexOf(location.host) + location.host.length);
+//var urlBase = 'http://localhost:8080/shindig-server';
+var urlBase = 'http://115.146.86.223/shindig-server';
+//var contextRoot = urlBase.substr(urlBase.indexOf(location.host) + location.host.length);
+var contextRoot = '/shindig-server';
 
 var testConfig = testConfig || {};
 testConfig[osapi.container.ServiceConfig.API_PATH] = contextRoot + '/rpc';

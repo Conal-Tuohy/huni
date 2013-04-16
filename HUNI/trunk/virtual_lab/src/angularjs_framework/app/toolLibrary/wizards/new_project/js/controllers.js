@@ -7,7 +7,7 @@ function ProjectListCtrl($scope, Project) {
   $scope.orderProp = 'age';
 }
 
-//ProjectListCtrl.$inject = ['$scope', 'Project'];
+ProjectListCtrl.$inject = ['$scope', 'Project'];
 
 
 
@@ -21,26 +21,26 @@ function ProjectDetailCtrl($scope, $routeParams, Project) {
   };
 }
 
-//ProjectDetailCtrl.$inject = ['$scope', '$routeParams', 'Project'];
+ProjectDetailCtrl.$inject = ['$scope', '$routeParams', 'Project'];
 
 //------------------------------------
 
 function Page0Ctrl($scope, $routeParams, Page0) {
 }
 
-//Page0Ctrl.$inject = ['$scope', '$routeParams', 'Page0'];
+Page0Ctrl.$inject = ['$scope', '$routeParams', 'Page0'];
 
 //------------------------------------
 
 function Page1Ctrl($scope, $routeParams, Page1) {
 }
 
-//Page1Ctrl.$inject = ['$scope', '$routeParams', 'Page1'];
+Page1Ctrl.$inject = ['$scope', '$routeParams', 'Page1'];
 
 //------------------------------------
 
 function Page2Ctrl($scope, $routeParams, Page2) {
 }
 
-//Page2Ctrl.$inject = ['$scope', '$routeParams', 'Page2'];
+Page2Ctrl.$inject = ['$scope', '$routeParams', 'Page2'];
 
