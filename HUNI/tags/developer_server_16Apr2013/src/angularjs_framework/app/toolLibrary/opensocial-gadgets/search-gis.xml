@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs title="HuNI: Search GIS Tool"  height="400" width= "500"/>
+	<Content type="url" view="canvas" href="http://115.146.86.223/virtual_lab/toolLibrary/search/search-gis/index.html" />
+	<Content  type="text" view="home">
+     <![CDATA[
+       Hello, home view!
+     ]]>
+	</Content>
+</Module>
