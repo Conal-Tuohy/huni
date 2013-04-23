@@ -1,0 +1,202 @@
+    /**
+    * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+    * http://cssreset.com
+    */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+    display: block;
+    }
+    body {
+    line-height: 1;
+    }
+    ol, ul {
+    list-style: none;
+    }
+    blockquote, q {
+    quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+    content: '';
+    content: none;
+    }
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+
+
+body {
+	background: url(bg_body.gif) top center repeat-x #fff;
+	font-size: 12px;
+	font-family: "Arial", "Helvetica", sans-serif;
+	color: #1b1b1b;
+	line-height: 18px;
+	font-weight: normal;
+}
+
+#container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#header, #content, #footer {
+	width: 100%;
+	float: left;
+	clear: both;
+}
+
+#header {
+    height: 101px;
+    color: #666;
+}
+
+#header #site-title {
+	float: left;
+}
+
+#header #site-title h2 {
+    background: url(http://huni.net.au/wp-content/uploads/2012/10/huni-logo-21.png) center center no-repeat;
+    text-indent: -9999px;
+    height: 80px;
+    width: 210px;
+    margin-top: 12px;
+}
+
+#header #user-information {
+	float: right;
+	width: 330px;
+    margin: 10px 0;
+}
+
+#header #user-information li {
+    display: inline;
+    margin: 0 2px;
+}
+
+#header #user-information a {
+    color: #666;
+    text-decoration: none;
+}
+
+#header #user-information a:hover {
+    text-decoration: underline;
+}
+
+#header #primary-navigation {
+    float: right;
+    margin-top: 20px;
+}
+
+#header #primary-navigation li {
+    display: inline;
+}
+
+#header #primary-navigation a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+#header #primary-navigation a:hover {
+    background: #4db3d0;
+    color: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 5px 10px;
+}
+
+#content {
+    margin: 20px 0;
+}
+
+#content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+#content h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+#content p {
+    margin-bottom: 20px;
+}
+
+#content .content-column {
+    float: left;
+}
+
+#content #column-first/*, #content #column-third*/ {
+    width: 20%;
+}
+
+#content #column-first #history li { 
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+}
+
+#content #column-second {
+    /* width: 60%; */
+    width: 76%;
+    margin: 0 2%;
+} 
+
+#content .content-box {
+    background: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#footer {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    font-size: 11px;
+    color: #666;
+    line-height: 16px;
+}
+
+#footer h4 {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+#footer .footer-column {
+    float: left ;
+    width: 31%;
+    margin-right: 2%;
+}

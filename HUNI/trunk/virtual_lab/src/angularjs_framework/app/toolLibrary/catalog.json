@@ -159,5 +159,20 @@
         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/huni-sparql-query.xml",
         "categories" : ["corbicula"],
         "default" : false
+     },
+     {
+        "name": "Send files using Cloudstor",
+        "description": "Send and request files.",
+        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstor.xml",
+        "categories" : ["storage"],
+        "default" : false
+     },
+     {
+        "name": "Store files using Cloudstor+",
+        "description": "Upload, download, organise files and collaborate.",
+        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstorplus.xml",
+        "categories" : ["storage"],
+        "default" : false
      }
+     
  ]
