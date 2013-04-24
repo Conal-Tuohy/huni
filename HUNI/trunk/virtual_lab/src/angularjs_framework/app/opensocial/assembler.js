@@ -22,10 +22,10 @@
  * 
  */
 
-
-//var urlBase = 'http://localhost:8080/shindig-server';
-var urlBase = 'http://115.146.86.223/shindig-server';
-//var contextRoot = urlBase.substr(urlBase.indexOf(location.host) + location.host.length);
+// urlBase is used in some obsolete code in viewController. 
+// Not sure what is supposed to be here now.
+var urlBase = '/shindig-server';
+// The original code for contextRoot was broken if location.host was undefined.
 var contextRoot = '/shindig-server';
 
 var testConfig = testConfig || {};
