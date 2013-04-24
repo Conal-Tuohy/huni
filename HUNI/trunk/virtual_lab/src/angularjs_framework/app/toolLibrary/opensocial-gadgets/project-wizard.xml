@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
 	<ModulePrefs title="Create Project Wizard"  height="400" width= "500"/>
-	<Content type="url" view="canvas" href="http://115.146.86.223/virtual_lab/toolLibrary/wizards/new_project/index.html" />
+	<Content type="url" view="canvas" href="/virtual_lab/toolLibrary/wizards/new_project/index.html" />
 	<Content  type="text" view="home">
      <![CDATA[
        Hello, home view!
