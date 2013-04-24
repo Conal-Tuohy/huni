@@ -2,28 +2,28 @@
     {
         "name": "Project Wizard",
         "description": "Create a new project in the workspace by a step-by-step process. ",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/project-wizard.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/project-wizard.xml",
         "categories" : ["_tutorial"],
         "default" : true
      },
      {
          "name" : "Data entry",
          "description" : "Create an entity, fill in its fields and save it in the selected project. ",
-         "url" : "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-create-entity.xml",
+         "url" : "/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-create-entity.xml",
 	     "categories" : ["data_management"],
         "default" : false
      },
      {
          "name" : "Data modification",
          "description" : "Select an an entity in the selected project, change its fields and save it. ",
-         "url" : "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-edit-entity.xml",
+         "url" : "/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-edit-entity.xml",
 	     "categories" : ["data_management"],
         "default" : false
      },
      {
          "name" : "Heurist",
          "description" : "Edit data on the Heurist web site.",
-         "url" : "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/dataset-heurist.xml",
+         "url" : "/virtual_lab/toolLibrary/opensocial-gadgets/dataset-heurist.xml",
 	     "categories" : ["dataset"],
          "default" : false
      },
@@ -37,140 +37,140 @@
      {
          "name": "Export a CSV file",
          "description": "Create a CSV file on the desktop and derive its contents from the selected project. ",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/export-csv.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/export-csv.xml",
 	     "categories" : ["export"],
         "default" : false
      },
      {
          "name": "Import people from friend-of-a-friend",
          "description": "Find people specified people in the friend-of-a-friend database and import them into the selected project. ",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/import-people-from-foaf.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/import-people-from-foaf.xml",
 	     "categories" : ["import"],
         "default" : false
       },
      {
          "name": "Import a CSV file",
          "description": "Select a CSV file on the desktop and import it into the selected project. ",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/import-csv.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/import-csv.xml",
 	     "categories" : ["import"],
         "default" : false
      },
      {
          "name" : "Report on people",
          "description" : "Count the number of people in the triple store. ",
-         "url" : "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/report-on-people.xml",
+         "url" : "/virtual_lab/toolLibrary/opensocial-gadgets/report-on-people.xml",
 	     "categories" : ["reporting"],
          "default" : false
      },
      {
          "name": "Full text search",
          "description": "Use Lucene to return a list of entities containing specific text. ",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/search-fulltext.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/search-fulltext.xml",
          "categories" : ["search"],
         "default" : false
      },
      {
          "name": "SPARQL query",
          "description": "Use SPARQL commands to find entities with specific properties or relationships. ",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/search-sparql.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/search-sparql.xml",
          "categories" : ["search"],
         "default" : false
      },
      {
          "name": "Date query",
          "description": "Find entities with a date within a certain data range",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/search-temporal.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/search-temporal.xml",
 	     "categories" : ["search"],
         "default" : false
      },
      {
          "name": "Location query",
          "description": "Find entities with a location within a certain location range",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/search-gis.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/search-gis.xml",
 	     "categories" : ["search"],
         "default" : false
      },
      {
          "name": "Relationship query",
          "description": "Find people related to a specified person",
-         "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/search-relationship.xml",
+         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/search-relationship.xml",
 	     "categories" : ["search"],
         "default" : false
      },
     {
         "name": "Map",
         "description": "Use entity GIS coordinates to plot the location of the entity in Google Maps. ",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/visualise-map.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/visualise-map.xml",
         "categories" : ["visualisation"],
         "default" : false
      },
      {
         "name": "Timeline",
         "description": "Use entity dates to plot the lifetime of the entity. ",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/visualise-timeline.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/visualise-timeline.xml",
         "categories" : ["visualisation"],
         "default" : false
      },
      {
         "name": "Network display",
         "description": "Display an RDF graph using its network representation.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/visualise-network.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/visualise-network.xml",
         "categories" : ["visualisation"],
         "default" : false
      },
      {
         "name": "Vocabulary Manager",
         "description": "Manage SKOS vocabularies.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-vocabulary-manager.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-vocabulary-manager.xml",
         "categories" : ["corbicula"],
         "default" : false
      },
      {
         "name": "Simile Gadget",
         "description": "Bulk analysis of XML.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-gadget.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-gadget.xml",
         "categories" : ["corbicula"],
         "default" : false
      },
      {
         "name": "HuNI Ontology Reference",
         "description": "OWL Mudmap ontology.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology.xml",
         "categories" : ["corbicula"],
         "default" : false
      },
      {
         "name": "HuNI Types",
         "description": "HuNI Ontology data types.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology-types.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology-types.xml",
         "categories" : ["corbicula"],
         "default" : false
      },
      {
         "name": "Search by occupation",
         "description": "Search the HuNI aggregate by occupation.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/huni-search-by-occupation.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/huni-search-by-occupation.xml",
         "categories" : ["corbicula"],
         "default" : false
      },
      {
         "name": "Search using SPARQL",
         "description": "Search the HuNI aggregate using an arbitrary SPARQL query.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/huni-sparql-query.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/huni-sparql-query.xml",
         "categories" : ["corbicula"],
         "default" : false
      },
      {
         "name": "Send files using Cloudstor",
         "description": "Send and request files.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstor.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstor.xml",
         "categories" : ["storage"],
         "default" : false
      },
      {
         "name": "Store files using Cloudstor+",
         "description": "Upload, download, organise files and collaborate.",
-        "url": "http://115.146.86.223/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstorplus.xml",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstorplus.xml",
         "categories" : ["storage"],
         "default" : false
      }
