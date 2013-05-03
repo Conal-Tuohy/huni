@@ -1,2 +1,0 @@
-# Module virtual_laboratory
-# RPC service class, partial path of RPC policy file

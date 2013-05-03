@@ -1,2 +1,0 @@
-serviceClass: au.edu.versi.huni.gwt.client.VirtualLaboratoryService
-path: A52927E7375087B50A67DD4F13BA39B6.gwt.rpc
