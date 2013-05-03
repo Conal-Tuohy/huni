@@ -1,0 +1,34 @@
+<h3>History</h3>
+
+<style type="text/css">
+<!--    
+.activity-item
+{
+	font-size: 8px;
+	font-style: italic;
+	font-weight: normal;
+	text-transform: none;
+	padding: 9px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color:green;
+	background-color:rgba(0, 255, 0, 0.2);
+	border: 1px solid green;
+}
+ -->
+</style>
+<div>
+	<ul class="nav nav-list"">
+	    <li ng-repeat="action in $parent.actions()" class="nav-header">{{action.name}} ({{action.dateTime}})
+	    	<div class="activity-item">
+	    		{{action.description}}
+	    	</div>
+	    </li>
+	</ul>
+</div>
+<div style='display: block;'>
+	<button id="clearHistory">Clear</button>
+</div>
+
+ 

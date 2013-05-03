@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs title="HuNI: cloudstor+ Storage Tool"  height="400" width= "500"/>
+		<Content  type="html" view="home">
+     <![CDATA[
+       <h1>
+       	AARNET: Cloudstor+
+       </h1>
+       <div>
+       Store large files and collaborate. Requires an AAF login available to most Australian Academics.
+       </div>
+       <div>
+       	<a href='https://cloudstor.aarnet.edu.au/plus/?app=files' target='_blank' >Store, download, organise and view files</a>
+       </div>
+       <div>
+       	<a href='https://cloudstor.aarnet.edu.au/plus/remote.php/webdav/' target='_blank' >Mount a WebDAV Volume on a Windows or MacOS X desktop.</a>
+       </div>
+       <div>
+       	<a href=' http://owncloud.org/sync-clients/' target='_blank' >Sync a mobile or desktop client.</a>
+       </div>
+       <div>
+       	<a href='http://www.aarnet.edu.au/communities/research/eresearch-overview/cloudstorplus-information.aspx'  target='_blank' >About Cloudstor+</a>
+       </div>
+       <div><a href='http://en.wikipedia.org/wiki/OwnCloud' target='_blank' >About OwnCloud</a></div>                    
+     ]]>
+	</Content>
+</Module>

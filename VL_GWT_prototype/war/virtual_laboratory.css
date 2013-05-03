@@ -1,0 +1,298 @@
+/*------------- General Styles -------------*/
+
+/*------------- The GWT Root Containers -------------*/
+
+/* 
+Obsolete due to use of layout container. 
+*/
+
+/*------------- The GWT Components: Tabs -------------*/
+
+.gwt-TabLayoutPanel {
+ height: 100%;
+}
+ 
+/** the tab bar */
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
+}
+ 
+/** the individual tab in the tab bar */
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+ cursor: pointer;
+ cursor: hand;
+ color: black;
+ min-width: 6em;
+ background-color: #C4D0DB;
+ font-size: 9pt;
+ text-align: center;
+ float: left;
+ margin-right: 0px;
+}
+ 
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
+ cursor: default;
+ background-color: #ABBCCF;
+}
+ 
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
+ border:0px;
+ padding: 0;
+}
+ 
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabInner {
+	}
+
+/*------------- The GWT Components: Decorator Panel -------------*/
+
+/* Get those round corners in the decorator panel */
+ .gwt-DecoratorPanel .middleCenter {
+   height: 100%;
+   width: 100%;
+ }
+
+/*------------- The GWT Components: Dialog Boxes -------------*/
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+/*------------- The HuNI Application Styles for Composites -------------*/
+
+/* 
+	Obsolete: referenced by html in virtual_laboratory.html
+*/
+
+#huni-vl-container {
+	border: 15px 6px 6px 16px;
+	border-color: #222222;
+}
+
+.huni-vl-error-message-container {
+	color: red;
+}
+
+/* 
+	Active: used by RootLayoutPanel.
+*/
+
+.huni-vl-application-container {
+	width: 100%;
+	height: 1000px;
+}
+
+huni-vl-application-wrapper-panel {
+	overflow: auto;
+}
+
+.huni-vl-application {
+	margin: 0px;
+	overflow: auto;
+}
+
+/** Header Name */
+.huni-vl-header-title {
+	font-size: 1.5em;
+	color: #777777;
+	text-align: left;
+	margin: 15px 6px 6px;
+	font-family: Verdana, Times, serif;
+}
+
+.huni-vl-page-header {
+	/* padding: 5px 5px 5px 5px; */
+	padding: 0;
+	background-image: url('resources/images/bg-texture.png');
+}
+
+.huni-vl-page-footer {
+	background: none repeat scroll 0 0 #E6E7E8;
+	border-top: medium none;
+	color: #636466;
+	font-weight: normal;
+}
+
+.huni-vl-page-footer-credit {
+	height: 99px;
+	width: 314px;
+	background-image: url('http://dev.huni.net.au/wp-content/uploads/2012/10/NeCTAR+Deakin-logos1.png');
+}
+
+.huni-vl-banner {
+	overflow: hidden;
+	width:100%;
+}
+
+.huni-vl-banner-title {
+	width: 350px;
+	height: "40px";
+	font-family: Signika, sans-serif;
+	font-size: 25px;
+	color: white;	
+	background-color: rgba(3, 143, 166, 0.898438);
+	padding: 5px 20px 5px 20px;
+}
+
+.huni-crud-button-bar {
+	margin: 5px 0px 5px 0px;
+}
+
+
+.huni-toolkits-tools-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-projects-datasources-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-tool-details {	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color: white;
+}
+
+.huni-tool-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: #BBBBFF dotted;
+}
+
+
+.huni-catalog-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-activity-list {
+	margin: 0px 5px 0px 5px;
+}
+
+
+.huni-history-list {
+	margin: 0px 5px 0px 5px;
+}
+
+.huni-about-box {
+	background: none repeat scroll 0 0 #EEEEEE;
+	padding: 5px 5px 5px 5px;
+}
+
+.huni-about-box-title {
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0px 0px 2px 0px;
+}
+
+.huni-about-label {
+	color: #666633;
+	margin: 0px 2px 0px 2px;
+	font-size: 10px;
+}
+
+.huni-popup {
+	font-family: Signika, sans-serif;
+	font-size: 12px;
+	background-color: rgba(3, 143, 166, 0.898438);
+	color: white;
+	width: 200px;
+	overflow: auto;
+	padding: 5px 5px 5px 5px;
+}
+
+h1.huni-popup {
+	font-size: 14px;
+	color: white;
+	margin: 0px 0px 0px 0px;	
+	width: 180px;
+	text-align: left;
+}
+
+
+.huni-introduction {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color: white;
+}
+
+.huni-introduction-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: #BBBBFF dotted;
+}
+
+
+.huni-article-list {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color: white;
+}
+
+.huni-article-list-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: #BBBBFF dotted;
+}
+
+.huni-slide-show {
+	margin: 10px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.huni-slide-show-frame {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	scrolling: auto;
+	border: #BBBBFF dotted;
+}
+
+.huni-vl-home-layout {
+	width:100%;
+	height:100%;
+	margin:0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border: 0;
+}
+
+.huni-vl-workspace-layout {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding: 0;
+	border: 0;
+}
+
+.huni-left-right-margins {
+	width:100%;
+	height:100%;
+	margin:0px 10px 0px 10px;
+	padding: 0;
+	scrolling: auto;
+	border: 0;
+	background-color: fuchsia;
+}
+

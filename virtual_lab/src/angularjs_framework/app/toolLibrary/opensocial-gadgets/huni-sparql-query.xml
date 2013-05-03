@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs title="Corbicula: Gadget."  height="400" width= "500"/>
+	<Content type="url" view="canvas" href="http://corbicula.huni.net.au/sparql.html" />
+</Module>

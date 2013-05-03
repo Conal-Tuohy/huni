@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="virtualab">
+  <head>
+    <meta charset="utf-8">
+    <title>HuNI Virtual Laboratory</title>
+    <meta name="description" content="A virtual laboratory for humanities researchers based on linked data principles.">
+    <meta name="Richard Rothwell, VeRSI" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <!-- Testing commit to Google Code -->
+    
+    <link href="./css/normalize.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+ 	<link href="./css/3column.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/huni.css">
+
+    <!-- Favicon and iOS (touch) icons. -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <!-- Javascript ->
+    <!-- Place at the end of the document so the pages load faster -->
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.js"></script>
+
+	<script src="lib/angular/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="lib/angular/angular-resource.js"></script>
+
+	<!-- /shindig-project/content/README 
+    <script type="text/javascript" src="../../js/shindig-container:rpc.js?c=1"></script>
+     -->
+	<!-- /shindig-project/content/samplecontainer/samplecontainer.html 
+	<script type="text/javascript" src="../gadgets/js/core:rpc:pubsub:shindig-container.js?c=1&debug=1"></script>
+	 -->
+	<!-- /shindig-project/content/samplecontainer/examples/commoncontainer/index.html --> 
+<!-- 	<script type="text/javascript" src="http://localhost:8080/shindig-server/gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&debug=1&container=default"></script> -->	
+	<script type="text/javascript" src="/shindig-server/gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&debug=1&container=default"></script>
+
+	<script type="text/javascript" src="./opensocial/assembler.js"></script>
+	<script type="text/javascript" src="./opensocial/viewController.js"></script>
+	<script type="text/javascript" src="./opensocial/cconviews.js"></script>
+	<script type="text/javascript" src="./opensocial/search.js"></script>
+
+  </head>
+
+  <body>
+
+	<div ng-view></div> 
+	   
+  </body>
+</html>
+
