@@ -1,0 +1,26 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-05-06 15:45:31
+// [failed] jpa setup --database DERBY_EMBEDDED --provider HIBERNATE
+help
+// [failed] jpa setup --database DERBY_EMBEDDED --provider HIBERNATE
+jpa setup --database DERBY_EMBEDDED --provider HIBERNATE
+entity jpa --class ~.model.HistoryItem
+field string --fieldName toolName
+// [failed] field date --type java.util.Calendar --fieldName date --notNull true
+field date --type java.util.Calendar --fieldName executionDate --notNull true
+field other --type java.awt.Color --fieldName backgroundColour
+field string --fieldName json 
+entity jpa --class ~.model.Researcher
+field string --fieldName userName --notNull true --sizeMax 128
+field string --fieldName givenName --notNull true --sizeMax 256
+field string --fieldName familyName --notNull true --sizeMax 256
+field other --type Researcher --fieldName owner
+field set --fieldName history --type HistoryItem 
+focus --class ~.model.HistoryItem 
+field reference --type Researcher --fieldName owner
+test integration
+focus --class  ~.model.Researcher
+test integration
+test mock 
+focus --class ~.model.HistoryItem 
+test mock 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-05-06 17:20:33
