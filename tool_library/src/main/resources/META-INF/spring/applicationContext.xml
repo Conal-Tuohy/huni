@@ -68,13 +68,13 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+		
 	<!-- File upload conversion -->
 	<bean id="multipartFilter"
 		class="org.springframework.web.multipart.support.MultipartFilter">
 		<property name="multipartResolverBeanName" value="multipartResolver" />
 	</bean>
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+		
    
    
 </beans>
