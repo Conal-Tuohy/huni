@@ -11,6 +11,6 @@
         <field:display field="filepath" id="s_au_net_huni_tool_library_model_Tool_filepath" object="${tool}" z="+cIZlc+ijyNmR6rFpJgxmBZXXX0="/>
         <field:display field="filesize" id="s_au_net_huni_tool_library_model_Tool_filesize" object="${tool}" z="Uu+DK7QwDPKvANA5c+4ui6ImyO4="/>
         <field:display field="contentType" id="s_au_net_huni_tool_library_model_Tool_contentType" object="${tool}" z="678AHdWCLLHV207qkn3SwS9CFpI="/>
-        <field:display field="content" id="s_au_net_huni_tool_library_model_Tool_content" object="${tool}" z="/d7mK1B6mOl3UL819ybwfN2ylj8="/>
+        <field:display field="gadgetSpec" id="s_au_net_huni_tool_library_model_Tool_gadgetSpec" object="${tool}" z="4Bqmanv9a6Qk8Mst2nHD6ch/6uI="/>
     </page:show>
 </div>

@@ -73,12 +73,12 @@ privileged aspect Tool_Roo_JavaBean {
         this.contentType = contentType;
     }
     
-    public byte[] Tool.getContent() {
-        return this.content;
+    public byte[] Tool.getGadgetSpec() {
+        return this.gadgetSpec;
     }
     
-    public void Tool.setContent(byte[] content) {
-        this.content = content;
+    public void Tool.setGadgetSpec(byte[] gadgetSpec) {
+        this.gadgetSpec = gadgetSpec;
     }
     
 }

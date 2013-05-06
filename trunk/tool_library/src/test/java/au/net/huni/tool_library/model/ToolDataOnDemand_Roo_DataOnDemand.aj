@@ -28,6 +28,7 @@ privileged aspect ToolDataOnDemand_Roo_DataOnDemand {
         setDescription(obj, index);
         setFilepath(obj, index);
         setFilesize(obj, index);
+        setGadgetSpec(obj, index);
         setIsDefault(obj, index);
         setName(obj, index);
         setUrl(obj, index);
@@ -58,6 +59,11 @@ privileged aspect ToolDataOnDemand_Roo_DataOnDemand {
     public void ToolDataOnDemand.setFilesize(Tool obj, int index) {
         Long filesize = new Integer(index).longValue();
         obj.setFilesize(filesize);
+    }
+    
+    public void ToolDataOnDemand.setGadgetSpec(Tool obj, int index) {
+        byte[] gadgetSpec = String.valueOf(index).getBytes();
+        obj.setGadgetSpec(gadgetSpec);
     }
     
     public void ToolDataOnDemand.setIsDefault(Tool obj, int index) {

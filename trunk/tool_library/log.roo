@@ -33,3 +33,11 @@ web mvc all --package au.net.huni.tool_library.web
 test integration --entity ~.model.Tool
 test mock 
 web mvc all --package au.net.huni.tool_library.web 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-08 18:32:01
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-11 17:01:13
+focus --class ~.model.Tool
+field file --fieldName gadgetSpec --contentType JSON 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-11 17:46:28
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-13 08:32:46
+focus --class ~.model.Tool
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-13 10:06:26
