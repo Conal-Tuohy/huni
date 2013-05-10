@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_au_net_huni_model_Researcher" object="${researcher}" path="/console/researchers" z="user-managed">
+        <field:display field="userName" id="s_au_net_huni_model_Researcher_userName" object="${researcher}" z="BfzrnbpyHB1kAhOKVElQAlbsViM="/>
+        <field:display field="givenName" id="s_au_net_huni_model_Researcher_givenName" object="${researcher}" z="3sxkXeaHjAUL6WYA5ET6ZqMeSG8="/>
+        <field:display field="familyName" id="s_au_net_huni_model_Researcher_familyName" object="${researcher}" z="f0pXTqfZ3d7RGXT8gUMhD1pzQOc="/>
+        <field:display field="history" id="s_au_net_huni_model_Researcher_history" object="${researcher}" z="tKijy/LcyCrc7aELNJMsnVbFmIQ="/>
+    </page:show>
+</div>

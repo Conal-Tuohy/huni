@@ -24,7 +24,7 @@ privileged aspect HistoryItemIntegrationTest_Roo_IntegrationTest {
     declare @type: HistoryItemIntegrationTest: @Transactional;
     
     @Autowired
-    private HistoryItemDataOnDemand HistoryItemIntegrationTest.dod;
+    HistoryItemDataOnDemand HistoryItemIntegrationTest.dod;
     
     @Test
     public void HistoryItemIntegrationTest.testCountHistoryItems() {

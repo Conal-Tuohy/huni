@@ -1,14 +1,15 @@
 package au.net.huni.model;
 
-import java.awt.Color;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 import org.springframework.stereotype.Component;
@@ -35,12 +36,12 @@ public class HistoryItemDataOnDemand {
     }
 
 	public void setBackgroundColour(HistoryItem obj, int index) {
-        Color backgroundColour = new Color(0.5F, 0.5F, 0.5F);
+        String backgroundColour = "#EEFF22";
         obj.setBackgroundColour(backgroundColour);
     }
 
 	public void setExecutionDate(HistoryItem obj, int index) {
-        Calendar executionDate = Calendar.getInstance();
+        Date executionDate = new Date();
         obj.setExecutionDate(executionDate);
     }
 
