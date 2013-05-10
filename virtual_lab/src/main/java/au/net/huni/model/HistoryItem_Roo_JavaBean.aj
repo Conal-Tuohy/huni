@@ -5,8 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
-import java.awt.Color;
-import java.util.Calendar;
+import java.util.Date;
 
 privileged aspect HistoryItem_Roo_JavaBean {
     
@@ -18,19 +17,11 @@ privileged aspect HistoryItem_Roo_JavaBean {
         this.toolName = toolName;
     }
     
-    public Calendar HistoryItem.getExecutionDate() {
-        return this.executionDate;
-    }
-    
-    public void HistoryItem.setExecutionDate(Calendar executionDate) {
-        this.executionDate = executionDate;
-    }
-    
-    public Color HistoryItem.getBackgroundColour() {
+    public String HistoryItem.getBackgroundColour() {
         return this.backgroundColour;
     }
     
-    public void HistoryItem.setBackgroundColour(Color backgroundColour) {
+    public void HistoryItem.setBackgroundColour(String backgroundColour) {
         this.backgroundColour = backgroundColour;
     }
     
@@ -40,6 +31,14 @@ privileged aspect HistoryItem_Roo_JavaBean {
     
     public void HistoryItem.setJson(String json) {
         this.json = json;
+    }
+    
+    public Date HistoryItem.getExecutionDate() {
+        return this.executionDate;
+    }
+    
+    public void HistoryItem.setExecutionDate(Date executionDate) {
+        this.executionDate = executionDate;
     }
     
     public Researcher HistoryItem.getOwner() {

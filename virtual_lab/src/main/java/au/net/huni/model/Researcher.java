@@ -27,6 +27,6 @@ public class Researcher {
     @Size(max = 256)
     private String familyName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<HistoryItem> history = new HashSet<HistoryItem>();
 }

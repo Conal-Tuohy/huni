@@ -24,3 +24,31 @@ test mock
 focus --class ~.model.HistoryItem 
 test mock 
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-05-06 17:20:33
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-05-07 10:14:22
+web mvc setup
+web mvc all --package ~.web
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-05-07 17:15:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 14:31:09
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-08 17:14:09
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-09 10:28:31
+logging setup --level DEBUG
+focus --class ~.model.HistoryItem
+hint field
+hint
+hint fields
+field date --fieldName executionDate --type java.util.Date --notNull 
+hint 
+hint fields
+hint fields
+hint relationships
+field set --fieldName history --class Researcher --type HistoryItem --mappedBy owner
+field reference --fieldName owner --class HistoryItem --type Researcher --notNull
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-09 17:11:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 08:14:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 08:17:05
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 08:24:48
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 08:35:46
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 11:42:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 11:52:36
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 12:06:56
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 12:45:27

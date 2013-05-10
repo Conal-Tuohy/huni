@@ -24,7 +24,7 @@ privileged aspect ResearcherIntegrationTest_Roo_IntegrationTest {
     declare @type: ResearcherIntegrationTest: @Transactional;
     
     @Autowired
-    private ResearcherDataOnDemand ResearcherIntegrationTest.dod;
+    ResearcherDataOnDemand ResearcherIntegrationTest.dod;
     
     @Test
     public void ResearcherIntegrationTest.testCountResearchers() {

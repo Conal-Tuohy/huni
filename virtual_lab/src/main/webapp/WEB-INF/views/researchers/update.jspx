@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_au_net_huni_model_Researcher" modelAttribute="researcher" path="/console/researchers" versionField="Version" z="user-managed">
+        <field:textarea field="userName" id="c_au_net_huni_model_Researcher_userName" required="true" z="Wbekog3JrnXubamZBHGw6RuunT0="/>
+        <field:textarea field="givenName" id="c_au_net_huni_model_Researcher_givenName" required="true" z="L6Wlj0mcknPkXrc3VfkNuDikP78="/>
+        <field:textarea field="familyName" id="c_au_net_huni_model_Researcher_familyName" required="true" z="DAQcTwVWJ9RsoY6CTQINNSFS/Yg="/>
+        <field:select field="history" id="c_au_net_huni_model_Researcher_history" itemValue="id" items="${historyitems}" multiple="true" path="/console/historyitems" z="user-managed"/>
+    </form:update>
+</div>

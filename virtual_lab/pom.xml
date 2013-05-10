@@ -287,7 +287,7 @@
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
-            <version>2.2</version>
+            <version>1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -320,6 +320,16 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.2</version>
                 <!-- <configuration> <webXml>target/web.xml</webXml> </configuration> -->
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <excludes>
+                                <exclude>dbre.xml</exclude>
+                            </excludes>
+                            <directory>src/main/resources</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -376,6 +386,25 @@
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+		        <executions>
+		          <execution>
+		            <id>copy-resources</id>
+		            <!-- here the phase you need -->
+		            <phase>validate</phase>
+		            <goals>
+		              <goal>copy-resources</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>${basedir}/target/extra-resources</outputDirectory>
+		              <resources>          
+		                <resource>
+		                  <directory>src/main/java/non-packaged-resources</directory>
+		                  <filtering>true</filtering>
+		                </resource>
+		              </resources>              
+		            </configuration>            
+		          </execution>
+		        </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -452,7 +481,7 @@
                 <version>8.1.4.v20120524</version>
                 <configuration>
                     <webAppConfig>
-                        <contextPath>/${project.name}</contextPath>
+                        <contextPath>/virtual_lab</contextPath>
                     </webAppConfig>
                 </configuration>
             </plugin>
