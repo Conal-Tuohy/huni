@@ -26,9 +26,6 @@ public class HistoryItem {
     private String backgroundColour = "#FFFFFF";
 
     @NotNull
-    private String json;
-
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date executionDate = new Date();

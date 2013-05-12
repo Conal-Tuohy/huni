@@ -5,7 +5,6 @@
     <form:create id="fc_au_net_huni_model_HistoryItem" modelAttribute="historyItem" path="/console/historyitems" render="${empty dependencies}" z="user-managed">
         <field:input field="toolName" id="c_au_net_huni_model_HistoryItem_toolName" required="true" z="V0+uYszcHdWK1q5Am6gNAfBKgAA="/>
         <field:input field="backgroundColour" id="c_au_net_huni_model_HistoryItem_backgroundColour" required="true" validationRegex="#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]" z="fGDTIeDxBUZSTvEUQEiChnHYDI4="/>
-        <field:input field="json" id="c_au_net_huni_model_HistoryItem_json" required="true" z="L5bfSluzNMja/E1yXEJoCwByDmk="/>
         <field:select field="owner" id="c_au_net_huni_model_HistoryItem_owner" itemValue="id" items="${researchers}" path="/console/researchers" z="user-managed"/>
         <field:datetime dateTimePattern="${historyItem_executiondate_date_format}" field="executionDate" id="c_au_net_huni_model_HistoryItem_executionDate" required="true" z="bO/LrWRtOkRAgJ3w2PoK4bG/X1k="/>
     </form:create>

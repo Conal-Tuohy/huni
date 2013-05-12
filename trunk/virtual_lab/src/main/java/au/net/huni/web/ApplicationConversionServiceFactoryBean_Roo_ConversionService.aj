@@ -17,7 +17,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<HistoryItem, String> ApplicationConversionServiceFactoryBean.getHistoryItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.HistoryItem, java.lang.String>() {
             public String convert(HistoryItem historyItem) {
-                return new StringBuilder().append(historyItem.getToolName()).append(' ').append(historyItem.getBackgroundColour()).append(' ').append(historyItem.getJson()).append(' ').append(historyItem.getExecutionDate()).toString();
+                return new StringBuilder().append(historyItem.getToolName()).append(' ').append(historyItem.getBackgroundColour()).append(' ').append(historyItem.getExecutionDate()).toString();
             }
         };
     }
