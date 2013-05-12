@@ -5,6 +5,7 @@ package au.net.huni.web;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolParameter;
 import au.net.huni.web.HistoryItemController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ privileged aspect HistoryItemController_Roo_Controller {
         uiModel.addAttribute("historyItem", historyItem);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("researchers", Researcher.findAllResearchers());
+        uiModel.addAttribute("toolparameters", ToolParameter.findAllToolParameters());
     }
     
     String HistoryItemController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
