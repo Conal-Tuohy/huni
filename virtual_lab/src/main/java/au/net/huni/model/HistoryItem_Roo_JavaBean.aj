@@ -25,14 +25,6 @@ privileged aspect HistoryItem_Roo_JavaBean {
         this.backgroundColour = backgroundColour;
     }
     
-    public String HistoryItem.getJson() {
-        return this.json;
-    }
-    
-    public void HistoryItem.setJson(String json) {
-        this.json = json;
-    }
-    
     public Date HistoryItem.getExecutionDate() {
         return this.executionDate;
     }

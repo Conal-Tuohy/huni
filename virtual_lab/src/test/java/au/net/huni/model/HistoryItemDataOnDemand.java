@@ -29,7 +29,6 @@ public class HistoryItemDataOnDemand {
         HistoryItem obj = new HistoryItem();
         setBackgroundColour(obj, index);
         setExecutionDate(obj, index);
-        setJson(obj, index);
         setOwner(obj, index);
         setToolName(obj, index);
         return obj;
@@ -43,11 +42,6 @@ public class HistoryItemDataOnDemand {
 	public void setExecutionDate(HistoryItem obj, int index) {
         Date executionDate = new Date();
         obj.setExecutionDate(executionDate);
-    }
-
-	public void setJson(HistoryItem obj, int index) {
-        String json = "json_" + index;
-        obj.setJson(json);
     }
 
 	public void setOwner(HistoryItem obj, int index) {

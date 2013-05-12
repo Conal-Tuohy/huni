@@ -6,7 +6,6 @@
         <table:table data="${historyitems}" id="l_au_net_huni_model_HistoryItem" path="/console/historyitems" z="user-managed">
             <table:column id="c_au_net_huni_model_HistoryItem_toolName" property="toolName" z="Z3w75edWd0U2YqDigRaNUm7QRP8="/>
             <table:column id="c_au_net_huni_model_HistoryItem_backgroundColour" property="backgroundColour" z="OHuIASPCFa6lmsQlioqpA/AVRVA="/>
-            <table:column id="c_au_net_huni_model_HistoryItem_json" property="json" z="bJQAYg25NryY7NhBEpL02Y/Z0bw="/>
             <table:column date="true" dateTimePattern="${historyItem_executiondate_date_format}" id="c_au_net_huni_model_HistoryItem_executionDate" property="executionDate" z="pXC+ofQWPF/E+wo4al5j3n75+do="/>
             <table:column id="c_au_net_huni_model_HistoryItem_owner" property="owner" z="PXa0DqE/iVyhwt2m1hpFZRFgIdM="/>
         </table:table>
