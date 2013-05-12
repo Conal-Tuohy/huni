@@ -76,3 +76,4 @@ field reference --fieldName owner --type ~.model.HistoryItem --cardinality MANY_
 json all
 hint
 hint json
+web mvc json all
