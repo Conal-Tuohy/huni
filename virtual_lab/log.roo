@@ -53,3 +53,26 @@ field reference --fieldName owner --class HistoryItem --type Researcher --notNul
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 12:06:56
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 12:45:27
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-12 10:57:59
+entity jpa --class ~.model.ToolParameter
+hint
+hint fields
+field string --fieldName name --sizeMin 2 --notNull
+// [failed] field string --fieldName value --notNull
+// [failed] field number --fieldName order --type int --digitsInteger 
+field number --fieldName displayOrder --type int --digitsInteger 
+// [failed] field set --fieldName toolParameters --type ~.model.ToolParameter
+// [failed] field set --fieldName toolParameters --type ~.model.ToolParameter
+field set --fieldName toolParameters --type ~.model.ToolParameter --class ~.model.HistoryItem
+hint
+hint topics
+test integration 
+test integration --entity ~.model.ToolParameter
+web mvc scaffold --class ~.model.ToolParameter
+web mvc scaffold --class ~.web.ToolParameterController
+// [failed] field string --fieldName value
+field string --fieldName amount
+// [failed] field reference --fieldName owner --type ~.model.HistoryItem --cardinality MANY_TO_MANY --notNull 
+field reference --fieldName owner --type ~.model.HistoryItem --cardinality MANY_TO_ONE --notNull 
+json all
+hint
+hint json

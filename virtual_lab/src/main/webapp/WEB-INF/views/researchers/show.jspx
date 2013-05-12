@@ -6,6 +6,5 @@
         <field:display field="userName" id="s_au_net_huni_model_Researcher_userName" object="${researcher}" z="BfzrnbpyHB1kAhOKVElQAlbsViM="/>
         <field:display field="givenName" id="s_au_net_huni_model_Researcher_givenName" object="${researcher}" z="3sxkXeaHjAUL6WYA5ET6ZqMeSG8="/>
         <field:display field="familyName" id="s_au_net_huni_model_Researcher_familyName" object="${researcher}" z="f0pXTqfZ3d7RGXT8gUMhD1pzQOc="/>
-        <field:display field="history" id="s_au_net_huni_model_Researcher_history" object="${researcher}" z="tKijy/LcyCrc7aELNJMsnVbFmIQ="/>
     </page:show>
 </div>

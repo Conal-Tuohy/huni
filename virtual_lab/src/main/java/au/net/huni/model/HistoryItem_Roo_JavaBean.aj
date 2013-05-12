@@ -5,7 +5,9 @@ package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolParameter;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect HistoryItem_Roo_JavaBean {
     
@@ -39,6 +41,14 @@ privileged aspect HistoryItem_Roo_JavaBean {
     
     public void HistoryItem.setOwner(Researcher owner) {
         this.owner = owner;
+    }
+    
+    public Set<ToolParameter> HistoryItem.getToolParameters() {
+        return this.toolParameters;
+    }
+    
+    public void HistoryItem.setToolParameters(Set<ToolParameter> toolParameters) {
+        this.toolParameters = toolParameters;
     }
     
 }

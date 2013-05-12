@@ -5,6 +5,7 @@ package au.net.huni.web;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolParameter;
 import au.net.huni.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -62,6 +63,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<ToolParameter, String> ApplicationConversionServiceFactoryBean.getToolParameterToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolParameter, java.lang.String>() {
+            public String convert(ToolParameter toolParameter) {
+                return new StringBuilder().append(toolParameter.getName()).append(' ').append(toolParameter.getAmount()).append(' ').append(toolParameter.getDisplayOrder()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ToolParameter> ApplicationConversionServiceFactoryBean.getIdToToolParameterConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.ToolParameter>() {
+            public au.net.huni.model.ToolParameter convert(java.lang.Long id) {
+                return ToolParameter.findToolParameter(id);
+            }
+        };
+    }
+    
+    public Converter<String, ToolParameter> ApplicationConversionServiceFactoryBean.getStringToToolParameterConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.ToolParameter>() {
+            public au.net.huni.model.ToolParameter convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ToolParameter.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getHistoryItemToStringConverter());
         registry.addConverter(getIdToHistoryItemConverter());
@@ -69,6 +94,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getResearcherToStringConverter());
         registry.addConverter(getIdToResearcherConverter());
         registry.addConverter(getStringToResearcherConverter());
+        registry.addConverter(getToolParameterToStringConverter());
+        registry.addConverter(getIdToToolParameterConverter());
+        registry.addConverter(getStringToToolParameterConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

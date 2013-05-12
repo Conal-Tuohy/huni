@@ -7,7 +7,6 @@
             <table:column id="c_au_net_huni_model_Researcher_userName" property="userName" z="3l0rPXm2ourQIZ31HXADEPdKkck="/>
             <table:column id="c_au_net_huni_model_Researcher_givenName" property="givenName" z="7Rurb54yMheOjw8Ett2l3o+W3NY="/>
             <table:column id="c_au_net_huni_model_Researcher_familyName" property="familyName" z="EBVpdOSyB7tnNtz5RkOTBmMmhwU="/>
-            <table:column id="c_au_net_huni_model_Researcher_history" property="history" z="AzaTAGkJl4awTtqSB6cJ5YtKRwM="/>
         </table:table>
     </page:list>
 </div>
