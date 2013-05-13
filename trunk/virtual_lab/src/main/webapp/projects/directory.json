@@ -1,0 +1,41 @@
+[
+    {
+        "name": "Polynesian Navigators",
+        "description": "Oral histories of polynesian navigation and the discover of New Zealand. ",
+        "tripleStore": "/triplestore/fred_nerk/poly_navigators.xml",
+        "dataSources" : [
+        {
+        	"name" : "Pacific island memories",
+        	"home" : "http://www.pacis.org.nz",
+        	"ingest" : "http://www.pacis.org.nz/data/81895.json",
+        	"date" : "2014-07-12"
+        }
+        ]
+     },
+     {
+        "name": "Headhunters of Borneo",
+        "description": "Kuru transmission via cannibilism in the South Seas. ",
+        "tripleStore": "/triplestore/fred_nerk/head_borneo.xml",
+        "dataSources" : [
+        {
+        	"name" : "Indonesia office of Culture",
+        	"home" : "http://www.culture.org.in",
+        	"ingest" : "http://www.culture.org.in/data/76543.xml",
+        	"date" : "2014-11-01"
+        }
+        ]
+     },
+     {
+        "name": "Mayan Pottery in Guatemala",
+        "description": "Bone urns in ritual sacrifice.",
+        "tripleStore": "/triplestore/fred_nerk/bone_urns.xml",
+        "dataSources" : [
+        {
+        	"name" : "Guatemala on eBay",
+        	"home" : "http://www.ebay.com.gm",
+        	"ingest" : "http://www.ebay.com.gm/sales/GGTWQL.xml",
+        	"date" : "2015-02-31"
+        }
+        ]
+     }
+ ]
