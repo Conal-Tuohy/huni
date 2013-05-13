@@ -13,7 +13,7 @@ import java.util.List;
 privileged aspect ToolParameter_Roo_Json {
     
     public String ToolParameter.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
+        return new JSONSerializer().exclude("*.class", "owner").serialize(this);
     }
     
     public static ToolParameter ToolParameter.fromJsonToToolParameter(String json) {
@@ -21,7 +21,7 @@ privileged aspect ToolParameter_Roo_Json {
     }
     
     public static String ToolParameter.toJsonArray(Collection<ToolParameter> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
+        return new JSONSerializer().exclude("*.class", "owner").serialize(collection);
     }
     
     public static Collection<ToolParameter> ToolParameter.fromJsonArrayToToolParameters(String json) {

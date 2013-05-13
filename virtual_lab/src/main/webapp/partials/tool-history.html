@@ -20,9 +20,11 @@
 </style>
 <div>
 	<ul class="nav nav-list"">
-	    <li ng-repeat="action in $parent.actions()" class="nav-header">{{action.toolName}} ({{action.executionDate}})
-	    	<div class="activity-item">
-	    		{{action.description}}
+	    <li ng-repeat="action in $parent.actions()" class="nav-header" >{{action.toolName}} ({{action.executionDate}})
+	    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
+		    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">
+		    		<span style="font-weight: bold;">{{parameter.name}}:</span><span>{{parameter.amount}}</span>
+		    	</div>
 	    	</div>
 	    </li>
 	</ul>
