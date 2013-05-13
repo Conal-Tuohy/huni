@@ -13,7 +13,7 @@ import java.util.List;
 privileged aspect HistoryItem_Roo_Json {
     
     public String HistoryItem.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
+        return new JSONSerializer().exclude("*.class", "owner").include("toolParameters").serialize(this);
     }
     
     public static HistoryItem HistoryItem.fromJsonToHistoryItem(String json) {
@@ -21,7 +21,7 @@ privileged aspect HistoryItem_Roo_Json {
     }
     
     public static String HistoryItem.toJsonArray(Collection<HistoryItem> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
+        return new JSONSerializer().exclude("*.class", "owner").include("toolParameters").serialize(collection);
     }
     
     public static Collection<HistoryItem> HistoryItem.fromJsonArrayToHistoryItems(String json) {
