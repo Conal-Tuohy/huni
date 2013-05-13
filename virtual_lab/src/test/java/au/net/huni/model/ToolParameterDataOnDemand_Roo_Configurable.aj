@@ -3,7 +3,6 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolParameterDataOnDemand;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect ToolParameterDataOnDemand_Roo_Configurable {

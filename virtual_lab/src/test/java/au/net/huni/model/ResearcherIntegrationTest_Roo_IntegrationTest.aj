@@ -3,15 +3,12 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.Researcher;
-import au.net.huni.model.ResearcherDataOnDemand;
-import au.net.huni.model.ResearcherIntegrationTest;
 import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +16,7 @@ privileged aspect ResearcherIntegrationTest_Roo_IntegrationTest {
     
     declare @type: ResearcherIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-    declare @type: ResearcherIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml");
-    
+        
     declare @type: ResearcherIntegrationTest: @Transactional;
     
     @Autowired
