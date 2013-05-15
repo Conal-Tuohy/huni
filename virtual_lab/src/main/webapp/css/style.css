@@ -1,0 +1,211 @@
+body {
+ 	background: #fff;
+ 	font-size: 13px;
+ 	line-height: 18px;
+ 	color: #1b1b1b;
+ 	font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+ 	line-height: 30px;
+    list-style-image: url(../img/img_bullet.gif)
+}
+
+h1, h2, h3, h4, h5 {
+    clear: both;
+    margin: 0 0 10px 0;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav {
+	float: right;
+    clear: right;
+	margin: 0;
+}
+
+.navbar .nav li, #user-information li {
+    list-style-image: none;
+    line-height: 18px;
+}
+
+.navbar-inner {
+ 	background: #eee !important;
+ 	border-bottom: 1px solid #ccc !important;
+ 	border-radius: 0;
+ 	-moz-border-radius: 0;
+ 	-webkit-border-radius: 0;
+}
+
+
+a.brand {
+	background: url(http://huni.net.au/wp-content/uploads/2012/10/huni-logo-21.png) center center no-repeat;
+    text-indent: -9999px;
+    height: 80px;
+    width: 210px;
+    margin-top: 12px;
+}
+
+.navbar-inner .nav a, .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a  {
+ 	text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-left: 5px;
+}
+
+.navbar-inner .nav a:hover, .navbar-inner .nav .active a, .nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus {
+    background: #4db3d0;
+    color: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 4px 8px;
+}
+
+.nav-collapse .nav > li {
+	float: left;
+}
+
+/* -------------------------------------------------- User Information */
+
+.navbar-inner #user-information {
+	float: right;
+	width: 375px;
+    margin: 15px 0;
+}
+
+.navbar-inner #user-information li {
+    display: inline;
+    margin: 0 2px;
+}
+
+.navbar-inner #user-information a {
+    color: #666;
+    text-decoration: none;
+}
+
+.navbar-inner #user-information a:hover {
+    text-decoration: underline;
+}
+
+#searchbox {
+    background: #D6E03D;    
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px 20px;
+    overflow: hidden; /* Clear floats */
+    width: 505px;
+    margin-bottom: 5px;
+}
+
+#searchbox #search {
+    width: 385px;
+    margin: 0;
+}
+
+#searchbox #submit {
+    background: #eee    ;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 30px;
+    margin: 0 0 0 10px;
+    padding: 0;
+    width: 90px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #1b1b1b;
+}
+
+.search-container {
+    margin: 0 auto;
+    width: 545px;
+}
+
+.search-container h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #ccc;
+    width: 545px;
+}
+
+.search-container .entry {
+    margin: 10px 0;
+    float: left;
+}
+
+.search-container .entry h4 {
+    font-weight: normal;
+}
+
+.search-container .entry a {
+    padding: 20px;
+    float: left;
+    background: #1b1b1b;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    width: 135px;
+}
+
+.search-container .entry a:hover {
+    text-decoration: none;
+    background: #eee;
+    color: #1b1b1b;
+}
+
+.search-container .entry p {
+    margin: 0;
+}
+
+.search-container .first {
+    margin-right: 10px;
+}
+
+.search-container .last {
+    margin-left: 10px;
+}
+
+.search-container input[type="checkbox"] {
+    margin: 0 5px 2px 0;
+}
+    
+.logo {
+    float: left;
+    margin-bottom: 20px;
+}
+
+.logo-image {
+    width: 200px;
+    float: left;
+    clear: both; 
+}
+
+.logo-description {
+}
+
+input[type="color"] {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+/* -------------------------------------------------- Foooter */
+
+footer {
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+    margin-top: 20px;
+}

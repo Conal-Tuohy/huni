@@ -1,0 +1,99 @@
+/*
+ * Modification of Bootstrap v2.3.1
+ *
+ * By Spencer Wu
+ */
+
+ body {
+ 	background: #fff;
+ 	font-size: 13px;
+ 	line-height: 18px;
+ 	color: #1b1b1b;
+ 	font-family: Arial, Helvetica, sans-serif;
+ }
+
+ li {
+ 	line-height: 18px;
+ }
+
+ .navbar-inner {
+ 	background: #eee !important;
+ 	border-bottom: 1px solid #ccc !important;
+ 	height: 100px;
+ 	border-radius: 0;
+ 	-moz-border-radius: 0;
+ 	-webkit-border-radius: 0;
+ }
+
+/* -------------------------------------------------- Site Title */
+
+#site-title {
+	float: left;
+	width: 210px;
+}
+
+ #site-title h2 {
+    background: url(http://huni.net.au/wp-content/uploads/2012/10/huni-logo-21.png) center center no-repeat;
+    text-indent: -9999px;
+    height: 80px;
+    width: 210px;
+    margin-top: 12px;
+}
+
+/* -------------------------------------------------- User Information */
+
+.navbar-inner #user-information {
+	float: right;
+	width: 375px;
+    margin: 15px 0;
+}
+
+.navbar-inner #user-information li {
+    display: inline;
+    margin: 0 2px;
+}
+
+.navbar-inner #user-information a {
+    color: #666;
+    text-decoration: none;
+}
+
+.navbar-inner #user-information a:hover {
+    text-decoration: underline;
+}
+
+/* -------------------------------------------------- Primary Navigation */
+
+ .navbar-inner .nav {
+ 	float: right;
+ 	clear: right;
+ }
+
+ .navbar-inner .nav li {
+ 	float: left;
+ }
+
+ .navbar-inner .nav a {
+ 	text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-left: 5px;
+ }
+
+ .navbar-inner .nav a:hover, .navbar-inner .nav .active a {
+    background: #4db3d0;
+    color: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 4px 8px;
+}
+
+/* -------------------------------------------------- Foooter */
+
+footer {
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+}
