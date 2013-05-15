@@ -173,6 +173,13 @@
         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstorplus.xml",
         "categories" : ["storage"],
         "default" : false
+     },
+     {
+        "name": "Test REST",
+        "description": "Test RESTful web services against the HunI VL database.",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/rest-test.xml",
+        "categories" : ["test"],
+        "default" : false
      }
      
  ]
