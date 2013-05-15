@@ -1,10 +1,10 @@
-<h3>History</h3>
+<h3>Notebook</h3>
 
 <style type="text/css">
 <!--    
 .activity-item
 {
-	font-size: 8px;
+	font-size: 10px;
 	font-style: italic;
 	font-weight: normal;
 	text-transform: none;
@@ -23,14 +23,14 @@
 	    <li ng-repeat="action in $parent.actions()" class="nav-header" >{{action.toolName}} ({{action.executionDate}})
 	    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
 		    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">
-		    		<span style="font-weight: bold;">{{parameter.name}}:</span><span>{{parameter.amount}}</span>
+		    		<span style="font-weight: bold;">{{parameter.name}}:&nbsp;</span><span>{{parameter.amount}}</span>
 		    	</div>
 	    	</div>
 	    </li>
 	</ul>
 </div>
 <div style='display: block;'>
-	<button id="clearHistory">Clear</button>
+	<button id="clearHistory">Clear</button><button id="exportHistory">Export</button>
 </div>
 
  
