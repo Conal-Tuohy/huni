@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var visualiseTimelineTool = angular.module('visualise-timeline-tool', [
+var visualiseTimelineTool = angular.module('rest-test-tool', [
           'visualiseTimelineToolServices0',
           'visualiseTimelineToolServices1',
           'visualiseTimelineToolServices2'         
