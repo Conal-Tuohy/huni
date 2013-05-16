@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" ng-app>	
+	<head>
+		<title>Facet Browser</title>
+		
+		<!-- AngularJS app framework -->
+		<script src="lib/angular/angular.js"></script>
+		
+		<!-- The generic faceted browser -->
+		<script type="text/javascript" id="facet-browser-engine">
+		//<![CDATA[
+		// Facet-Browser library
+		
+		// A model for querying RDF data using SPARQL Property Paths as facets (in the library science sense). 
+		
+		// A Facet Browser Controller corresponds to a search session.
+		// It adds a collection of facets, and some search results to the scope.
+		function FacetBrowserController($scope, $http) {
+			var facets = new Array();
+			$scope.changed = false;
+			$scope.facets = facets;
+			$scope.modelUpdated = function() {
+				$scope.changed = true;
+			}
+			$scope.itemQuery = "";
+			$scope.refresh = function() {
+				// compute and execute queries
+				var itemQuery = "SELECT distinct(?item as ?hit) ?name WHERE {";
+				for (var f = 0; f < $scope.facets.length; f++) {
+					// set any constraints on this facet
+					var facet = $scope.facets[f];
+					var facetConstrained = false;
+					for (var v = 0; v < facet.values.length; v++) {
+						// add this value as a constraint on this facet, if the value is selected
+						var facetValue = facet.values[v];
+						if (facetValue.selected) {
+							if (facetConstrained) {
+								// facet already had a constraint, so we have to expand it to include this one
+								itemQuery = itemQuery + " UNION ";
+							}
+							itemQuery = itemQuery + "{?item " + facet.propertyPath + " " + facetValue.value + "}";
+							facetConstrained = true;
+						}
+					}
+				}
+				itemQuery = itemQuery + " optional {?item <http://xmlns.com/foaf/0.1/lastName> ?name}}";
+				$scope.itemQuery = itemQuery;
+				$scope.itemQueryURI = "http://corbicula.huni.net.au/dataset/query?output=xml&stylesheet=%2Fxslt%2Fxml-to-html.xsl&query=" + encodeURIComponent(itemQuery);
+				
+				var facetValuesQuery = "SELECT ?facetName ?facetValue ?facetValueLabel (COUNT(DISTINCT(?item)) AS ?facetValueCount) WHERE {";
+
+				// QAZ non-facet query constraints:
+				facetValuesQuery = facetValuesQuery + "?item a <http://erlangen-crm.org/current/E21_Person> . ";
+
+				for (var f = 0; f < $scope.facets.length; f++) {
+					// select values of this facet which match the constraints of the other facets
+					var facet = $scope.facets[f];
+					if (f > 0) {
+						facetValuesQuery = facetValuesQuery + " UNION ";
+					}
+					facetValuesQuery = facetValuesQuery + "{BIND('" + facet.name + "' as ?facetName) ";
+					facetValuesQuery = facetValuesQuery + "?item " + facet.propertyPath  + " ?facetValue . ";
+					// constrain values by the other facet selections
+					facetValuesQuery = facetValuesQuery + "{"; 
+					for (var fOther = 0; fOther < $scope.facets.length; fOther++) {
+						if (fOther != f) {
+							facetOther = $scope.facets[fOther];
+							// the value counts for a facet are computed based on the selected constraints of all OTHER facets, excluding the facet itself
+							var facetConstrained = false;
+							for (var v = 0; v < facetOther.values.length; v++) {
+								var facetValue = facetOther.values[v];
+								if (facetConstrained) {
+									// other facet already had a constraint, so we have to expand it to include this one
+									facetValuesQuery = facetValuesQuery + " UNION ";
+								}
+								facetValuesQuery = facetValuesQuery + "{?item " + facetOther.propertyPath + " " + facetValue.value + "}";
+								facetConstrained = true;
+							}
+						}
+					}
+					facetValuesQuery = facetValuesQuery + "}} ";
+				}
+				// QAZ assumptions about appropriate facet value labels
+				facetValuesQuery = facetValuesQuery + "OPTIONAL {?facetValue <http://www.w3.org/2004/02/skos/core#prefLabel> ?facetValueLabel} ";
+				facetValuesQuery = facetValuesQuery + "OPTIONAL {?facetValue <http://xmlns.com/foaf/0.1/name> ?facetValueLabel} ";
+				facetValuesQuery = facetValuesQuery + "} ";
+				facetValuesQuery = facetValuesQuery + "GROUP BY ?facetName ?facetValue ?facetValueLabel ";
+				facetValuesQuery = facetValuesQuery + "ORDER BY ?facetName DESC(?facetValueCount)";
+				
+				// update model properties with computed query
+				// QAZ replace this: make http request, parse results, repopulate facet model
+				$scope.facetValuesQuery = facetValuesQuery;
+				$scope.facetValuesQueryURI = "http://corbicula.huni.net.au/dataset/query?output=json&query=" + encodeURIComponent(facetValuesQuery);
+				
+				$http.get("http://www.google.com/");
+				$http.get($scope.facetValuesQueryURI);
+			};
+			
+			// add some example facets - replace with a SPARQL query
+			var occupationFacet = new Facet("Occupation/Role",  "<http://erlangen-crm.org/current/P2_has_type>");
+			var groupFacet = new Facet("Groups", "<http://erlangen-crm.org/current/P107i_is_current_or_former_member_of>");
+			var typeFacet = new Facet("Type", "a");
+			
+			facets.push(occupationFacet);
+			facets.push(groupFacet);
+			facets.push(typeFacet);
+			
+			// set initial constraints
+			occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>", "Information Technologist", 0, true));
+			occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>", "Electrical Engineer", 0, true));
+			
+			groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000219>", "CSIRO Division of Radiophysics", 0, true));
+			groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000746>", "CSIRO Division of Telecommunications and Industrial Physics", 0, true));
+
+			typeFacet.values.push(new FacetValue("<http://erlangen-crm.org/current/E21_Person>", "Person", 0, true));
+			
+			$scope.refresh();
+		};
+		
+		// A facet is a named SPARQL Property Path, along with a set of values, each value either selected or 
+		// unselected, and each value with a count, representing the number of search hits which have that value.
+		// A facet produces constraints for queries.
+		// => search results query whose results all match the property path.
+		// => browse values query whose results are all the possible values of the property path,
+			// each with a count of the number of times each value occurs
+
+		
+		function Facet(name, propertyPath) {
+			this.name = name;
+			this.propertyPath = propertyPath;
+			this.values = new Array();
+		}
+		
+		function FacetValue(value, name, count, selected) {
+			this.value = value;
+			this.name = name;
+			this.count = count;
+			this.selected = selected;
+		}
+		
+
+		//]]>
+		</script>
+	</head>
+	<body ng-controller="FacetBrowserController">
+		<h1>Facet Browser</h1>
+		<p>{{'OK'}}</p>
+		<form style="float:left; width: 40%;" name="facet-form">
+			<ul>
+				<li ng-repeat="facet in facets">
+					<h2>{{facet.name}}</h2>
+					<ul>
+						<li ng-repeat="value in facet.values">
+							{{value.name}} ({{value.count}})
+							<input type="checkbox" ng-model="value.selected" ng-change="refresh()"/>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</form>
+		<iframe style="float:right;  height: 20em; width: 50%" ng-src="{{itemQueryURI}}"></iframe>
+		<div style="clear:both;">
+			<p>Item query: <a ng-href="{{itemQueryURI}}">{{itemQuery}}</a></p>
+			<p>Facet values query: <a ng-href="{{facetValuesQueryURI}}">{{facetValuesQuery}}</a></p>
+		</div>
+	</body>
+</html>
