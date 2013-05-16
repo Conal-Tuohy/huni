@@ -2,30 +2,30 @@
 
 /* Controllers */
 
-function ProjectListCtrl($scope, Project) {
-  $scope.projects = Project.query();
-  $scope.orderProp = 'age';
+function HistoryListCtrl($scope, History) {
+  $scope.history = History.query();
+  $scope.orderProp = 'executionTime';
 }
 
-//ProjectListCtrl.$inject = ['$scope', 'Project'];
+//HistoryListCtrl.$inject = ['$scope', 'History'];
 
 
 
-function ProjectDetailCtrl($scope, $routeParams, Project) {
-  $scope.project = Project.get({projectId: $routeParams.projectId}, function(project) {
-    $scope.mainImageUrl = project.images[0];
+function HistoryDetailCtrl($scope, $routeParams, History) {
+  $scope.history = History.get({historyId: $routeParams.historyId}, function(history) {
   });
-
-  $scope.setImage = function(imageUrl) {
-    $scope.mainImageUrl = imageUrl;
-  };
 }
 
-//ProjectDetailCtrl.$inject = ['$scope', '$routeParams', 'Project'];
+//HistoryDetailCtrl.$inject = ['$scope', '$routeParams', 'History'];
 
 //------------------------------------
 
 function Page0Ctrl($scope, $routeParams, Page0) {
+	  //$scope.queryResult = Page0.query($scope.queryPath);
+	  
+	  $scope.setText = function() {
+		  $scope.queryResult = $scope.queryPath;
+		  };
 }
 
 //Page0Ctrl.$inject = ['$scope', '$routeParams', 'Page0'];
@@ -43,4 +43,11 @@ function Page2Ctrl($scope, $routeParams, Page2) {
 }
 
 //Page2Ctrl.$inject = ['$scope', '$routeParams', 'Page2'];
+
+//------------------------------------
+
+function Page3Ctrl($scope, $routeParams, Page3) {
+}
+
+//Page3Ctrl.$inject = ['$scope', '$routeParams', 'Page3'];
 

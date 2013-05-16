@@ -2,10 +2,20 @@
   <div class="content fixed-fixed">
     <div class="hero-unit">
       <h1>HuNI: Test VL RESTful Web Services</h1>
-      <p>GET</p>
-      <p><a class="btn btn-primary btn-large" href="#/page1">PUT</a></p>
-      <p><a class="btn btn-primary btn-large" href="#/page2">POST</a></p>
-      <p><a class="btn btn-primary btn-large" href="#/page3">DELETE</a></p>
+      <h2>GET</h2>
+      
+      <div>
+      	<label>Path:&nbsp;</label>
+      	<input type = "text" ng-model ="queryPath" placeholder = "REST URL" />
+      	<a class="btn btn-small" ng-click="setText()">Query</a>
+      	<label>Result:&nbsp;</label>
+      	<p>{{queryResult}}</p>
+      </div>
+      
+      <p><a class="btn btn-small" href="#/page0">GET</a>
+      <a class="btn btn-primary btn-small" href="#/page1">PUT</a>
+      <a class="btn btn-primary btn-small" href="#/page2">POST</a>
+      <a class="btn btn-primary btn-small" href="#/page3">DELETE</a></p>
     </div>
   </div><!--/span-->
 </div><!--/row-->
