@@ -92,7 +92,6 @@
 				$scope.facetValuesQuery = facetValuesQuery;
 				$scope.facetValuesQueryURI = "http://corbicula.huni.net.au/dataset/query?output=json&query=" + encodeURIComponent(facetValuesQuery);
 				
-				$http.get("http://www.google.com/");
 				$http.get($scope.facetValuesQueryURI);
 			};
 			
@@ -141,11 +140,21 @@
 
 		//]]>
 		</script>
+		<style type="text/css">
+			form#facets {
+				float:left; width: 40%;
+			}
+			#results {
+				float:right;  
+				height: 20em; 
+				width: 50%
+			}
+		</style>
 	</head>
 	<body ng-controller="FacetBrowserController">
 		<h1>Facet Browser</h1>
-		<p>{{'OK'}}</p>
-		<form style="float:left; width: 40%;" name="facet-form">
+		<!--<p>{{'OK'}}</p>-->
+		<form id="facets" name="facet-form">
 			<ul>
 				<li ng-repeat="facet in facets">
 					<h2>{{facet.name}}</h2>
@@ -158,7 +167,7 @@
 				</li>
 			</ul>
 		</form>
-		<iframe style="float:right;  height: 20em; width: 50%" ng-src="{{itemQueryURI}}"></iframe>
+		<iframe id="results" ng-src="{{itemQueryURI}}"></iframe>
 		<div style="clear:both;">
 			<p>Item query: <a ng-href="{{itemQueryURI}}">{{itemQuery}}</a></p>
 			<p>Facet values query: <a ng-href="{{facetValuesQueryURI}}">{{facetValuesQuery}}</a></p>
