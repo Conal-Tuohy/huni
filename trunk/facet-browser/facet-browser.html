@@ -16,7 +16,7 @@
 		// A Facet Browser Controller corresponds to a search session.
 		// It adds a collection of facets, and some search results to the scope.
 		function FacetBrowserController($scope, $http) {
-			var facets = new Array();
+			var facets = {};
 			$scope.changed = false;
 			$scope.facets = facets;
 			$scope.modelUpdated = function() {
@@ -24,11 +24,24 @@
 			}
 			$scope.itemQuery = "";
 			$scope.refresh = function() {
+				// record the current set of facet constraints
+				$scope.facetConstraints = new Array();
+				for (var facetName in $scope.facets) {
+					var facet = $scope.facets[facetName];
+					for (var v = 0; v < facet.values.length; v++) {
+						// add this value as a constraint on this facet, if the value is selected
+						var facetValue = facet.values[v];
+						if (facetValue.selected) {
+							$scope.facetConstraints.push(new FacetConstraint(facet.name, facetValue.value));
+						}
+					}
+				}
+				
 				// compute and execute queries
 				var itemQuery = "SELECT distinct(?item as ?hit) ?name WHERE {";
-				for (var f = 0; f < $scope.facets.length; f++) {
+				for (var facetName in $scope.facets) {
 					// set any constraints on this facet
-					var facet = $scope.facets[f];
+					var facet = $scope.facets[facetName];
 					var facetConstrained = false;
 					for (var v = 0; v < facet.values.length; v++) {
 						// add this value as a constraint on this facet, if the value is selected
@@ -49,31 +62,33 @@
 				
 				var facetValuesQuery = "SELECT ?facetName ?facetValue ?facetValueLabel (COUNT(DISTINCT(?item)) AS ?facetValueCount) WHERE {";
 
-				// QAZ non-facet query constraints:
+				// QAZ any non-facet query constraints:
 				facetValuesQuery = facetValuesQuery + "?item a <http://erlangen-crm.org/current/E21_Person> . ";
 
-				for (var f = 0; f < $scope.facets.length; f++) {
+				var hasPrecedingFacet = false; // the first facet has no preceding facet
+				for (var facetName in $scope.facets) {
 					// select values of this facet which match the constraints of the other facets
-					var facet = $scope.facets[f];
-					if (f > 0) {
+					var facet = $scope.facets[facetName];
+					if (hasPrecedingFacet) {
 						facetValuesQuery = facetValuesQuery + " UNION ";
 					}
+					hasPrecedingFacet = true;
 					facetValuesQuery = facetValuesQuery + "{BIND('" + facet.name + "' as ?facetName) ";
 					facetValuesQuery = facetValuesQuery + "?item " + facet.propertyPath  + " ?facetValue . ";
 					// constrain values by the other facet selections
 					facetValuesQuery = facetValuesQuery + "{"; 
-					for (var fOther = 0; fOther < $scope.facets.length; fOther++) {
-						if (fOther != f) {
-							facetOther = $scope.facets[fOther];
+					for (var otherFacetName in $scope.facets) {
+						if (otherFacetName != facetName) {
+							otherFacet = $scope.facets[otherFacetName];
 							// the value counts for a facet are computed based on the selected constraints of all OTHER facets, excluding the facet itself
 							var facetConstrained = false;
-							for (var v = 0; v < facetOther.values.length; v++) {
-								var facetValue = facetOther.values[v];
+							for (var v = 0; v < otherFacet.values.length; v++) {
+								var facetValue = otherFacet.values[v];
 								if (facetConstrained) {
 									// other facet already had a constraint, so we have to expand it to include this one
 									facetValuesQuery = facetValuesQuery + " UNION ";
 								}
-								facetValuesQuery = facetValuesQuery + "{?item " + facetOther.propertyPath + " " + facetValue.value + "}";
+								facetValuesQuery = facetValuesQuery + "{?item " + otherFacet.propertyPath + " " + facetValue.value + "}";
 								facetConstrained = true;
 							}
 						}
@@ -92,7 +107,31 @@
 				$scope.facetValuesQuery = facetValuesQuery;
 				$scope.facetValuesQueryURI = "http://corbicula.huni.net.au/dataset/query?output=json&query=" + encodeURIComponent(facetValuesQuery);
 				
-				$http.get($scope.facetValuesQueryURI);
+				$http.get($scope.facetValuesQueryURI).
+					success(
+						function(data, status, headers, config) {
+							// this callback will be called asynchronously
+							// when the response is available
+							$scope.facetValuesQueryResponse = data.results.bindings;
+							
+							// rebuild the facet data model
+							
+							// process the list of facet values
+							for (var i = 0; i < data.results.bindings.length; i++) {
+								var binding = data.results.bindings[i];
+/*
+qaz facet name and value come from the sparql results, but selection and property path are part of the definition
+*/
+							}
+						}
+					).
+					error(
+						function(data, status, headers, config) {
+							// called asynchronously if an error occurs
+							// or server returns response with an error status.
+							alert('Error reading facets from server');
+						}
+					);
 			};
 			
 			// add some example facets - replace with a SPARQL query
@@ -100,11 +139,12 @@
 			var groupFacet = new Facet("Groups", "<http://erlangen-crm.org/current/P107i_is_current_or_former_member_of>");
 			var typeFacet = new Facet("Type", "a");
 			
-			facets.push(occupationFacet);
-			facets.push(groupFacet);
-			facets.push(typeFacet);
+			facets[occupationFacet.name] = occupationFacet;
+			facets[groupFacet.name] = groupFacet;
+			facets[typeFacet.name] = typeFacet;
 			
 			// set initial constraints
+			
 			occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>", "Information Technologist", 0, true));
 			occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>", "Electrical Engineer", 0, true));
 			
@@ -128,6 +168,7 @@
 			this.name = name;
 			this.propertyPath = propertyPath;
 			this.values = new Array();
+			this.constraints = {};
 		}
 		
 		function FacetValue(value, name, count, selected) {
@@ -136,7 +177,6 @@
 			this.count = count;
 			this.selected = selected;
 		}
-		
 
 		//]]>
 		</script>
@@ -169,8 +209,12 @@
 		</form>
 		<iframe id="results" ng-src="{{itemQueryURI}}"></iframe>
 		<div style="clear:both;">
+			<!--
 			<p>Item query: <a ng-href="{{itemQueryURI}}">{{itemQuery}}</a></p>
+			-->
 			<p>Facet values query: <a ng-href="{{facetValuesQueryURI}}">{{facetValuesQuery}}</a></p>
+			
+			<p>Facet values query response: {{facetValuesQueryResponse}}.</p>
 		</div>
 	</body>
 </html>
