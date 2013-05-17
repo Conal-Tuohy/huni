@@ -22,13 +22,17 @@ function HistoryDetailCtrl($scope, $routeParams, History) {
 
 function Page0Ctrl($scope, $http, $routeParams, Page0) {
 	  
+//	  $scope.setText = function() {
+//		  //$scope.queryResult = Page0.query($scope.queryPath);
+//		  
+//		  $http.get($scope.queryPath).success(function(data) {
+//			    $scope.queryResult = data;
+//			  });
+//		  };
+
 	  $scope.setText = function() {
-		  //$scope.queryResult = Page0.query($scope.queryPath);
-		  
-		  $http.get($scope.queryPath).success(function(data) {
-			    $scope.queryResult = data;
-			  });
-		  };
+		  $scope.queryResult = Page0.query();	  
+	  };
 }
 
 //Page0Ctrl.$inject = ['$scope', '$routeParams', 'Page0'];

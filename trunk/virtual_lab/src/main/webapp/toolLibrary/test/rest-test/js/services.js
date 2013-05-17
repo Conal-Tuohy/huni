@@ -4,7 +4,10 @@
 
 angular.module('restServices0', ['ngResource']).
     factory('Page0', function($resource){
-  return null;
+//    	return $resource('phones/:phoneId.json', {}, {
+//    	    query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
+//    	  });
+    	return $resource('/virtual_lab/rest/historyitems/:historyItemId');
 });
 
 angular.module('restServices1', ['ngResource']).
