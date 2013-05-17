@@ -20,11 +20,14 @@ function HistoryDetailCtrl($scope, $routeParams, History) {
 
 //------------------------------------
 
-function Page0Ctrl($scope, $routeParams, Page0) {
-	  //$scope.queryResult = Page0.query($scope.queryPath);
+function Page0Ctrl($scope, $http, $routeParams, Page0) {
 	  
 	  $scope.setText = function() {
-		  $scope.queryResult = $scope.queryPath;
+		  //$scope.queryResult = Page0.query($scope.queryPath);
+		  
+		  $http.get($scope.queryPath).success(function(data) {
+			    $scope.queryResult = data;
+			  });
 		  };
 }
 

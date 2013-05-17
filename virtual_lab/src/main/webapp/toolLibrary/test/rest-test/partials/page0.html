@@ -5,11 +5,14 @@
       <h2>GET</h2>
       
       <div>
+       	
       	<label>Path:&nbsp;</label>
-      	<input type = "text" ng-model ="queryPath" placeholder = "REST URL" />
-      	<a class="btn btn-small" ng-click="setText()">Query</a>
+      	<span style="white-space: nowrap; width: 90%; ">
+      	<input type = "text" ng-model ="queryPath" placeholder = "http://localhost:8080/virtual_lab/rest/historyitems" style = "width: 90%; display: inline-block; white-space: normal;"/>
+      	<a class="btn btn-small" ng-click="setText()" stye="display: inline-block; white-space: normal;">Query</a>
+      	</span>
       	<label>Result:&nbsp;</label>
-      	<p>{{queryResult}}</p>
+      	<p style = "font-size: 10px;">{{queryResult}}</p>
       </div>
       
       <p><a class="btn btn-small" href="#/page0">GET</a>
