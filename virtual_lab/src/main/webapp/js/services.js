@@ -55,7 +55,7 @@ angular.module('projectdirectoryServices', ['ngResource']).
 
 angular.module('historyServices', ['ngResource']).
     factory('History', function($resource){
-  	  return $resource(baseServiceURL + '/rest/historyitems', {}, {
+  	  return $resource(baseServiceURL + '/rest/historyitems/:historyItemId', {}, {
 		    query: {method:'GET', params:{}, isArray:true}
 		  });
 });
