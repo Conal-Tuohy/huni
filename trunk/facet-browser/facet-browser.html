@@ -27,9 +27,9 @@
 			$scope.refresh = function() {
 			
 				// record the currently selected values of each facet as the constraints of each facet
-				$scope.facetConstraints = new Array();
 				for (var facetName in $scope.facets) {
 					var facet = $scope.facets[facetName];
+					facet.constraints.length = 0;
 					for (var v = 0; v < facet.values.length; v++) {
 						// add this value as a constraint on this facet, if the value is selected
 						var facetValue = facet.values[v];
@@ -68,7 +68,9 @@
 				var facetValuesQuery = "SELECT ?facetName ?facetValue ?facetValueLabel (COUNT(DISTINCT(?item)) AS ?facetValueCount) WHERE {";
 
 				// QAZ any non-facet query constraints:
-				facetValuesQuery = facetValuesQuery + "?item a <http://erlangen-crm.org/current/E21_Person> . ";
+				//facetValuesQuery = facetValuesQuery + "?item a <http://erlangen-crm.org/current/E21_Person> . ";
+				// filter (contains(lcase(str(?occupation)), lcase('physicist')))
+				//facetValuesQuery = facetValuesQuery + "?item * ?textProperty. filter (contains(lcase(str(?textProperty), 'mason'))) .";
 
 				var hasPrecedingFacet = false; // the first facet has no preceding facet
 				for (var facetName in $scope.facets) {
@@ -128,9 +130,15 @@
 							// rebuild the facet data model
 							var currentFacet;
 							// process the list of facet values
-							for (var facet in $scope.facets) {
+							for (var facetName in $scope.facets) {
 								// discard the facet's old values
-								facet.values = new Array();
+								var facet = $scope.facets[facetName];
+								//var staleValuesCount = facet.values.length;
+								//for (v = 0; v < staleValuesCount; v++) {
+								//	facet.values.pop();
+								//}
+//								facet.values = new Array();
+								facet.values.length = 0;
 							}
 							for (var i = 0; i < data.results.bindings.length; i++) {
 								var binding = data.results.bindings[i];
@@ -270,9 +278,10 @@
 		<div style="clear:both;">
 			<!--
 			<p>Item query: <a ng-href="{{itemQueryURI}}">{{itemQuery}}</a></p>
-			<p>Facet values query: <a ng-href="{{facetValuesQueryURI}}">{{facetValuesQuery}}</a></p>
+			<p>Facet values query: {{facetValuesQuery}}</p>
 			
-			<p>Facet values query response: {{facetValuesQueryResponse}}.</p>
+			<p>Facet values query response: 
+			{{facetValuesQueryResponse}}.</p>
 			-->
 		</div>
 	</body>
