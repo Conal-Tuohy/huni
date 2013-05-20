@@ -109,10 +109,16 @@
 				
 				// update model properties with computed query
 				// QAZ replace this: make http request, parse results, repopulate facet model
+				var sparqlEndpoint = "http://corbicula.huni.net.au/dataset/query";
 				$scope.facetValuesQuery = facetValuesQuery;
-				$scope.facetValuesQueryURI = "http://corbicula.huni.net.au/dataset/query?output=json&query=" + encodeURIComponent(facetValuesQuery);
-				
-				$http.get($scope.facetValuesQueryURI).
+				// Specify media types for the SPARQL query and the query results
+				var config = {
+					"headers": {
+						"Accept": "application/sparql-results+json",
+						"Content-Type": "application/sparql-query"
+					}
+				};
+				$http.post(sparqlEndpoint, $scope.facetValuesQuery, config).
 					success(
 						function(data, status, headers, config) {
 							// this callback will be called asynchronously
@@ -124,7 +130,7 @@
 							// process the list of facet values
 							for (var facet in $scope.facets) {
 								// discard the facet's old values
-								facet.values = new Array();//.length = 0;
+								facet.values = new Array();
 							}
 							for (var i = 0; i < data.results.bindings.length; i++) {
 								var binding = data.results.bindings[i];
@@ -145,7 +151,6 @@
 								var facetValueCount = binding.facetValueCount.value;
 								
 								currentFacet = $scope.facets[facetName];
-								//var facetValueSelected = (facetValueValue in currentFacet.constraints); // no, because constraints is an array, not an object
 								var facetValueSelected = false;
 								for (v = 0; v < currentFacet.constraints.length; v++) {
 									if (facetValueValue == currentFacet.constraints[v]) {
