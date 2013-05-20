@@ -23,8 +23,10 @@
 				$scope.changed = true;
 			}
 			$scope.itemQuery = "";
+
 			$scope.refresh = function() {
-				// record the current set of facet constraints
+			
+				// record the currently selected values of each facet as the constraints of each facet
 				$scope.facetConstraints = new Array();
 				for (var facetName in $scope.facets) {
 					var facet = $scope.facets[facetName];
@@ -32,28 +34,31 @@
 						// add this value as a constraint on this facet, if the value is selected
 						var facetValue = facet.values[v];
 						if (facetValue.selected) {
-							$scope.facetConstraints.push(new FacetConstraint(facet.name, facetValue.value));
+							facet.constraints.push(facetValue.value);
 						}
 					}
 				}
-				
+				// now we have got the constraints, we can execute the queries
+				$scope.executeQuery();
+			}				
+
+			$scope.executeQuery = function() {
 				// compute and execute queries
 				var itemQuery = "SELECT distinct(?item as ?hit) ?name WHERE {";
 				for (var facetName in $scope.facets) {
 					// set any constraints on this facet
 					var facet = $scope.facets[facetName];
+					// keep track of whether we've constrained the facet yet
 					var facetConstrained = false;
-					for (var v = 0; v < facet.values.length; v++) {
-						// add this value as a constraint on this facet, if the value is selected
-						var facetValue = facet.values[v];
-						if (facetValue.selected) {
-							if (facetConstrained) {
-								// facet already had a constraint, so we have to expand it to include this one
-								itemQuery = itemQuery + " UNION ";
-							}
-							itemQuery = itemQuery + "{?item " + facet.propertyPath + " " + facetValue.value + "}";
-							facetConstrained = true;
+					for (var c = 0; c < facet.constraints.length; c++) {
+						var constraint = facet.constraints[c];
+						if (facetConstrained) {
+							// facet already had a constraint, so we have to expand it to include this one
+							itemQuery = itemQuery + " UNION ";
 						}
+						itemQuery = itemQuery + "{?item " + facet.propertyPath + " " + constraint + "}";
+						facetConstrained = true;
+						
 					}
 				}
 				itemQuery = itemQuery + " optional {?item <http://xmlns.com/foaf/0.1/lastName> ?name}}";
@@ -82,13 +87,13 @@
 							otherFacet = $scope.facets[otherFacetName];
 							// the value counts for a facet are computed based on the selected constraints of all OTHER facets, excluding the facet itself
 							var facetConstrained = false;
-							for (var v = 0; v < otherFacet.values.length; v++) {
-								var facetValue = otherFacet.values[v];
+							for (var c = 0; c < otherFacet.constraints.length; c++) {
+								var constraint = otherFacet.constraints[c];
 								if (facetConstrained) {
 									// other facet already had a constraint, so we have to expand it to include this one
 									facetValuesQuery = facetValuesQuery + " UNION ";
 								}
-								facetValuesQuery = facetValuesQuery + "{?item " + otherFacet.propertyPath + " " + facetValue.value + "}";
+								facetValuesQuery = facetValuesQuery + "{?item " + otherFacet.propertyPath + " " + constraint + "}";
 								facetConstrained = true;
 							}
 						}
@@ -115,13 +120,41 @@
 							$scope.facetValuesQueryResponse = data.results.bindings;
 							
 							// rebuild the facet data model
-							
+							var currentFacet;
 							// process the list of facet values
+							for (var facet in $scope.facets) {
+								// discard the facet's old values
+								facet.values = new Array();//.length = 0;
+							}
 							for (var i = 0; i < data.results.bindings.length; i++) {
 								var binding = data.results.bindings[i];
-/*
-qaz facet name and value come from the sparql results, but selection and property path are part of the definition
-*/
+								var facetName = binding.facetName.value;
+								var facetValueValue;
+								// convert facet value into a SPARQL expression
+								if (binding.facetValue.type = "uri") {
+									facetValueValue = "<" + binding.facetValue.value + ">";
+								} else {
+									// QAZ handle facet values which are not URIs
+								}
+								var facetValueLabel;
+								if (binding.facetValueLabel) {
+									facetValueLabel = binding.facetValueLabel.value; // QAZ handle non-string values or missing values
+								} else {
+									facetValueLabel = binding.facetValue.value;
+								}
+								var facetValueCount = binding.facetValueCount.value;
+								
+								currentFacet = $scope.facets[facetName];
+								//var facetValueSelected = (facetValueValue in currentFacet.constraints); // no, because constraints is an array, not an object
+								var facetValueSelected = false;
+								for (v = 0; v < currentFacet.constraints.length; v++) {
+									if (facetValueValue == currentFacet.constraints[v]) {
+										facetValueSelected = true;
+									}
+								}
+								var facetValue = new FacetValue(facetValueValue, facetValueLabel, facetValueCount, facetValueSelected);
+								currentFacet.values.push(facetValue);
+								
 							}
 						}
 					).
@@ -144,16 +177,20 @@ qaz facet name and value come from the sparql results, but selection and propert
 			facets[typeFacet.name] = typeFacet;
 			
 			// set initial constraints
+			occupationFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>");
+			occupationFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>");
+			//occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>", "Information Technologist", 0, true));
+			//occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>", "Electrical Engineer", 0, true));
 			
-			occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>", "Information Technologist", 0, true));
-			occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>", "Electrical Engineer", 0, true));
-			
-			groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000219>", "CSIRO Division of Radiophysics", 0, true));
-			groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000746>", "CSIRO Division of Telecommunications and Industrial Physics", 0, true));
+			groupFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/A000219>");
+			groupFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/A000746>");
+			//groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000219>", "CSIRO Division of Radiophysics", 0, true));
+			//groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000746>", "CSIRO Division of Telecommunications and Industrial Physics", 0, true));
 
-			typeFacet.values.push(new FacetValue("<http://erlangen-crm.org/current/E21_Person>", "Person", 0, true));
+			typeFacet.constraints.push("<http://erlangen-crm.org/current/E21_Person>");
+			//typeFacet.values.push(new FacetValue("<http://erlangen-crm.org/current/E21_Person>", "Person", 0, true));
 			
-			$scope.refresh();
+			$scope.executeQuery();
 		};
 		
 		// A facet is a named SPARQL Property Path, along with a set of values, each value either selected or 
@@ -168,9 +205,10 @@ qaz facet name and value come from the sparql results, but selection and propert
 			this.name = name;
 			this.propertyPath = propertyPath;
 			this.values = new Array();
-			this.constraints = {};
+			this.constraints = new Array();
 		}
 		
+//		function FacetValue(value, name, count, selected) {
 		function FacetValue(value, name, count, selected) {
 			this.value = value;
 			this.name = name;
@@ -181,13 +219,29 @@ qaz facet name and value come from the sparql results, but selection and propert
 		//]]>
 		</script>
 		<style type="text/css">
+			body {
+				font-family: sans-serif;
+			}
 			form#facets {
-				float:left; width: 40%;
+				float:left; width: 30%;
+			}
+			form#facets h2 {
+				font-size: 10pt;
+				font-weight: bold;
+			}
+			form#facets li {
+				font-size: 9pt;
 			}
 			#results {
 				float:right;  
-				height: 20em; 
-				width: 50%
+				height: 30em;
+				width: 65%;
+			}
+			ul {
+				list-style: none;
+				margin-left: 0;
+				padding-left: 0;
+				text-indent: 0;
 			}
 		</style>
 	</head>
@@ -211,10 +265,10 @@ qaz facet name and value come from the sparql results, but selection and propert
 		<div style="clear:both;">
 			<!--
 			<p>Item query: <a ng-href="{{itemQueryURI}}">{{itemQuery}}</a></p>
-			-->
 			<p>Facet values query: <a ng-href="{{facetValuesQueryURI}}">{{facetValuesQuery}}</a></p>
 			
 			<p>Facet values query response: {{facetValuesQueryResponse}}.</p>
+			-->
 		</div>
 	</body>
 </html>
