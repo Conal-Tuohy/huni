@@ -180,6 +180,12 @@
         "url": "/virtual_lab/toolLibrary/opensocial-gadgets/rest-test.xml",
         "categories" : ["test"],
         "default" : false
-     }
-     
+     },
+     {
+        "name": "HuNI Facet Browser",
+        "description": "Explore the HuNI aggregate using facets.",
+        "url": "/virtual_lab/toolLibrary/opensocial-gadgets/search_faceted_browse.xml",
+        "categories" : ["search"],
+        "default" : false
+     }     
  ]
