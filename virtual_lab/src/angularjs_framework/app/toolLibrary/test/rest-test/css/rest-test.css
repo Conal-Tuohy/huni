@@ -1,9 +1,15 @@
 
+.hero-unit {
+	padding-top: 10px;  
+	padding-bottom: 5px;
+	padding-left: 10px;
+    padding-right: 10px;
+}
+
 .hero-unit h1 {
   font-size: 24.5px;
-  padding: 10px;
-  line-height: 30px;
 }
+
 h1 {
   font-size: 24.5px;
 }

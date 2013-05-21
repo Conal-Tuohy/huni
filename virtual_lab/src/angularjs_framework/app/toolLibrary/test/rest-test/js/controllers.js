@@ -22,25 +22,21 @@ function HistoryDetailCtrl($scope, $routeParams, History) {
 
 function Page0Ctrl($scope, $http, $routeParams, Page0) {
 	  
-//	  $scope.setText = function() {
-//		  //$scope.queryResult = Page0.query($scope.queryPath);
-//		  
-//		  $http.get($scope.queryPath).success(function(data) {
-//			    $scope.queryResult = data;
-//			  });
-//		  };
-
-	  $scope.setListText = function() {
-		  $scope.queryResult = Page0.query();	  
-	  };
-	  
-	  $scope.setCreateText = function() {
-	  //$scope.queryResult = Page0.query($scope.queryPath);
-	  
+	  $scope.setListText = function() {		  
 		  $http.get($scope.queryPath).success(function(data) {
-		    $scope.queryResult = data;
-		  });
-	  };
+			    $scope.queryResult = data;
+			  });
+		  };
+
+//	  $scope.setListText = function() {
+//		  $scope.queryResult = Page0.query();	  
+//	  };
+	  
+		  $scope.setCreateText = function(postPath, postData) {
+			  $http({method: 'POST', url: postPath, data: postData}).success(function(data) {
+			    $scope.postResult = data;
+			  });
+		  };
 
 }
 
