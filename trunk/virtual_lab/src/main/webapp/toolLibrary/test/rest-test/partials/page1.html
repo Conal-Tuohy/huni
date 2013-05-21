@@ -2,11 +2,35 @@
   <div class="content fixed-fixed">
     <div class="hero-unit">
       <h1>HuNI: Test VL RESTful Web Services</h1>
-      <h2>PUT</h2>
-      <p><a class="btn btn-primary btn-small" href="#/page0">GET</a>
-      <a class="btn btn-small" href="#/page1">PUT</a>
-      <a class="btn btn-primary btn-small" href="#/page2">POST</a>
-      <a class="btn btn-primary btn-small" href="#/page3">DELETE</a></p>
+      <h2>POST</h2>
+	</div>
+      
+      <div class = "row-fluid"> 
+    	<div class = "span12">
+	      <div>      	
+	      	<label>Path:&nbsp;</label>
+	      	<span style="white-space: nowrap; width: 90%; ">
+	      	<input type = "text" ng-model ="postPath" placeholder = "/virtual_lab/rest/historyitems" style = "width: 90%; display: inline-block; white-space: normal;"/>
+	      	<a class="btn btn-small" ng-click="setListText(postPath, postData)" stye="display: inline-block; white-space: normal;">Query</a>
+	      	</span>
+	      	<label>JSON:&nbsp;</label>
+	      	<textarea type = "text" ng-model ="postData" placeholder = "{}" style = "width: 90%; display: inline-block; white-space: normal;">
+	      	</textarea>
+	      	
+	      	<!-- 
+	      	{"toolName":"Test Tool", "backgroundColour":"#EEAAFF"}
+	      	 -->
+	 
+	      	<label>Result:&nbsp;</label>
+	      	<p style = "font-size: 10px;">{{postResult}}</p>
+	      </div>
+	      
+	      <p><a class="btn btn-primary btn-small" href="#/page0">GET</a>
+	      <a class="btn btn-small" href="#/page1">POST</a>
+	      <a class="btn btn-primary btn-small" href="#/page2">PUT</a>
+	      <a class="btn btn-primary btn-small" href="#/page3">DELETE</a></p>
+     	</div>              	
     </div>
+         
   </div><!--/span-->
 </div><!--/row-->
