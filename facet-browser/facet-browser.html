@@ -44,6 +44,10 @@
 
 			$scope.executeQuery = function() {
 				// compute and execute queries
+				var freeTextCriterion = "{?item (<http://xmlns.com/foaf/0.1/name>|<http://www.w3.org/2004/02/skos/core#prefLabel>) ?text. "
+				freeTextCriterion = freeTextCriterion + "FILTER(CONTAINS(LCASE(?text), 'mason'))}"
+				
+				// results
 				var itemQuery = "SELECT distinct(?item as ?hit) ?name WHERE {";
 				for (var facetName in $scope.facets) {
 					// set any constraints on this facet
@@ -70,7 +74,7 @@
 				// QAZ any non-facet query constraints:
 				//facetValuesQuery = facetValuesQuery + "?item a <http://erlangen-crm.org/current/E21_Person> . ";
 				// filter (contains(lcase(str(?occupation)), lcase('physicist')))
-				//facetValuesQuery = facetValuesQuery + "?item * ?textProperty. filter (contains(lcase(str(?textProperty), 'mason'))) .";
+				//facetValuesQuery = facetValuesQuery + freeTextCriterion;
 
 				var hasPrecedingFacet = false; // the first facet has no preceding facet
 				for (var facetName in $scope.facets) {
@@ -88,20 +92,22 @@
 					for (var otherFacetName in $scope.facets) {
 						if (otherFacetName != facetName) {
 							otherFacet = $scope.facets[otherFacetName];
-							facetCounter = facetCounter + 1;
-							// the value counts for a facet are computed based on the selected constraints of all OTHER facets, excluding the facet itself
-							facetValuesQuery = facetValuesQuery + "\t\t?item " + otherFacet.propertyPath + " ?facet" + facetCounter + "Value.\n\t\tFILTER(?facet" + facetCounter + "Value IN (\n\t\t\t";
-							var facetConstrained = false;
-							for (var c = 0; c < otherFacet.constraints.length; c++) {
-								var constraint = otherFacet.constraints[c];
-								if (facetConstrained) {
-									// adding a constraint to a non-null list of constraints, so need a comma
-									facetValuesQuery = facetValuesQuery + ",\n\t\t\t";
+							if (otherFacet.constraints.length > 0) {
+								facetCounter = facetCounter + 1;
+								// the value counts for a facet are computed based on the selected constraints of all OTHER facets, excluding the facet itself
+								facetValuesQuery = facetValuesQuery + "\t\t?item " + otherFacet.propertyPath + " ?facet" + facetCounter + "Value.\n\t\tFILTER(?facet" + facetCounter + "Value IN (\n\t\t\t";
+								var facetConstrained = false;
+								for (var c = 0; c < otherFacet.constraints.length; c++) {
+									var constraint = otherFacet.constraints[c];
+									if (facetConstrained) {
+										// adding a constraint to a non-null list of constraints, so need a comma
+										facetValuesQuery = facetValuesQuery + ",\n\t\t\t";
+									}
+									facetValuesQuery = facetValuesQuery + constraint;
+									facetConstrained = true;
 								}
-								facetValuesQuery = facetValuesQuery + constraint;
-								facetConstrained = true;
+								facetValuesQuery = facetValuesQuery + "\n\t\t))\n";
 							}
-							facetValuesQuery = facetValuesQuery + "\n\t\t))\n";
 						}
 					}
 					facetValuesQuery = facetValuesQuery + "\t}\n";
@@ -196,16 +202,11 @@
 			// set initial constraints
 			occupationFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>");
 			occupationFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>");
-			//occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Information_technologist>", "Information Technologist", 0, true));
-			//occupationFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/occupation/Electrical_engineer>", "Electrical Engineer", 0, true));
 			
 			groupFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/A000219>");
 			groupFacet.constraints.push("<http://corbicula.huni.net.au/data/eoas/A000746>");
-			//groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000219>", "CSIRO Division of Radiophysics", 0, true));
-			//groupFacet.values.push(new FacetValue("<http://corbicula.huni.net.au/data/eoas/A000746>", "CSIRO Division of Telecommunications and Industrial Physics", 0, true));
 
 			typeFacet.constraints.push("<http://erlangen-crm.org/current/E21_Person>");
-			//typeFacet.values.push(new FacetValue("<http://erlangen-crm.org/current/E21_Person>", "Person", 0, true));
 			
 			$scope.executeQuery();
 		};
@@ -254,16 +255,38 @@
 				height: 30em;
 				width: 65%;
 			}
-			ul {
+			form#facets ul {
 				list-style: none;
 				margin-left: 0;
 				padding-left: 0;
 				text-indent: 0;
 			}
+			div.debug {
+				font-size: small;
+				border-style: solid;
+				border-color: black;
+				border-top-width: 1pt;
+				border-bottom-width: 2pt;
+				border-left-width: 1pt;
+				border-right-width: 2pt;
+				background-color: yellow;
+				padding: 1em;
+				margin: 1em;
+				width: 20em;
+				float: right;
+			}
 		</style>
 	</head>
 	<body ng-controller="FacetBrowserController">
 		<h1>Facet Browser</h1>
+		<div class="debug">
+			<p>In this demo, the browser starts with the following constraints already set: </p>
+			<ul>
+				<li>Occupation is either Information Technologist or Electrical Engineer; and</li>
+				<li>Group is either CSIRO Division of Radiophysics or CSIRO Division of Telecommunications and Industrial Physics</li>
+				<li>Type is Person</li>
+			</ul>
+		</div>
 		<!--<p>{{'OK'}}</p>-->
 		<form id="facets" name="facet-form">
 			<ul>
