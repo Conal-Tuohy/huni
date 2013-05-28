@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"  ng-app="person-search">
     <title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - Person Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Searching for people.">
+    <meta name="author" content="Richard Rothwell, VeRSI">
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -23,6 +23,7 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="ico/favicon.png">
+
   </head>
 
   <body>
@@ -62,12 +63,11 @@
 
     <div class="container-fluid"> <!-- main content start -->
 
- <div class="row-fluid">
+	<div class="row-fluid">
         <h2>Person Search</h2>
-      </div>
+	</div>
 
-    <div class="row-fluid">
-      
+	<div class="row-fluid">      
       <div>
 		<form id="person-search" class="form-horizontal">
 			<div class="control-group">
@@ -84,7 +84,9 @@
     <div class="span6">
     </div>   
     
-  </div> <!-- main content end -->     
+  </div> 
+  
+  <!-- main content end -->     
 
     <footer> <!-- footer start -->
       <div class="row-fluid">
@@ -113,8 +115,17 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.js"></script>
+	<script src="lib/angular/angular.js"></script>
+	
+	<script src="js/search/person/app.js"></script>
+	<script src="js/search/person/controllers.js"></script>
+	<script src="js/search/person/filters.js"></script>
+	<script src="js/search/person/services.js"></script>
+	<script src="js/search/person/directives.js"></script>
+	
+	<script src="lib/angular/angular-resource.js"></script>	
 
   </body>
 </html>
