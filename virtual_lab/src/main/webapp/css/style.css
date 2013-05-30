@@ -253,12 +253,12 @@ input[type="color"] {
     float: left;
 }
 
-.container-fluid #column-second li {
+.container-fluid .record li {
     float: left;
     margin: 0 5px 5px 0;
 }
 
-.container-fluid #column-second .category {
+.container-fluid .record .category {
     background: #D6E03D;
     clear: both;
     border-radius: 5px;
@@ -266,7 +266,7 @@ input[type="color"] {
     -webkit-border-radius: 5px;
 }
 
-.container-fluid #column-second .category a {
+.container-fluid .record .category a {
     background: #D6E03D;
     padding: 5px;
     border-radius: 5px;
@@ -276,7 +276,7 @@ input[type="color"] {
     color: #666;
 }
 
-.container-fluid #column-second .category a:hover {
+.container-fluid .record .category a:hover {
     background: #1b1b1b;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -285,12 +285,12 @@ input[type="color"] {
     color: #fff;
 }
 
-.container-fluid #column-second .result {
+.container-fluid .record .result, .container-fluid #results-list .record .category a {
     background: #ddd;
     border-radius: 5px;
 }
 
-.container-fluid #column-second .result a {
+.container-fluid .record .result a {
     background: #ddd;
     padding: 5px;
     border-radius: 5px;
@@ -300,17 +300,23 @@ input[type="color"] {
     color: #666;
 }
 
-.container-fluid #column-second .result a:hover {
+.container-fluid .record .result a:hover, .container-fluid #results-list .record .category a:hover {
     background: #1b1b1b;
     text-decoration: none;
     padding: 5px;
     color: #fff;
 }
 
-.container-fluid #column-second .citation {
+.container-fluid .record .citation {
     float: left;
     font-style: oblique;
     width: 100%;
+}
+
+.container-fluid .search {
+    border-bottom: 1px solid #eee;
+    margin: 5px 0 20px;
+    padding-bottom: 20px;
 }
 
 .container-fluid #column-third h5 {
@@ -322,12 +328,87 @@ input[type="color"] {
     margin: 0 0 10px 0;
 }
 
+.container-fluid #column-third li {
+    list-style: none;
+}
+
 .container-fluid #column-third a {
     color: #666;
 }
 
 .input-append, .input-prepend {
     margin-bottom: 0;
+}
+
+.container-fluid .search {
+}
+
+#search-results-filter .accordion-group {
+    border: none;
+    border-bottom: 1px dotted #999;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+#search-results-filter .accordion-group a.collapsed {
+    background: url(../img/img_filter-bullet-collapsed.gif) center left no-repeat;
+}
+
+#search-results-filter .accordion-group a {
+    background: url(../img/img_filter-bullet.gif) center left no-repeat;
+}
+
+#search-results-filter .accordion-inner {
+    border: none;
+}
+
+#search-results-type {
+    clear: both;
+    padding-top: 10px;
+}
+
+#search-results-type ul {
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
+    height: 35px;
+}
+
+#search-results-type li {
+    float: left;
+    list-style: none;
+    margin-right: 60px;
+}
+
+#search-results-type li a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #999;
+}
+
+#search-results-type li a:hover {
+    text-decoration: none;
+    color: #4DB3D0;
+}
+
+#search-results-type li .active {
+    color: #4DB3D0;
+}
+
+.search-details select {
+    margin: 0;
+}
+
+.searchbox .dropdown-menu li {
+    padding-left: 10px;
+}
+
+.search-details #results-display {
+    float: left;
+}
+
+.search-details #pagination {
+    float: right;
 }
 
 /* -------------------------------------------------- Foooter */

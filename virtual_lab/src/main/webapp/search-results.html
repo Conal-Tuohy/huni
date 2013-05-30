@@ -65,10 +65,10 @@
     <div class="container-fluid"> <!-- main content start -->
 
  <div class="row-fluid">
-        <h2>Search Results for: [Your search query]</h2>
+        <h2>Search Results</h2>
       </div>
 
-    <div class="row-fluid">
+    <div class="row-fluid search">
       
 <form class="searchbox" action="">
 
@@ -85,18 +85,171 @@
     <li>Events</li>
     </ul>
     </div>
-    <input id="search" type="text" placeholder="Your search query">
+    <input id="search" type="text" placeholder="John S">
     </div>
 
-                
-                <input id="submit" type="submit" value="Search">
+<input id="submit" type="submit" value="Search">
             </form>
+          </div>
 
-      <div>
+      <div class="row-fluid">
       
-    <div class="span6">
+    <div id="column-first" class="span3">
+<h4>Refine Your Results</h4>
 
-    
+<div class="accordion" id="search-results-filter">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+      Add more keywords
+      </a>
+    </div>
+
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <input type="text" placeholder="Add more keywords">
+        [keyword x] [keyword x] [keyword x]
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+      By year
+      </a>
+    </div>
+
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <input type="text" placeholder="Add more keywords">
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+      By data provider
+      </a>
+    </div>
+
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <input type="text" placeholder="Add more keywords">
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
+      By language
+      </a>
+    </div>
+
+    <div id="collapseFour" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <input type="text" placeholder="Add more keywords">
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#collapseFive">
+      By place
+      </a>
+    </div>
+
+    <div id="collapseFive" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <input type="text" placeholder="Add more keywords">
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6" href="#collapseSix">
+      By event
+      </a>
+    </div>
+
+    <div id="collapseSix" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <select>
+          <option>All</option>
+<option>People</option>
+<option>Places</option>
+<option>Objects</option>
+<option>Events</option>
+</select>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="btn" type="button">Filter</button>
+
+    </div>
+
+<div class="span9">
+<div class="search-details">
+  <div id="results-display">Results per page:
+    <select class="input-mini">
+      <option>24</option>
+      <option>48</option>
+      <option>96</option>    
+    </select>
+  </div>
+  <div id="pagination">
+    <div>Showing results 1-24 of 105 [pagination]</div>
+    <ul>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+    </div>
+  </div>
+
+    <div id="search-results-type">
+      <ul>
+        <li><a class="active" href="#">List</a></li>
+        <li><a href="#">Thumbnails</a></li>
+        <li><a href="#">Map</a></li>
+        <li><a href="#">Timeline</a></li>
+        <li><a href="#">Network</a></li>
+      </ul>
+    </div>
+
+    <div id="results-list">
+
+      <div class="list-item record">
+        <h3>1. <img src="img/icon_person.gif" /> <a href="#">John O'Sullivan</a></h3>
+
+        <ul>
+              <li class="category"><a href="#">Born: 10th September 2011</a></li>
+              <li class="category"><a href="#">Died: 30th December 2013</a></li>
+              <li class="category"><a href="#">Occupation: Comintern Functionary, Deportee</a></li>          
+              <li class="citation"><a href="#">This set of results was generated by: Lorem ipsum</a>.</li>
+            </ul>
+      </div>
+
+      <div class="list-item record">
+        <h3>2. <img src="img/icon_person.gif" /> <a href="#">John Smith</a></h3>
+        <ul>
+          <li class="category"><a href="#">Born: 10th September 2011</a></li>
+              <li class="category"><a href="#">Died: 30th December 2013</a></li>
+              <li class="category"><a href="#">Occupation: Comintern Functionary, Deportee</a></li>          
+              <li class="citation"><a href="#">This set of results was generated by: Lorem ipsum</a>.</li>
+            </ul>      
+      </div>
+
+    </div>
+
     </div>
   </div> <!-- main content end -->     
 
@@ -128,7 +281,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="js/bootstrap.js"></script>
 
   </body>
 </html>
