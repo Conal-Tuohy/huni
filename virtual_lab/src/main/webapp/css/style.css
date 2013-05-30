@@ -411,6 +411,28 @@ input[type="color"] {
     float: right;
 }
 
+.search-details #pagination ul {
+    float: right;
+}
+
+.search-details #pagination li {
+    float: left;
+    list-style: none;
+    margin-left: 5px;
+}
+
+.search-details #pagination li a {
+    background: #eee;
+    padding: 4px 8px;
+    color: #1b1b1b;
+    text-decoration: none;
+}
+
+.search-details #pagination .active a, .search-details #pagination li a:hover {
+    background: #4DB3D0;
+    color: #fff;
+}
+
 /* -------------------------------------------------- Foooter */
 
 footer {
