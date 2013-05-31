@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "personsearchbrowse">
   <head>
-    <meta charset="utf-8"  ng-app="person-search">
-    <title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - Person Search</title>
+    <meta charset="utf-8" >
+	<title>HuNI Virtual Laboratory | People</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Searching for people.">
     <meta name="author" content="Richard Rothwell, VeRSI">
-
+    
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -23,8 +22,19 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="ico/favicon.png">
-
-  </head>
+ 
+	<script src="http://code.jquery.com/jquery.js"></script>
+ 	<script src="lib/bootstrap/js/bootstrap.js"></script>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-resource.js"></script>	
+	
+	<script src="js/search/person/app.js"></script>
+	<script src="js/search/person/controllers.js"></script>
+	<script src="js/search/person/filters.js"></script>
+	<script src="js/search/person/services.js"></script>
+	<script src="js/search/person/directives.js"></script>
+ 
+ </head>
 
   <body>
 
@@ -35,8 +45,8 @@
           <div id="user-information"> <!-- user information -->
             <ul>
              <li>Welcome back, Registered User!</li>
-              <li><a href="#">Profile</a></li>|
-              <li><a href="#">Settings</a></li>|
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Settings</a></li>
               <li><a href="#">Logout</a></li>
             </ul>         
           </div>
@@ -64,31 +74,16 @@
     <div class="container-fluid"> <!-- main content start -->
 
 	<div class="row-fluid">
-        <h2>Person Search</h2>
-	</div>
-
-	<div class="row-fluid">      
-      <div>
-		<form id="person-search" class="form-horizontal">
-			<div class="control-group">
-				<label class="control-label" for="personSearchQuery">Your search query</label>
-				<div class="controls">
-					<input type="text" class="input-xlarge" id="personSearchQuery" placeholder="Your search query"/>
-					<button type="submit" class="btn">Search</button>
-					<span class="help-inline"><i class="icon-info-sign"></i>Your search query.</span>
-				</div>
-			</div>
-		</form>
+        <h2>People</h2>
 	</div>
 	
-    <div class="span6">
-    </div>   
-    
+	<div ng-view></div> 
+	
   </div> 
   
-  <!-- main content end -->     
-
-    <footer> <!-- footer start -->
+	<!-- main content end -->     
+	<!-- footer start -->
+    <footer> 
       <div class="row-fluid">
       <div class="footer-column span4">
         <p>&copy; 2012 HuNI HuNI is proud to be working in partnership with the NeCTAR (National eResearch Collaboration Tools and Resources) project to create an online research community around Australia's cultural datasets. This project will benefit Australian researchers by providing them with access to a wealth of combined resources and the tools with which to analyse and share them, thus enhancing their research outcomes. </p>
@@ -108,24 +103,11 @@
       </div>
     </div>
     </footer> <!-- footer end -->
-    </div>
-
-
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script src="http://code.jquery.com/jquery.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.js"></script>
-	<script src="lib/angular/angular.js"></script>
 	
-	<script src="js/search/person/app.js"></script>
-	<script src="js/search/person/controllers.js"></script>
-	<script src="js/search/person/filters.js"></script>
-	<script src="js/search/person/services.js"></script>
-	<script src="js/search/person/directives.js"></script>
-	
-	<script src="lib/angular/angular-resource.js"></script>	
 
   </body>
 </html>
