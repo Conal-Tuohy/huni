@@ -363,6 +363,16 @@ input[type="color"] {
     border: none;
 }
 
+.filter-section h5 {
+    font-weight: bold;
+    margin: 0;
+}
+
+.filter-section {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
 #search-results-type {
     clear: both;
     padding-top: 10px;
@@ -431,6 +441,14 @@ input[type="color"] {
 .search-details #pagination .active a, .search-details #pagination li a:hover {
     background: #4DB3D0;
     color: #fff;
+}
+
+#advanced-search input[type="text"]  {
+    margin: 0;
+}
+
+.search-buttons {
+    margin-top: 5px;
 }
 
 /* -------------------------------------------------- Foooter */
