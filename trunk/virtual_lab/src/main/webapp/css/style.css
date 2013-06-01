@@ -458,3 +458,31 @@ footer {
 	padding-top: 10px;
     margin-top: 20px;
 }
+
+.search-container .entry .people-background  a {
+	background-image: url("/virtual_lab/images/people.jpg");
+	height: 160px;
+	font-color: black;
+	font-size: 18px;
+}
+
+.search-container .entry .places-background  a {
+	background-image: url("/virtual_lab/images/places.jpg");
+	height: 160px;
+	font-color: black;
+	font-size: 18px;
+}
+
+.search-container .entry .objects-background  a {
+	background-image: url("/virtual_lab/images/objects.jpg");
+	height: 160px;
+	font-color: black;
+	font-size: 18px;
+}
+
+.search-container .entry .events-background  a {
+	background-image: url("/virtual_lab/images/events.jpg");
+	height: 160px;
+	font-color: black;
+	font-size: 18px;
+}
