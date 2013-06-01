@@ -28,34 +28,13 @@
 					<span class="help-inline"><i class="icon-info-sign"></i>Help...</span>
 				</div>
 			</div>
-	<!-- 		
-	<div class="control-group">
-			<input type="number" ng-model="resultsPerPage" placeholder=5 style="border-radius: 0; width: 35px"/>
-		</div>
- -->	
-<!-- 			
-			<div class="row-fluid">
-				<div class="pagination pagination-centered">
-				  <ul>
-				    <li><a ng-click="pageDown(); return true;">Prev</a></li>
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li><a ng-click="pageUp(); return false;">Next</a></li>
-				  </ul>
-				</div>
-			</div>
-  -->		
   		</form>
 	</div>
 </div>
 
-
 <div class="row-fluid">
-
 	<pagination on-select-page="turnPage(page)" num-pages="noOfPages" current-page="currentPage" previous-text="&laquo;" next-text="&raquo;" class="pagination-centered" ></pagination>
+	<div>{{csvResponse}}</div>
  	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -74,5 +53,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<a href="{{exportUrl}}" type="text/csv" target="_blank" class="btn btn-success">Export</a>
 </div>
+
 
