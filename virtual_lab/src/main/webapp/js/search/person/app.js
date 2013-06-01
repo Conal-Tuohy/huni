@@ -3,7 +3,8 @@
 /* App Module */
 
 var personSearch = angular.module('personsearchbrowse', [
-	'sparqlServices']).
+	'sparqlServices',
+	'pagination']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/familyname-search', {templateUrl: 'partials/search/familyname.html', controller: PersonSearchCtrl}).

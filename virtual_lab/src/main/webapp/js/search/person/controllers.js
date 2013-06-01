@@ -2,6 +2,8 @@
 
 /* Controllers */
 
+angular.module('pagination', ['ui.bootstrap']);
+
 var personSparqlTemplate = 
 	 
 	'PREFIX cidoc: <http://erlangen-crm.org/current/>'
@@ -18,18 +20,31 @@ var personSparqlTemplate =
 	+     'OPTIONAL {?person cidoc:P98i_was_born / cidoc:P4_has_time-span / rdf:value ?birthDate}'
 	+     'OPTIONAL {?person cidoc:P2_has_type / skos:prefLabel ?typeName}'
 	+ ' }'
+	+ ' OFFSET {{queryOffset}} LIMIT {{queryLimit}}'
 	;
+
+var queryLimit = 10;
+var pageIndex = 0;
 
 //------------------------------------
 
 function PersonSearchCtrl($scope, $routeParams, SparqlSearch) {
 
-	$scope.peopleByFamilyName = function(surName) {
-    	var sparqlStr = personSparqlTemplate.replace(/{{surName}}/, surName);		
+	  $scope.noOfPages = 5;
+	  $scope.currentPage = pageIndex + 1;
+	  $scope.maxSize = 5;
+
+	$scope.peopleByFamilyName = function() {
+		var surName = $scope.familyName;
+		var queryOffset = queryLimit * pageIndex;
+    	var sparqlStr = personSparqlTemplate.replace(/{{surName}}/, surName).replace(/{{queryOffset}}/, queryOffset + "").replace(/{{queryLimit}}/, queryLimit + "");		
 		$scope.response = SparqlSearch.query({'query': sparqlStr, 'output' : 'json'});
 	};
+	
+	$scope.turnPage = function (pageNo) {
+		pageIndex = pageNo - 1;
+		$scope.peopleByFamilyName();
+	  };	  
 }
 
 //PersonSearchCtrl.$inject = ['$scope', '$routeParams', 'PersonSearch'];
-
-
