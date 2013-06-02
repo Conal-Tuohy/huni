@@ -171,7 +171,7 @@ a.brand {
     float: left;
     background: #1b1b1b;
     border-radius: 5px;
-    color: #fff;
+    color: #4db3d0;
     font-size: 12px;
     width: 225px;
 }
@@ -179,7 +179,7 @@ a.brand {
 .search-container .entry a:hover {
     text-decoration: none;
     background: #eee;
-    color: #1b1b1b;
+    color: #D6E03D;
 }
 
 .search-container .entry p {
@@ -462,27 +462,23 @@ footer {
 .search-container .entry .people-background  a {
 	background-image: url("/virtual_lab/images/people.jpg");
 	height: 160px;
-	font-color: black;
 	font-size: 18px;
 }
 
 .search-container .entry .places-background  a {
 	background-image: url("/virtual_lab/images/places.jpg");
 	height: 160px;
-	font-color: black;
 	font-size: 18px;
 }
 
 .search-container .entry .objects-background  a {
 	background-image: url("/virtual_lab/images/objects.jpg");
 	height: 160px;
-	font-color: black;
 	font-size: 18px;
 }
 
 .search-container .entry .events-background  a {
 	background-image: url("/virtual_lab/images/events.jpg");
 	height: 160px;
-	font-color: black;
 	font-size: 18px;
 }

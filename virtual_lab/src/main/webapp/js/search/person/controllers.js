@@ -37,17 +37,18 @@ function PersonSearchCtrl($scope, $routeParams, SparqlSearch) {
 	$scope.peopleByFamilyName = function(output) {
 		var surName = $scope.familyName;
 		
+		// Populate the export button URL
 		var sparqlTemplate = personSparqlTemplate;
 		var sparqlStr = sparqlTemplate.replace(/{{surName}}/, surName);
 		$scope.exportUrl = serviceURL + '?query=' + encodeURIComponent(sparqlStr) + '&output=csv';
 		
-		output = 'json';
+		// Perform the request to populate the HTML results table.
 		sparqlTemplate = personSparqlTemplate + pagingSparqlTemplate;
 		var queryOffset = queryLimit * pageIndex;
 		sparqlStr = sparqlTemplate.replace(/{{surName}}/, surName)
 			.replace(/{{queryOffset}}/, queryOffset + "")
 			.replace(/{{queryLimit}}/, queryLimit + "");
-		$scope.response = SparqlSearch.query({'query' : sparqlStr, 'output' : output});
+		$scope.response = SparqlSearch.query({'query' : sparqlStr, 'output' : 'json'});
 	};
 	
 	$scope.turnPage = function (pageNo) {
