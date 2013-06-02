@@ -44,16 +44,16 @@
 		<thead>
 			<tr>
 				<th>Event name</th>
-				<th>Given name</th>
-				<th>Birth date</th>
-				<th>Occupation</th>
+				<th>Date</th>
+				<th>Location</th>
+				<th>Type</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="event in response.results.bindings">
-				<th>{{event.lastName.value}}</th>
-				<td>{{event.firstName.value}}</td>
-				<td>{{event.birthDate.value}}</td>
+				<th>{{event.eventName.value}}</th>
+				<td>{{event.eventDate.value}}</td>
+				<td>{{event.eventLocation.value}}</td>
 				<td>{{event.typeName.value}}</td>
 			</tr>
 		</tbody>
