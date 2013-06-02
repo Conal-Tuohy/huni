@@ -16,7 +16,7 @@ var personSparqlTemplate =
 	+     '?person foaf:firstName ?firstName .'
 	+     '?person foaf:lastName ?lastName .'
 	+     'FILTER(?lastName = "{{surName}}") .'
-	+     'OPTIONAL {?person cidoc:P98i_was_born / cidoc:P4_has_time-span / rdf:value ?birthDate}'
+	+     'OPTIONAL {?person cidoc:P4hasTimeSpan / cidoc:P4_has_time-span / rdf:value ?birthDate}'
 	+     'OPTIONAL {?person cidoc:P2_has_type / skos:prefLabel ?typeName}'
 	+ ' }'
 	;
@@ -26,15 +26,14 @@ var placeSparqlTemplate =
 	+ ' PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>'
 	+ ' PREFIX foaf: <http://xmlns.com/foaf/0.1/>'
 	+ ' PREFIX skos: <http://www.w3.org/2004/02/skos/core#>'
-	+ ' SELECT ?person ?firstName ?lastName ?birthDate ?typeName'
+	+ ' SELECT ?place ?placeName ?establishmentDate ?typeName'
 	+ ' WHERE'
 	+ ' {'
-	+     '?person a cidoc:E21_Person .'
-	+     '?person foaf:firstName ?firstName .'
-	+     '?person foaf:lastName ?lastName .'
-	+     'FILTER(?lastName = "{{surName}}") .'
-	+     'OPTIONAL {?person cidoc:P98i_was_born / cidoc:P4_has_time-span / rdf:value ?birthDate}'
-	+     'OPTIONAL {?person cidoc:P2_has_type / skos:prefLabel ?typeName}'
+	+     '?place a cidoc:E53_Place .'
+	+     '?place cidoc:E44_Place_Appellation ?placeName .'
+	+     'FILTER(?placeName = "{{placeName}}") .'
+	+     'OPTIONAL {?place cidoc:P4hasTimeSpan / cidoc:P4_has_time-span / rdf:value ?establishmentDate}'
+	+     'OPTIONAL {?place cidoc:P2_has_type / skos:prefLabel ?typeName}'
 	+ ' }'
 	;
 
@@ -52,7 +51,7 @@ function PersonSearchCtrl($scope, $routeParams, SparqlSearch) {
 	  $scope.currentPage = pageIndex + 1;
 	  $scope.maxSize = 5;
 
-	$scope.peopleByFamilyName = function(output) {
+	$scope.peopleByFamilyName = function() {
 		var surName = $scope.familyName;
 		
 		// Populate the export button URL
@@ -85,7 +84,7 @@ function PlaceSearchCtrl($scope, $routeParams, SparqlSearch) {
 	  $scope.currentPage = pageIndex + 1;
 	  $scope.maxSize = 5;
 
-	$scope.placesByPlaceName = function(output) {
+	$scope.placesByPlaceName = function() {
 		var placeName = $scope.placeName;
 		
 		// Populate the export button URL
