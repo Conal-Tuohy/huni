@@ -37,6 +37,40 @@ var placeSparqlTemplate =
 	+ ' }'
 	;
 
+var objectSparqlTemplate = 	 
+	'PREFIX cidoc: <http://erlangen-crm.org/current/>'
+	+ ' PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>'
+	+ ' PREFIX foaf: <http://xmlns.com/foaf/0.1/>'
+	+ ' PREFIX skos: <http://www.w3.org/2004/02/skos/core#>'
+	+ ' SELECT ?object ?objectName ?creationDate ?location ?typeName'
+	+ ' WHERE'
+	+ ' {'
+	+     '?object a cidoc:E24PhysicalManMadeThing .'
+	+     '?object cidoc:E41Appellation ?objectName .'
+	+     'FILTER(?objectName = "{{objectName}}") .'
+	+     'OPTIONAL {?object cidoc:P4hasTimeSpan / cidoc:P4_has_time-span / rdf:value ?creationDate}'
+	+     'OPTIONAL {?object cidoc:P53hasCurrentOrFormerLocation / rdf:value ?location}'
+	+     'OPTIONAL {?object cidoc:P2_has_type / skos:prefLabel ?typeName}'
+	+ ' }'
+	;
+
+var eventSparqlTemplate = 	 
+	'PREFIX cidoc: <http://erlangen-crm.org/current/>'
+	+ ' PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>'
+	+ ' PREFIX foaf: <http://xmlns.com/foaf/0.1/>'
+	+ ' PREFIX skos: <http://www.w3.org/2004/02/skos/core#>'
+	+ ' SELECT ?event ?eventName ?eventDate ?eventLocation ?typeName'
+	+ ' WHERE'
+	+ ' {'
+	+     '?event a cidoc:E5Event .'
+	+     '?event cidoc:E41Appellation ?eventName .'
+	+     'FILTER(?eventName = "{{eventName}}") .'
+	+     'OPTIONAL {?event cidoc:P4hasTimeSpan / cidoc:P4_has_time-span / rdf:value ?eventDate}'
+	+     'OPTIONAL {?event cidoc:P53hasCurrentOrFormerLocation / rdf:value ?location}'
+	+     'OPTIONAL {?event cidoc:P2_has_type / skos:prefLabel ?typeName}'
+	+ ' }'
+	;
+
 var pagingSparqlTemplate =	
 	' OFFSET {{queryOffset}} LIMIT {{queryLimit}}';
 
@@ -117,7 +151,7 @@ function ObjectSearchCtrl($scope, $routeParams, SparqlSearch) {
 	  $scope.currentPage = pageIndex + 1;
 	  $scope.maxSize = 5;
 
-	$scope.objectsByObjectName = function(output) {
+	$scope.objectsByObjectName = function() {
 		var objectName = $scope.objectName;
 		
 		// Populate the export button URL
@@ -149,7 +183,7 @@ function EventSearchCtrl($scope, $routeParams, SparqlSearch) {
 	  $scope.currentPage = pageIndex + 1;
 	  $scope.maxSize = 5;
 
-	$scope.eventsByEventName = function(output) {
+	$scope.eventsByEventName = function() {
 		var eventName = $scope.eventName;
 		
 		// Populate the export button URL

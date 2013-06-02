@@ -26,7 +26,7 @@
 	<div>
 		<form id="objectname-search-form" class="form-horizontal">
 			<div class="control-group">
-				<label class="control-label" for="objectNameSearchQuery">Family name:</label>
+				<label class="control-label" for="objectNameSearchQuery">Object name:</label>
 				<div class="controls">
 					<input type="text" class="input-xlarge" id="objectNameSearchQuery" placeholder="Stumpjump plough" ng-model="objectName"/>
 					<button type="submit" class="btn" ng-click="objectsByObjectName()">Search</button>
@@ -44,16 +44,16 @@
 		<thead>
 			<tr>
 				<th>Object name</th>
-				<th>Given name</th>
-				<th>Birth date</th>
-				<th>Occupation</th>
+				<th>Creation date</th>
+				<th>Location</th>
+				<th>Type</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="object in response.results.bindings">
-				<th>{{object.lastName.value}}</th>
-				<td>{{object.firstName.value}}</td>
-				<td>{{object.birthDate.value}}</td>
+				<th>{{object.objectName.value}}</th>
+				<td>{{object.creationDate.value}}</td>
+				<td>{{object.location.value}}</td>
 				<td>{{object.typeName.value}}</td>
 			</tr>
 		</tbody>
