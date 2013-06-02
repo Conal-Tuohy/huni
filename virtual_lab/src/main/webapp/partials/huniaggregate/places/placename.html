@@ -1,6 +1,6 @@
 <style type="text/css">
 <!--    
-.person-item
+.place-item
 {
 	font-size: 10px;
 	font-style: italic;
@@ -18,18 +18,18 @@
 </style>
 
 <div class="row-fluid">
-	<h3>People</h3>
+	<h3>Places</h3>
 </div>
 
 <!-- Layout the search form. -->
 <div class="row-fluid">      
 	<div>
-		<form id="familyname-search-form" class="form-horizontal">
+		<form id="placename-search-form" class="form-horizontal">
 			<div class="control-group">
-				<label class="control-label" for="familyNameSearchQuery">Family name:</label>
+				<label class="control-label" for="placeNameSearchQuery">Place name:</label>
 				<div class="controls">
-					<input type="text" class="input-xlarge" id="familyNameSearchQuery" placeholder="Smith" ng-model="familyName"/>
-					<button type="submit" class="btn" ng-click="peopleByFamilyName()">Search</button>
+					<input type="text" class="input-xlarge" id="placeNameSearchQuery" placeholder="Canberra" ng-model="placeName"/>
+					<button type="submit" class="btn" ng-click="placesByPlaceName()">Search</button>
 					<span class="help-inline"><i class="icon-info-sign"></i>Help...</span>
 				</div>
 			</div>
@@ -43,18 +43,18 @@
  	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Family name</th>
-				<th>Given name</th>
-				<th>Birth date</th>
-				<th>Occupation</th>
+				<th>Place name</th>
+				<th>XXXXX</th>
+				<th>YYYYY</th>
+				<th>ZZZZZ</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="person in response.results.bindings">
-				<th>{{person.lastName.value}}</th>
-				<td>{{person.firstName.value}}</td>
-				<td>{{person.birthDate.value}}</td>
-				<td>{{person.typeName.value}}</td>
+			<tr ng-repeat="place in response.results.bindings">
+				<th>{{place.lastName.value}}</th>
+				<td>{{place.firstName.value}}</td>
+				<td>{{place.birthDate.value}}</td>
+				<td>{{place.typeName.value}}</td>
 			</tr>
 		</tbody>
 	</table>
