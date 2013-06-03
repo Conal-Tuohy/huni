@@ -51,8 +51,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="person in response.results.bindings">
-				<th>{{person.lastName.value}}</th>
-				<td>{{person.firstName.value}}</td>
+				<th><a href="{{person.person.value}}" >{{person.lastName.value}}</a></th>
+				<td><a href="{{person.person.value}}" >{{person.firstName.value}}</a></td>
 				<td>{{person.birthDate.value}}</td>
 				<td>{{person.typeName.value}}</td>
 			</tr>
