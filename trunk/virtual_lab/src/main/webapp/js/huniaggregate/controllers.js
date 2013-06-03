@@ -16,7 +16,7 @@ var personSparqlTemplate =
 	+     '?person foaf:firstName ?firstName .'
 	+     '?person foaf:lastName ?lastName .'
 	+     'FILTER(?lastName = "{{surName}}") .'
-	+     'OPTIONAL {?person cidoc:P4hasTimeSpan / cidoc:P4_has_time-span / rdf:value ?birthDate}'
+	+     'OPTIONAL {?person cidoc:P98i_was_born / cidoc:P4_has_time-span / rdf:value ?birthDate}'
 	+     'OPTIONAL {?person cidoc:P2_has_type / skos:prefLabel ?typeName}'
 	+ ' }'
 	;
