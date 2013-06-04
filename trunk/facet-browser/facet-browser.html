@@ -30,7 +30,63 @@
 		<script src="http://corbicula.huni.net.au/facet-browser/lib/angular/angular.js"></script>
 		
 		<!-- The faceted browser library -->
-		<script type="text/javascript" id="facet-browser-engine" src="http://corbicula.huni.net.au/facet-browser/facet-browser.js"></script>                                   
+		<script type="text/javascript" id="facet-browser-engine" src="http://corbicula.huni.net.au/facet-browser/facet-browser.js"></script>   
+
+
+    <style type="text/css">
+      footer {
+        clear: both;
+      }
+
+      .results-as-rdf {
+        background: #D6E03D;
+        padding: 10px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        color: #666;
+        text-decoration: none;
+        float: left;
+        margin-bottom: 15px;
+      }
+
+      .results-as-rdf:hover {
+        background: #1b1b1b;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      #hits ul {
+        margin: 0;
+        padding: 0;
+        clear: both;
+      }
+
+      #hits ul a {
+        background: #eee;
+        padding: 5px;
+        margin-bottom: 5px;
+        float: left;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        text-decoration: underline;
+        font-weight: bold;
+}
+
+      #hits ul a:hover {
+        text-decoration: none;
+      }
+
+      #facets li {
+        list-style:;
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #666;
+      }
+
+    </style>                                 
   </head>
 
   <body ng-controller="FacetBrowserController">
@@ -82,9 +138,9 @@
 <!-- facet browser starts -->            
             
    					<!--<p>{{'OK'}}</p>-->
-   				<div class="span4">
-					<form id="facets" name="facet-form" ng-submit="refresh()" class="searchbox">
-						<div class="input-prepend">
+   				<div class="span6">
+					<form id="facets" name="facet-form" ng-submit="refresh()">
+						<div class="input-prepend searchbox">
 							<div class="btn-group">
 								<input type="text" name="textValue" ng-model="textValue"/>
 								<input id="submit" type="submit" value="Search"/>
@@ -94,7 +150,7 @@
 								<h3>{{facet.name}}</h3>
 								<ul>
 									<li ng-repeat="value in facet.values">
-							{{value.name}} ({{value.count}})
+							<span class="badge badge-important">{{value.count}}</span> {{value.name}}
 							<input type="checkbox" ng-model="value.selected" ng-change="refresh()"/>
 									</li>
 								</ul>
@@ -102,11 +158,11 @@
 						</div>
 					</form>
 				</div>
-				<div class="span8">
-					<a class="results-as-rdf" ng-href="{{graphQueryURI}}">Results as RDF</a>
+				<div class="span6">
 		<!--<iframe id="results" ng-src="{{itemQueryURI}}"></iframe>-->
 					<div id="hits">
 						<h2>Results</h2>
+            <a class="results-as-rdf" ng-href="{{graphQueryURI}}">Results as RDF</a>
 						<ul ng-repeat="hit in hits">
 							<a ng-href="{{hit.uri}}">{{hit.label}}</a>
 						</ul>
@@ -149,3 +205,4 @@
     <!--<script src="js/bootstrap.js"></script>-->
   </body>
 </html>
+
