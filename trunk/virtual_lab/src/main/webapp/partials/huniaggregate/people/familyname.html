@@ -40,7 +40,6 @@
 <!-- Layout the results table with pagination and an export button. -->
 <div class="row-fluid">
 	<pagination on-select-page="turnPage(page)" num-pages="noOfPages" current-page="currentPage" previous-text="&laquo;" next-text="&raquo;" class="pagination-centered" ></pagination>
-	<!-- <div>{{jsonResponse}}</div> -->
  	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -52,9 +51,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="person in response.results.bindings">
-				<th><a href="{{person.person.value}}" >{{person.lastName.value}}</a></th>
-				<td><a href="{{person.person.value}}" >{{person.firstName.value}}</a></td>
-				<td>{{person.birthDate.value}}</td>
+				<th><a ng-href="{{person.person.value}}" >{{person.lastName.value}}</a></th>
+				<td><a ng-href="{{person.person.value}}" >{{person.firstName.value}}</a></td>
+				<td><a ng-href="#/person?personId={{person.person.value|hexEncode}}">{{person.birthDate.value}}</a></td> <!-- {{person.person.value|hexEncode}} -->
 				<td>{{person.typeName.value}}</td>
 			</tr>
 		</tbody>
