@@ -51,9 +51,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="person in response.results.bindings">
-				<th><a ng-href="{{person.person.value}}" >{{person.lastName.value}}</a></th>
-				<td><a ng-href="{{person.person.value}}" >{{person.firstName.value}}</a></td>
-				<td><a ng-href="#/person?personId={{person.person.value|hexEncode}}">{{person.birthDate.value}}</a></td> <!-- {{person.person.value|hexEncode}} -->
+				<th><a ng-href="#/person?personId={{person.person.value|hexEncode}}" >{{person.lastName.value}}</a></th>
+				<td><a ng-href="#/person?personId={{person.person.value|hexEncode}}" >{{person.firstName.value}}</a></td>
+				<td>{{person.birthDate.value}}</td>
 				<td>{{person.typeName.value}}</td>
 			</tr>
 		</tbody>
