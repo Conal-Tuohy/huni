@@ -1,15 +1,16 @@
 <html lang="en">
-	<head xml:base="/linked-data/templates/"><!-- for references to CSS, JS, etc -->
+	<head><!-- for references to CSS, JS, etc -->
 		<meta charset="utf-8"/>
 		<title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - Person Record</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta name="description" content=""/>
 		<meta name="author" content=""/>
+		<base href="http://staging.huni.net.au/virtual_lab/"/>
 
     <!-- Le styles -->
-		<link href="css/bootstrap.css" rel="stylesheet"/>
-		<link href="css/style.css" rel="stylesheet"/>
-		<link href="css/bootstrap-responsive.css" rel="stylesheet"/>
+		<link href="http://corbicula.huni.net.au/linked-data/templates/css/bootstrap.css" rel="stylesheet"/>
+		<link href="http://corbicula.huni.net.au/linked-data/templates/css/style.css" rel="stylesheet"/>
+		<link href="http://corbicula.huni.net.au/linked-data/templates/css/bootstrap-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -24,7 +25,7 @@
 		<link rel="shortcut icon" href="ico/favicon.png"/>
 	</head>
 
-	<body xml:base="http://staging.huni.net.au/virtual_lab/">
+	<body>
 
 		<div class="navbar"> <!-- header start -->
 			<div class="navbar-inner">
@@ -101,7 +102,7 @@
 				</div>
 
 				<div class="span6 record" id="column-second">
-					<h3>[icon] {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</h3>
+					<h3>[icon] <span for-each="http://erlangen-crm.org/current/P131_is_identified_by">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</span> {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</h3>
 
 					<ul graph="each">
 						<li class="category">
@@ -247,8 +248,9 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <!--
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.js"></script>
-
+-->
 	</body>
 </html>
