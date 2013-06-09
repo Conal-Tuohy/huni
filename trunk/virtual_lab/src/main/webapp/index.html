@@ -11,11 +11,11 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="lib/angular-ui/angular-ui.css" rel="stylesheet">
-	<!-- RR: used by worskpace -- needs to be tested before enabling
+	<!-- RR: used by worskpace -- needs to be tested before enabling  -->
 	 	<link href="./css/3column.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/app.css">
-		<link rel="stylesheet" href="css/huni.css">
-	 -->
+		<!-- <link rel="stylesheet" href="css/app.css"> -->
+		<!-- <link rel="stylesheet" href="css/huni.css"> -->
+	
 	
 <!--     
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -152,15 +152,20 @@
           </button>
           <a class="brand" ng-href="#/landing">HuNI Virtual Lab</a>
           <div class="nav-collapse collapse"> <!-- primary navigation -->
-            <ul class="nav">
+            <ul class="nav  nav-pills">
               <li class="active"><a href="index.html">Home</a></li>
               <li><a ng-href="#/about">About HuNI</a></li>
               <li><a ng-href="#/advanced-search">Browse/Search</a></li>
+              <li><a ng-href="#/workspace">Workspace</a></li>
               <li><a ng-href="#/members-partners">Members/Partners</a></li>
               <li><a ng-href="#/help">Tutorials/Help</a></li>
               <li><a ng-href="#/contact">Contact</a></li>
-              <li><a ng-href="#/person">Person Record</a></li>
-              <li><a ng-href="#/group">Group Record</a></li>  
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Test<b class="caret"></b></a>
+              	<ul class="dropdown-menu">
+	              <li><a ng-href="#/person">Person Record</a></li>
+	              <li><a ng-href="#/group">Group Record</a></li>  
+              	</ul>
+              </li>
             </ul>
           </div>
         </div>
