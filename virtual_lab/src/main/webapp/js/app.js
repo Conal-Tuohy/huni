@@ -24,27 +24,39 @@ var virtualLab = angular.module('virtualab', [
                              'memberpartnersServices',
                              'aboutServices',
                              'settingsServices',
-                             'helpServices'
+                             'helpServices',
+                             
+                             'sparqlServices',
+                             'pagination',
+                             'hexEncodeModule'
+
                              ]).
   config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-      when('/projects', {templateUrl: 'partials/project-list.html',   controller: ProjectListCtrl}).
-      when('/projects/:projectId', {templateUrl: 'partials/project-detail.html', controller: ProjectDetailCtrl}).
-      when('/landing', {templateUrl: 'partials/landing.html', controller: LandingCtrl}).
-      when('/global-data', {templateUrl: 'partials/global_data.html', controller: GlobalDataCtrl}).
-      when('/advanced-search', {templateUrl: 'partials/advanced-search.html', controller: AdvancedSearchCtrl}).
-      when('/workspace', {templateUrl: 'partials/workspace.html', controller: WorkspaceCtrl}).
-      when('/dataset-directory', {templateUrl: 'partials/dataset_directory.html', controller: DatasetDirectoryCtrl}).
-      when('/tool-catalog', {templateUrl: 'partials/tool_catalog.html', controller: ToolCatalogCtrl}).
-      when('/tool-manager', {templateUrl: 'partials/tool_manager.html', controller: ToolManagerCtrl}).
-      when('/user-manager', {templateUrl: 'partials/user_manager.html', controller: UserManagerCtrl}).
-      when('/profile-editor', {templateUrl: 'partials/profile_editor.html', controller: ProfileEditorCtrl}).
-      when('/registration', {templateUrl: 'partials/registration.html', controller: RegistrationCtrl}).
-      when('/contact', {templateUrl: 'partials/contact.html', controller: ContactCtrl}).
-      when('/login', {templateUrl: 'partials/login.html', controller: LoginCtrl}).
-      when('/members-partners', {templateUrl: 'partials/members_partners.html', controller: MemberPartnersCtrl}).
-      when('/about', {templateUrl: 'partials/about.html', controller: AboutCtrl}).
-      when('/settings', {templateUrl: 'partials/settings.html', controller: SettingsCtrl}).
-      when('/help', {templateUrl: 'partials/help.html', controller: HelpCtrl}).
-      otherwise({redirectTo: '/landing'});
+	$routeProvider.
+		when('/landing', {templateUrl: 'partials/landing.html', controller: LandingCtrl}).
+		when('/projects', {templateUrl: 'partials/project-list.html', controller: ProjectListCtrl}).
+		when('/projects/:projectId', {templateUrl: 'partials/project-detail.html', controller: ProjectDetailCtrl}).
+		when('/global-data', {templateUrl: 'partials/global-data.html', controller: GlobalDataCtrl}).
+		when('/advanced-search', {templateUrl: 'partials/advanced-search.html', controller: AdvancedSearchCtrl}).
+		when('/workspace', {templateUrl: 'partials/workspace.html', controller: WorkspaceCtrl}).
+		when('/dataset-directory', {templateUrl: 'partials/dataset-directory.html', controller: DatasetDirectoryCtrl}).
+		when('/tool-catalog', {templateUrl: 'partials/tool-catalog.html', controller: ToolCatalogCtrl}).
+		when('/tool-manager', {templateUrl: 'partials/tool-manager.html', controller: ToolManagerCtrl}).
+		when('/user-manager', {templateUrl: 'partials/user-manager.html', controller: UserManagerCtrl}).
+		when('/profile-editor', {templateUrl: 'partials/profile-editor.html', controller: ProfileEditorCtrl}).
+		when('/registration', {templateUrl: 'partials/registration.html', controller: RegistrationCtrl}).
+		when('/contact', {templateUrl: 'partials/contact.html', controller: ContactCtrl}).
+		when('/login', {templateUrl: 'partials/login.html', controller: LoginCtrl}).
+		when('/members-partners', {templateUrl: 'partials/members-partners.html', controller: MemberPartnersCtrl}).
+		when('/about', {templateUrl: 'partials/about.html', controller: AboutCtrl}).
+		when('/settings', {templateUrl: 'partials/settings.html', controller: SettingsCtrl}).
+		when('/help', {templateUrl: 'partials/help.html', controller: HelpCtrl}).
+		
+		when('/familyname-search', {templateUrl: 'partials/huniaggregate/people/familyname.html', controller: PersonSearchCtrl}).
+		when('/person', {templateUrl: 'partials/huniaggregate/people/person.html', controller: PersonRecordCtrl}).
+		when('/group', {templateUrl: 'partials/huniaggregate/groups/group.html', controller: GroupRecordCtrl}).
+		when('/placename-search', {templateUrl: 'partials/huniaggregate/places/placename.html', controller: PlaceSearchCtrl}).
+		when('/objectname-search', {templateUrl: 'partials/huniaggregate/objects/objectname.html', controller: ObjectSearchCtrl}).
+		when('/eventname-search', {templateUrl: 'partials/huniaggregate/events/eventname.html', controller: EventSearchCtrl}).
+		otherwise({redirectTo: '/landing'});
 }]);
