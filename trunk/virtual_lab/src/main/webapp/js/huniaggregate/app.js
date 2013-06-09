@@ -5,7 +5,8 @@
 var personSearch = angular.module('huniaggregate', [
 	'sparqlServices',
 	'pagination',
-	'hexEncodeModule']).
+	'hexEncodeModule'
+	]).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
 	when('/familyname-search', {templateUrl: 'partials/huniaggregate/people/familyname.html', controller: PersonSearchCtrl}).

@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="virtualab">
   <head>
     <meta charset="utf-8">
     <title>HuNI Virtual Laboratory | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A virtual laboratory for humanities researchers based on semantic web principles.">
+    <meta name="author" content="Spencer Wu (Intersect), Richard Rothwell (VeRSI)">
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+	<link href="lib/angular-ui/angular-ui.css" rel="stylesheet">
+	<!-- RR: used by worskpace -- needs to be tested before enabling
+	 	<link href="./css/3column.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/huni.css">
+	 -->
+	
 <!--     
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
  -->
@@ -143,81 +150,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">HuNI Virtual Lab</a>
+          <a class="brand" ng-href="#/landing">HuNI Virtual Lab</a>
           <div class="nav-collapse collapse"> <!-- primary navigation -->
             <ul class="nav">
               <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about.html">About HuNI</a></li>
-              <li><a href="browse.html">Browse/Search</a></li>
-              <li><a href="members.html">Members/Partners</a></li>
-              <li><a href="help.html">Tutorials/Help</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="person.html">Person Record</a></li>
-              <li><a href="group.html">Group Record</a></li>  
+              <li><a ng-href="#/about">About HuNI</a></li>
+              <li><a ng-href="#/advanced-search">Browse/Search</a></li>
+              <li><a ng-href="#/members-partners">Members/Partners</a></li>
+              <li><a ng-href="#/help">Tutorials/Help</a></li>
+              <li><a ng-href="#/contact">Contact</a></li>
+              <li><a ng-href="#/person">Person Record</a></li>
+              <li><a ng-href="#/group">Group Record</a></li>  
             </ul>
           </div>
         </div>
       </div>
     </div> <!-- header end -->
 
-    <div class="container-fluid"> <!-- main content start -->
-
-      <div class="row-fluid">
-        <div class="search-container">
-        <h2>Linked Data Search</h2>
-        <form class="searchbox" action="http://corbicula.huni.net.au/facet-browser/facet-browser.html" method="get">
-
-    <div class="input-prepend">
-    <div class="btn-group">
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-   All fields
-    <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-    <li>Advanced</li>
-    <li>-</li>
-    <li>People</li>
-    <li>Places</li>
-    <li>Objects</li>
-    <li>Events</li>
-    </ul>
-    </div>
-    <input id="search" type="text" name="text" placeholder="Type your search here to begin!">
-    </div>
-
-                
-                <input id="submit" type="submit" value="Search">
-            </form>
-
-            <span style="float:left;"><form><input type="checkbox" name="records" value="yes">Include similar/related records</form></span>
-            <span style="float:right; margin-bottom: 20px;">Stuck? Try the <a href="advanced-search.html">Advanced Search</a>!</span>
-
-            <h4>Find and get more than 2 million records on the people, places, objects and events that make up Australia's rich cultural heritage.</h4>
-
-            <div class="entry first">
-            	<div class="people-background">
-            		<a href="/virtual_lab/huni_aggregate.html#/familyname-search">People</a>
-            	</div>
-            </div>
-            <div class="entry">
-            	<div class="places-background">
-            		<a href="/virtual_lab/huni_aggregate.html#/placename-search">Places</a>
-            	</div>
-            </div>
-            <div class="entry first">
-            	<div class="objects-background">
-            		<a href="/virtual_lab/huni_aggregate.html#/objectname-search">Objects</a>
-            	</div>
-            </div>
-            <div class="entry">
-            	<div class="events-background">
-            		<a href="/virtual_lab/huni_aggregate.html#/eventname-search">Events</a>
-            	</div>
-            </div>
-            </div>
-      </div>
-
-    </div> <!-- main content end -->     
+	<div ng-view></div> 
 
     <footer> <!-- footer start -->
       <div class="row-fluid">
@@ -246,8 +196,40 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
+		
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+		<script src="lib/angular/angular.js"></script>
+		<script src="lib/angular/angular-resource.js"></script>
+		<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
+		
+		<script src="js/app.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/filters.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/directives.js"></script>
+		<script src="lib/angular/angular-resource.js"></script>
+
+<!-- 		<script src="js/huniaggregate/app.js"></script>
+		<script src="js/huniaggregate/controllers.js"></script>
+		<script src="js/huniaggregate/filters.js"></script>
+		<script src="js/huniaggregate/services.js"></script>
+		<script src="js/huniaggregate/directives.js"></script>
+ -->
+		<!-- /shindig-project/content/README 
+	    <script type="text/javascript" src="../../js/shindig-container:rpc.js?c=1"></script>
+	     -->
+		<!-- /shindig-project/content/samplecontainer/samplecontainer.html 
+		<script type="text/javascript" src="../gadgets/js/core:rpc:pubsub:shindig-container.js?c=1&debug=1"></script>
+		 -->
+		<!-- /shindig-project/content/samplecontainer/examples/commoncontainer/index.html --> 
+		<!-- 	<script type="text/javascript" src="http://localhost:8080/shindig-server/gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&debug=1&container=default"></script> -->	
+		<script type="text/javascript" src="/shindig-server/gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&debug=1&container=default"></script>
+	
+		<script type="text/javascript" src="./opensocial/assembler.js"></script>
+		<script type="text/javascript" src="./opensocial/viewController.js"></script>
+		<script type="text/javascript" src="./opensocial/cconviews.js"></script>
+		<script type="text/javascript" src="./opensocial/search.js"></script>
 
   </body>
 </html>
