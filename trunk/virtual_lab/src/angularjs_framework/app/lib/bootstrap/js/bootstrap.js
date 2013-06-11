@@ -1667,7 +1667,9 @@
         , complete = function () {
             if (startEvent.type == 'show') that.reset()
             that.transitioning = 0
-            that.$element.trigger(completeEvent)
+            // RR: that.$element.trigger(completeEvent)
+            // http://stackoverflow.com/questions/10959068/twitter-bootstrap-accordion-and-button-dropdown-overflow-issue
+            that.$element[method]('fully').trigger(completeEvent)
           }
 
       this.$element.trigger(startEvent)

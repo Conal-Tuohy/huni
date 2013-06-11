@@ -3,32 +3,65 @@
       <div class="row-fluid">
         <div class="search-container">
         <h2>Aggregated Data Search</h2>
-        <form class="searchbox" action="http://corbicula.huni.net.au/facet-browser/facet-browser.html" method="get">
 
-    <div class="input-prepend">
-    <div class="btn-group">
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-   All fields
-    <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-    <li>Advanced</li>
-    <li>-</li>
-    <li>People</li>
-    <li>Places</li>
-    <li>Objects</li>
-    <li>Events</li>
-    </ul>
-    </div>
-    <input id="search" type="text" name="text" placeholder="Type your search here to begin!">
-    </div>
-
-                
-                <input id="submit" type="submit" value="Search">
-            </form>
+			<div class="accordion" id="searchAccordian">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							data-parent="#searchAccordian" href="#collapseSimpleSearch">
+							Simple Search </a>
+					</div>
+					<div id="collapseSimpleSearch" class="accordion-body collapse in">
+						<div class="accordion-inner">
+							<form class="searchbox"
+								action="http://corbicula.huni.net.au/facet-browser/facet-browser.html"
+								method="get">
+								<div class="input-prepend">
+									<input id="simpleSearch" type="text" name="text"
+										placeholder="Type your search here to begin!">
+									<input id="submit" type="submit" value="Search">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							data-parent="#searchAccordian" href="#collapseDeepSearch">
+							Deep Search </a>
+					</div>
+					<div id="collapseDeepSearch" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<form class="searchbox"
+								action="/"
+								method="get">
+								<div class="input-prepend">
+									<div class="btn-group">
+										<button class="btn dropdown-toggle" data-toggle="dropdown">
+											All fields <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li>Advanced</li>
+											<li>-</li>
+											<li>People</li>
+											<li>Places</li>
+											<li>Objects</li>
+											<li>Events</li>
+										</ul>
+									</div>
+									<input id="deepSearch" type="text" name="text"
+										placeholder="Type your search here to begin!">
+								</div>
+								<input id="submit" type="submit" value="Search">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 
             <span style="float:left;"><form><input type="checkbox" name="records" value="yes">Include similar/related records</form></span>
-            <span style="float:right; margin-bottom: 20px;">Stuck? Try the <a ng-href="#/advanced-search">Advanced Search</a>!</span>
+			<span style="float:right; margin-bottom: 20px;">Stuck? Try the <a ng-href="#/advanced-search">Advanced Search</a>!</span>
 
             <h4>Find and get more than 2 million records on the people, places, objects and events that make up Australia's rich cultural heritage.</h4>
 
@@ -54,5 +87,7 @@
             </div>
             </div>
       </div>
+	<!-- Button to trigger feedback modal - feedback-modal.html -->
+	<a href="#feedbackModal" role="button" data-toggle="modal" class="btn btn-info">Feedback</a>
 
     </div> <!-- main content end -->     

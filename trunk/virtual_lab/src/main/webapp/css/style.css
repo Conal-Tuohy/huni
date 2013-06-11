@@ -121,7 +121,7 @@ a.brand {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     padding: 10px 20px;
-    width: 505px;
+    width: 475px;
     margin-bottom: 5px;
 }
 
@@ -481,4 +481,10 @@ footer {
 	background-image: url("/virtual_lab/images/events.jpg");
 	height: 160px;
 	font-size: 18px;
+}
+
+/* RR:added due to this: http://stackoverflow.com/questions/10959068/twitter-bootstrap-accordion-and-button-dropdown-overflow-issue */
+.collapse.in.fully
+{
+    overflow:visible;
 }
