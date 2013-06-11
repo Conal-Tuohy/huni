@@ -35,111 +35,20 @@
       <div class="navbar-inner">
         <div class="container">
 
-          <div id="user-information"> <!-- user information -->
-            <ul>
-             <li>Have you registered?</li>
-              <li><a href="#registrationModal" role="button" data-toggle="modal">Register</a></li>  |
-              <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>|
-              <li><a href="#">Find Out More</a></li>
-            </ul>         
-
-    <!-- Button to trigger modal -->
-     
-    <!-- Modal -->
-    <div id="registrationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="modalLabel">New User Registration</h3>
-    </div>
-    <div class="modal-body">
-   
-<form id="registration-form " class="">
-
-    <div class="control-group">
-    <label class="control-label" for="inputUsername">Username*</label>
-    <div class="controls">
-    <input type="text" id="inputUsername" placeholder="Username">
-    </div>
-    </div>
-
-    <div class="control-group">
-    <label class="control-label" for="inputFirstName">First Name*</label>
-    <div class="controls">
-    <input type="text" id="inputFirstName" placeholder="First Name">
-    </div>
-    </div>
-
-    <div class="control-group">
-    <label class="control-label" for="inputLastName">Last Name*</label>
-    <div class="controls">
-    <input type="text" id="inputLastName" placeholder="Last Name">
-    </div>
-    </div>
-
-    <div class="control-group">
-    <label class="control-label" for="inputEmail">Email Address*</label>
-    <div class="controls">
-    <input type="text" id="inputEmail" placeholder="Email Address">
-    </div>
-    </div>
-
-    <div class="control-group">
-    <label class="control-label" for="inputInstitution">Institution</label>
-    <div class="controls">
-    <input type="text" id="inputInstitution" placeholder="Institution">
-    </div>
-    </div>
-
-    </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <button class="btn btn-primary">Submit</button>
-    </div>
-    </div>
-  </form>
-
-          </div>
-
- <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="modalLabel">Researcher Login</h3>
-    </div>
-    <div class="modal-body">
-
-
-          <div class="modal-body">
-   
-<form id="login-form" class="" >
-
-    <div class="control-group">
-    <label class="control-label" for="inputUsername">Username</label>
-    <div class="controls">
-    <input type="text" id="inputUsername" placeholder="Username">
-    </div>
-    </div>
-
-    <div class="control-group">
-    <label class="control-label" for="inputPasword">Password</label>
-    <div class="controls">
-    <input type="text" id="inputPassword" placeholder="Password">
-    </div>
-    </div>
-
-    <p>Not a registered user? Click here to create an account.</p>
-    <p>Forgot your password? Click here to retrieve it.</p>
-
-    </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <button class="btn btn-primary">Submit</button>
-    </div>
-    </div>
-  </form>
-
-          </div>
-
-
+				<div id="user-information">
+					<!-- user information -->
+					<ul>
+						<li>Have you registered?</li>
+						<!-- Button to trigger register modal - registration-modal.html -->
+						<li><a href="#registrationModal" role="button" data-toggle="modal">Register</a></li> |
+						<!-- Button to trigger login modal - login-modal.html -->
+						<li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>|
+						<li><a href="#">Find Out More</a></li>
+					</ul>					
+				</div>
+				
+				<div ng-include="'partials/registration-modal.html'"></div>
+				<div ng-include="'partials/login-modal.html'"></div>
 
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <!-- navigation toggle button -->
             <span class="icon-bar"></span>
