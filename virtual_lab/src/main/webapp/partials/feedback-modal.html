@@ -1,0 +1,43 @@
+
+<div id="feedbackModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="feedbackModalLabel" aria-hidden="true">
+	
+	<form id="feedback-form" class="">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="feedbackModalLabel">Feedback</h3>
+		</div>
+		<div class="modal-body">
+
+			<div class="modal-body">
+
+				<div class="control-group">
+					<label class="control-label" for="feedbackRating" id="feedBackRatingLabel" >Rating</label>
+					<div class="controls">
+						<div class="btn-group" data-toggle="buttons-radio" role="radiogroup" aria-labelledby="feedBackRatingLabel feedbackModalLabel">
+							<button type="button" class="btn btn-primary" role="radio">1</button>
+							<button type="button" class="btn btn-primary" role="radio">2</button>
+							<button type="button" class="btn btn-primary" role="radio">3</button>
+							<button type="button" class="btn btn-primary" role="radio">4</button>
+							<button type="button" class="btn btn-primary" role="radio">5</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="feedbackComments" id="feedbackCommentsLabel">Comments</label>
+					<div class="controls">
+						<textarea rows="3" id="feedbackComments" aria-labelledby="feedbackCommentsLabel feedbackModalLabel"></textarea>
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+				<button class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</form>
+
+</div>
