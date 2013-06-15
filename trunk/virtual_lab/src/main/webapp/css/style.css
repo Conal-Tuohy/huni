@@ -125,12 +125,17 @@ a.brand {
     margin-bottom: 5px;
 }
 
-.searchbox #search {
-    width: 295px;
+.searchbox #simpleSearch {
+    width: 380px;
     margin: 0;
 }
 
-.searchbox #submit {
+.searchbox #deepSearch {
+    width: 285px;
+    margin: 0;
+}
+
+.searchbox #submitSimpleSearch {
     background: #eee    ;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -139,7 +144,22 @@ a.brand {
     height: 30px;
     margin: 0 0 0 10px;
     padding: 0;
-    width: 90px;
+    width: 70px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #1b1b1b;
+}
+
+.searchbox #submitDeepSearch {
+    background: #eee    ;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 30px;
+    margin: 0 0 0 10px;
+    padding: 0;
+    width: 70px;
     cursor: pointer;
     font: bold 14px Arial, Helvetica;
     color: #1b1b1b;
