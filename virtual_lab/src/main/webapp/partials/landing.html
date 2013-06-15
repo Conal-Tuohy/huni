@@ -12,14 +12,14 @@
 							Simple Search </a>
 					</div>
 					<div id="collapseSimpleSearch" class="accordion-body collapse in">
-						<div class="accordion-inner">
-							<form class="searchbox"
-								action="/"
-								method="get">
+						<div class="accordion-inner" ng-controller="SearchController" ng-init="init()">
+							<form class="searchbox">
 								<div class="input-prepend">
 									<input id="simpleSearch" type="text" name="text"
-										placeholder="Type your search here to begin!">
-									<input id="submit" type="submit" value="Search">
+										placeholder="Type your search here to begin!"
+										ng-model="query"
+										autofocus="autofocus">
+									<input id="submitSimpleSearch" type="submit" value="Search"  ng-click="search()">
 								</div>
 							</form>
 						</div>
@@ -53,7 +53,7 @@
 									<input id="deepSearch" type="text" name="text"
 										placeholder="Type your search here to begin!">
 								</div>
-								<input id="submit" type="submit" value="Search">
+								<input id="submitDeepSearch" type="submit" value="Search">
 							</form>
 						</div>
 					</div>
