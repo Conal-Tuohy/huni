@@ -28,7 +28,10 @@ var virtualLab = angular.module('virtualab', [
                              
                              'sparqlServices',
                              'pagination',
-                             'hexEncodeModule'
+                             'hexEncodeModule',
+                             
+                             'simpleSearchServices',
+                             'simpleSearchFilters'
 
                              ]).
   config(['$routeProvider', function($routeProvider) {
@@ -58,5 +61,10 @@ var virtualLab = angular.module('virtualab', [
 		when('/placename-search', {templateUrl: 'partials/huniaggregate/places/placename.html', controller: PlaceSearchCtrl}).
 		when('/objectname-search', {templateUrl: 'partials/huniaggregate/objects/objectname.html', controller: ObjectSearchCtrl}).
 		when('/eventname-search', {templateUrl: 'partials/huniaggregate/events/eventname.html', controller: EventSearchCtrl}).
-		otherwise({redirectTo: '/landing'});
+
+	    when('/search',  {templateUrl: 'partials/simple-search/search.html',  controller: SearchController}).
+	    when('/browse',  {templateUrl: 'partials/simple-search/browse.html',  controller: BrowseController}).
+	    when('/results', {templateUrl: 'partials/simple-search/results.html', controller: ResultsController}).
+
+	    otherwise({redirectTo: '/landing'});
 }]);
