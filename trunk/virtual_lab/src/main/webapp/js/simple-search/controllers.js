@@ -259,8 +259,3 @@ function ResultsController($scope, $loc, solrSearchService, huniOntology) {
 
 }
 ResultsController.$inject = ['$scope', '$location', 'SolrSearchService', 'HuniOntology'];
-
-function BrowseController($rootScope, $scope, $loc) {
-}
-BrowseController.$inject = ['$rootScope', '$scope', '$location'];
-

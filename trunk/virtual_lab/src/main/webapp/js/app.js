@@ -62,7 +62,6 @@ var virtualLab = angular.module('virtualab', [
 		when('/objectname-search', {templateUrl: 'partials/huniaggregate/objects/objectname.html', controller: ObjectSearchCtrl}).
 		when('/eventname-search', {templateUrl: 'partials/huniaggregate/events/eventname.html', controller: EventSearchCtrl}).
 
-	    when('/browse',  {templateUrl: 'partials/simple-search/browse.html',  controller: BrowseController}).
 	    when('/results', {templateUrl: 'partials/simple-search/results.html', controller: ResultsController}).
 
 	    otherwise({redirectTo: '/landing'});
