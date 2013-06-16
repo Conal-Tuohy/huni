@@ -1,4 +1,4 @@
-<div ng-controller="ResultsController" ng-init="init()">
+<div ng-init="init()">
 
     <div class="span4 img-polaroid" style="height: {{results.view}}px; overflow: auto; padding: 15px;">
         <form class="form-search text-center" ng-submit="search()">
@@ -21,7 +21,7 @@
             <div ng-repeat="type in types">
                 <label class="checkbox" ng-class="{strike_through: type.count == 0}">
                     <input class="" type="checkbox" value="{{type.facet}}" ng-model="type_filter"
-                        ng-click="typeFilter({field: 'type', data: type.facet, value: type_filter})"
+                        ng-change="typeFilter({field: 'type', data: type.facet, value: type_filter})"
                         ng-checked="{{type.selected}}"
                         ng-disabled="{{type.count == 0}}">
                     {{type.facet}}  ({{type.count}})
