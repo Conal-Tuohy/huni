@@ -248,12 +248,12 @@ function ResultsController($scope, $loc, solrSearchService, huniOntology) {
         solrSearchService.doit($scope.query);
 
         // update the facet counts
-        setTimeout(function(){
+//        setTimeout(function(){
             var query = solrSearchService.getQuery();
             q = solrSearchService.AssembleQuery(query);
             solrSearchService.faceton(['prov_site_long', 'type'], q);
-
-        }, 1000);
+//
+//        }, 1000);
 
     }
 
