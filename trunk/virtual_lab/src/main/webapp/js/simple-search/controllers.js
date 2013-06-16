@@ -1,3 +1,4 @@
+
 /* 
  *   SearchController 
 */
@@ -60,7 +61,6 @@ function SearchController($rootScope, $scope, $loc, solrSearchService, huniOntol
 
 }
 SearchController.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService', 'HuniOntology'];
-
 
 /* 
  *   ResultsController 
@@ -248,9 +248,12 @@ function ResultsController($scope, $loc, solrSearchService, huniOntology) {
         solrSearchService.doit($scope.query);
 
         // update the facet counts
-        var query = solrSearchService.getQuery();
-        q = solrSearchService.AssembleQuery(query);
-        solrSearchService.faceton(['prov_site_long', 'type'], q);
+        setTimeout(function(){
+            var query = solrSearchService.getQuery();
+            q = solrSearchService.AssembleQuery(query);
+            solrSearchService.faceton(['prov_site_long', 'type'], q);
+
+        }, 1000);
 
     }
 

@@ -203,7 +203,11 @@ simpleSearchServices.service('SolrSearchService', [ '$rootScope', '$http', funct
             }
             //console.log(self.results);
             $rootScope.$broadcast('searchResultsUpdated');
-        });
+        },
+        function(reason) {
+        	alert('Failed: ' + reason);
+        }
+       );
     }
 
     /*
