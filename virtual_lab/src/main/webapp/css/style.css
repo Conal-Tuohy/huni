@@ -125,6 +125,16 @@ a.brand {
     margin-bottom: 5px;
 }
 
+.searchboxSmall {
+    background: #D6E03D;    
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px 20px;
+    width: 250px;
+    margin-bottom: 5px;
+}
+
 .searchbox #simpleSearch {
     width: 380px;
     margin: 0;
@@ -132,6 +142,11 @@ a.brand {
 
 .searchbox #deepSearch {
     width: 285px;
+    margin: 0;
+}
+
+.searchboxSmall #deepSearchRefresh {
+    width: 155px;
     margin: 0;
 }
 
@@ -151,6 +166,21 @@ a.brand {
 }
 
 .searchbox #submitDeepSearch {
+    background: #eee    ;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 30px;
+    margin: 0 0 0 10px;
+    padding: 0;
+    width: 70px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #1b1b1b;
+}
+
+.searchboxSmall #submitDeepSearchFacets {
     background: #eee    ;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;

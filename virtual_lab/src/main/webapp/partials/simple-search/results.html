@@ -1,10 +1,13 @@
 <div class="container-fluid">
-	<!-- main content start -->
 
+	<div class="row-fluid">
+		<h2>Simple Search</h2>
+	</div>
+	
 	<div class="row-fluid">
 		<div ng-init="init()">
 
-			<div class="span4 img-polaroid" style="height: {{results.view">
+			<div class="span4 img-polaroid" style="height: {{results.view}}">
 				<form class="form-search text-center" ng-submit="search()">
 					Current Search:<br /> 
 					<input type="text" class="input-medium search-query" value={{query.user_query}} 
@@ -12,8 +15,8 @@
 				</form>
 				<hr />
 				<div class="offset1">
-					<label class="checkbox ">Display provenance information <input
-						type="checkbox" ng-model="show_provenance" />
+					<label class="checkbox ">Display provenance information 
+						<input type="checkbox" ng-model="show_provenance" />
 					</label>
 				</div>
 				<hr />
@@ -60,7 +63,7 @@
 					</div>
 					<hr />
 				</div>
-				<div style="height: {{results.view">
+				<div style="height: {{results.view}}">
 					<ol start={{results.start}}>
 						<span ng-repeat="result in results.docs"> 
 							<span ng-switch on="result.type">

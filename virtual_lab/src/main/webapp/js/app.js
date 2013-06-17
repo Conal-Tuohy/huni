@@ -66,7 +66,7 @@ var virtualLab = angular.module('virtualab', [
 
 	    when('/results', {templateUrl: 'partials/simple-search/results.html', controller: ResultsController}).
 	    
-	    when('/deep-search', {templateUrl: 'partials/deep-search/facet-browser.html', controller: FacetBrowserController}).
+	    when('/deep-search', {templateUrl: 'partials/deep-search/results.html', controller: FacetBrowserController}).
 
 	    otherwise({redirectTo: '/landing'});
 }]);
