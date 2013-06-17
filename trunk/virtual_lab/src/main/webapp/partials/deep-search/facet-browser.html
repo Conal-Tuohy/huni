@@ -1,0 +1,47 @@
+     <div class="container-fluid"> <!-- main content start -->
+
+ <div class="row-fluid">
+        <h2>Search Results for: {{textValue}}</h2>
+      </div>
+
+    <div class="row-fluid">
+      
+
+<!-- facet browser starts -->            
+            
+   					<!--<p>{{'OK'}}</p>-->
+   				<div class="span6">
+					<form id="facets" name="facet-form" ng-submit="refresh()">
+						<div class="input-prepend searchbox">
+							<div class="btn-group">
+								<input type="text" name="textValue" ng-model="textValue"/>
+								<input id="submit" type="submit" value="Search"/>
+							</div>
+						</div>
+							<div ng-repeat="facet in facets">
+								<h3>{{facet.name}}</h3>
+								<ul>
+									<li ng-repeat="value in facet.values">
+							<span class="badge badge-important">{{value.count}}</span> {{value.name}}
+							<input type="checkbox" ng-model="value.selected" ng-change="refresh()"/>
+									</li>
+								</ul>
+							</li>
+						</div>
+					</form>
+				</div>
+				<div class="span6">
+		<!--<iframe id="results" ng-src="{{itemQueryURI}}"></iframe>-->
+					<div id="hits">
+						<h2>Results</h2>
+            <a class="results-as-rdf" ng-href="{{graphQueryURI}}">Results as RDF</a>
+						<ul ng-repeat="hit in hits">
+							<a ng-href="{{hit.uri}}">{{hit.label}}</a>
+						</ul>
+					</div>
+				</div>
+					
+<!--  facet browser ends -->            
+      <div>
+      
+  </div> 

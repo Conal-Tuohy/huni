@@ -132,4 +132,20 @@ angular.module('sparqlServices', ['ngResource']).
 		  });
 });
 
+angular.module('queryStoreServices', []).
+	service('QueryStore', function(){
+		
+		var queryStr = '*';
+
+        return {
+            fetchQuery: function () {
+                return queryStr;
+            },
+            storeQuery: function(valueStr) {
+            	queryStr = valueStr;
+            }
+        };;
+});
+
+
 

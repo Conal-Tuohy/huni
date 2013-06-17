@@ -12,7 +12,7 @@
 							Simple Search </a>
 					</div>
 					<div id="collapseSimpleSearch" class="accordion-body collapse in">
-						<div class="accordion-inner" ng-controller="SearchController" ng-init="init()">
+						<div class="accordion-inner" ng-controller="SimpleSearchController" ng-init="init()">
 							<form class="searchbox">
 								<div class="input-prepend">
 									<input id="simpleSearch" type="text" name="text"
@@ -32,10 +32,8 @@
 							Deep Search </a>
 					</div>
 					<div id="collapseDeepSearch" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<form class="searchbox"
-								action="http://corbicula.huni.net.au/facet-browser/facet-browser.html"
-								method="get">
+						<div class="accordion-inner" ng-controller="DeepSearchController">
+							<form class="searchbox">
 								<div class="input-prepend">
 									<div class="btn-group">
 										<button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -51,9 +49,10 @@
 										</ul>
 									</div>
 									<input id="deepSearch" type="text" name="text"
-										placeholder="Type your search here to begin!">
+										placeholder="Type your search here to begin!"
+										ng-model="keywords">
 								</div>
-								<input id="submitDeepSearch" type="submit" value="Search">
+								<input id="submitDeepSearch" type="submit" value="Search" ng-click="search()">
 							</form>
 						</div>
 					</div>

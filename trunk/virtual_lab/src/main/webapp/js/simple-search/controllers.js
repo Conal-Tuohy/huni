@@ -2,7 +2,7 @@
 /* 
  *   SearchController 
 */
-function SearchController($rootScope, $scope, $loc, solrSearchService, huniOntology) {
+function SimpleSearchController($rootScope, $scope, $loc, solrSearchService, huniOntology) {
 
     $scope.$on('facetResultsUpdated', function() {
         var facets = solrSearchService.getFacetResults();
@@ -60,7 +60,7 @@ function SearchController($rootScope, $scope, $loc, solrSearchService, huniOntol
     }
 
 }
-SearchController.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService', 'HuniOntology'];
+SimpleSearchController.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService', 'HuniOntology'];
 
 /* 
  *   ResultsController 

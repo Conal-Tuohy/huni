@@ -31,7 +31,9 @@ var virtualLab = angular.module('virtualab', [
                              'hexEncodeModule',
                              
                              'simpleSearchServices',
-                             'simpleSearchFilters'
+                             'simpleSearchFilters',
+                             
+                             'queryStoreServices'
 
                              ]).
   config(['$routeProvider', function($routeProvider) {
@@ -63,6 +65,8 @@ var virtualLab = angular.module('virtualab', [
 		when('/eventname-search', {templateUrl: 'partials/huniaggregate/events/eventname.html', controller: EventSearchCtrl}).
 
 	    when('/results', {templateUrl: 'partials/simple-search/results.html', controller: ResultsController}).
+	    
+	    when('/deep-search', {templateUrl: 'partials/deep-search/facet-browser.html', controller: FacetBrowserController}).
 
 	    otherwise({redirectTo: '/landing'});
 }]);
