@@ -20,13 +20,13 @@
         text-decoration: none;
       }
 
-      #hits ul {
+      #hitList ul {
         margin: 0;
         padding: 0;
         clear: both;
       }
 
-      #hits ul a {
+      #hitList ul a {
         background: #eee;
         padding: 5px;
         margin-bottom: 5px;
@@ -38,7 +38,7 @@
         font-weight: bold;
 }
 
-      #hits ul a:hover {
+      #hitList ul a:hover {
         text-decoration: none;
       }
 

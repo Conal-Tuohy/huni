@@ -1,20 +1,35 @@
+// Capture form entry for search keywords then naviaget to search form
+// initiating the first search.
+
 function DeepSearchController ($scope, $location, QueryStore) {
 	
 	$scope.search = function() {
 		QueryStore.storeQuery($scope.keywords);
 		$location.path('/deep-search');
-	}
+	};
 }
+
+// Facet-Browser library
+
+// A model for querying RDF data using SPARQL Property Paths as facets (in the library science sense). 
+
+// A Facet Browser Controller corresponds to a search session.
+// It adds a collection of facets, and some search results to the scope.
 
 DeepSearchController.$inject = ['$scope', '$location', 'QueryStore'];
 
-		// Facet-Browser library
-		
-		// A model for querying RDF data using SPARQL Property Paths as facets (in the library science sense). 
-		
-		// A Facet Browser Controller corresponds to a search session.
-		// It adds a collection of facets, and some search results to the scope.
 		function FacetBrowserController($scope, $http, QueryStore) {
+
+			pageIndex = 0;
+			$scope.noOfPages = 5;
+			$scope.currentPage = pageIndex + 1;
+			$scope.maxSize = 5;
+
+			$scope.turnPage = function (pageNo) {
+				pageIndex = pageNo - 1;
+				$scope.peopleByFamilyName();
+			};	  
+
 			var facets = {};
 			$scope.changed = false;
 			$scope.facets = facets;
