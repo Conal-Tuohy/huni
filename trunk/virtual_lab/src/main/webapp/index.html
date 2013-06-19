@@ -57,11 +57,11 @@
 							<li><a href="#">Find Out More</a></li>
 							<script>
 								var dateInfo = "$Date$";
-								dateInfo = dateInfo.match(/^.+\(.+\).+$/g)[1];
+								dateInfo = dateInfo.match(/\d\d\d\d-\d\d-\d\d/g)[0];
 								var revInfo = "$Revision$";
-								revInfo = revInfo.match(/^.+\(\d+\).+$/g)[1];
+								revInfo = revInfo.match(/\d+/g)[0];
 							</script>
-							<li style="color: red;" >Version: 0.1.1, Date: <script>document.write(dateInfo)</script>, Rev: <script>document.write(revInfo)</script></li>
+							<li style="color: red; position:fixed; z-index:1000; top: 3px; right: 10px; font-size:  10px" >Version: 0.1.1, Date: <script>document.write(dateInfo)</script>, Rev: <script>document.write(revInfo)</script></li>
 						</ul>
 					</div>
 	
