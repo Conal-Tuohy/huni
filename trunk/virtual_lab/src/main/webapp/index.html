@@ -55,7 +55,13 @@
 							<!-- Button to trigger login modal - login-modal.html -->
 							<li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>|
 							<li><a href="#">Find Out More</a></li>
-							<li>Version: 0.1.1, $Date$ - $Revision$</li>
+							<script>
+								var dateInfo = "$Date$";
+								dateInfo = dateInfo.match(/^.+\(.+\).+$/g)[1];
+								var revInfo = "$Revision$";
+								revInfo = revInfo.match(/^.+\(\d+\).+$/g)[1];
+							</script>
+							<li style="color: red;" >Version: 0.1.1, Date: <script>document.write(dateInfo)</script>, Rev: <script>document.write(revInfo)</script></li>
 						</ul>
 					</div>
 	
