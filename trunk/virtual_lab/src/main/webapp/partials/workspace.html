@@ -1,34 +1,36 @@
-     <div class="container-fluid">
-      <div class="row-fluid">
+<div class="container-fluid">
+	<div class="row-fluid">
 
-          <div class="well sidebar-nav left">
-			<div  ng-controller="ProjectDirectoryCtrl" >		 
-			 	<span  ng-include src="'partials/project-directory.html'"></span >
+		<div class="well sidebar-nav left">
+			<div ng-controller="ProjectDirectoryCtrl">
+				<span ng-include src="'partials/project-directory.html'"></span>
 			</div>
-			<div  ng-controller="ToolKitCtrl" >		 
-			 	<span  ng-include src="'partials/tool-kit.html'"></span >
+			<div ng-controller="ToolKitCtrl">
+				<span ng-include src="'partials/tool-kit.html'"></span>
 			</div>
- 		</div><!--/.well -->
+		</div>
+		<!--/.well -->
 
 
-          <div class="well sidebar-nav right">
-			<div  ng-controller="HistoryCtrl" >		 
-			 	<span  ng-include src="'partials/tool-history.html'"></span >
+		<div class="well sidebar-nav right">
+			<div ng-controller="HistoryCtrl">
+				<span ng-include src="'partials/tool-history.html'"></span>
 			</div>
-           </div><!--/.well -->
+		</div>
+		<!--/.well -->
 
-        <div class="content fixed-fixed">
-            <div id="gadgetArea">
-	            <div id="gadgetSite">
-	            </div>
-	            <div id="output">
-	            </div>
-            </div>
-        </div><!--/span-->
-      </div><!--/row-->
-    		<div class="row-fluid">
-		 	<!-- Button to trigger feedback modal - feedback-modal.html -->
-			<a href="#feedbackModal" role="button" data-toggle="modal" class="btn btn-info">Feedback</a>
-        </div>
-    </div>
- 
+		<div class="content fixed-fixed">
+			<div id="gadgetArea">
+				<div id="gadgetSite"></div>
+				<div id="output"></div>
+			</div>
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+	<div class="row-fluid">
+		<!-- Button to trigger feedback modal - feedback-modal.html -->
+		<a href="#feedbackModal" role="button" data-toggle="modal"
+			class="btn btn-info">Feedback</a>
+	</div>
+</div>
