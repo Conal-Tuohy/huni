@@ -11,6 +11,9 @@
 		<lookup:namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
 		<lookup:namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 		<lookup:namespace prefix="HuNI" uri="http://corbicula.huni.net.au/data/"/>
+		<lookup:namespace prefix="VoID" uri="http://rdfs.org/ns/void#"/>
+		<lookup:namespace prefix="dcterms" uri="http://purl.org/dc/terms/"/>
+		<lookup:namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 	</lookup:table>
 	
 	<xsl:variable name="namespaces" select="document('')//lookup:namespace"/>
