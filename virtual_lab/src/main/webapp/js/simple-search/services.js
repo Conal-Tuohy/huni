@@ -89,7 +89,9 @@ simpleSearchServices.service('SolrSearchService', [ '$rootScope', '$http', funct
 
     var self = this;
 
-    var SOLR_BASE_URL = 'http://huni.esrc.unimelb.edu.au/solr/dev';
+    //var SOLR_BASE_URL = 'http://huni.esrc.unimelb.edu.au/solr/dev';
+    var SOLR_BASE_URL = 'http://huni.esrc.unimelb.edu.au/solr/huni';
+    
     self.rows = 10;
     self.results = '';
 
