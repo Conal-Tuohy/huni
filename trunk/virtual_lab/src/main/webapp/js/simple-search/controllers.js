@@ -1,10 +1,7 @@
 
-/* 
- *   SearchController 
-*/
-function SimpleSearchController($rootScope, $scope, $loc, solrSearchService, huniOntology) {
+function DocumentStatisticsCtrl($rootScope, $scope, $loc, solrSearchService, huniOntology) {
 
-    $scope.$on('facetResultsUpdated', function() {
+	$scope.$on('facetResultsUpdated', function() {
         var facets = solrSearchService.getFacetResults();
         //console.log(facets);
         $scope.providers = facets.prov_site_long;
@@ -21,7 +18,14 @@ function SimpleSearchController($rootScope, $scope, $loc, solrSearchService, hun
     $scope.init = function() {
         solrSearchService.faceton(['prov_site_long', 'type']);        
         solrSearchService.documentsInIndex();
-    }
+    };
+}
+DocumentStatisticsCtrl.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService', 'HuniOntology'];
+
+/* 
+ *   Controller for keyword entry box on landing page. 
+*/
+function SimpleSearchController($rootScope, $scope, $loc, solrSearchService, huniOntology) {
 
     // search
     $scope.search = function() {
@@ -58,12 +62,12 @@ function SimpleSearchController($rootScope, $scope, $loc, solrSearchService, hun
         // send us to the new view then do the search
         $loc.path('/results');
     }
-
 }
+
 SimpleSearchController.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService', 'HuniOntology'];
 
 /* 
- *   ResultsController 
+ *   Controller for search page including a keyword entry box search results 
 */
 function ResultsController($scope, $loc, solrSearchService, huniOntology) {
 
@@ -247,15 +251,10 @@ function ResultsController($scope, $loc, solrSearchService, huniOntology) {
         $scope.query.start = 0;
         solrSearchService.doit($scope.query);
 
-        // update the facet counts
-//        setTimeout(function(){
-            var query = solrSearchService.getQuery();
-            q = solrSearchService.AssembleQuery(query);
-            solrSearchService.faceton(['prov_site_long', 'type'], q);
-//
-//        }, 1000);
-
-    }
+        var query = solrSearchService.getQuery();
+        q = solrSearchService.AssembleQuery(query);
+        solrSearchService.faceton(['prov_site_long', 'type'], q);
+    };
 
 }
 ResultsController.$inject = ['$scope', '$location', 'SolrSearchService', 'HuniOntology'];
