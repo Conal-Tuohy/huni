@@ -1,11 +1,12 @@
     <div class="container-fluid"> <!-- main content start -->
 
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span3" ng-controller="DocumentStatisticsCtrl" ng-init="init()">
         	<div>
         		<img src="./img/huni_dataproviders.png"/>
         	</div>
         	<h5>The HuNI Data Providers</h5>
+        	Totalling {{ndocuments}} records covering {{nentity_types}} entity types from {{nproviders}} datasources.
             <ul>
 	            <li><a href="http://www.afiresearch.rmit.edu.au" target="_blank">AFI Research Collection</a></li>
 	            <li><a href="http://www.ausstage.edu.au/pages/browse" target="_blank">AusStage</a></li>
