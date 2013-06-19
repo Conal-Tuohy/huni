@@ -534,6 +534,12 @@ footer {
 	font-size: 18px;
 }
 
+.data-provider-container {
+    margin: 0 auto;
+    width: 200px;
+}
+
+
 /* RR:added due to this: http://stackoverflow.com/questions/10959068/twitter-bootstrap-accordion-and-button-dropdown-overflow-issue */
 .collapse.in.fully
 {
