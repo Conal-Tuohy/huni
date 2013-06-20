@@ -1,5 +1,5 @@
 
-function DocumentStatisticsCtrl($rootScope, $scope, $loc, solrSearchService, huniOntology) {
+function DocumentStatisticsCtrl($rootScope, $scope, $loc, solrSearchService) {
 
 	$scope.$on('facetResultsUpdated', function() {
         var facets = solrSearchService.getFacetResults();
@@ -20,7 +20,7 @@ function DocumentStatisticsCtrl($rootScope, $scope, $loc, solrSearchService, hun
         solrSearchService.documentsInIndex();
     };
 }
-DocumentStatisticsCtrl.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService', 'HuniOntology'];
+DocumentStatisticsCtrl.$inject = ['$rootScope', '$scope', '$location', 'SolrSearchService'];
 
 /* 
  *   Controller for keyword entry box on landing page. 
