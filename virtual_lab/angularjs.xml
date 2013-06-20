@@ -1,5 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?> 
 <!DOCTYPE project>
+
+<!-- 
+RR: obsolete as directory structure has changed and there is no longer a need to copy the AngularJS app directory into the webapp root. 
+The need to have a separate angularjs directory was driven by the ambition to have AngularJS testing.
+That is now handled by having svn externals and a seprate AngularJS project.
+This file is kept around to mine for ant stuff.
+--> 
+
 <!-- http://ant.apache.org/manual/using.html -->
 <project name="AngularJS Copyer" default="copy" basedir=".">
     <description>

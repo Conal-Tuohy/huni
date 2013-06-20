@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Module>
-	<ModulePrefs title="Corbicula: Vocabulary Manager."  height="400" width= "500"/>
-	<Content type="url" view="canvas" href="http://corbicula.huni.net.au/skos-tools/vocabulary.xml" />
-</Module>
