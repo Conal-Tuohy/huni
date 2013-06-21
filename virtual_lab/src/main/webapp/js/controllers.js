@@ -595,7 +595,7 @@ function FeedbackCtrl($scope, $location) {
 //	debugger;
 //	console.debug($scope);
 //	console.debug($location);
-	$scope.currentLocation = $location.hash;
+	$scope.currentLocation = $location.hash();
 }
 
 FeedbackCtrl.$inject = ['$scope', '$location'];
