@@ -1,7 +1,7 @@
 <html lang="en">
 	<head><!-- for references to CSS, JS, etc -->
 		<meta charset="utf-8"/>
-		<title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - Person Record</title>
+		<title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - {http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value} {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta name="description" content=""/>
 		<meta name="author" content=""/>
@@ -102,8 +102,7 @@
 				</div>
 
 				<div class="span6 record" id="column-second">
-					<h3><img src="img/icon_person.gif"/> <span for-each="http://erlangen-crm.org/current/P131_is_identified_by">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</span> {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</h3>
-
+					<h3><img src="img/icon_person.gif"/> {http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value}  {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</h3>
 					<ul graph="each">
 						<li class="category">
 							<a href="#">Type:</a>
@@ -114,8 +113,8 @@
 						<li class="category" if="http://erlangen-crm.org/current/P98i_was_born">
 							<a href="#">Born:</a>
 						</li>
-						<li class="result" for-each="http://erlangen-crm.org/current/P98i_was_born">
-							<a href="#" for-each="http://erlangen-crm.org/current/P4_has_time-span">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</a>
+						<li class="result" for-each="http://erlangen-crm.org/current/P98i_was_born http://erlangen-crm.org/current/P4_has_time-span">
+							<a href="#">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</a>
 						</li>
 						<li class="category" if="http://erlangen-crm.org/current/P100i_died_in">
 							<a href="#">Died:</a>

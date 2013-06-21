@@ -86,6 +86,66 @@
 		</xsl:choose>
 	</xsl:template>
 	
+	<xsl:template match="@for-each" mode="triple"/>
+	
+	<xsl:template match="*[@for-each]" mode="triple">
+		<xsl:param name="current-node"/>
+		<xsl:param name="current-graph"/><!--
+		<xsl:comment>for-each="<xsl:value-of select="@for-each"/>" current template="<xsl:value-of select="local-name()"/>" current-node="<xsl:value-of select="$current-node"/>" current-graph="<xsl:value-of select="$current-graph"/>"</xsl:comment>-->
+		<xsl:call-template name="evaluate-expression">
+			<xsl:with-param name="expression" select="@for-each"/>
+			<xsl:with-param name="current-node" select="$current-node"/>
+			<xsl:with-param name="context-node" select="$current-node"/>
+			<xsl:with-param name="current-graph" select="$current-graph"/>
+			<xsl:with-param name="continuation" select=" 'for-each' "/>
+		</xsl:call-template>
+	</xsl:template>
+	
+	<xsl:template match="@*" mode="triple">
+		<xsl:copy/>
+	</xsl:template>
+	
+	<xsl:template match="@if" mode="triple"/>
+	
+	<xsl:template match="*[@if]" mode="triple">
+		<xsl:param name="current-node"/>
+		<xsl:param name="current-graph"/>
+		<!--<xsl:comment>for-each="<xsl:value-of select="@for-each"/>" current template="<xsl:value-of select="local-name()"/>" current-node="<xsl:value-of select="$current-node"/>" current-graph="<xsl:value-of select="$current-graph"/>"</xsl:comment>-->
+		<xsl:call-template name="evaluate-expression">
+			<xsl:with-param name="expression" select="@if"/>
+			<xsl:with-param name="current-node" select="$current-node"/>
+			<xsl:with-param name="context-node" select="$current-node"/>
+			<xsl:with-param name="current-graph" select="$current-graph"/>
+			<xsl:with-param name="continuation" select=" 'if' "/>
+		</xsl:call-template>
+	</xsl:template>	
+	
+	<xsl:template match="text()[contains(., '{')]" mode="triple">
+		<xsl:param name="current-node"/>
+		<xsl:param name="current-graph"/>
+		<xsl:call-template name="evaluate-expressions">
+			<xsl:with-param name="current-node" select="$current-node"/>
+			<xsl:with-param name="context-node" select="$current-node"/>
+			<xsl:with-param name="current-graph" select="$current-graph"/>
+			<xsl:with-param name="continuation" select=" 'value-of' "/>
+		</xsl:call-template>
+	</xsl:template>
+	
+	<!-- expand value templates e.g. {http://xmlns.com/foaf/0.1/isPrimaryTopicOf} in attribute values -->
+	<xsl:template match="@*[contains(., '{')]" mode="triple">
+		<xsl:param name="current-node"/>
+		<xsl:param name="current-graph"/>
+		<xsl:attribute name="{local-name(.)}">
+			<xsl:call-template name="evaluate-expressions">
+				<xsl:with-param name="current-node" select="$current-node"/>
+				<xsl:with-param name="context-node" select="$current-node"/>
+				<xsl:with-param name="current-graph" select="$current-graph"/>
+				<xsl:with-param name="continuation" select="'value-of'"/>
+			</xsl:call-template>
+		</xsl:attribute>
+	</xsl:template>
+
+	
 	<xsl:template match="*" mode="triple">
 		<xsl:param name="current-node"/>
 		<xsl:param name="current-graph"/>
@@ -101,49 +161,6 @@
 		</xsl:copy>
 	</xsl:template>
 	
-	<xsl:template match="@for-each" mode="triple"/>
-	
-	<xsl:template match="*[@for-each]" mode="triple">
-		<xsl:param name="current-node"/>
-		<xsl:param name="current-graph"/><!--
-		<xsl:comment>for-each="<xsl:value-of select="@for-each"/>" current template="<xsl:value-of select="local-name()"/>" current-node="<xsl:value-of select="$current-node"/>" current-graph="<xsl:value-of select="$current-graph"/>"</xsl:comment>-->
-		<xsl:call-template name="evaluate-expression">
-			<xsl:with-param name="expression" select="@for-each"/>
-			<xsl:with-param name="current-node" select="$current-node"/>
-			<xsl:with-param name="current-graph" select="$current-graph"/>
-			<xsl:with-param name="continuation" select="'for-each'"/>
-		</xsl:call-template>
-	</xsl:template>	
-	
-	<xsl:template match="@*" mode="triple">
-		<xsl:copy/>
-	</xsl:template>
-	
-	<xsl:template match="@if" mode="triple"/>
-	
-	<xsl:template match="text()[contains(., '{')]" mode="triple">
-		<xsl:param name="current-node"/>
-		<xsl:param name="current-graph"/>
-		<xsl:call-template name="evaluate-expressions">
-			<xsl:with-param name="current-node" select="$current-node"/>
-			<xsl:with-param name="current-graph" select="$current-graph"/>
-			<xsl:with-param name="continuation" select="'value-of'"/>
-		</xsl:call-template>
-	</xsl:template>
-	
-	<!-- expand value templates e.g. {http://xmlns.com/foaf/0.1/isPrimaryTopicOf} in attribute values -->
-	<xsl:template match="@*[contains(., '{')]" mode="triple">
-		<xsl:param name="current-node"/>
-		<xsl:param name="current-graph"/>
-		<xsl:attribute name="{local-name(.)}">
-			<xsl:call-template name="evaluate-expressions">
-				<xsl:with-param name="current-node" select="$current-node"/>
-				<xsl:with-param name="current-graph" select="$current-graph"/>
-				<xsl:with-param name="continuation" select="'value-of'"/>
-			</xsl:call-template>
-		</xsl:attribute>
-	</xsl:template>
-
 	<xsl:template name="evaluate-expressions">
 		<xsl:param name="text" select="."/>
 		<xsl:param name="current-node"/>
@@ -153,6 +170,7 @@
 		<xsl:call-template name="evaluate-expression">
 			<xsl:with-param name="expression" select="substring-before(substring-after($text, '{'), '}')"/>
 			<xsl:with-param name="current-node" select="$current-node"/>
+			<xsl:with-param name="context-node" select="$current-node"/>
 			<xsl:with-param name="current-graph" select="$current-graph"/>
 			<xsl:with-param name="continuation" select="$continuation"/>
 		</xsl:call-template>
@@ -161,6 +179,7 @@
 			<xsl:call-template name="evaluate-expressions">
 				<xsl:with-param name="text" select="$remainder"/>
 				<xsl:with-param name="current-node" select="$current-node"/>
+				<xsl:with-param name="context-node" select="$current-node"/>
 				<xsl:with-param name="current-graph" select="$current-graph"/>
 				<xsl:with-param name="continuation" select="$continuation"/>
 			</xsl:call-template>
@@ -172,52 +191,63 @@
 	<xsl:template name="evaluate-expression">
 		<xsl:param name="expression"/>
 		<xsl:param name="current-node"/>
+		<xsl:param name="context-node"/>
 		<xsl:param name="current-graph"/>
 		<xsl:param name="continuation"/>
-		<xsl:comment>Expression: <xsl:value-of select="$expression"/></xsl:comment>
-		<!-- The current graph (if there is one) is the context for evaluating the expression -->
+		<!--<xsl:comment>Expression: <xsl:value-of select="$expression"/></xsl:comment>-->
+		<xsl:variable name="normalized-expression" select="normalize-space($expression)"/>
+		<xsl:variable name="first-step" select="substring-before(concat($normalized-expression, ' '), ' ')"/>
 		<xsl:choose>
-			<xsl:when test="$current-graph">
-				<!-- we have a "current graph" - so select triples from that graph only -->
+			<xsl:when test="contains($normalized-expression, ' ')">
+				<!-- the expression is a path containing at least two steps, so process it recursively -->
+				<xsl:variable name="remaining-steps" select="substring-after($normalized-expression, ' ')"/>
+				<!-- iterate over objects of the current triples, select triples with the matching subjects, and
+				and evaluate remainder of the expression using those triples as context -->
 				<xsl:variable name="triples" select="
 					$results
-						[s:binding[@name='s']/s:uri/text() = $current-node]
-						[s:binding[@name='p']/s:uri/text() = $expression]
-						[s:binding[@name='g']/s:uri/text() = $current-graph]
+						[s:binding[@name='s']/s:uri/text() = $context-node]
+						[s:binding[@name='p']/s:uri/text() = $first-step]
+						[(s:binding[@name='g']/s:uri/text() = $current-graph) or (not($current-graph))]
 				"/>
+				<!--<xsl:comment>triples in graph "<xsl:value-of select="$current-graph"/>" matching subject "<xsl:value-of select="$context-node"/>" and predicate "<xsl:value-of select="$first-step"/>": <xsl:for-each select="$triples">
+				{s=<xsl:value-of select="normalize-space(s:binding[@name='s'])"/> p=<xsl:value-of select="normalize-space(s:binding[@name='p'])"/> o=<xsl:value-of select="normalize-space(s:binding[@name='o'])"/> g=<xsl:value-of select="normalize-space(s:binding[@name='g'])"/>}</xsl:for-each></xsl:comment>-->
+				<xsl:variable name="current-template" select="."/>
+				<xsl:for-each select="$triples">
+					<xsl:variable name="object" select="string(s:binding[@name='o']/s:uri/text())"/>
+					<!--<xsl:comment>New context node = <xsl:value-of select="$object"/></xsl:comment>-->
+					<xsl:for-each select="$current-template">
+						<xsl:call-template name="evaluate-expression">
+							<xsl:with-param name="expression" select="$remaining-steps"/>
+							<xsl:with-param name="current-node" select="$current-node"/>
+							<xsl:with-param name="context-node" select="$object"/>
+							<xsl:with-param name="current-graph" select="$current-graph"/>
+							<xsl:with-param name="continuation" select="$continuation"/>
+						</xsl:call-template>
+					</xsl:for-each>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- the expression consists of a single step (predicate). Evaluate it and continue the continuation -->
+				<!--<xsl:comment>Expression <xsl:value-of select="$expression"/> is a single predicate</xsl:comment>-->
 				<xsl:call-template name="execute-operation-on-triples">
 					<xsl:with-param name="expression" select="$expression"/>
-					<xsl:with-param name="triples" select="$triples"/>
 					<xsl:with-param name="current-node" select="$current-node"/>
+					<xsl:with-param name="context-node" select="$context-node"/>
 					<xsl:with-param name="current-graph" select="$current-graph"/>
 					<xsl:with-param name="continuation" select="$continuation"/>
 				</xsl:call-template>
-			</xsl:when>
-			<xsl:otherwise>
-				<!-- no current graph - select any triples regardless of graph -->
-				<xsl:variable name="triples" select="
-					$results
-						[s:binding[@name='s']/s:uri/text() = $current-node]
-						[s:binding[@name='p']/s:uri/text() = $expression]
-				"/>
-				<xsl:call-template name="execute-operation-on-triples">
-					<xsl:with-param name="expression" select="$expression"/>
-					<xsl:with-param name="triples" select="$triples"/>
-					<xsl:with-param name="current-node" select="$current-node"/>
-					<xsl:with-param name="current-graph" select="$current-graph"/>
-					<xsl:with-param name="continuation" select="$continuation"/>
-				</xsl:call-template>				
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 	
 	<xsl:template name="execute-operation-on-triples">
 		<xsl:param name="expression"/>
-		<xsl:param name="triples"/>
 		<xsl:param name="current-node"/>
+		<xsl:param name="context-node"/>
 		<xsl:param name="current-graph"/>
 		<xsl:param name="continuation"/>
 
+		<!--<xsl:comment>Current node = <xsl:value-of select="$current-node"/>. Context node="<xsl:value-of select="$context-node"/>". Expression="<xsl:value-of select="$expression"/></xsl:comment>-->
 		<xsl:variable name="current-template" select="."/>
 		<xsl:choose>
 			<xsl:when test="$expression='graph'">
@@ -229,12 +259,21 @@
 				<xsl:value-of select="$current-node"/>
 			</xsl:when>
 			<xsl:otherwise><!-- expression is a predicate - return all matching property values of $current-node -->
+				<xsl:variable name="triples" select="
+					$results
+						[s:binding[@name='s']/s:uri/text() = $context-node]
+						[s:binding[@name='p']/s:uri/text() = $expression]
+						[(s:binding[@name='g']/s:uri/text() = $current-graph) or (not($current-graph))]
+				"/>
+				<!--<xsl:comment>triples in graph "<xsl:value-of select="$current-graph"/>" matching subject "<xsl:value-of select="$context-node"/>" and predicate "<xsl:value-of select="$expression"/>": <xsl:for-each select="$triples">
+				{s=<xsl:value-of select="normalize-space(s:binding[@name='s'])"/> p=<xsl:value-of select="normalize-space(s:binding[@name='p'])"/> o=<xsl:value-of select="normalize-space(s:binding[@name='o'])"/> g=<xsl:value-of select="normalize-space(s:binding[@name='g'])"/>}</xsl:for-each></xsl:comment>-->
 				<xsl:choose>
 					<xsl:when test="$continuation='value-of'">
 						<xsl:value-of select="$triples/s:binding[@name='o']/*"/>
 					</xsl:when>
 					<xsl:when test="$continuation='if'">
-						<xsl:if test="$triples/s:binding[@name='o']/s:uri">
+						<!--<xsl:comment>evaluating "if"; triples are: <xsl:value-of select="$triples"/></xsl:comment>-->
+						<xsl:if test="$triples"><!--/s:binding[@name='o']/s:uri">-->
 							<xsl:copy>
 								<xsl:apply-templates select="@*" mode="triple"/>
 								<xsl:apply-templates mode="graph">
@@ -246,7 +285,7 @@
 					</xsl:when>
 					<xsl:when test="$continuation='for-each'">
 						<xsl:for-each select="$triples/s:binding[@name='o']/s:uri">
-							<xsl:variable name="resource" select="."/>
+							<xsl:variable name="resource" select="string(.)"/>
 							<xsl:for-each select="$current-template">
 								<xsl:copy>
 									<xsl:apply-templates select="@*" mode="triple"/>
