@@ -28,7 +28,7 @@ describe('Simple Search controllers', function(){
 				return {
 					prov_site_long: [0, 1, 2, 3],
 					type: [0, 1, 2, 3, 4] 
-				}
+				};
 			},
 			faceton: function() {
 	            $rootScope.$broadcast('facetResultsUpdated');
@@ -51,4 +51,20 @@ describe('Simple Search controllers', function(){
 //    //spec body
 //  }));
   
+});
+
+describe('Feedback controller', function() {
+
+
+	beforeEach(function() {
+		// Do nothing
+	});
+
+	it('should display the current location.', function() {
+		var scope = {currentLocation: ''};
+		var location = {hash: 'landing'};
+		var ctrl = new FeedbackCtrl(scope, location);
+		expect(scope.currentLocation).toBe('landing');
+	});
+
 });
