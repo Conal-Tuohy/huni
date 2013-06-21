@@ -590,12 +590,16 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 
 //------------------------------------
 
-function FeedbackCtrl($scope, $location, Feedback) {
+function FeedbackCtrl($scope, $location) {
 	
-	$scope.currentPath = $location.hash;	
+//	debugger;
+//	console.debug($scope);
+//	console.debug($location);
+	$scope.currentLocation = $location.hash;
 }
 
-FeedbackCtrl.$inject = ['$scope', '$location', 'Feedback'];
+FeedbackCtrl.$inject = ['$scope', '$location'];
+//FeedbackCtrl.$inject = ['$scope', '$location', 'Feedback'];
 
 //------------------------------------
 

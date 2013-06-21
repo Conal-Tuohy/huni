@@ -1,13 +1,13 @@
 <div id="feedbackModal" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="feedbackModalLabel" aria-hidden="true"
-	ng-controller="FeedbackCtrl" ng-init="init()">
+	ng-controller="FeedbackCtrl">
 	
 	<form id="feedback-form" class="">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true">×</button>
 			<h3 id="feedbackModalLabel">Feedback</h3>
-			<div>Context: {{currentPath}}</div>
+			<div id="feedbackContext">Context: </div> <!-- {{currentLocation}} -->
 		</div>
 			<div class="modal-body">
 				<div class="control-group">
