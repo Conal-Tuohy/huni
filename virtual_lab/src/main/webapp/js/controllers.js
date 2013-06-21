@@ -586,4 +586,19 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 
 //==================================================
 
+// Modal dialog box controllers
+
+//------------------------------------
+
+function FeedbackCtrl($scope, $location, Feedback) {
+	
+	$scope.currentPath = $location.hash;	
+}
+
+FeedbackCtrl.$inject = ['$scope', '$location', 'Feedback'];
+
+//------------------------------------
+
+
+//==================================================
 
