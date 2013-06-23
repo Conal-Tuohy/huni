@@ -1,5 +1,9 @@
 'use strict';
 
+/*
+ * https://docs.google.com/document/d/1HYnKnLxhxUYygPqIFiyibI3PsgicGENeHINCN-B_rdw/edit
+ */
+	
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
 //describe('my app', function() {
@@ -71,15 +75,22 @@ describe('HuNI Virtual Lab', function() {
 	        toMatch(/Feedback/);
 	    });
 
-	    it('should render location path when user navigates to /landing', function() {
-	      expect(element('#feedbackContext').text()).
-	        toMatch(/Context\: /);
+	    it('should render location path when user navigates to /landing and clicks feedback button.', function() {
+	    	element("[href='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/landing/);
 	    });
-	    
-	    debugger;
 
 	  });
-
+	  
+//	  describe('Buzz Client', function() {
+//		  it('should filter results', function() {
+//		    input('user').enter('jacksparrow');
+//		    element(':button').click();
+//		    expect(repeater('ul li').count()).toEqual(10);
+//		    input('filterText').enter('Bees');
+//		    expect(repeater('ul li').count()).toEqual(1);
+//		  });
+//		  });
 
 //	  describe('contact', function() {
 //
