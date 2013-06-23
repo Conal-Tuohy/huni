@@ -1,0 +1,9 @@
+<map>
+
+This file specifies which HTML template should be used to render resources with a particular RDF class.
+If no mapping exists for a particular class, it will be rendered using a generic template. 
+To temporarily disable a template, set the enabled attribute to "false". This will cause the generic template to be used.
+
+	<class uri="http://erlangen-crm.org/current/E21_Person" template="/linked-data/templates/person.html" enabled="true"/>
+	<class uri="http://erlangen-crm.org/current/E74_Group" template="/linked-data/templates/group.html" enabled="true"/>
+</map>

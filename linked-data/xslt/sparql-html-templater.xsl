@@ -9,24 +9,36 @@
 	<xsl:key name="graph-uris" match="s:binding[@name='g']" use="."/>
 	<xsl:key name="results-by-graph" match="s:result" use="s:binding[@name='g']"/>
 	<xsl:key name="results-by-graph-and-subject" match="s:result" use="concat(s:binding[@name='g'], ' ', s:binding[@name='s'])"/>
-	
-	<xsl:variable name="resource" select="/s:sparql/s:results/s:result[1]/s:binding[@name='resource']/s:uri"/>
-	<xsl:variable name="person-template" select="document('/linked-data/templates/person.html')"/>
+
 	<xsl:variable name="results" select="/s:sparql/s:results/s:result"/>
 	
-	<!-- See if there is a page template available to process a resource of this class; if so, use it -->
-	<!-- If not, fall back to the generic stylesheet -->
+	<!-- template matches the sparql query results document -->
 	<xsl:template match="/">
-		<xsl:variable name="root-resource" select="string(/s:sparql/s:results/s:result/s:binding[@name='resource']/s:uri)"/>
+		<!-- See if there is a page template available to process a resource of this class; if so, use it -->
+		<!-- If not, fall back to the generic stylesheet -->
+	
+		<!-- The "root resource" is the central node of this dataset. This is where the template will start -->	
+		<xsl:variable name="root-resource" select="/s:sparql/s:results/s:result[1]/s:binding[@name='resource']/s:uri"/>
+		
+		<!-- the class of the root resource determines which template is used to render it -->
 		<xsl:variable name="root-resource-class" select="string(/s:sparql/s:results/s:result[s:binding[@name='s']/s:uri = $root-resource][s:binding[@name='p']/s:uri='http://www.w3.org/1999/02/22-rdf-syntax-ns#type']/s:binding[@name='o']/s:uri)"/>
+		
+		<!-- the map of RDF classes to template pages is used to select the template page appropriate to the resource's class -->
+		<xsl:variable name="class-to-template-map" select="document('/linked-data/templates/class-to-template-map.xml')"/>
+		
+		<!-- the name of the template for this class is drawn from the map -->
+		<xsl:variable name="class-template-name" select="$class-to-template-map/map/class[@enabled='true'][@uri=$root-resource-class]/@template"/>
+		
 		<xsl:choose>
-			<xsl:when test="$root-resource-class='http://erlangen-crm.org/current/E21_Person'">
-				<xsl:apply-templates select="$person-template/*" mode="graph">
+			<xsl:when test="$class-template-name">
+				<!-- a template existed for the class -->
+				<xsl:variable name="template" select="document($class-template-name)"/>
+				<xsl:apply-templates select="$template/*" mode="graph">
 					<xsl:with-param name="current-node" select="$root-resource"/>
 				</xsl:apply-templates>
 			</xsl:when>
 			<xsl:otherwise>
-				<!-- generic styling -->
+				<!-- No template defined and enabled for this class - use a generic styling instead -->
 				<xsl:apply-imports/>
 			</xsl:otherwise>
 		</xsl:choose>
