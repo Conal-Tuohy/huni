@@ -591,10 +591,10 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 //------------------------------------
 
 function FeedbackCtrl($scope, $location) {
-	
-	$('#feedbackModal').on('show', function () {
-		$scope.currentLocation = $location.path();
-	})
+
+	$scope.context = function () {
+		return $location.path();
+	}
 }
 
 FeedbackCtrl.$inject = ['$scope', '$location'];

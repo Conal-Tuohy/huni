@@ -59,6 +59,9 @@ describe('HuNI Virtual Lab', function() {
 	    expect(browser().location().url()).toBe("/landing");
 	  });
 
+	  /*
+	   * Landing Page
+	   */
 	  describe('landing', function() {
 
 	    beforeEach(function() {
@@ -76,8 +79,34 @@ describe('HuNI Virtual Lab', function() {
 	    });
 
 	    it('should render location path when user navigates to /landing and clicks feedback button.', function() {
-	    	element("[href='#feedbackModal']").click();
+	    	element("[data-target='#feedbackModal']").click();
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/landing/);
+	    });
+
+	  });
+
+	  /*
+	   * About Page
+	   */
+	  describe('about', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/about');
+	    });
+
+	    it('should render data provider block when user navigates to /about', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/About HuNI/);
+	    });
+
+	    it('should render feedback title when user navigates to /about', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /about and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/about/);
 	    });
 
 	  });
