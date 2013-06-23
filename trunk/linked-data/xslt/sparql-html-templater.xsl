@@ -28,7 +28,7 @@
 		
 		<!-- the name of the template for this class is drawn from the map -->
 		<xsl:variable name="class-template-name" select="$class-to-template-map/map/class[@enabled='true'][@uri=$root-resource-class]/@template"/>
-		
+
 		<xsl:choose>
 			<xsl:when test="$class-template-name">
 				<!-- a template existed for the class -->
@@ -281,7 +281,7 @@
 				{s=<xsl:value-of select="normalize-space(s:binding[@name='s'])"/> p=<xsl:value-of select="normalize-space(s:binding[@name='p'])"/> o=<xsl:value-of select="normalize-space(s:binding[@name='o'])"/> g=<xsl:value-of select="normalize-space(s:binding[@name='g'])"/>}</xsl:for-each></xsl:comment>-->
 				<xsl:choose>
 					<xsl:when test="$continuation='value-of'">
-						<xsl:value-of select="$triples/s:binding[@name='o']/*"/>
+						<xsl:apply-templates mode="value-of" select="$triples/s:binding[@name='o']/*"/>
 					</xsl:when>
 					<xsl:when test="$continuation='if'">
 						<!--<xsl:comment>evaluating "if"; triples are: <xsl:value-of select="$triples"/></xsl:comment>-->
@@ -314,6 +314,30 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
 
+	<xsl:template match="s:literal[@datatype='http://www.w3.org/2001/XMLSchema#date']" mode="value-of">
+		<xsl:variable name="year" select="substring(., 1, 4)"/>
+		<xsl:variable name="month" select="substring(., 6, 2)"/>
+		<xsl:variable name="day" select="substring(., 9)"/>
+		<xsl:value-of select="$day"/>
+		<xsl:text> </xsl:text>
+		<xsl:choose>
+			<xsl:when test="$month='01'">January</xsl:when>	
+			<xsl:when test="$month='02'">February</xsl:when>	
+			<xsl:when test="$month='03'">March</xsl:when>	
+			<xsl:when test="$month='04'">April</xsl:when>	
+			<xsl:when test="$month='05'">May</xsl:when>	
+			<xsl:when test="$month='06'">June</xsl:when>	
+			<xsl:when test="$month='07'">July</xsl:when>	
+			<xsl:when test="$month='08'">August</xsl:when>	
+			<xsl:when test="$month='09'">September</xsl:when>	
+			<xsl:when test="$month='10'">October</xsl:when>	
+			<xsl:when test="$month='11'">November</xsl:when>	
+			<xsl:when test="$month='12'">December</xsl:when>	
+			<xsl:otherwise/>
+		</xsl:choose>
+		<xsl:text> </xsl:text>
+		<xsl:value-of select="$year"/>
+	</xsl:template>
+	
 </xsl:stylesheet>
