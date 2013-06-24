@@ -33,7 +33,8 @@ var virtualLab = angular.module('virtualab', [
                              'simpleSearchServices',
                              'simpleSearchFilters',
                              
-                             'queryStoreServices'
+                             'queryStoreServices',
+                             'feedbackStoreServices'
 
                              ]).
   config(['$routeProvider', function($routeProvider) {

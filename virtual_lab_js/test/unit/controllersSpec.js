@@ -53,18 +53,30 @@ describe('Simple Search controllers', function(){
   
 });
 
-describe('Feedback controller', function() {
+describe('Feedback Modal Controller', function() {
 
 	beforeEach(function() {
 		// Do nothing
 	});
 
-	// Obsolete test
-//	it('should display the current location.', function() {
-//		var scope = {currentLocation: ''};
-//		var location = {path: function() { return '/landing'; } };
-//		var ctrl = new FeedbackCtrl(scope, location);
-//		expect(scope.currentLocation).toBe('/landing');
-//	});
+	it('should set the feedback accepted state.', function() {
+		
+		var feedbackAccepted = false;
+		
+		var scope = {};
+		var location = {path: function() {
+			return 'mypath';
+		}};
+
+		var feedbackStore = {
+	            setFeedbackAccepted: function(isAccepted) {
+	            	feedbackAccepted = isAccepted;
+	            }
+	        };
+	        
+        var ctrl = new FeedbackModalCtrl(scope, location, feedbackStore);
+		scope.feedback();
+		expect(feedbackAccepted).toBe(true);
+	});
 
 });

@@ -1,7 +1,20 @@
 <!-- Button to trigger feedback modal - feedback-modal.html -->
-<a data-target="#feedbackModal" role="button" data-toggle="modal" class="btn btn-danger">Feedback</a>
-<span> 
-	We need you! To make sure that the HuNI virtual lab serves
-	the need of its early adopters, we welcome your feedback in the
-	building process. 
-</span>
+<div ng-controller="FeedbackButtonCtrl" style="width:400px;">
+	<table>
+		<tr>
+			<td>
+				<a  data-target="#feedbackModal" role="button" data-toggle="modal" class="btn" ng-class="{'btn-danger':!feedbackAccepted(), 'btn-success':feedbackAccepted()}">Feedback</a>
+			</td>
+			<td>
+				<span style="clear: both; margin: 5px" ng-hide="feedbackAccepted()" > 
+					We need you! To make sure that the HuNI virtual lab serves
+					the need of its early adopters, we welcome your feedback in the
+					building process. 
+				</span>
+				<span style="float:left; " ng-show="feedbackAccepted()"> 
+					Thank you! 
+				</span>
+			</td>
+		</tr>
+	</table>
+</div>
