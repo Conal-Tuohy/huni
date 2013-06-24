@@ -5,23 +5,14 @@ package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
 import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect HistoryItem_Roo_Json {
     
-    public String HistoryItem.toJson() {
-        return new JSONSerializer().exclude("*.class", "owner").include("toolParameters").serialize(this);
-    }
-    
     public static HistoryItem HistoryItem.fromJsonToHistoryItem(String json) {
         return new JSONDeserializer<HistoryItem>().use(null, HistoryItem.class).deserialize(json);
-    }
-    
-    public static String HistoryItem.toJsonArray(Collection<HistoryItem> collection) {
-        return new JSONSerializer().exclude("*.class", "owner").include("toolParameters").serialize(collection);
     }
     
     public static Collection<HistoryItem> HistoryItem.fromJsonArrayToHistoryItems(String json) {

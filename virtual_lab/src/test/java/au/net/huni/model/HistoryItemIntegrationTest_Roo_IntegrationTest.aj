@@ -3,8 +3,10 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.HistoryItem;
+import au.net.huni.model.HistoryItemDataOnDemand;
+import au.net.huni.model.HistoryItemIntegrationTest;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,6 @@ privileged aspect HistoryItemIntegrationTest_Roo_IntegrationTest {
     
     declare @type: HistoryItemIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-        
     declare @type: HistoryItemIntegrationTest: @Transactional;
     
     @Autowired

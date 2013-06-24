@@ -1,5 +1,7 @@
 package au.net.huni.model;
 
+import flexjson.JSONSerializer;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,4 +44,12 @@ public class HistoryItem {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<ToolParameter> toolParameters = new HashSet<ToolParameter>();
+
+	public static String toJsonArray(Collection<HistoryItem> collection) {
+        return new JSONSerializer().exclude("*.class", "owner").include("toolParameters").serialize(collection);
+    }
+
+	public String toJson() {
+        return new JSONSerializer().exclude("*.class", "owner").include("toolParameters").serialize(this);
+    }
 }

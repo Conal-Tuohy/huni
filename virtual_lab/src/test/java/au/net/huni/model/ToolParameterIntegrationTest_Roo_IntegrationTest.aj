@@ -3,8 +3,10 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.ToolParameter;
+import au.net.huni.model.ToolParameterDataOnDemand;
+import au.net.huni.model.ToolParameterIntegrationTest;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,6 @@ privileged aspect ToolParameterIntegrationTest_Roo_IntegrationTest {
     
     declare @type: ToolParameterIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-        
     declare @type: ToolParameterIntegrationTest: @Transactional;
     
     @Autowired

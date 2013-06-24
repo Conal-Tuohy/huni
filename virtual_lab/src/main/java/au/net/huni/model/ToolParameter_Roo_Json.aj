@@ -5,23 +5,14 @@ package au.net.huni.model;
 
 import au.net.huni.model.ToolParameter;
 import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect ToolParameter_Roo_Json {
     
-    public String ToolParameter.toJson() {
-        return new JSONSerializer().exclude("*.class", "owner").serialize(this);
-    }
-    
     public static ToolParameter ToolParameter.fromJsonToToolParameter(String json) {
         return new JSONDeserializer<ToolParameter>().use(null, ToolParameter.class).deserialize(json);
-    }
-    
-    public static String ToolParameter.toJsonArray(Collection<ToolParameter> collection) {
-        return new JSONSerializer().exclude("*.class", "owner").serialize(collection);
     }
     
     public static Collection<ToolParameter> ToolParameter.fromJsonArrayToToolParameters(String json) {

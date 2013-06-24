@@ -3,6 +3,7 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.HistoryItemDataOnDemand;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect HistoryItemDataOnDemand_Roo_Configurable {

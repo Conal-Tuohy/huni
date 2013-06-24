@@ -3,6 +3,7 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.ResearcherIntegrationTest;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect ResearcherIntegrationTest_Roo_Configurable {
