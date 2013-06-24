@@ -1,5 +1,7 @@
 package au.net.huni.model;
 
+import flexjson.JSONSerializer;
+import java.util.Collection;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,4 +27,12 @@ public class ToolParameter {
     @NotNull
     @ManyToOne
     private HistoryItem owner;
+
+	public static String toJsonArray(Collection<ToolParameter> collection) {
+        return new JSONSerializer().exclude("*.class", "owner").serialize(collection);
+    }
+
+	public String toJson() {
+        return new JSONSerializer().exclude("*.class", "owner").serialize(this);
+    }
 }

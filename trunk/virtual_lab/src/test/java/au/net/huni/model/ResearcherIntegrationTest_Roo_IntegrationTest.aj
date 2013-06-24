@@ -3,8 +3,10 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.Researcher;
+import au.net.huni.model.ResearcherDataOnDemand;
+import au.net.huni.model.ResearcherIntegrationTest;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,6 @@ privileged aspect ResearcherIntegrationTest_Roo_IntegrationTest {
     
     declare @type: ResearcherIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-        
     declare @type: ResearcherIntegrationTest: @Transactional;
     
     @Autowired

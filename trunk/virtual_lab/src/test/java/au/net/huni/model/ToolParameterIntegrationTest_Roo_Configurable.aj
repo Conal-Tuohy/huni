@@ -3,6 +3,7 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.ToolParameterIntegrationTest;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect ToolParameterIntegrationTest_Roo_Configurable {

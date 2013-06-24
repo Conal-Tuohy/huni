@@ -3,6 +3,7 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.HistoryItemIntegrationTest;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect HistoryItemIntegrationTest_Roo_Configurable {
