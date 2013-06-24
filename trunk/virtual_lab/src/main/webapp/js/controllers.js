@@ -604,15 +604,30 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 
 //------------------------------------
 
-function FeedbackCtrl($scope, $location) {
+function FeedbackModalCtrl($scope, $location, FeedbackStore) {
 
 	$scope.context = function () {
 		return $location.path();
 	}
+
+	$scope.feedback = function() {
+		FeedbackStore.setFeedbackAccepted($location.path(), true);
+		$('#feedbackModal').modal('hide')
+	}
 }
 
-FeedbackCtrl.$inject = ['$scope', '$location'];
-////FeedbackCtrl.$inject = ['$scope', '$location', 'Feedback'];
+FeedbackModalCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
+
+//------------------------------------
+
+function FeedbackButtonCtrl($scope, $location, FeedbackStore) {
+
+	$scope.feedbackAccepted = function() {
+		return FeedbackStore.getFeedbackAccepted($location.path());
+	}
+}
+
+FeedbackButtonCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
 
 //------------------------------------
 

@@ -65,7 +65,7 @@ describe('HuNI Virtual Lab', function() {
 	  describe('landing', function() {
 
 	    beforeEach(function() {
-	      browser().navigateTo('#/landing');
+	      browser().navigateTo('#/landing');	      
 	    });
 
 	    it('should render data provider block when user navigates to /landing', function() {
@@ -81,6 +81,14 @@ describe('HuNI Virtual Lab', function() {
 	    it('should render location path when user navigates to /landing and clicks feedback button.', function() {
 	    	element("[data-target='#feedbackModal']").click();
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/landing/);
+	    });
+
+	    it('should render feedback button green when user navigates to /landing and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[data-target='#feedbackModal']");
+	    	submitFeedbackButton.click();
+	    	expect(submitFeedbackButton.prop('class')).toMatch(/btn-success/);
 	    });
 
 	  });

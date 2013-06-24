@@ -147,5 +147,20 @@ angular.module('queryStoreServices', []).
         };;
 });
 
+angular.module('feedbackStoreServices', []).
+	service('FeedbackStore', function(){
+		
+		var feedbackAccepted = {};
+
+        return {
+            getFeedbackAccepted: function (context) {
+                return feedbackAccepted[context];
+            },
+            setFeedbackAccepted: function(context, isAccepted) {
+            	feedbackAccepted[context] = isAccepted;
+            }
+        };
+});
+
 
 
