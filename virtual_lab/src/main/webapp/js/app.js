@@ -45,6 +45,8 @@ var virtualLab = angular.module('virtualab', [
 		when('/advanced-search', {templateUrl: 'partials/advanced-search.html', controller: AdvancedSearchCtrl}).
 		when('/workspace', {templateUrl: 'partials/workspace.html', controller: WorkspaceCtrl}).
 		when('/dataset-directory', {templateUrl: 'partials/dataset-directory.html', controller: DatasetDirectoryCtrl}).
+		when('/huni-aggregate', {templateUrl: 'partials/huni-aggregate.html', controller: HuNIAggregateCtrl}).
+		when('/humanities-datasources', {templateUrl: 'partials/humanities-datasources.html', controller: HumanitiesDataSourcesCtrl}).
 		when('/tool-catalog', {templateUrl: 'partials/tool-catalog.html', controller: ToolCatalogCtrl}).
 		when('/tool-manager', {templateUrl: 'partials/tool-manager.html', controller: ToolManagerCtrl}).
 		when('/user-manager', {templateUrl: 'partials/user-manager.html', controller: UserManagerCtrl}).

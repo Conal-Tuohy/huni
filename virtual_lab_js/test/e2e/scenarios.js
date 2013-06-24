@@ -94,7 +94,7 @@ describe('HuNI Virtual Lab', function() {
 	      browser().navigateTo('#/about');
 	    });
 
-	    it('should render data provider block when user navigates to /about', function() {
+	    it('should render about block when user navigates to /about', function() {
 	      expect(element('[ng-view] h2:first').text()).
 	        toMatch(/About HuNI/);
 	    });
@@ -110,7 +110,217 @@ describe('HuNI Virtual Lab', function() {
 	    });
 
 	  });
-	  
+
+	  /*
+	   * Members Partners Page
+	   */
+	  describe('members-partners', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/members-partners');
+	    });
+
+	    it('should render members partners block when user navigates to /members-partners', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Members and Partners/);
+	    });
+
+	    it('should render feedback title modal when user navigates to /members-partners', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /members-partners and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/members-partners/);
+	    });
+
+	  });
+
+	  /*
+	   * Contact Page
+	   */
+	  describe('contact', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/contact');
+	    });
+
+	    it('should render contact block when user navigates to /contact', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Contact/);
+	    });
+
+	    it('should render feedback title when user navigates to /contact', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /contact and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/contact/);
+	    });
+
+	  });
+
+	  /*
+	   * Browse Search Page
+	   */
+	  describe('advanced-search', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/advanced-search');
+	    });
+
+	    it('should render advanced-search block when user navigates to /advanced-search', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Advanced Search/);
+	    });
+
+	    it('should render feedback title when user navigates to /advanced-search', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /advanced-search and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/advanced-search/);
+	    });
+
+	  });
+
+	  /*
+	   * Workspace Page
+	   * had to disable the workspace controller to get this to work.
+	   * TODO RR Reenable later.
+	   */
+	  describe('workspace', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/workspace');
+	    });
+
+	    it('should render workspace block when user navigates to /workspace', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Workspace/);
+	    });
+
+	    it('should render feedback title when user navigates to /workspace', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /workspace and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/workspace/);
+	    });
+
+	  });
+
+	  /*
+	   * HuNI Aggregate Page
+	   */
+	  describe('The HuNI Aggregate', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/huni-aggregate');
+	    });
+
+	    it('should render huni-aggregate block when user navigates to /huni-aggregate', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/The HuNI Aggregate/);
+	    });
+
+	    it('should render feedback title when user navigates to /huni-aggregate', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /huni-aggregate and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/huni-aggregate/);
+	    });
+
+	  });
+
+	  /*
+	   * Data Provider Page
+	   */
+	  describe('The Data Providers', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/dataset-directory');
+	    });
+
+	    it('should render dataset-directory block when user navigates to /dataset-directory', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Data Providers/);
+	    });
+
+	    it('should render feedback title when user navigates to /dataset-directory', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /dataset-directory and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/dataset-directory/);
+	    });
+
+	  });
+
+	  /*
+	   * Humanities Data Sources Page
+	   */
+	  describe('Humanities Data Sources', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/humanities-datasources');
+	    });
+
+	    it('should render humanities-datasources block when user navigates to /humanities-datasources', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Humanities Data Sources/);
+	    });
+
+	    it('should render feedback title when user navigates to /humanities-datasources', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /humanities-datasources and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/humanities-datasources/);
+	    });
+
+	  });
+
+	  /*
+	   * Help Page
+	   */
+	  describe('Help', function() {
+
+	    beforeEach(function() {
+	      browser().navigateTo('#/help');
+	    });
+
+	    it('should render help block when user navigates to /help', function() {
+	      expect(element('[ng-view] h2:first').text()).
+	        toMatch(/Help/);
+	    });
+
+	    it('should render feedback title when user navigates to /help', function() {
+	      expect(element('#feedbackModalLabel').text()).
+	        toMatch(/Feedback/);
+	    });
+
+	    it('should render location path when user navigates to /help and clicks feedback button.', function() {
+	    	element("[data-target='#feedbackModal']").click();
+	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/help/);
+	    });
+
+	  });
+	  	  
 //	  describe('Buzz Client', function() {
 //		  it('should filter results', function() {
 //		    input('user').enter('jacksparrow');

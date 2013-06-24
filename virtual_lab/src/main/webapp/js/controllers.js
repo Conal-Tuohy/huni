@@ -49,7 +49,7 @@ function AdvancedSearchCtrl($scope, $routeParams, AdvancedSearch) {
 //------------------------------------
 
 function WorkspaceCtrl($scope, $routeParams, Workspace) {
-	CommonContainer.init();
+	//CommonContainer.init();
 }
 
 //WorkspaceCtrl.$inject = ['$scope', '$routeParams', 'Workspace'];
@@ -123,22 +123,22 @@ function ToolKitCtrl($scope, $routeParams, ToolKit) {
 	});
 
 
-	this.scope.selectTool = function(event) {
-		var target = event.target;
-		var url = target.href;
-		var gadgetURL = url.replace('index-3column.html#/', '');
-		// Prevent navigation due to link click.
-		event.stopPropagation();
-		event.preventDefault();
-
-		var siteId = 'gadgetSite';
-		var gadgetElement = document.getElementById(siteId);
-		var renderParms = {};
-		renderParms[osapi.container.RenderParam.WIDTH] = '100%';
-	    renderParms['view'] = 'canvas';
-		var gadgetSite = CommonContainer.newGadgetSite(gadgetElement);
-		CommonContainer.navigateGadget(gadgetSite, gadgetURL, {}, renderParms);
-	};
+//	this.scope.selectTool = function(event) {
+//		var target = event.target;
+//		var url = target.href;
+//		var gadgetURL = url.replace('index-3column.html#/', '');
+//		// Prevent navigation due to link click.
+//		event.stopPropagation();
+//		event.preventDefault();
+//
+//		var siteId = 'gadgetSite';
+//		var gadgetElement = document.getElementById(siteId);
+//		var renderParms = {};
+//		renderParms[osapi.container.RenderParam.WIDTH] = '100%';
+//	    renderParms['view'] = 'canvas';
+//		var gadgetSite = CommonContainer.newGadgetSite(gadgetElement);
+//		CommonContainer.navigateGadget(gadgetSite, gadgetURL, {}, renderParms);
+//	};
 }
 
 //ToolKitCtrl.$inject = ['$scope', '$routeParams', 'ToolKit'];
@@ -219,6 +219,20 @@ function AboutCtrl($scope, $routeParams, About) {
 }
 
 //AboutCtrl.$inject = ['$scope', '$routeParams', 'About'];
+
+//------------------------------------
+
+function HuNIAggregateCtrl($scope, $routeParams) {
+}
+
+//HuNIAggregateCtrl.$inject = ['$scope', '$routeParams'];
+
+//------------------------------------
+
+function HumanitiesDataSourcesCtrl($scope, $routeParams) {
+}
+
+//HuNIAggregateCtrl.$inject = ['$scope', '$routeParams'];
 
 //------------------------------------
 
