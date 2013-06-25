@@ -85,10 +85,11 @@ describe('HuNI Virtual Lab', function() {
 
 	    it('should render feedback button green when user navigates to /landing and clicks feedback button and provides feedback.', function() {
 	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
 	    	feedbackButton.click();
-	    	var submitFeedbackButton = element("[data-target='#feedbackModal']");
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
 	    	submitFeedbackButton.click();
-	    	expect(submitFeedbackButton.prop('class')).toMatch(/btn-success/);
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
 	    });
 
 	  });
@@ -117,6 +118,15 @@ describe('HuNI Virtual Lab', function() {
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/about/);
 	    });
 
+	    it('should render feedback button green when user navigates to /about and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
+	    });
+
 	  });
 
 	  /*
@@ -141,6 +151,15 @@ describe('HuNI Virtual Lab', function() {
 	    it('should render location path when user navigates to /members-partners and clicks feedback button.', function() {
 	    	element("[data-target='#feedbackModal']").click();
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/members-partners/);
+	    });
+
+	    it('should render feedback button green when user navigates to /members-partners and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
 	    });
 
 	  });
@@ -169,6 +188,15 @@ describe('HuNI Virtual Lab', function() {
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/contact/);
 	    });
 
+	    it('should render feedback button green when user navigates to /contact and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
+	    });
+
 	  });
 
 	  /*
@@ -193,6 +221,15 @@ describe('HuNI Virtual Lab', function() {
 	    it('should render location path when user navigates to /advanced-search and clicks feedback button.', function() {
 	    	element("[data-target='#feedbackModal']").click();
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/advanced-search/);
+	    });
+
+	    it('should render feedback button green when user navigates to /advanced-search and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
 	    });
 
 	  });
@@ -223,6 +260,15 @@ describe('HuNI Virtual Lab', function() {
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/workspace/);
 	    });
 
+	    it('should render feedback button green when user navigates to /workspace and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
+	    });
+
 	  });
 
 	  /*
@@ -247,6 +293,15 @@ describe('HuNI Virtual Lab', function() {
 	    it('should render location path when user navigates to /huni-aggregate and clicks feedback button.', function() {
 	    	element("[data-target='#feedbackModal']").click();
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/huni-aggregate/);
+	    });
+
+	    it('should render feedback button green when user navigates to /huni-aggregate and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
 	    });
 
 	  });
@@ -275,6 +330,15 @@ describe('HuNI Virtual Lab', function() {
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/dataset-directory/);
 	    });
 
+	    it('should render feedback button green when user navigates to /dataset-directory and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
+	    });
+
 	  });
 
 	  /*
@@ -301,6 +365,15 @@ describe('HuNI Virtual Lab', function() {
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/humanities-datasources/);
 	    });
 
+	    it('should render feedback button green when user navigates to /humanities-datasources and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
+	    });
+
 	  });
 
 	  /*
@@ -325,6 +398,15 @@ describe('HuNI Virtual Lab', function() {
 	    it('should render location path when user navigates to /help and clicks feedback button.', function() {
 	    	element("[data-target='#feedbackModal']").click();
 	    	expect(element('#feedbackContext').text()).toMatch(/Context\: \/help/);
+	    });
+
+	    it('should render feedback button green when user navigates to /help and clicks feedback button and provides feedback.', function() {
+	    	var feedbackButton = element("[data-target='#feedbackModal']");
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-danger/);
+	    	feedbackButton.click();
+	    	var submitFeedbackButton = element("[ng-click='feedback()']");
+	    	submitFeedbackButton.click();
+	    	expect(feedbackButton.prop('class')).toMatch(/btn-success/);
 	    });
 
 	  });
