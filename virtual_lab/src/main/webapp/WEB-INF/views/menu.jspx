@@ -15,5 +15,9 @@
             <menu:item id="i_toolparameter_new" messageCode="global_menu_new" url="/console/toolparameters?form" z="user-managed"/>
             <menu:item id="i_toolparameter_list" messageCode="global_menu_list" url="/console/toolparameters?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
         </menu:category>
+        <menu:category id="c_feedbackitem" z="oLisAXmRyb9eXc61s7VbFQaOlU0=">
+            <menu:item id="i_feedbackitem_new" messageCode="global_menu_new" url="/console/feedbackitems?form" z="user-managed"/>
+            <menu:item id="i_feedbackitem_list" messageCode="global_menu_list" url="/console/feedbackitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+        </menu:category>
     </menu:menu>
 </div>

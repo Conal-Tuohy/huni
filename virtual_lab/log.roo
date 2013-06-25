@@ -78,3 +78,22 @@ hint
 hint json
 web mvc json all
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-12 20:47:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-24 18:08:30
+hint
+hint
+hint
+entity jpa --class ~.model.FeedbackItem
+field string --fieldName context
+field enum --fieldName rating --type Rating
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-24 18:28:26
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-25 21:27:14
+// [failed] focus --class FeedbackItem
+// [failed] field string --fieldName comment
+// [failed] field string --fieldName comment --class ~.domain.FeedbackItem
+field string --fieldName comment --class ~.model.FeedbackItem
+test integration
+test mock
+web mvc scaffold --class FeedbackItemController --backingType FeedbackItem 
+web mvc json add --jsonObject ~.model.FeedbackItem 
+json add --class ~.model.FeedbackItem 
+web mvc json add --jsonObject ~.model.FeedbackItem --class ~.web.FeedbackItemController 
