@@ -1,7 +1,7 @@
 <html lang="en">
 	<head><!-- for references to CSS, JS, etc -->
 		<meta charset="utf-8"/>
-		<title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - {http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value} {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</title>
+		<title>Humanities Networked Infrastructure (HuNI) Virtual Laboratory - {http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value} {http://xmlns.com/foaf/0.1/name}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta name="description" content=""/>
 		<meta name="author" content=""/>
@@ -102,37 +102,31 @@
 				</div>
 
 				<div class="span6 record" id="column-second">
-					<h3><img src="img/icon_person.gif"/> {http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value}  {http://xmlns.com/foaf/0.1/firstName} {http://xmlns.com/foaf/0.1/lastName}</h3>
+					<h3><img src="img/icon_group.gif"/> {http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value}  {http://xmlns.com/foaf/0.1/name}</h3>
 					<ul graph="each">
 						<li class="category">
 							<a href="#">Type:</a>
 						</li>
 						<li class="result">
-							<a href="#">Person</a>
+							<a href="#">Group</a>
 						</li>
-						<li class="category" if="http://erlangen-crm.org/current/P98i_was_born">
-							<a href="#">Born:</a>
+						<li class="category" if="http://erlangen-crm.org/current/P95i_was_formed_by">
+							<a href="#">Formed:</a>
 						</li>
-						<li class="result" for-each="http://erlangen-crm.org/current/P98i_was_born http://erlangen-crm.org/current/P4_has_time-span">
+						<li class="result" for-each="http://erlangen-crm.org/current/P95i_was_formed_by http://erlangen-crm.org/current/P4_has_time-span">
 							<a href="#">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</a>
 						</li>
-						<li class="category" if="http://erlangen-crm.org/current/P100i_died_in">
-							<a href="#">Died:</a>
+						<li class="category" if="http://erlangen-crm.org/current/P99i_was_dissolved_by">
+							<a href="#">Dissolved:</a>
 						</li>
-						<li class="result" for-each="http://erlangen-crm.org/current/P100i_died_in">
-							<a href="#" for-each="http://erlangen-crm.org/current/P4_has_time-span">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</a>
+						<li class="result" for-each="http://erlangen-crm.org/current/P99i_was_dissolved_by http://erlangen-crm.org/current/P4_has_time-span">
+							<a href="#">{http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</a>
 						</li>
 						<li class="category" if="http://erlangen-crm.org/current/P2_has_type">
 							<a href="#">Occupation:</a>
 						</li>
 						<li class="result" for-each="http://erlangen-crm.org/current/P2_has_type">
 							<a href="{.}" graph="any">{http://www.w3.org/2004/02/skos/core#prefLabel}</a>
-						</li>
-						<li class="category" if="http://erlangen-crm.org/current/P107i_is_current_or_former_member_of">
-							<a href="#">Group membership:</a>
-						</li>
-						<li class="result" for-each="http://erlangen-crm.org/current/P107i_is_current_or_former_member_of">
-							<a href="{.}" graph="any">{http://erlangen-crm.org/current/P131_is_identified_by http://www.w3.org/1999/02/22-rdf-syntax-ns#value}</a>
 						</li>
 						<li class="category" if="http://xmlns.com/foaf/0.1/isPrimaryTopicOf">
 							<a href="#">Primary Topic:</a>
