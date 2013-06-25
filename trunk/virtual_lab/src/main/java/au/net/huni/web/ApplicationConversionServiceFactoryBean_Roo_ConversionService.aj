@@ -3,6 +3,7 @@
 
 package au.net.huni.web;
 
+import au.net.huni.model.FeedbackItem;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolParameter;
@@ -14,6 +15,30 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<FeedbackItem, String> ApplicationConversionServiceFactoryBean.getFeedbackItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.FeedbackItem, java.lang.String>() {
+            public String convert(FeedbackItem feedbackItem) {
+                return new StringBuilder().append(feedbackItem.getContext()).append(' ').append(feedbackItem.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, FeedbackItem> ApplicationConversionServiceFactoryBean.getIdToFeedbackItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.FeedbackItem>() {
+            public au.net.huni.model.FeedbackItem convert(java.lang.Long id) {
+                return FeedbackItem.findFeedbackItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, FeedbackItem> ApplicationConversionServiceFactoryBean.getStringToFeedbackItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.FeedbackItem>() {
+            public au.net.huni.model.FeedbackItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), FeedbackItem.class);
+            }
+        };
+    }
     
     public Converter<HistoryItem, String> ApplicationConversionServiceFactoryBean.getHistoryItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.HistoryItem, java.lang.String>() {
@@ -88,6 +113,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getFeedbackItemToStringConverter());
+        registry.addConverter(getIdToFeedbackItemConverter());
+        registry.addConverter(getStringToFeedbackItemConverter());
         registry.addConverter(getHistoryItemToStringConverter());
         registry.addConverter(getIdToHistoryItemConverter());
         registry.addConverter(getStringToHistoryItemConverter());

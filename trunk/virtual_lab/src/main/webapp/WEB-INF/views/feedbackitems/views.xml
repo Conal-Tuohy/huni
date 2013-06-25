@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="feedbackitems/list">
+        <put-attribute name="body" value="/WEB-INF/views/feedbackitems/list.jspx"/>
+    </definition>
+<definition extends="default" name="feedbackitems/show">
+        <put-attribute name="body" value="/WEB-INF/views/feedbackitems/show.jspx"/>
+    </definition>
+<definition extends="default" name="feedbackitems/create">
+        <put-attribute name="body" value="/WEB-INF/views/feedbackitems/create.jspx"/>
+    </definition>
+<definition extends="default" name="feedbackitems/update">
+        <put-attribute name="body" value="/WEB-INF/views/feedbackitems/update.jspx"/>
+    </definition>
+</tiles-definitions>
