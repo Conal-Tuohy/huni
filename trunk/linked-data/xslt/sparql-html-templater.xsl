@@ -281,7 +281,7 @@
 				{s=<xsl:value-of select="normalize-space(s:binding[@name='s'])"/> p=<xsl:value-of select="normalize-space(s:binding[@name='p'])"/> o=<xsl:value-of select="normalize-space(s:binding[@name='o'])"/> g=<xsl:value-of select="normalize-space(s:binding[@name='g'])"/>}</xsl:for-each></xsl:comment>-->
 				<xsl:choose>
 					<xsl:when test="$continuation='value-of'">
-						<xsl:apply-templates mode="value-of" select="$triples/s:binding[@name='o']/*"/>
+						<xsl:apply-templates mode="value-of" select="($triples/s:binding[@name='o']/*)[1]"/>
 					</xsl:when>
 					<xsl:when test="$continuation='if'">
 						<!--<xsl:comment>evaluating "if"; triples are: <xsl:value-of select="$triples"/></xsl:comment>-->
