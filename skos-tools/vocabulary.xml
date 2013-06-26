@@ -61,7 +61,8 @@
 prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
 
 construct {
-   ?vocabulary a skos:ConceptScheme .
+   ?vocabulary a skos:ConceptScheme ;
+      skos:prefLabel ?vocabularyLabel.
    ?term a skos:Concept ;
       skos:inScheme ?vocabulary ;
       skos:prefLabel ?prefLabel .
@@ -69,6 +70,10 @@ construct {
 } where {
    bind(&lt;<vocabulary-uri><!--http://corbicula.huni.net.au/data/adb/occupation/--></vocabulary-uri>&gt; as ?vocabulary)
    {
+      optional {?vocabulary skos:prefLabel ?existingVocabularyLabel}
+      bind("Vocabulary Name" as ?vocabularyLabel)
+      filter(!bound(?existingVocabularyLabel))
+   } union {
       ?subject ?predicate ?term .
       bind(
          replace(substr(str(?term), strlen(str(?vocabulary)) + 1), "_", " ") as ?prefLabel
@@ -136,7 +141,13 @@ construct {
 		<xf:submit id="save" submission="save-vocabulary">
 			<xf:label>Save</xf:label>
 		</xf:submit>
-		<xf:repeat id="description" model="vocabulary-model" nodeset="instance('vocabulary')/rdf:Description">
+		<p>
+			<xf:input ref="instance('vocabulary')/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/2004/02/skos/core#ConceptScheme']/skos:prefLabel">
+				<xf:label>Vocabulary Name</xf:label>
+			</xf:input>
+		</p>
+		<xf:repeat id="description" model="vocabulary-model" 
+			nodeset="instance('vocabulary')/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/2004/02/skos/core#Concept']">
 			<div class="concept">
 				<p><xf:output ref="@rdf:about"/></p>
 				<p><xf:input ref="skos:prefLabel"/></p>			
