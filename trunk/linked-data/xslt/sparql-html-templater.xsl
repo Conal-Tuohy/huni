@@ -270,46 +270,95 @@
 				<!-- "current node" -->
 				<xsl:value-of select="$current-node"/>
 			</xsl:when>
-			<xsl:otherwise><!-- expression is a predicate - return all matching property values of $current-node -->
-				<xsl:variable name="triples" select="
-					$results
-						[s:binding[@name='s']/s:uri/text() = $context-node]
-						[s:binding[@name='p']/s:uri/text() = $expression]
-						[(s:binding[@name='g']/s:uri/text() = $current-graph) or (not($current-graph))]
-				"/>
-				<!--<xsl:comment>triples in graph "<xsl:value-of select="$current-graph"/>" matching subject "<xsl:value-of select="$context-node"/>" and predicate "<xsl:value-of select="$expression"/>": <xsl:for-each select="$triples">
-				{s=<xsl:value-of select="normalize-space(s:binding[@name='s'])"/> p=<xsl:value-of select="normalize-space(s:binding[@name='p'])"/> o=<xsl:value-of select="normalize-space(s:binding[@name='o'])"/> g=<xsl:value-of select="normalize-space(s:binding[@name='g'])"/>}</xsl:for-each></xsl:comment>-->
+			<xsl:otherwise><!-- expression is a predicate or inverse predicate - return all matching property values of $current-node -->
 				<xsl:choose>
-					<xsl:when test="$continuation='value-of'">
-						<xsl:apply-templates mode="value-of" select="($triples/s:binding[@name='o']/*)[1]"/>
+					<xsl:when test="starts-with($expression, '^')">
+						<!-- inverse predicate -->
+						<!-- We are reading the predicate backwards, so we want to select triples whose OBJECT (not subject) = the context node -->
+						<xsl:variable name="triples" select="
+							$results
+								[s:binding[@name='o']/s:uri/text() = $context-node]
+								[s:binding[@name='p']/s:uri/text() = substring-after($expression, '^')]
+								[(s:binding[@name='g']/s:uri/text() = $current-graph) or (not($current-graph))]
+						"/>
+						<xsl:choose>
+							<xsl:when test="$continuation='value-of'">
+								<!-- We are reading the predicate backwards, so we want the SUBJECT (not the object) of the triples -->
+								<xsl:apply-templates mode="value-of" select="($triples/s:binding[@name='s']/*)[1]"/>
+							</xsl:when>
+							<xsl:when test="$continuation='if'">
+								<!--<xsl:comment>evaluating "if"; triples are: <xsl:value-of select="$triples"/></xssl:comment>-->
+								<xsl:if test="$triples">
+									<xsl:copy>
+										<xsl:apply-templates select="@*" mode="triple"/>
+										<xsl:apply-templates mode="graph">
+											<xsl:with-param name="current-node" select="$current-node"/>
+											<xsl:with-param name="current-graph" select="$current-graph"/>
+										</xsl:apply-templates>
+									</xsl:copy>
+								</xsl:if>
+							</xsl:when>
+							<xsl:when test="$continuation='for-each'">
+								<!-- We are reading the predicate backwards, so we want the SUBJECT (not the object) of the triples -->
+								<xsl:for-each select="$triples/s:binding[@name='s']/s:uri">
+									<xsl:variable name="resource" select="string(.)"/>
+									<xsl:for-each select="$current-template">
+										<xsl:copy>
+											<xsl:apply-templates select="@*" mode="triple"/>
+											<xsl:apply-templates mode="graph">
+												<xsl:with-param name="current-node" select="$resource"/>
+												<xsl:with-param name="current-graph" select="$current-graph"/>
+											</xsl:apply-templates>
+										</xsl:copy>
+									</xsl:for-each>
+								</xsl:for-each>
+							</xsl:when>
+							<xsl:otherwise></xsl:otherwise>
+						</xsl:choose>
 					</xsl:when>
-					<xsl:when test="$continuation='if'">
-						<!--<xsl:comment>evaluating "if"; triples are: <xsl:value-of select="$triples"/></xsl:comment>-->
-						<xsl:if test="$triples"><!--/s:binding[@name='o']/s:uri">-->
-							<xsl:copy>
-								<xsl:apply-templates select="@*" mode="triple"/>
-								<xsl:apply-templates mode="graph">
-									<xsl:with-param name="current-node" select="$current-node"/>
-									<xsl:with-param name="current-graph" select="$current-graph"/>
-								</xsl:apply-templates>
-							</xsl:copy>
-						</xsl:if>
-					</xsl:when>
-					<xsl:when test="$continuation='for-each'">
-						<xsl:for-each select="$triples/s:binding[@name='o']/s:uri">
-							<xsl:variable name="resource" select="string(.)"/>
-							<xsl:for-each select="$current-template">
-								<xsl:copy>
-									<xsl:apply-templates select="@*" mode="triple"/>
-									<xsl:apply-templates mode="graph">
-										<xsl:with-param name="current-node" select="$resource"/>
-										<xsl:with-param name="current-graph" select="$current-graph"/>
-									</xsl:apply-templates>
-								</xsl:copy>
-							</xsl:for-each>
-						</xsl:for-each>
-					</xsl:when>
-					<xsl:otherwise></xsl:otherwise>
+					<xsl:otherwise>
+						<!-- predicate -->
+						<xsl:variable name="triples" select="
+							$results
+								[s:binding[@name='s']/s:uri/text() = $context-node]
+								[s:binding[@name='p']/s:uri/text() = $expression]
+								[(s:binding[@name='g']/s:uri/text() = $current-graph) or (not($current-graph))]
+						"/>
+						<!--<xsl:comment>triples in graph "<xsl:value-of select="$current-graph"/>" matching subject "<xsl:value-of select="$context-node"/>" and predicate "<xsl:value-of select="$expression"/>": <xsl:for-each select="$triples">
+						{s=<xsl:value-of select="normalize-space(s:binding[@name='s'])"/> p=<xsl:value-of select="normalize-space(s:binding[@name='p'])"/> o=<xsl:value-of select="normalize-space(s:binding[@name='o'])"/> g=<xsl:value-of select="normalize-space(s:binding[@name='g'])"/>}</xsl:for-each></xsl:comment>-->
+						<xsl:choose>
+							<xsl:when test="$continuation='value-of'">
+								<xsl:apply-templates mode="value-of" select="($triples/s:binding[@name='o']/*)[1]"/>
+							</xsl:when>
+							<xsl:when test="$continuation='if'">
+								<!--<xsl:comment>evaluating "if"; triples are: <xsl:value-of select="$triples"/></xsl:comment>-->
+								<xsl:if test="$triples">
+									<xsl:copy>
+										<xsl:apply-templates select="@*" mode="triple"/>
+										<xsl:apply-templates mode="graph">
+											<xsl:with-param name="current-node" select="$current-node"/>
+											<xsl:with-param name="current-graph" select="$current-graph"/>
+										</xsl:apply-templates>
+									</xsl:copy>
+								</xsl:if>
+							</xsl:when>
+							<xsl:when test="$continuation='for-each'">
+								<xsl:for-each select="$triples/s:binding[@name='o']/s:uri">
+									<xsl:variable name="resource" select="string(.)"/>
+									<xsl:for-each select="$current-template">
+										<xsl:copy>
+											<xsl:apply-templates select="@*" mode="triple"/>
+											<xsl:apply-templates mode="graph">
+												<xsl:with-param name="current-node" select="$resource"/>
+												<xsl:with-param name="current-graph" select="$current-graph"/>
+											</xsl:apply-templates>
+										</xsl:copy>
+									</xsl:for-each>
+								</xsl:for-each>
+							</xsl:when>
+							<xsl:otherwise></xsl:otherwise>
+						</xsl:choose>
+					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:otherwise>
 		</xsl:choose>
