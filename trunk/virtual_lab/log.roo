@@ -97,3 +97,8 @@ web mvc scaffold --class FeedbackItemController --backingType FeedbackItem
 web mvc json add --jsonObject ~.model.FeedbackItem 
 json add --class ~.model.FeedbackItem 
 web mvc json add --jsonObject ~.model.FeedbackItem --class ~.web.FeedbackItemController 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-25 22:56:38
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-26 22:29:58
+hint security
+addon search security
+security setup
