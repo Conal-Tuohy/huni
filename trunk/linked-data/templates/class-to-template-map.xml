@@ -6,4 +6,5 @@ To temporarily disable a template, set the enabled attribute to "false". This wi
 
 	<class uri="http://erlangen-crm.org/current/E21_Person" template="/linked-data/templates/person.html" enabled="true"/>
 	<class uri="http://erlangen-crm.org/current/E74_Group" template="/linked-data/templates/group.html" enabled="true"/>
+	<class uri="http://www.w3.org/2004/02/skos/core#ConceptScheme" template="/linked-data/templates/vocabulary.html" enabled="true"/>
 </map>
