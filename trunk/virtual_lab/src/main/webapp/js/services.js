@@ -162,7 +162,7 @@ angular.module('feedbackStoreServices', []).
         };
 });
 
-
+// http://localhost:8080/virtual_lab/rest/feedbackitems
 angular.module('feedbackServices', ['ngResource']).
     factory('FeedbackService', function($resource){
   	  return $resource(baseServiceURL + '/rest/feedbackitems/:feedbackItemId', {}, {
