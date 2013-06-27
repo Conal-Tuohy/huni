@@ -3,6 +3,7 @@
 /* Controllers */
 
 angular.module('pagination', ['ui.bootstrap']);
+//angular.module('dialog', ['ui.bootstrap']);
 
 function ProjectListCtrl($scope, Project) {
 	$scope.projects = Project.query();
@@ -604,31 +605,75 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 
 //------------------------------------
 
-function FeedbackModalCtrl($scope, $location, FeedbackStore) {
+//function FeedbackModalCtrl($scope, $location, FeedbackStore) {
+//
+//	$scope.context = function () {
+//		return $location.path();
+//	}
+//
+//	$scope.feedback = function() {
+//		FeedbackStore.setFeedbackAccepted($location.path(), true);
+//		$('#feedbackModal').modal('hide')
+//	}
+//}
+//
+//FeedbackModalCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
+//
+////------------------------------------
+//
+//function FeedbackButtonCtrl($scope, $location, FeedbackStore) {
+//
+//	$scope.feedbackAccepted = function() {
+//		return FeedbackStore.getFeedbackAccepted($location.path());
+//	}
+//}
+//
+//FeedbackButtonCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
 
-	$scope.context = function () {
-		return $location.path();
-	}
+function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
 
-	$scope.feedback = function() {
-		FeedbackStore.setFeedbackAccepted($location.path(), true);
-		$('#feedbackModal').modal('hide')
-	}
-}
-
-FeedbackModalCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
-
-//------------------------------------
-
-function FeedbackButtonCtrl($scope, $location, FeedbackStore) {
+	$scope.openDialog = function() {
+		var dlg = $dialog.dialog({
+					backdrop : true,
+					keyboard : true,
+					backdropClick : true,
+					templateUrl :  'partials/feedback-modal.html',
+					controller : 'FeedbackModalCtrl'
+				});
+		dlg.open().then(function(result) {
+			if (result) {
+				alert('dialog closed with result: ' + result);
+			}
+		});
+	};
 
 	$scope.feedbackAccepted = function() {
 		return FeedbackStore.getFeedbackAccepted($location.path());
 	}
 }
 
-FeedbackButtonCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
+FeedbackButtonCtrl.$inject = [ '$scope', '$dialog', '$location', 'FeedbackStore' ];
+//------------------------------------
 
+function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore) {
+	
+	$scope.rating = 0;
+	$scope.comment = '';
+	
+	$scope.feedback = function(result) {
+		if (result) {
+			FeedbackStore.setFeedbackAccepted($location.path(), true);
+			var feedbackRating = $scope.rating;
+		}
+		dialog.close(result);
+	};
+
+	$scope.context = function() {
+		return $location.path();
+	}
+}
+
+//FeedbackModalCtrl.$inject = [ '$scope', 'dialog', '$location', 'FeedbackStore' ];
 //------------------------------------
 
 

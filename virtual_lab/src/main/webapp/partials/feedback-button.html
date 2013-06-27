@@ -3,7 +3,7 @@
 	<table>
 		<tr>
 			<td>
-				<a  data-target="#feedbackModal" role="button" data-toggle="modal" class="btn" ng-class="{'btn-danger':!feedbackAccepted(), 'btn-success':feedbackAccepted()}">Feedback</a>
+				<a ng-click="openDialog()" class="btn" ng-class="{'btn-danger':!feedbackAccepted(), 'btn-success':feedbackAccepted()}">Feedback</a>
 			</td>
 			<td>
 				<span style="clear: both; margin: 5px" ng-hide="feedbackAccepted()" > 
