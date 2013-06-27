@@ -27,7 +27,7 @@ var virtualLab = angular.module('virtualab', [
                              'helpServices',
                              
                              'sparqlServices',
-                             'pagination',
+//                             'pagination',
                              'hexEncodeModule',
                              
                              'simpleSearchServices',
@@ -35,8 +35,9 @@ var virtualLab = angular.module('virtualab', [
                              
                              //'dialog',
                              'queryStoreServices',
-                             'feedbackStoreServices'
-                             //'ui.bootstrap'
+                             'feedbackStoreServices',
+                             'feedbackServices',
+                             'ui.bootstrap'
 
                              ]).
   config(['$routeProvider', function($routeProvider) {

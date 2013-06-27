@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('pagination', ['ui.bootstrap']);
+//angular.module('pagination', ['ui.bootstrap']);
 //angular.module('dialog', ['ui.bootstrap']);
 
 function ProjectListCtrl($scope, Project) {
@@ -603,33 +603,6 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 
 // Modal dialog box controllers
 
-//------------------------------------
-
-//function FeedbackModalCtrl($scope, $location, FeedbackStore) {
-//
-//	$scope.context = function () {
-//		return $location.path();
-//	}
-//
-//	$scope.feedback = function() {
-//		FeedbackStore.setFeedbackAccepted($location.path(), true);
-//		$('#feedbackModal').modal('hide')
-//	}
-//}
-//
-//FeedbackModalCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
-//
-////------------------------------------
-//
-//function FeedbackButtonCtrl($scope, $location, FeedbackStore) {
-//
-//	$scope.feedbackAccepted = function() {
-//		return FeedbackStore.getFeedbackAccepted($location.path());
-//	}
-//}
-//
-//FeedbackButtonCtrl.$inject = ['$scope', '$location', 'FeedbackStore'];
-
 function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
 
 	$scope.openDialog = function() {
@@ -642,7 +615,7 @@ function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
 				});
 		dlg.open().then(function(result) {
 			if (result) {
-				alert('dialog closed with result: ' + result);
+				alert('Thank you for your feedback rating: ' + result.rating + ' and comment: ' + result.comment);
 			}
 		});
 	};
@@ -655,7 +628,7 @@ function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
 FeedbackButtonCtrl.$inject = [ '$scope', '$dialog', '$location', 'FeedbackStore' ];
 //------------------------------------
 
-function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore) {
+function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore, FeedbackService) {
 	
 	$scope.rating = 0;
 	$scope.comment = '';
@@ -664,6 +637,10 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore) {
 		if (result) {
 			FeedbackStore.setFeedbackAccepted($location.path(), true);
 			var feedbackRating = $scope.rating;
+			var feedbackComment = $scope.comment;
+			result = {rating: feedbackRating, comment: feedbackComment};
+//			var feedbackItem = new FeedbackService({});
+//			feedbackItem.
 		}
 		dialog.close(result);
 	};
