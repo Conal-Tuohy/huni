@@ -163,4 +163,13 @@ angular.module('feedbackStoreServices', []).
 });
 
 
+angular.module('feedbackServices', ['ngResource']).
+    factory('FeedbackService', function($resource){
+  	  return $resource(baseServiceURL + '/rest/feedbackitems/:feedbackItemId', {}, {
+		    query: {method:'GET', params:{}, isArray:true}
+		  });
+});
+
+
+
 
