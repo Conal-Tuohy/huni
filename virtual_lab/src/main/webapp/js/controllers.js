@@ -632,12 +632,13 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore, FeedbackSer
 	
 	$scope.feedback = function(result) {
 		if (result) {
-			FeedbackStore.setFeedbackAccepted($location.path(), true);
+			var contextPath = $location.path();
+			FeedbackStore.setFeedbackAccepted(contextPath, true);
 			var feedbackRating = $scope.rating;
 			var feedbackComment = $scope.comment;
-			result = {rating: feedbackRating, comment: feedbackComment};
-//			var feedbackItem = new FeedbackService({});
-//			feedbackItem.
+			result = {context: contextPath, rating: feedbackRating, comment: feedbackComment};
+			var feedbackItem = new FeedbackService(result);
+			feedbackItem.$save();
 		}
 		dialog.close(result);
 	};

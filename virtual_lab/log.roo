@@ -102,3 +102,4 @@ web mvc json add --jsonObject ~.model.FeedbackItem --class ~.web.FeedbackItemCon
 hint security
 addon search security
 security setup
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-26 23:12:43
