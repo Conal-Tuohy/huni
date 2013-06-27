@@ -2,9 +2,6 @@
 
 /* Controllers */
 
-//angular.module('pagination', ['ui.bootstrap']);
-//angular.module('dialog', ['ui.bootstrap']);
-
 function ProjectListCtrl($scope, Project) {
 	$scope.projects = Project.query();
 	$scope.orderProp = 'age';

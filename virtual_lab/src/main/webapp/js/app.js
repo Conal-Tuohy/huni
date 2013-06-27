@@ -27,16 +27,15 @@ var virtualLab = angular.module('virtualab', [
                              'helpServices',
                              
                              'sparqlServices',
-//                             'pagination',
                              'hexEncodeModule',
                              
                              'simpleSearchServices',
                              'simpleSearchFilters',
                              
-                             //'dialog',
                              'queryStoreServices',
                              'feedbackStoreServices',
                              'feedbackServices',
+                             
                              'ui.bootstrap'
 
                              ]).
