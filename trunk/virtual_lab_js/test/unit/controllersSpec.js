@@ -1,5 +1,8 @@
 'use strict';
 
+// See: http://pivotal.github.io/jasmine/
+
+
 /* jasmine specs for controllers go here */
 
 //describe('controllers', function(){
@@ -55,28 +58,133 @@ describe('Simple Search controllers', function(){
 
 describe('Feedback Modal Controller', function() {
 
+	var scope = null;
+	var dialog = null;
+	var location = null;
+	var feedbackStore = null;
+	var feedbackService = null;
+	var feedbackAccepted = null;
+	var contextPath = null;
+	var locationValue = null;
+	
 	beforeEach(function() {
-		// Do nothing
+		scope = {};
+
+		dialog = 
+			{
+				close: function(value) {
+					// do nothing;
+				}
+			}
+		spyOn(dialog, 'close');
+		
+		location = 
+			{
+				path: function() {
+					return locationValue;
+				}
+			};
+		spyOn(location, 'path').andReturn('/some_location');
+		
+		feedbackStore = 
+			{
+				setFeedbackAccepted: function( inContextPath, inStatus) {
+	            	feedbackAccepted = inStatus;
+	            	contextPath = inContextPath
+				}
+			};
+		spyOn(feedbackStore, 'setFeedbackAccepted').andCallThrough();
+		
+		feedbackService = function()
+		{
+		};
+		feedbackService.prototype.$save = function() {};
+		spyOn(feedbackService.prototype, '$save');
+
+		feedbackAccepted = false;
+		contextPath = '';
+
 	});
 
-	it('should set the feedback accepted state.', function() {
-		
-		var feedbackAccepted = false;
-		
-		var scope = {};
-		var location = {path: function() {
-			return 'mypath';
-		}};
 
-		var feedbackStore = {
-	            setFeedbackAccepted: function(isAccepted) {
-	            	feedbackAccepted = isAccepted;
-	            }
-	        };
-	        
-        var ctrl = new FeedbackModalCtrl(scope, location, feedbackStore);
-		scope.feedback();
+	it('should obtain the feedback context from the path when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(true);
+		expect(location.path).toHaveBeenCalled();
+	});
+
+	it('should call the FeedbackStore service to save the feedback context when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(true);
+		expect(feedbackStore.setFeedbackAccepted).toHaveBeenCalled();
+	});
+
+	it('should store the feedback accepted state when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(true);
 		expect(feedbackAccepted).toBe(true);
 	});
+
+	it('should store the feedback context when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(true);
+		expect(contextPath).toBe('/some_location');
+	});
+
+	it('should save the complete feedback result by RESTful web services call.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(true);
+		expect(feedbackService.prototype.$save).toHaveBeenCalled();
+	});
+
+	it('should close the dialog when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(true);
+		expect(dialog.close).toHaveBeenCalled();
+	});
+	
+
+	it('should not obtain the feedback context from the path when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(false);
+		expect(location.path).not.toHaveBeenCalled();
+	});
+
+	it('should not call the FeedbackStore service to save the feedback context when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(false);
+		expect(feedbackStore.setFeedbackAccepted).not.toHaveBeenCalled();
+	});
+
+	it('should not store the feedback accepted state when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(false);
+		expect(feedbackAccepted).not.toBe(true);
+	});
+
+	it('should not store the feedback context when feedback is accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(false);
+		expect(contextPath).not.toBe('/some_location');
+	});
+
+	it('should not save the complete feedback result by RESTful web services call.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(false);
+		expect(feedbackService.prototype.$save).not.toHaveBeenCalled();
+	});
+
+	it('should close the dialog when feedback is not accepted.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.feedback(false);
+		expect(dialog.close).toHaveBeenCalled();
+	});
+	
+	it('should obtain the feedback context from the path when context is obtained.', function() {	        
+        var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
+        scope.context(true);
+		expect(location.path).toHaveBeenCalled();
+	});
+
 
 });
