@@ -630,6 +630,9 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore, FeedbackSer
 	$scope.rating = 0;
 	$scope.comment = '';
 	
+	debugger;
+	
+	
 	$scope.feedback = function(result) {
 		if (result) {
 			var contextPath = $location.path();
