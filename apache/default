@@ -1,0 +1,71 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+
+	DocumentRoot /var/www
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /var/www/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+	<Directory "/usr/lib/cgi-bin">
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+
+# Proxy SIMILE Gadget
+ProxyPass               /gadget                   http://localhost:8080/gadget
+ProxyPassReverse        /gadget                   http://localhost:8080/gadget
+
+
+# Proxy Fuseki SPARQL endpoints
+ProxyPass		/fuseki			http://localhost:3030/
+ProxyPassReverse	/fuseki			http://localhost:3030/
+ProxyPass 		/control-panel.tpl	http://localhost:3030/control-panel.tpl
+ProxyPassReverse 	/control-panel.tpl	http://localhost:3030/control-panel.tpl
+ProxyPass 		/query-validator	http://localhost:3030/query-validator
+ProxyPassReverse 	/query-validator	http://localhost:3030/query-validator
+ProxyPass 		/update-validator	http://localhost:3030/update-validator
+ProxyPassReverse 	/update-validator	http://localhost:3030/update-validator
+ProxyPass 		/data-validator		http://localhost:3030/data-validator          
+ProxyPassReverse 	/data-validator		http://localhost:3030/data-validator
+ProxyPass 		/iri-validator		http://localhost:3030/iri-validator
+ProxyPassReverse 	/iri-validator		http://localhost:3030/iri-validator
+ProxyPass 		/sparql.html		http://localhost:3030/sparql.html
+ProxyPassReverse 	/sparql.html		http://localhost:3030/sparql.html
+ProxyPass		/$			http://localhost:3030/$
+ProxyPassReverse	/$			http://localhost:3030/$
+ProxyPass		/sparql.tpl		http://localhost:3030/sparql.tpl
+ProxyPassReverse        /sparql.tpl             http://localhost:3030/sparql.tpl
+ProxyPass		/dataset		http://localhost:3030/dataset
+ProxyPassReverse	/dataset		http://localhost:3030/dataset                         
+
+
+# Linked Data
+AllowEncodedSlashes On
+RewriteEngine On
+RewriteRule /data/([^']*) http://corbicula.huni.net.au/dataset/query?query=SELECT+?s+?p+?o+WHERE+{{?s+?p+<http://corbicula.huni.net.au/data/$1>}+UNION+{<http://corbicula.huni.net.au/data/$1>+?p+?o}} [R=303]
+#RewriteRule /huni-links/([^']*) http://skep.huni.net.au/vivo/admin/sparqlquery?query=PREFIX+foaf:+<http\%3A\%2F\%2Fxmlns.com\%2Ffoaf\%2F0.1\%2F>\%0D\%0APREFIX+rdf\%3A+<http%3A%2F%2Fwww.w3.org\%2F1999\%2F02\%2F22-rdf-syntax-ns\%23>\%0D\$
+#RewriteRule /huni-links/(.*) http://skep.huni.net.au/vivo/admin/sparqlquery?query=PREFIX+foaf\%3A\%20 [NE,R]
+#RewriteRule /huni-links/(.*) http://skep.huni.net.au/vivo/admin/sparqlquery?query=PREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0D%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFI$
+#ErrorDocument  503 /docs/userdoc/down-for-maintenance.html
+
+</VirtualHost>
+
