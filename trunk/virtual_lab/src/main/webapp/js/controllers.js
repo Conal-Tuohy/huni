@@ -612,7 +612,7 @@ function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
 				});
 		dlg.open().then(function(result) {
 			if (result) {
-				alert('Thank you for your feedback rating: ' + result.rating + ' and comment: ' + result.comment);
+				//alert('Thank you for your feedback rating: ' + result.rating + ' and comment: ' + result.comment);
 			}
 		});
 	};
