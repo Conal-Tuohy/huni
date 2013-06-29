@@ -1,4 +1,4 @@
-<?xml-stylesheet href="/xsltforms/xsltforms/xsltforms.xsl" type="text/xsl"?>
+<?xml-stylesheet href="xsltforms/xsltforms/xsltforms.xsl" type="text/xsl"?>
 <?xsltforms-options debug="no" lang="en"?>
 <html 
 	xmlns="http://www.w3.org/1999/xhtml" 
