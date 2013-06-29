@@ -1,0 +1,69 @@
+					body {
+						font-family: "Signika", sans-serif;
+					}
+					h2.subject:before {
+						content: "About "
+					}
+					a {
+					}
+					div.section,
+					div.source-graph {
+						background-color: #F2F5C4;
+						margin: 1em;
+						padding-left: 1em;
+						padding-right: 1em;
+						padding-bottom: 1em;
+						padding-top: 0.5em;
+					}
+					cite:before {
+						content: "Source graph: ";
+					}
+					cite {
+						display: block;
+						margin-top: 0.5em;
+						margin-left: 2em;
+						font-style: italics;
+					}
+					td.predicate,
+					td.label {
+						text-align: right;
+					}
+					td {
+						padding: 0.25em;
+						vertical-align: top;
+					}
+					textarea {
+						font-family: inherit;
+						width: 40em;
+					}
+					span.prefix {
+						font-weight: bold;
+						color: #4DB3D0;
+					}
+					span.local-name {
+						font-weight: bold;
+					}
+					a {
+						padding-left: 2pt;
+						padding-right: 2pt;
+						text-decoration: none;
+						color: #0083b3;
+					}
+					a:hover {
+						background-color: #0083b3;
+						color: white;
+					}
+					div.banner a:hover {
+						background-color: inherit;
+					}
+					h2 {
+						font-size: 14pt;
+					}
+					div.banner span {
+						vertical-align: top;
+						font-weight: bold;
+						margin-left: 0.5em;
+						font-size: 56px;
+						color: #D6E03D;
+					}
+
