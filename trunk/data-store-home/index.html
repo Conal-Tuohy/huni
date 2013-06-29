@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/css/linked-data.css"/>
+		<title>Corbicula - the Linked Data Gateway for the HuNI Project</title>
+	</head>
+	<body>
+		<div class="banner">
+			<a href="http://huni.net.au/" title="Humanities Networked Infrastructure" alt="Humanities Networked Infrastructure"><img style="class" src="http://huni.net.au/wp-content/uploads/2012/10/huni-logo-21.png"/></a>
+			<a href="/"><span>linked data</span></a>
+		</div>
+		<div>
+			<p>Welcome to Corbicula, the <a href="http://linkeddata.org/">Linked Data</a> gateway of the <a href="http://huni.net.au/">HuNI project</a>.</p>
+			<p>You can explore the data in a few ways:</p>
+			<ul>
+				<li>Browse a <a href="http://corbicula.huni.net.au/dataset/query?query=select+distinct+%3Ftype+%0D%0Awhere+{%0D%0A%3Fs+%3Chttp%3A%2F%2Ferlangen-crm.org%2Fcurrent%2FP2_has_type%3E+%3Ftype%0D%0A}&output=xml&stylesheet=%2Fxslt%2Ftype-list-sparql-results-to-html.xsl">list of the different types of entity</a> in the database.</li>
+				<li>Browse a <a href="http://corbicula.huni.net.au/dataset/query?query=select+%3Fvocabulary+where+{%3Fvocabulary+a+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23ConceptScheme%3E}%0D%0A&output=xml&stylesheet=%2Fxslt%2Fxml-to-html.xsl"> list of the different vocabularies</a> in the database.</li>
+				<li><a href="search/occupation.html">Search for people by occupation</a> (experimental)</li>
+			</ul>
+			<p>For RDF experts:</p>
+			<ul>
+				<li>List of <a href="http://corbicula.huni.net.au/dataset/query?query=select+%28%3Fp+as+%3Fpredicate%29+%28count%28%3Fp%29+as+%3FusageCount%29+where+{%3Fs+%3Fp+%3Fo}+group+by+%3Fp+order+by+desc%28%3FusageCount%29%0D%0A%0D%0A&output=xml&stylesheet=%2Fxslt%2Fxml-to-html.xsl">all predicates</a> used in the data store, by frequency of use.</li>
+				<li>List of <a href="http://corbicula.huni.net.au/dataset/query?query=select+%3Fclass+%28count%28%3Fclass%29+as+%3FusageCount%29+where+{%3Finstance+a+%3Fclass}+group+by+%3Fclass+order+by+desc%28%3FusageCount%29&output=xml&stylesheet=%2Fxslt%2Fxml-to-html.xsl">all classes</a> used in the data store, by frequency of use.</li>	
+				<li><a href="sparql/sparql.html">Execute a SPARQL query</a>.</li>
+			</ul>
+		</div>
+	</body>
+</html>
