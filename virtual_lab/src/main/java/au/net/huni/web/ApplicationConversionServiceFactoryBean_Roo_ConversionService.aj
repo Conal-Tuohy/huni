@@ -5,6 +5,8 @@ package au.net.huni.web;
 
 import au.net.huni.model.FeedbackItem;
 import au.net.huni.model.HistoryItem;
+import au.net.huni.model.Institution;
+import au.net.huni.model.Registration;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolParameter;
 import au.net.huni.web.ApplicationConversionServiceFactoryBean;
@@ -64,6 +66,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Institution, String> ApplicationConversionServiceFactoryBean.getInstitutionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Institution, java.lang.String>() {
+            public String convert(Institution institution) {
+                return new StringBuilder().append(institution.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Institution> ApplicationConversionServiceFactoryBean.getIdToInstitutionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.Institution>() {
+            public au.net.huni.model.Institution convert(java.lang.Long id) {
+                return Institution.findInstitution(id);
+            }
+        };
+    }
+    
+    public Converter<String, Institution> ApplicationConversionServiceFactoryBean.getStringToInstitutionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Institution>() {
+            public au.net.huni.model.Institution convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Institution.class);
+            }
+        };
+    }
+    
+    public Converter<Registration, String> ApplicationConversionServiceFactoryBean.getRegistrationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Registration, java.lang.String>() {
+            public String convert(Registration registration) {
+                return new StringBuilder().append(registration.getUserName()).append(' ').append(registration.getGivenName()).append(' ').append(registration.getFamilyName()).append(' ').append(registration.getEmailAddress()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Registration> ApplicationConversionServiceFactoryBean.getIdToRegistrationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.Registration>() {
+            public au.net.huni.model.Registration convert(java.lang.Long id) {
+                return Registration.findRegistration(id);
+            }
+        };
+    }
+    
+    public Converter<String, Registration> ApplicationConversionServiceFactoryBean.getStringToRegistrationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Registration>() {
+            public au.net.huni.model.Registration convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Registration.class);
+            }
+        };
+    }
+    
     public Converter<Researcher, String> ApplicationConversionServiceFactoryBean.getResearcherToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Researcher, java.lang.String>() {
             public String convert(Researcher researcher) {
@@ -119,6 +169,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getHistoryItemToStringConverter());
         registry.addConverter(getIdToHistoryItemConverter());
         registry.addConverter(getStringToHistoryItemConverter());
+        registry.addConverter(getInstitutionToStringConverter());
+        registry.addConverter(getIdToInstitutionConverter());
+        registry.addConverter(getStringToInstitutionConverter());
+        registry.addConverter(getRegistrationToStringConverter());
+        registry.addConverter(getIdToRegistrationConverter());
+        registry.addConverter(getStringToRegistrationConverter());
         registry.addConverter(getResearcherToStringConverter());
         registry.addConverter(getIdToResearcherConverter());
         registry.addConverter(getStringToResearcherConverter());

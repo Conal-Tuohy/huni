@@ -19,5 +19,13 @@
             <menu:item id="i_feedbackitem_new" messageCode="global_menu_new" url="/console/feedbackitems?form" z="user-managed"/>
             <menu:item id="i_feedbackitem_list" messageCode="global_menu_list" url="/console/feedbackitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
         </menu:category>
+        <menu:category id="c_institution" z="5+H17nsNm0/SudzTa4gvanI68Ak=">
+            <menu:item id="i_institution_new" messageCode="global_menu_new" url="/console/institutions?form" z="9lTrwxCP6sFAE0iz8yLFep1d+dw="/>
+            <menu:item id="i_institution_list" messageCode="global_menu_list" url="/console/institutions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+        </menu:category>
+        <menu:category id="c_registration" z="4zf7yvK7ho0iT0xmOM9TE/tFNtY=">
+            <menu:item id="i_registration_new" messageCode="global_menu_new" url="/console/registrations?form" z="PKY2JFhDvFdWVUMxSggdSVA09ck="/>
+            <menu:item id="i_registration_list" messageCode="global_menu_list" url="/console/registrations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+        </menu:category>
     </menu:menu>
 </div>

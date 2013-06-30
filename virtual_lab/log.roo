@@ -103,3 +103,33 @@ hint security
 addon search security
 security setup
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-26 23:12:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-29 17:24:18
+entity jpa --class ~.model.Registration
+field string --fieldName userName --notNull --sizeMax 10 --sizeMin 5 --unique
+field string --fieldName givenName --notNull --sizeMax 60 --sizeMin 1
+field string --fieldName familyName --notNull --sizeMax 60 --sizeMin 1
+field string --fieldName emailAddress --notNull --regexp ^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$
+entity jpa --class ~.model.Institution
+field string --fieldName name --notNull --sizeMax 10 --sizeMin 5 --unique
+field reference --class ~.model.Registration --fieldName institution --type Institution --cardinality MANY_TO_ONE --notNull 
+field date --fieldName applicationDate --type java.util.Calendar --dateFormat SHORT --notNull
+field date --fieldName approvalDate --type java.util.Calendar --dateFormat SHORT
+test integration
+focus --class Institution
+test integration
+test mock
+focus --class Registration
+test mock
+web mvc scaffold --class InstitutionController --backingType Institution
+web mvc scaffold --class RegistrationController --backingType Registration
+json add --class ~.model.Institution
+json add --class ~.model.Registration
+web mvc json add --jsonObject ~.model.Institution
+web mvc json add --jsonObject ~.model.Registration
+web mvc json add --jsonObject ~.web.Registration
+web mvc json add --jsonObject ~.web.Institution
+web mvc json add --jsonObject ~.model.Institution --class ~.web.InstitutionController
+web mvc json add --jsonObject ~.model.Registration --class ~.web.RegistrationController
+focus --class ~.model.Institution
+// [failed] field string --fieldName name --sizeMax 60 --sizeMin 5 --notNull --unique 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-29 21:01:15

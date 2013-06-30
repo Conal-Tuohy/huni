@@ -7,53 +7,34 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 import org.springframework.stereotype.Component;
 
 @Configurable
 @Component
-@RooDataOnDemand(entity = ToolParameter.class)
-public class ToolParameterDataOnDemand {
+@RooDataOnDemand(entity = Institution.class)
+public class InstitutionDataOnDemand {
 
 	private Random rnd = new SecureRandom();
 
-	private List<ToolParameter> data;
+	private List<Institution> data;
 
-	@Autowired
-    HistoryItemDataOnDemand historyItemDataOnDemand;
-
-	public ToolParameter getNewTransientToolParameter(int index) {
-        ToolParameter obj = new ToolParameter();
-        setAmount(obj, index);
-        setDisplayOrder(obj, index);
+	public Institution getNewTransientInstitution(int index) {
+        Institution obj = new Institution();
         setName(obj, index);
-        setOwner(obj, index);
         return obj;
     }
 
-	public void setAmount(ToolParameter obj, int index) {
-        String amount = "amount_" + index;
-        obj.setAmount(amount);
-    }
-
-	public void setDisplayOrder(ToolParameter obj, int index) {
-        int displayOrder = index;
-        obj.setDisplayOrder(displayOrder);
-    }
-
-	public void setName(ToolParameter obj, int index) {
+	public void setName(Institution obj, int index) {
         String name = "name_" + index;
+        if (name.length() > 10) {
+            name = new Random().nextInt(10) + name.substring(1, 10);
+        }
         obj.setName(name);
     }
 
-	public void setOwner(ToolParameter obj, int index) {
-        HistoryItem owner = historyItemDataOnDemand.getRandomHistoryItem();
-        obj.setOwner(owner);
-    }
-
-	public ToolParameter getSpecificToolParameter(int index) {
+	public Institution getSpecificInstitution(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -61,36 +42,36 @@ public class ToolParameterDataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        ToolParameter obj = data.get(index);
+        Institution obj = data.get(index);
         Long id = obj.getId();
-        return ToolParameter.findToolParameter(id);
+        return Institution.findInstitution(id);
     }
 
-	public ToolParameter getRandomToolParameter() {
+	public Institution getRandomInstitution() {
         init();
-        ToolParameter obj = data.get(rnd.nextInt(data.size()));
+        Institution obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return ToolParameter.findToolParameter(id);
+        return Institution.findInstitution(id);
     }
 
-	public boolean modifyToolParameter(ToolParameter obj) {
+	public boolean modifyInstitution(Institution obj) {
         return false;
     }
 
 	public void init() {
         int from = 0;
         int to = 10;
-        data = ToolParameter.findToolParameterEntries(from, to);
+        data = Institution.findInstitutionEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'ToolParameter' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'Institution' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<ToolParameter>();
+        data = new ArrayList<Institution>();
         for (int i = 0; i < 10; i++) {
-            ToolParameter obj = getNewTransientToolParameter(i);
+            Institution obj = getNewTransientInstitution(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

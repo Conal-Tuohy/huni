@@ -3,11 +3,11 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ResearcherDataOnDemand;
+import au.net.huni.model.Registration;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect ResearcherDataOnDemand_Roo_Configurable {
+privileged aspect Registration_Roo_Configurable {
     
-    declare @type: ResearcherDataOnDemand: @Configurable;
+    declare @type: Registration: @Configurable;
     
 }
