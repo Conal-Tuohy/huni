@@ -9,17 +9,17 @@
 >
 	<p:import href="corbicula.xpl"/>
 	
-		
-		<!--
 	<drone:list-all-records
 		name="harvest"
 		cache-location="/data/xml/daao/"/>
-		-->
+		
+		<!--
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://oai.daao.org.au/oai/provider" 
 		cache-location="/data/xml/daao/" 
 		metadata-prefix="eac-cpf"/>
+		-->
 	<!--
 	-->
 	<!-- TODO replace these steps with steps to crosswalk updates to RDF, and to store 
