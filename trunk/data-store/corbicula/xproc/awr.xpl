@@ -17,12 +17,12 @@
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://oai.esrc.unimelb.edu.au/AWAPnew/provider" 
-		cache-location="/data/xml/awr/" 
+		cache-location="/var/corbicula/awr/" 
 		metadata-prefix="eac"/>
 <!--
 	<drone:list-all-records 
 		name="harvest" 
-		cache-location="/data/xml/awr/"/>
+		cache-location="/var/corbicula/awr/"/>
 			
 -->	
 	<p:for-each name="transform-record-to-rdf">

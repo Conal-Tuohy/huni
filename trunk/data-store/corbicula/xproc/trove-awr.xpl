@@ -17,13 +17,13 @@
 
 	<drone:list-all-records 
 		name="harvest" 
-		cache-location="/data/xml/trove-awr/"/>
+		cache-location="/var/corbicula/trove-awr/"/>
 <!--
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://www.nla.gov.au/apps/peopleaustralia-oai/OAIHandler" 
 		set="AU-VU:AWR"
-		cache-location="/data/xml/trove-awr/" 
+		cache-location="/var/corbicula/trove-awr/" 
 		metadata-prefix="eac-cpf"/>		
 		-->
 	<!--

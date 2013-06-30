@@ -12,14 +12,14 @@
 	<!--
 	<drone:list-all-records
 		name="harvest"
-		cache-location="/data/xml/amhd/"/>
+		cache-location="/var/corbicula/amhd/"/>
 -->
 		
 
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://amhd.info/oai/provider" 
-		cache-location="/data/xml/amhd/" 
+		cache-location="/var/corbicula/amhd/" 
 		metadata-prefix="oai_dc"/>
 
 	

@@ -16,13 +16,13 @@
 	<!--
 	<drone:list-all-records 
 		name="harvest" 
-		cache-location="/data/xml/bonza/"/>
+		cache-location="/var/corbicula/bonza/"/>
 	-->
 
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://huni.esrc.unimelb.edu.au/CAARP/provider" 
-		cache-location="/data/xml/caarp/" 
+		cache-location="/var/corbicula/caarp/" 
 		metadata-prefix="caarp_xml"/>
 	
 	<p:for-each name="transform-record-to-rdf">

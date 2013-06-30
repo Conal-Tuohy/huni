@@ -10,12 +10,12 @@
 	<p:import href="corbicula.xpl"/>
 	<drone:list-all-records 
 		name="harvest" 
-		cache-location="/data/xml/eoas/"/>
+		cache-location="/var/corbicula/eoas/"/>
 		<!--
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://oai.esrc.unimelb.edu.au/EOAS/provider" 
-		cache-location="/data/xml/eoas/" 
+		cache-location="/var/corbicula/eoas/" 
 		metadata-prefix="eac"/>
 		-->
 	<!-- keep a record of deletions and updates -->

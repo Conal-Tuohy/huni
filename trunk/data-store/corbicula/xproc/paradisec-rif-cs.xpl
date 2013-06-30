@@ -11,13 +11,13 @@
 	<!--
 	<drone:list-all-records
 		name="harvest"
-		cache-location="/data/xml/paradisec-rif-cs/"/>
+		cache-location="/var/corbicula/paradisec-rif-cs/"/>
 	-->		
 
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://catalog.paradisec.org.au/oai/collection" 
-		cache-location="/data/xml/paradisec-rif-cs/" 
+		cache-location="/var/corbicula/paradisec-rif-cs/" 
 		metadata-prefix="rif"/>
 
 	<!-- TODO replace these steps with steps to crosswalk updates to RDF, and to store 

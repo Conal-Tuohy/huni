@@ -12,14 +12,14 @@
 	<!--
 	<drone:list-all-records
 		name="harvest"
-		cache-location="/data/xml/map/"/>
+		cache-location="/var/corbicula/map/"/>
 -->
 		
 
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="https://mediaarchivesproject.mq.edu.au/redbox/default/feed/oai" 
-		cache-location="/data/xml/map/" 
+		cache-location="/var/corbicula/map/" 
 		metadata-prefix="oai_dc"/>
 
 	

@@ -13,12 +13,12 @@
 
 	<drone:list-all-records
 		name="harvest"
-		cache-location="/data/xml/adb/"/>
+		cache-location="/var/corbicula/adb/"/>
 <!--
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://oa.anu.edu.au:8080/oai/provider" 
-		cache-location="/data/xml/adb/" 
+		cache-location="/var/corbicula/adb/" 
 		metadata-prefix="eac-cpf"/>
 		-->
 		
