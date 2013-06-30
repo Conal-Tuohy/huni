@@ -18,7 +18,7 @@
 		name="harvest" 
 		base-uri="http://www.nla.gov.au/apps/peopleaustralia-oai/OAIHandler" 
 		set="AU-NUN:DAAO"
-		cache-location="/data/xml/trove-daao/" 
+		cache-location="/var/corbicula/trove-daao/" 
 		metadata-prefix="eac-cpf"/>	
 <!--
 	
@@ -29,13 +29,13 @@
 		name="harvest" 
 		base-uri="http://www.nla.gov.au/apps/peopleaustralia-oai/OAIHandler" 
 		set="AU-VU:AWR"
-		cache-location="/data/xml/trove-daao/" 
+		cache-location="/var/corbicula/trove-daao/" 
 		metadata-prefix="eac-cpf"/>		
 		-->
 	<!--
 	<drone:list-all-records 
 		name="harvest" 
-		cache-location="/data/xml/trove/"/>
+		cache-location="/var/corbicula/trove/"/>
 		-->
 	<!-- keep a record of deletions and updates -->
 	<!-- TODO replace these steps with steps to crosswalk updates to RDF, and to store 

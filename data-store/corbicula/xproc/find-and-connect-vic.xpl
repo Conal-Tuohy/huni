@@ -18,7 +18,7 @@
 <!--
 	<drone:list-all-records 
 		name="harvest" 
-		cache-location="/data/xml/find-and-connect-vic/"/>
+		cache-location="/var/corbicula/find-and-connect-vic/"/>
 
 	-->
 	<!--
@@ -27,7 +27,7 @@
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://oai.esrc.unimelb.edu.au/FCVC/provider" 
-		cache-location="/data/xml/find-and-connect-vic/" 
+		cache-location="/var/corbicula/find-and-connect-vic/" 
 		metadata-prefix="eac-cpf"/>
 		
 	<!-- keep a record of deletions and updates -->

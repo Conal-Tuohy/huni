@@ -11,13 +11,13 @@
 	
 	<drone:list-all-records
 		name="harvest"
-		cache-location="/data/xml/daao/"/>
+		cache-location="/var/corbicula/daao/"/>
 		
 		<!--
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://oai.daao.org.au/oai/provider" 
-		cache-location="/data/xml/daao/" 
+		cache-location="/var/corbicula/daao/" 
 		metadata-prefix="eac-cpf"/>
 		-->
 	<!--
