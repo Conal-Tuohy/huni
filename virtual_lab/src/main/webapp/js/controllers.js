@@ -600,7 +600,7 @@ function GroupRecordCtrl($scope, $routeParams, Group) {
 
 // Modal dialog box controllers
 
-function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
+function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStatus) {
 
 	$scope.openDialog = function() {
 		var dlg = $dialog.dialog({
@@ -618,14 +618,14 @@ function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStore) {
 	};
 
 	$scope.feedbackAccepted = function() {
-		return FeedbackStore.getFeedbackAccepted($location.path());
+		return FeedbackStatus.getFeedbackAccepted($location.path());
 	}
 }
 
-FeedbackButtonCtrl.$inject = [ '$scope', '$dialog', '$location', 'FeedbackStore' ];
+FeedbackButtonCtrl.$inject = [ '$scope', '$dialog', '$location', 'FeedbackStatus' ];
 //------------------------------------
 
-function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore, FeedbackService) {
+function FeedbackModalCtrl($scope, dialog, $location, FeedbackStatus, FeedbackService) {
 	
 	$scope.rating = 0;
 	$scope.comment = '';
@@ -636,7 +636,7 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore, FeedbackSer
 	$scope.feedback = function(result) {
 		if (result) {
 			var contextPath = $location.path();
-			FeedbackStore.setFeedbackAccepted(contextPath, true);
+			FeedbackStatus.setFeedbackAccepted(contextPath, true);
 			var feedbackRating = $scope.rating;
 			var feedbackComment = $scope.comment;
 			result = {context: contextPath, rating: feedbackRating, comment: feedbackComment};
@@ -651,7 +651,52 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStore, FeedbackSer
 	}
 }
 
-//FeedbackModalCtrl.$inject = [ '$scope', 'dialog', '$location', 'FeedbackStore' ];
+//FeedbackModalCtrl.$inject = [ '$scope', 'dialog', '$location', 'FeedbackStatus', 'FeedbackService' ];
+//------------------------------------
+
+function RegistrationButtonCtrl($scope, $dialog) {
+
+	$scope.openDialog = function() {
+		var dlg = $dialog.dialog({
+					backdrop : true,
+					keyboard : true,
+					backdropClick : true,
+					templateUrl :  'partials/registration-modal.html',
+					controller : 'RegistrationModalCtrl'
+				});
+		dlg.open().then(function(result) {
+			if (result) {
+				//alert('Thank you for your registration: ' + result.userName + ' and Family Name: ' + result.familyName);
+			}
+		});
+	};
+}
+
+RegistrationButtonCtrl.$inject = [ '$scope', '$dialog'];
+//------------------------------------
+
+function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionService) {
+		
+	$scope.apply = function(result) {
+		if (result) {
+			var userName = $scope.userName;
+			var givenName = $scope.givenName;
+			var familyName = $scope.familyName;
+			var emailAddress = $scope.emailAddress;
+			var institution = $scope.institution;
+			result = {'userName': userName, givenName: 'givenName', 'familyName': familyName, 'emailAddress': emailAddress, 'institution': institution};
+			var registrationItem = new RegistrationService(result);
+			registrationItem.$save();
+		}
+		dialog.close(result);
+	};
+	
+	$scope.institutions = function() {
+		return RegistrationService.query();
+	}
+}
+
+//RegistrationModalCtrl.$inject = [ '$scope', 'dialog', 'RegistrationStore' ];
 //------------------------------------
 
 

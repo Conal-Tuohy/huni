@@ -147,8 +147,8 @@ angular.module('queryStoreServices', []).
         };;
 });
 
-angular.module('feedbackStoreServices', []).
-	service('FeedbackStore', function(){
+angular.module('feedbackStatus', []).
+	service('FeedbackStatus', function(){
 		
 		var feedbackAccepted = {};
 
@@ -162,10 +162,26 @@ angular.module('feedbackStoreServices', []).
         };
 });
 
-// http://localhost:8080/virtual_lab/rest/feedbackitems
+//http://localhost:8080/virtual_lab/rest/feedbackitems
 angular.module('feedbackServices', ['ngResource']).
-    factory('FeedbackService', function($resource){
-  	  return $resource(baseServiceURL + '/rest/feedbackitems/:feedbackItemId', {}, {
+ factory('FeedbackService', function($resource){
+	  return $resource(baseServiceURL + '/rest/feedbackitems/:feedbackItemId', {}, {
+		    query: {method:'GET', params:{}, isArray:true}
+		  });
+});
+
+//http://localhost:8080/virtual_lab/rest/registrations
+angular.module('registrationServices', ['ngResource']).
+factory('RegistrationService', function($resource){
+	  return $resource(baseServiceURL + '/rest/registrations/:registrationId', {}, {
+		    query: {method:'GET', params:{}, isArray:true}
+		  });
+});
+
+//http://localhost:8080/virtual_lab/rest/registrations
+angular.module('institutionServices', ['ngResource']).
+factory('InstitutionService', function($resource){
+	  return $resource(baseServiceURL + '/rest/institutions/:institutionId', {}, {
 		    query: {method:'GET', params:{}, isArray:true}
 		  });
 });

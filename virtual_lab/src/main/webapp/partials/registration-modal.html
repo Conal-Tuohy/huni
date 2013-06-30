@@ -1,55 +1,56 @@
-<!-- Modal -->
-<div id="registrationModal" class="modal hide fade" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="registrationModal" class="modal" tabindex="-1" role="dialog" 
+	aria-labelledby="myModalLabel" aria-hidden="true">
 	
 	<form id="registration-form " class="">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="modalLabel">New User Registration</h3>
+				aria-hidden="true">&times;</button>
+			<h3 id="registrationModalLabel">New User Registration</h3>
 		</div>
 		<div class="modal-body">
-
-
 			<div class="control-group">
-				<label class="control-label" for="inputUsername">Username*</label>
+				<label class="control-label" for="registrationUserName">Username*</label>
 				<div class="controls">
-					<input type="text" id="inputUsername" placeholder="Username">
+					<input type="text" id="registrationUserName" placeholder="UserName">
 				</div>
 			</div>
-
 			<div class="control-group">
-				<label class="control-label" for="inputFirstName">First
+				<label class="control-label" for="registrationGivenName">Given
 					Name*</label>
 				<div class="controls">
-					<input type="text" id="inputFirstName" placeholder="First Name">
+					<input type="text" id="registrationGivenName" placeholder="GivenName">
 				</div>
 			</div>
 
 			<div class="control-group">
-				<label class="control-label" for="inputLastName">Last Name*</label>
+				<label class="control-label" for="registrationFamilyName">Family Name*</label>
 				<div class="controls">
-					<input type="text" id="inputLastName" placeholder="Last Name">
+					<input type="text" id="registrationFamilyName" placeholder="FamilyName">
 				</div>
 			</div>
 
 			<div class="control-group">
-				<label class="control-label" for="inputEmail">Email Address*</label>
+				<label class="control-label" for="registrationEmail">Email Address*</label>
 				<div class="controls">
-					<input type="text" id="inputEmail" placeholder="Email Address">
+					<input type="text" id="registrationEmail" placeholder="email@address.com.au">
 				</div>
 			</div>
-
 			<div class="control-group">
-				<label class="control-label" for="inputInstitution">Institution</label>
+				<label class="control-label" for="registrationInstitution">Institution</label>
 				<div class="controls">
-					<input type="text" id="inputInstitution" placeholder="Institution">
+					<select ui-select2 ng-model="select2" data-placeholder="Pick an institution"  ng-required="true">
+					    <option value=""></option>
+					    <option ng-repeat="institution in institutions" value="{{institution.name}}">{{institution.name}}</option>
+					</select>
+					<!-- 
+					input type="text" id="registrationInstitution" placeholder="Institution">
+					 -->
 				</div>
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			<button class="btn btn-primary">Submit</button>
+			<button class="btn" aria-hidden="true" ng-click="apply(false)">Cancel</button>
+			<button class="btn btn-primary" ng-click="apply(true)">Submit</button>
 		</div>
 	</form>
 	
