@@ -3,11 +3,11 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.HistoryItemDataOnDemand;
+import au.net.huni.model.RegistrationIntegrationTest;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect HistoryItemDataOnDemand_Roo_Configurable {
+privileged aspect RegistrationIntegrationTest_Roo_Configurable {
     
-    declare @type: HistoryItemDataOnDemand: @Configurable;
+    declare @type: RegistrationIntegrationTest: @Configurable;
     
 }

@@ -13,10 +13,12 @@
 		<intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/member/**" access="isAuthenticated()" />
  -->        
-		<intercept-url pattern="/console/historyitems/**" access="isAuthenticated()" />
-		<intercept-url pattern="/console/feedbackitems/**" access="isAuthenticated()" />
-		<intercept-url pattern="/console/researchers/**" access="isAuthenticated()" />
-		<intercept-url pattern="/console/toolparameters/**" access="isAuthenticated()" />
+		<intercept-url pattern="/console/historyitems/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/feedbackitems/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/researchers/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/toolparameters/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/institutions/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/registrations/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/**" access="permitAll" />
 <!--  		
 		<intercept-url pattern="/resources/**" access="permitAll" />

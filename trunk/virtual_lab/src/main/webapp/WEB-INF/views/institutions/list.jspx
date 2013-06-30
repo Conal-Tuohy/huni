@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_net_huni_model_Institution" items="${institutions}" z="3NqTKWd5vIQ181x0cUeclhU6ciI=">
+        <table:table data="${institutions}" id="l_au_net_huni_model_Institution" path="/console/institutions" z="user-managed">
+            <table:column id="c_au_net_huni_model_Institution_name" property="name" z="qxdFilrOZ0DfLYKlqvmP0SqRRaU="/>
+        </table:table>
+    </page:list>
+</div>

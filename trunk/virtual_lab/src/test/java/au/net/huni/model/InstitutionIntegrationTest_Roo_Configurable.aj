@@ -3,11 +3,11 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.FeedbackItemDataOnDemand;
+import au.net.huni.model.InstitutionIntegrationTest;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect FeedbackItemDataOnDemand_Roo_Configurable {
+privileged aspect InstitutionIntegrationTest_Roo_Configurable {
     
-    declare @type: FeedbackItemDataOnDemand: @Configurable;
+    declare @type: InstitutionIntegrationTest: @Configurable;
     
 }

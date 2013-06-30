@@ -3,11 +3,11 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolParameterDataOnDemand;
+import au.net.huni.model.Institution;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect ToolParameterDataOnDemand_Roo_Configurable {
+privileged aspect Institution_Roo_Configurable {
     
-    declare @type: ToolParameterDataOnDemand: @Configurable;
+    declare @type: Institution: @Configurable;
     
 }
