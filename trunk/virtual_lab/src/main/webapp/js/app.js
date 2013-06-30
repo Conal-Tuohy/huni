@@ -33,10 +33,13 @@ var virtualLab = angular.module('virtualab', [
                              'simpleSearchFilters',
                              
                              'queryStoreServices',
-                             'feedbackStoreServices',
+                             'feedbackStatus',
                              'feedbackServices',
+                             'registrationServices',
+                             'institutionServices',
                              
-                             'ui.bootstrap'
+                             'ui.bootstrap',
+                             'ui.select2'
 
                              ]).
   config(['$routeProvider', function($routeProvider) {

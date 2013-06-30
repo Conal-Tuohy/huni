@@ -131,7 +131,7 @@ describe('Feedback Modal Controller', function() {
 		expect(contextPath).toBe('/some_location');
 	});
 
-	it('should save the complete feedback result by RESTful web services call.', function() {	        
+	it('should save the complete feedback result by RESTful web services call when feedback is accepted.', function() {	        
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.feedback(true);
 		expect(feedbackService.prototype.$save).toHaveBeenCalled();
@@ -144,31 +144,31 @@ describe('Feedback Modal Controller', function() {
 	});
 	
 
-	it('should not obtain the feedback context from the path when feedback is accepted.', function() {	        
+	it('should not obtain the feedback context from the path when feedback is not accepted.', function() {	        
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.feedback(false);
 		expect(location.path).not.toHaveBeenCalled();
 	});
 
-	it('should not call the FeedbackStore service to save the feedback context when feedback is accepted.', function() {	        
+	it('should not call the FeedbackStore service to save the feedback context when feedback is not accepted.', function() {	        
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.feedback(false);
 		expect(feedbackStore.setFeedbackAccepted).not.toHaveBeenCalled();
 	});
 
-	it('should not store the feedback accepted state when feedback is accepted.', function() {	        
+	it('should not store the feedback accepted state when feedback is not accepted.', function() {	        
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.feedback(false);
 		expect(feedbackAccepted).not.toBe(true);
 	});
 
-	it('should not store the feedback context when feedback is accepted.', function() {	        
+	it('should not store the feedback context when feedback is not accepted.', function() {	        
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.feedback(false);
 		expect(contextPath).not.toBe('/some_location');
 	});
 
-	it('should not save the complete feedback result by RESTful web services call.', function() {	        
+	it('should not save the complete feedback result by RESTful web services call when feedback is not accepted.', function() {	        
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.feedback(false);
 		expect(feedbackService.prototype.$save).not.toHaveBeenCalled();
@@ -184,6 +184,60 @@ describe('Feedback Modal Controller', function() {
         var ctrl = new FeedbackModalCtrl(scope, dialog, location, feedbackStore, feedbackService);
         scope.context(true);
 		expect(location.path).toHaveBeenCalled();
+	});
+
+
+});
+
+describe('Registration Modal Controller', function() {
+
+	var scope = null;
+	var dialog = null;
+	var registrationService = null;
+	
+	beforeEach(function() {
+		scope = {};
+
+		dialog = 
+			{
+				close: function(value) {
+					// do nothing;
+				}
+			}
+		spyOn(dialog, 'close');
+		
+		
+		registrationService = function()
+		{
+		};
+		registrationService.prototype.$save = function() {};
+		spyOn(registrationService.prototype, '$save');
+
+	});
+
+
+	it('should save the complete registration result by RESTful web services call.', function() {	        
+        var ctrl = new RegistrationModalCtrl(scope, dialog, registrationService);
+        scope.apply(true);
+		expect(registrationService.prototype.$save).toHaveBeenCalled();
+	});
+
+	it('should close the dialog when registration is accepted.', function() {	        
+        var ctrl = new RegistrationModalCtrl(scope, dialog, registrationService);
+        scope.apply(true);
+		expect(dialog.close).toHaveBeenCalled();
+	});
+	
+	it('should not save the complete registration result by RESTful web services call when registration is not accepted.', function() {	        
+        var ctrl = new RegistrationModalCtrl(scope, dialog, registrationService);
+        scope.apply(false);
+		expect(registrationService.prototype.$save).not.toHaveBeenCalled();
+	});
+
+	it('should close the dialog when registration is not accepted.', function() {	        
+        var ctrl = new RegistrationModalCtrl(scope, dialog, registrationService);
+        scope.apply(false);
+		expect(dialog.close).toHaveBeenCalled();
 	});
 
 
