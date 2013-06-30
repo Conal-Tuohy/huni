@@ -1,3 +1,6 @@
+<!-- NOW REDUNDANT? -->
+<!-- eSRC have fixed their encoding errors, so their feeds should now be processable by the regular eac-to-rdf.xsl transform -->
+
 <!-- Some misconfiguration at the eSRC end currently causes records to be published in the OAI-PMH 2.0 namespace -->
 <!-- instead of the real EAC namespace -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"

@@ -23,7 +23,7 @@
 		<p:option name="resource-base-uri" required="false" select="''"/>
 		
 		<p:load name="load-stylesheet">
-			<p:with-option name="href" select="$xslt"/>
+			<p:with-option name="href" select="concat('../xslt/', $xslt)"/>
 		</p:load>
 
 		<p:xslt name="execute-xslt">

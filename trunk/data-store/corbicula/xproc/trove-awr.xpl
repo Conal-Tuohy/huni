@@ -14,19 +14,19 @@
 	<p:import href="corbicula.xpl"/>
 	
 
+
+	<drone:list-all-records 
+		name="harvest" 
+		cache-location="/data/xml/trove-awr/"/>
+<!--
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="http://www.nla.gov.au/apps/peopleaustralia-oai/OAIHandler" 
 		set="AU-VU:AWR"
 		cache-location="/data/xml/trove-awr/" 
 		metadata-prefix="eac-cpf"/>		
-<!--
-
 		-->
 	<!--
-	<drone:list-all-records 
-		name="harvest" 
-		cache-location="/data/xml/trove-awr/"/>
 		-->
 	<!-- keep a record of deletions and updates -->
 	<!-- TODO replace these steps with steps to crosswalk updates to RDF, and to store 

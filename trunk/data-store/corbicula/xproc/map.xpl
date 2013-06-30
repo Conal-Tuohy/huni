@@ -9,38 +9,19 @@
 >
 	<p:import href="corbicula.xpl"/>
 
+	<!--
 	<drone:list-all-records
 		name="harvest"
 		cache-location="/data/xml/map/"/>
-
+-->
 		
-	<!--
+
 	<drone:list-new-records 
 		name="harvest" 
 		base-uri="https://mediaarchivesproject.mq.edu.au/redbox/default/feed/oai" 
 		cache-location="/data/xml/map/" 
 		metadata-prefix="oai_dc"/>
--->
-	<!-- TODO replace these steps with steps to crosswalk updates to RDF, and to store 
-	and delete records from tripe-store -->
-	<!--
-	<p:for-each name="deletion">
-		<p:iteration-source>
-			<p:pipe step="harvest" port="deletions"/>
-		</p:iteration-source>
-		<p:store>
-			<p:with-option name="href" select="concat('/data/xml/map/deletions/', fn:encode-for-uri(fn:encode-for-uri(/*/@xml:base)))"/>
-		</p:store>
-	</p:for-each>
-	<p:for-each name="update">
-		<p:iteration-source>
-			<p:pipe step="harvest" port="updates"/>
-		</p:iteration-source>
-		<p:store>
-			<p:with-option name="href" select="concat('/data/xml/map/updates/', fn:encode-for-uri(fn:encode-for-uri(/*/@xml:base)))"/>
-		</p:store>
-	</p:for-each>		
-	-->
+
 	
 	<p:for-each name="transform-record-to-rdf">
 		<p:iteration-source>
@@ -53,11 +34,6 @@
 		<drone:store-graph name="put-graph-in-sparql-graph-store">
 			<p:with-option name="graph-uri" select="$xml-base"/>
 		</drone:store-graph>
-		<!--
-		<p:store indent="true">
-			<p:with-option name="href" select="concat('/data/xml/map/graphs/', fn:encode-for-uri(fn:encode-for-uri($xml-base)), '.xml')"/>
-		</p:store>
-		-->
 	</p:for-each>	
 	
 </p:declare-step>
