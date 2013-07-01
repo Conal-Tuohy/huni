@@ -683,17 +683,17 @@ function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionS
 			var givenName = $scope.givenName;
 			var familyName = $scope.familyName;
 			var emailAddress = $scope.emailAddress;
+			var institutionId = $scope.institutionId;
 			var institution = $scope.institution;
-			result = {'userName': userName, givenName: 'givenName', 'familyName': familyName, 'emailAddress': emailAddress, 'institution': institution};
+			result = {'userName': userName, 'givenName': givenName, 'familyName': familyName, 'emailAddress': emailAddress, 'institution': institution};
 			var registrationItem = new RegistrationService(result);
 			registrationItem.$save();
 		}
 		dialog.close(result);
 	};
 	
-	$scope.institutions = function() {
-		return RegistrationService.query();
-	}
+	$scope.institutions = InstitutionService.query();
+	
 }
 
 //RegistrationModalCtrl.$inject = [ '$scope', 'dialog', 'RegistrationStore' ];

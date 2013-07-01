@@ -11,36 +11,36 @@
 			<div class="control-group">
 				<label class="control-label" for="registrationUserName">Username*</label>
 				<div class="controls">
-					<input type="text" id="registrationUserName" placeholder="UserName">
+					<input type="text" id="registrationUserName" placeholder="UserName"  ng-model="userName">
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="registrationGivenName">Given
 					Name*</label>
 				<div class="controls">
-					<input type="text" id="registrationGivenName" placeholder="GivenName">
+					<input type="text" id="registrationGivenName" placeholder="GivenName"  ng-model="givenName">
 				</div>
 			</div>
 
 			<div class="control-group">
 				<label class="control-label" for="registrationFamilyName">Family Name*</label>
 				<div class="controls">
-					<input type="text" id="registrationFamilyName" placeholder="FamilyName">
+					<input type="text" id="registrationFamilyName" placeholder="FamilyName"  ng-model="familyName">
 				</div>
 			</div>
 
 			<div class="control-group">
 				<label class="control-label" for="registrationEmail">Email Address*</label>
 				<div class="controls">
-					<input type="text" id="registrationEmail" placeholder="email@address.com.au">
+					<input type="text" id="registrationEmail" placeholder="email@address.com.au"  ng-model="emailAddress">
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="registrationInstitution">Institution</label>
 				<div class="controls">
-					<select ui-select2 ng-model="select2" data-placeholder="Pick an institution"  ng-required="true">
+					<select ui-select2 ng-model="institution" data-placeholder="Pick an institution"  ng-required="true">
 					    <option value=""></option>
-					    <option ng-repeat="institution in institutions()" value="{{institution.name}}">{{institution.name}}</option>
+					    <option ng-repeat="institution in institutions" value="{{institution.name}}">{{institution.name}}</option>
 					</select>
 					<!-- 
 					input type="text" id="registrationInstitution" placeholder="Institution">

@@ -15,6 +15,7 @@
 		<link href="./css/3column.css" rel="stylesheet">
 		<link href="./css/simple-search.css" rel="stylesheet">
 		<link href="./css/deep-search.css" rel="stylesheet">
+		<link href="lib/select2/select2.css" rel="stylesheet" >
 		<style type="text/css">
 			body {
 			  padding-top: 113px;
@@ -56,7 +57,6 @@
 
 	<body id="index">
 	
-		<div ng-include="'partials/registration-modal.html'"></div>
 		<div ng-include="'partials/login-modal.html'"></div>
 
 		<div class="navbar navbar-fixed-top">
@@ -69,8 +69,8 @@
 						<ul>
 							<li>Have you registered?</li>
 							<!-- Button to trigger register modal - registration-modal.html -->
-							<li><a href="#registrationModal" role="button"
-								data-toggle="modal">Register</a></li> |
+							<li ng-include="'partials/registration-button.html'"></li> 
+							|
 							<!-- Button to trigger login modal - login-modal.html -->
 							<li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>|
 							<li><a href="#">Find Out More</a></li>
@@ -182,6 +182,9 @@
 		<script src="lib/angular-1.1.5/angular.js"></script>
 		<script src="lib/angular-1.1.5/angular-resource.js"></script>
 		<script src="lib/angular-ui/angular-ui.js"></script>
+		<script src="lib/select2/select2.js"></script>
+		<script src="lib/angular-ui-select2/select2.js"></script>
+		
 		
 		
 <!-- 		<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>

@@ -178,11 +178,12 @@ factory('RegistrationService', function($resource){
 		  });
 });
 
-//http://localhost:8080/virtual_lab/rest/registrations
+//http://localhost:8080/virtual_lab/rest/institutions
 angular.module('institutionServices', ['ngResource']).
 factory('InstitutionService', function($resource){
-	  return $resource(baseServiceURL + '/rest/institutions/:institutionId', {}, {
-		    query: {method:'GET', params:{}, isArray:true}
+		var serviceUrl = baseServiceURL + '/rest/institutions/:institutionId';
+	  return $resource(serviceUrl, {}, {
+		    query: {method:'GET', params:{institutionId: ""}, isArray:true}
 		  });
 });
 
