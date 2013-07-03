@@ -38,9 +38,9 @@
 			<div class="control-group">
 				<label class="control-label" for="registrationInstitution">Institution</label>
 				<div class="controls">
-					<select ui-select2 ng-model="institution" data-placeholder="Pick an institution"  ng-required="true">
+					<select ui-select2 ng-model="institutionId" data-placeholder="Pick an institution"  ng-required="true">
 					    <option value=""></option>
-					    <option ng-repeat="institution in institutions" value="{{institution.name}}">{{institution.name}}</option>
+					    <option ng-repeat="institution in institutions" value="{{institution.id}}">{{institution.name}}</option>
 					</select>
 					<!-- 
 					input type="text" id="registrationInstitution" placeholder="Institution">

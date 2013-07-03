@@ -684,8 +684,8 @@ function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionS
 			var familyName = $scope.familyName;
 			var emailAddress = $scope.emailAddress;
 			var institutionId = $scope.institutionId;
-			var institution = $scope.institution;
-			result = {'userName': userName, 'givenName': givenName, 'familyName': familyName, 'emailAddress': emailAddress, 'institution': institution};
+			//var institution = $scope.institution;
+			result = {'userName': userName, 'givenName': givenName, 'familyName': familyName, 'emailAddress': emailAddress, 'institutionId': institutionId};
 			var registrationItem = new RegistrationService(result);
 			registrationItem.$save();
 		}
