@@ -699,6 +699,44 @@ function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionS
 //RegistrationModalCtrl.$inject = [ '$scope', 'dialog', 'RegistrationStore' ];
 //------------------------------------
 
+function LoginButtonCtrl($scope, $dialog) {
+
+	$scope.openDialog = function() {
+		var dlg = $dialog.dialog({
+					backdrop : true,
+					keyboard : true,
+					backdropClick : true,
+					templateUrl :  'partials/login-modal.html',
+					controller : 'LoginModalCtrl'
+				});
+		dlg.open().then(function(result) {
+			if (result) {
+				//alert('Thank you for your login: ' + result.userName);
+			}
+		});
+	};
+}
+
+LoginButtonCtrl.$inject = [ '$scope', '$dialog'];
+//------------------------------------
+
+function LoginModalCtrl($scope, dialog, LoginService) {
+		
+	$scope.apply = function(result) {
+		if (result) {
+			var userName = $scope.userName;
+			var password = $scope.givenName;
+			result = {'userName': userName, 'password': password};
+			var loginItem = new LoginService(result);
+			loginItem.$save();
+		}
+		dialog.close(result);
+	};
+}
+
+//LoginModalCtrl.$inject = [ '$scope', 'dialog', 'LoginService' ];
+//------------------------------------
+
 
 //==================================================
 
