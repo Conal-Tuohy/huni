@@ -53,10 +53,10 @@ angular.module('projectdirectoryServices', ['ngResource']).
 		  });
 });
 
-angular.module('historyServices', ['ngResource']).
-    factory('History', function($resource){
+angular.module('historyServices', ['ngResource', 'credentialsServices']).
+    factory('History', function($resource, CredentialsService){
   	  return $resource(baseServiceURL + '/rest/historyitems/:historyItemId', {}, {
-		    query: {method:'GET', params:{}, isArray:true}
+		    query: {method:'GET', params:{}, isArray:true, headers: {Authorization: CredentialsService.basic()}}
 		  });
 });
 
@@ -186,6 +186,77 @@ factory('InstitutionService', function($resource){
 		    query: {method:'GET', params:{institutionId: ""}, isArray:true}
 		  });
 });
+
+
+angular.module('credentialsServices', []).
+	service('CredentialsService', function(){
+		
+        return {
+            setUserName: function(user) {
+            	this.userName = user;
+            },
+            setPassword: function(passwd) {
+            	this.password = passwd;
+            },
+            // Authorization: Basic YWRtaW46YWRtaW4=
+            basic: function() {
+            	var credentials = this.userName + ":" + this.password;
+            	var base64Credentials = window.btoa(credentials);
+            	return "Basic " + base64Credentials;
+            }
+        };
+});
+
+angular.module('profileServices', []).
+	service('ProfileService', function(){
+		
+		var profile = null;
+		
+        return {
+            getProfile: function () {
+                return profile;
+            },
+            setProfile: function(profile) {
+            	this.profile = profile;
+            }
+        };  
+});
+
+
+//This service by name is used to retrieve a user's own profile that they can view and modify.
+//However it is also purposed for user authentication in the login dialog box.
+//http://localhost:8080/virtual_lab/rest/profiles
+angular.module('userServices', ['ngResource', 'credentialsServices']).
+factory('UserService', function($resource, CredentialsService){
+		var serviceUrl = baseServiceURL + '/rest/users/validate/:userName/:password';
+	  return $resource(serviceUrl, {}, {
+	    	login: {method:'GET', headers: {Authorization: CredentialsService.basic()}},
+	    	validateUser: {method:'GET', params:{userName: "", password: ""}, isArray:false}
+		  });
+});
+
+
+
+//$resource('/your/secured/url/here', {}, 
+//	       {get: {method: 'GET', headers: {Authorization: 'Basic ' + 
+//	       Base64.encode($scope.username + ':' + $scope.password)}}});
+//	    // need to a
+
+//http://localhost:8080/virtual_lab/rest/logins
+var loginUrl = baseServiceURL + '/resources/j_spring_security_check';
+//angular.module('loginServices', []).
+//factory('LoginService', function($http){
+//	var loginUrl = baseServiceURL + '/resources/j_spring_security_check';
+//	return $http({method: 'POST', url: loginUrl})
+//		.success(function(data, status, headers, config) {
+//			// this callback will be called asynchronously
+//		    // when the response is available
+//		})
+//		.error(function(data, status, headers, config) {
+//		    // called asynchronously if an error occurs
+//		    // or server returns response with an error status.
+//		});;
+//});
 
 
 

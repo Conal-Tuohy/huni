@@ -711,6 +711,7 @@ function LoginButtonCtrl($scope, $dialog) {
 				});
 		dlg.open().then(function(result) {
 			if (result) {
+				 $scope.welcomeUser = result;
 				//alert('Thank you for your login: ' + result.userName);
 			}
 		});
@@ -720,15 +721,63 @@ function LoginButtonCtrl($scope, $dialog) {
 LoginButtonCtrl.$inject = [ '$scope', '$dialog'];
 //------------------------------------
 
-function LoginModalCtrl($scope, dialog, LoginService) {
-		
-	$scope.apply = function(result) {
+function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, UserService) {
+	
+//	$scope.login = function(result) {
+//		if (result) {
+//			var userName = $scope.userName;
+//			var password = $scope.password;
+//			result = {'j_username': userName, 'j_password': password};
+////			var loginItem = new LoginService(result);
+////			loginItem.$save();
+//			
+//			$http({
+//			    method: 'POST',
+//			    url: loginUrl,
+//			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+//			    transformRequest: function(obj) {
+//			        var str = [];
+//			        for(var p in obj)
+//			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+//			        return str.join("&");
+//			    },
+//			    data: result
+//			})
+//			.success(function (data, status, headers, config) {
+//			     $scope.response = data;
+//				 $scope.status = status;
+//				 result = $scope.userName;
+//			})
+//			.error(function (data, status, headers, config) {
+//		        $scope.response = data || "Request failed";
+//		        $scope.status = status;
+//				result = false;
+//			})
+//			;
+//		}
+//		dialog.close(result);
+//	};
+	
+	$scope.login = function(result) {
 		if (result) {
 			var userName = $scope.userName;
-			var password = $scope.givenName;
-			result = {'userName': userName, 'password': password};
-			var loginItem = new LoginService(result);
-			loginItem.$save();
+			var password = $scope.password;
+//			CredentialsService.setUserName(userName);
+//			CredentialsService.setPassword(password);
+			UserService.validateUser({userName: userName, password: password},
+					function(validProfile) {
+						if (validProfile.userName == userName) {
+							// we have a valid profile so apply the username and password 
+							// and update the profile.
+							CredentialsService.setUserName(userName);
+							CredentialsService.setPassword(password);
+							ProfileService.setProfile(validProfile);				
+						}
+				}, function(inValidProfile) {
+					if (inValidProfile) {
+						$scope.failedLogin = "Invalid username or password";
+					}
+			});
 		}
 		dialog.close(result);
 	};

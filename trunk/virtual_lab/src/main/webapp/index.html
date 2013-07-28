@@ -56,9 +56,6 @@
 	</head>
 
 	<body id="index">
-	
-		<div ng-include="'partials/login-modal.html'"></div>
-
 		<div class="navbar navbar-fixed-top">
 			<!-- header start -->
 			<div class="navbar-inner">
@@ -72,7 +69,8 @@
 							<li ng-include="'partials/registration-button.html'"></li> 
 							|
 							<!-- Button to trigger login modal - login-modal.html -->
-							<li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>|
+							<li ng-include="'partials/login-button.html'"></li>
+							|
 							<li><a href="#">Find Out More</a></li>
 							<script>
 								var dateInfo = "$Date$";

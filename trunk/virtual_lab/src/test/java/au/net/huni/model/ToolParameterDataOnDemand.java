@@ -22,7 +22,7 @@ public class ToolParameterDataOnDemand {
 	private List<ToolParameter> data;
 
 	@Autowired
-    HistoryItemDataOnDemand historyItemDataOnDemand;
+	private HistoryItemDataOnDemand historyItemDataOnDemand;
 
 	public ToolParameter getNewTransientToolParameter(int index) {
         ToolParameter obj = new ToolParameter();
