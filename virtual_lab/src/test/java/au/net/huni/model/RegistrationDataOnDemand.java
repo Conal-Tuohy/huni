@@ -23,7 +23,7 @@ public class RegistrationDataOnDemand {
 	private List<Registration> data;
 
 	@Autowired
-    InstitutionDataOnDemand institutionDataOnDemand;
+    private InstitutionDataOnDemand institutionDataOnDemand;
 
 	public Registration getNewTransientRegistration(int index) {
         Registration obj = new Registration();

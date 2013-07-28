@@ -183,4 +183,12 @@ public class ResearcherController {
         }
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
+
+	@RequestMapping(value = "/rest/researchers", params = "find=ByResearcherName", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> jsonFindResearchersByUserNameEquals(@RequestParam("userName") String userName) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(Researcher.toJsonArray(Researcher.findResearchersByUserNameEquals(userName).getResultList()), headers, HttpStatus.OK);
+    }
 }

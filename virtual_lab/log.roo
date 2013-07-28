@@ -133,3 +133,13 @@ web mvc json add --jsonObject ~.model.Registration --class ~.web.RegistrationCon
 focus --class ~.model.Institution
 // [failed] field string --fieldName name --sizeMax 60 --sizeMin 5 --notNull --unique 
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-29 21:01:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-19 10:16:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-19 11:48:06
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-27 17:05:58
+osgi start --url http://spring-roo-addons.googlecode.com/files/net.tzolov.roo.addon.oauth2-1.0.0.jar 
+web mvc json add --jsonObject ~.model.Researcher --class ~.web.ProfileController
+
+// [failed] finder list --class ~.model.Reseercher
+finder list --class ~.model.Researcher
+finder add --finderName findResearchersByUserNameEquals --class ~.model.Researcher 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-27 20:13:45
