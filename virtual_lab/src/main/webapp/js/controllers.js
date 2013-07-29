@@ -619,7 +619,7 @@ function FeedbackButtonCtrl($scope, $dialog, $location, FeedbackStatus) {
 
 	$scope.feedbackAccepted = function() {
 		return FeedbackStatus.getFeedbackAccepted($location.path());
-	}
+	};
 }
 
 FeedbackButtonCtrl.$inject = [ '$scope', '$dialog', '$location', 'FeedbackStatus' ];
@@ -629,9 +629,6 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStatus, FeedbackSe
 	
 	$scope.rating = 0;
 	$scope.comment = '';
-	
-	debugger;
-	
 	
 	$scope.feedback = function(result) {
 		if (result) {
@@ -648,10 +645,10 @@ function FeedbackModalCtrl($scope, dialog, $location, FeedbackStatus, FeedbackSe
 
 	$scope.context = function() {
 		return $location.path();
-	}
+	};
 }
 
-//FeedbackModalCtrl.$inject = [ '$scope', 'dialog', '$location', 'FeedbackStatus', 'FeedbackService' ];
+FeedbackModalCtrl.$inject = [ '$scope', 'dialog', '$location', 'FeedbackStatus', 'FeedbackService' ];
 //------------------------------------
 
 function RegistrationButtonCtrl($scope, $dialog) {
@@ -690,13 +687,11 @@ function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionS
 			registrationItem.$save();
 		}
 		dialog.close(result);
-	};
-	
-	$scope.institutions = InstitutionService.query();
-	
+	};	
+	$scope.institutions = InstitutionService.query();	
 }
 
-//RegistrationModalCtrl.$inject = [ '$scope', 'dialog', 'RegistrationStore' ];
+RegistrationModalCtrl.$inject = [ '$scope', 'dialog', 'RegistrationService', 'InstitutionService' ];
 //------------------------------------
 
 function LoginButtonCtrl($scope, $dialog) {
@@ -723,57 +718,21 @@ LoginButtonCtrl.$inject = [ '$scope', '$dialog'];
 
 function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, UserService) {
 	
-//	$scope.login = function(result) {
-//		if (result) {
-//			var userName = $scope.userName;
-//			var password = $scope.password;
-//			result = {'j_username': userName, 'j_password': password};
-////			var loginItem = new LoginService(result);
-////			loginItem.$save();
-//			
-//			$http({
-//			    method: 'POST',
-//			    url: loginUrl,
-//			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-//			    transformRequest: function(obj) {
-//			        var str = [];
-//			        for(var p in obj)
-//			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-//			        return str.join("&");
-//			    },
-//			    data: result
-//			})
-//			.success(function (data, status, headers, config) {
-//			     $scope.response = data;
-//				 $scope.status = status;
-//				 result = $scope.userName;
-//			})
-//			.error(function (data, status, headers, config) {
-//		        $scope.response = data || "Request failed";
-//		        $scope.status = status;
-//				result = false;
-//			})
-//			;
-//		}
-//		dialog.close(result);
-//	};
-	
 	$scope.login = function(result) {
 		if (result) {
 			var userName = $scope.userName;
 			var password = $scope.password;
-//			CredentialsService.setUserName(userName);
-//			CredentialsService.setPassword(password);
 			UserService.validateUser({userName: userName, password: password},
-					function(validProfile) {
-						if (validProfile.userName == userName) {
-							// we have a valid profile so apply the username and password 
-							// and update the profile.
-							CredentialsService.setUserName(userName);
-							CredentialsService.setPassword(password);
-							ProfileService.setProfile(validProfile);				
-						}
-				}, function(inValidProfile) {
+				function(validProfile) {
+					if (validProfile.userName == userName) {
+						// we have a valid profile so apply the username and password 
+						// and update the profile.
+						CredentialsService.setUserName(userName);
+						CredentialsService.setPassword(password);
+						ProfileService.setProfile(validProfile);				
+					}
+				}, 
+				function(inValidProfile) {
 					if (inValidProfile) {
 						$scope.failedLogin = "Invalid username or password";
 					}
@@ -783,7 +742,7 @@ function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, User
 	};
 }
 
-//LoginModalCtrl.$inject = [ '$scope', 'dialog', 'LoginService' ];
+LoginModalCtrl.$inject = [ '$scope', 'dialog', 'CredentialsService', 'ProfileService', 'UserService'];
 //------------------------------------
 
 
