@@ -210,11 +210,9 @@ angular.module('credentialsServices', []).
 angular.module('profileServices', []).
 	service('ProfileService', function(){
 		
-		var profile = null;
-		
         return {
             getProfile: function () {
-                return profile;
+                return this.profile;
             },
             setProfile: function(profile) {
             	this.profile = profile;
@@ -225,7 +223,7 @@ angular.module('profileServices', []).
 
 //This service by name is used to retrieve a user's own profile that they can view and modify.
 //However it is also purposed for user authentication in the login dialog box.
-//http://localhost:8080/virtual_lab/rest/profiles
+//http://localhost:8080/virtual_lab/rest/users
 angular.module('userServices', ['ngResource', 'credentialsServices']).
 factory('UserService', function($resource, CredentialsService){
 		var serviceUrl = baseServiceURL + '/rest/users/validate/:userName/:password';
@@ -234,29 +232,6 @@ factory('UserService', function($resource, CredentialsService){
 	    	validateUser: {method:'GET', params:{userName: "", password: ""}, isArray:false}
 		  });
 });
-
-
-
-//$resource('/your/secured/url/here', {}, 
-//	       {get: {method: 'GET', headers: {Authorization: 'Basic ' + 
-//	       Base64.encode($scope.username + ':' + $scope.password)}}});
-//	    // need to a
-
-//http://localhost:8080/virtual_lab/rest/logins
-var loginUrl = baseServiceURL + '/resources/j_spring_security_check';
-//angular.module('loginServices', []).
-//factory('LoginService', function($http){
-//	var loginUrl = baseServiceURL + '/resources/j_spring_security_check';
-//	return $http({method: 'POST', url: loginUrl})
-//		.success(function(data, status, headers, config) {
-//			// this callback will be called asynchronously
-//		    // when the response is available
-//		})
-//		.error(function(data, status, headers, config) {
-//		    // called asynchronously if an error occurs
-//		    // or server returns response with an error status.
-//		});;
-//});
 
 
 

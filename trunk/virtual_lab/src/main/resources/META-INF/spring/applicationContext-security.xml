@@ -5,42 +5,24 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     <!-- HTTP security configurations -->
-    
-<!--     <beans:bean id="authenticationFailureHandler" class="au.net.huni.security.HuniAuthenticationFailureHandler" >
-    </beans:bean>
-    
-    <beans:bean id="authenticationSuccessHandler" class="au.net.huni.security.HuniAuthenticationSuccessHandler" >
-    </beans:bean>
- -->
+
 	<!-- http://www.baeldung.com/2011/11/20/basic-and-digest-authentication-for-a-restful-service-with-spring-security-3-1/ -->
 	<!-- Authentication for REST -->
+	<!-- TODO RR:  Refine access control at the method level. -->
  	<http pattern="/rest/**" create-session="stateless"  use-expressions="true">
 		<intercept-url pattern="/rest/users/validate**" access="permitAll" />
-		<intercept-url pattern="/rest/users/profile**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/users/profile**" access="isAuthenticated()" />  <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/historyitems/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/feedbackitems/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/toolparameters/**" access="isAuthenticated()" />
-		<intercept-url pattern="/rest/registrations/**" access="isAuthenticated()" />
-<!-- 		<intercept-url pattern="/rest/**" access="permitAll" />
- -->		<http-basic />
+		<intercept-url pattern="/rest/registrations/**" access="permitAll" /> <!-- Need method level access control for finer control -->
+		<intercept-url pattern="/rest/institutions/**" access="permitAll" /> <!-- Need method level access control for finer control -->
+ 		<http-basic />
 	</http>
 
-    <http  auto-config="true" use-expressions="true">
-        
+    <http  auto-config="true" use-expressions="true">       
 		<form-login login-processing-url="/resources/j_spring_security_check" login-page="/login" authentication-failure-url="/login?login_error=t" />
-<!--  		
-	<form-login 
- 			login-processing-url="/resources/j_spring_security_check" 
- 			login-page="/login" 
- 			authentication-failure-handler-ref="authenticationFailureHandler" 
- 			authentication-success-handler-ref="authenticationSuccessHandler"/>
- -->        
- 	<logout logout-url="/resources/j_spring_security_logout" />
-        <!-- Configure these elements to secure URIs in your application -->
-<!--         
-		<intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/member/**" access="isAuthenticated()" />
- -->        
+	 	<logout logout-url="/resources/j_spring_security_logout" />
 		<intercept-url pattern="/console/historyitems/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/feedbackitems/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/researchers/**" access="hasRole('ROLE_ADMIN')" />
@@ -51,6 +33,7 @@
 		<intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
  	</http>
+ 	
     <!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
         <!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
