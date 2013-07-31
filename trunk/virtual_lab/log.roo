@@ -150,8 +150,11 @@ field boolean --class ~.model.Researcher --fieldName isAccountEnabled
 // [failed] field string --class ~.model.Roles --fieldName name --sizeMax 50 --notNUll
 // [failed] entity jpa --class ~.model.Role --testAutomatically 
 entity jpa --class ~.model.UserRole --testAutomatically 
-field string --fieldName name --notNull --sizeMax 50 
+field string --fieldName name --notNull --sizeMax 50 --unique
 field set --fieldName roles --type ~.model.UserRole --cardinality MANY_TO_MANY --class  ~.model.Researcher
 hint
 hint topics
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 08:55:14
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-31 13:41:47
+hint
+web mvc scaffold --class ~.web.UserRoleController --backingType ~.model.UserRole

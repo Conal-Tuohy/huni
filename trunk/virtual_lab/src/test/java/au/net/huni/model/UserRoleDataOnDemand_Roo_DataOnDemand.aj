@@ -29,9 +29,9 @@ privileged aspect UserRoleDataOnDemand_Roo_DataOnDemand {
     }
     
     public void UserRoleDataOnDemand.setName(UserRole obj, int index) {
-        String name = "name_" + index;
+        String name = "_" + index;
         if (name.length() > 50) {
-            name = name.substring(0, 50);
+            name = new Random().nextInt(10) + name.substring(1, 50);
         }
         obj.setName(name);
     }

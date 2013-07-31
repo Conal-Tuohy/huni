@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_net_huni_model_UserRole" items="${userroles}" z="4VOFZG6Cdgf3rq9UukUA8+emdWI=">
+        <table:table data="${userroles}" id="l_au_net_huni_model_UserRole" path="/console/userroles" z="user-managed">
+            <table:column id="c_au_net_huni_model_UserRole_name" property="name" z="d+vVIu1hGDApBOQPH5XK+DisBgw="/>
+        </table:table>
+    </page:list>
+</div>

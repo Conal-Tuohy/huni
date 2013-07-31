@@ -2,11 +2,13 @@ package au.net.huni.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -44,6 +46,7 @@ public class Researcher {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<UserRole> roles = new HashSet<UserRole>();
 
+	// Accepts a plain text password and stores it in encrypted form
 	public void setPassword(String clearTextPassword) {
         // Encrypt the password to be saved in the database.
 		// TODO RR: where do we handle the salt?
@@ -51,10 +54,12 @@ public class Researcher {
         this.password = encryptedPassword;
     }
 
+	// Returns the encrypted password
 	public String getPassword() {
         return this.password;
     }
 
+	// Used to set the encrypted password for preservation purposes.
 	public void setEncryptedPassword(String encryptedPassword) {
         this.password = encryptedPassword;
 	}

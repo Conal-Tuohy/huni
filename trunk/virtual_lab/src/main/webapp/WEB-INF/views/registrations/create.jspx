@@ -4,8 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_au_net_huni_model_Registration" modelAttribute="registration" path="/console/registrations" render="${empty dependencies}" z="user-managed">
         <field:input field="userName" id="c_au_net_huni_model_Registration_userName" max="10" min="5" required="true" z="6dOjoPjqL/JmlkB2DbKBFBGyYhc="/>
-        <field:textarea field="givenName" id="c_au_net_huni_model_Registration_givenName" required="true" z="ueYyLlokK7VMk9FQwbrqF6tgbKw="/>
-        <field:textarea field="familyName" id="c_au_net_huni_model_Registration_familyName" required="true" z="ywRUKu+DQ/eDMm4+dInz0jQUIPE="/>
+        <field:input field="givenName" id="c_au_net_huni_model_Registration_givenName" required="true" z="user-managed"/>
+        <field:input field="familyName" id="c_au_net_huni_model_Registration_familyName" required="true" z="user-managed"/>
         <field:input field="emailAddress" id="c_au_net_huni_model_Registration_emailAddress" required="true" validationMessageCode="field_invalid_email" validationRegex="^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$" z="Ypre4QnSROK34qwZBvdYNoJKyzg="/>
         <field:select field="institution" id="c_au_net_huni_model_Registration_institution" itemValue="id" items="${institutions}" path="/institutions" required="true" z="Eg/ZM4l2g3ZveyFzux1SbELcwDU="/>
         <field:datetime dateTimePattern="${registration_applicationdate_date_format}" field="applicationDate" id="c_au_net_huni_model_Registration_applicationDate" required="true" z="vcCvgFlM38xbkloB0i2MdJFBoqk="/>
