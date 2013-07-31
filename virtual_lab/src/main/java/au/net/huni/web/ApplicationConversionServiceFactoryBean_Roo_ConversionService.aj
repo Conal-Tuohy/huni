@@ -9,6 +9,7 @@ import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolParameter;
+import au.net.huni.model.UserRole;
 import au.net.huni.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -162,6 +163,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<UserRole, String> ApplicationConversionServiceFactoryBean.getUserRoleToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.UserRole, java.lang.String>() {
+            public String convert(UserRole userRole) {
+                return new StringBuilder().append(userRole.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, UserRole> ApplicationConversionServiceFactoryBean.getIdToUserRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.UserRole>() {
+            public au.net.huni.model.UserRole convert(java.lang.Long id) {
+                return UserRole.findUserRole(id);
+            }
+        };
+    }
+    
+    public Converter<String, UserRole> ApplicationConversionServiceFactoryBean.getStringToUserRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.UserRole>() {
+            public au.net.huni.model.UserRole convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), UserRole.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getFeedbackItemToStringConverter());
         registry.addConverter(getIdToFeedbackItemConverter());
@@ -181,6 +206,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getToolParameterToStringConverter());
         registry.addConverter(getIdToToolParameterConverter());
         registry.addConverter(getStringToToolParameterConverter());
+        registry.addConverter(getUserRoleToStringConverter());
+        registry.addConverter(getIdToUserRoleConverter());
+        registry.addConverter(getStringToUserRoleConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

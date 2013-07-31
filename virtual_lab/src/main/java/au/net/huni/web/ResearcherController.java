@@ -21,6 +21,7 @@ import org.springframework.web.util.WebUtils;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.UserRole;
 
 @Controller
 @RooWebScaffold(path = "researchers", formBackingObject = Researcher.class)
@@ -114,6 +115,7 @@ public class ResearcherController {
 	void populateEditForm(Model uiModel, Researcher researcher) {
         uiModel.addAttribute("researcher", researcher);
         uiModel.addAttribute("historyitems", HistoryItem.findAllHistoryItems());
+        uiModel.addAttribute("userroles", UserRole.findAllUserRoles());
     }
 	
 	// The REST access points do not need to be exposed.

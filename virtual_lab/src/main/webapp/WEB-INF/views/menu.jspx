@@ -27,5 +27,9 @@
             <menu:item id="i_registration_new" messageCode="global_menu_new" url="/console/registrations?form" z="user-managed"/>
             <menu:item id="i_registration_list" messageCode="global_menu_list" url="/console/registrations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
         </menu:category>
+        <menu:category id="c_userrole" z="C4C1ZBdes4PUIjEM3Ajwwhn1EwA=">
+            <menu:item id="i_userrole_new" messageCode="global_menu_new" url="/console/userroles?form" z="user-managed"/>
+            <menu:item id="i_userrole_list" messageCode="global_menu_list" url="/console/userroles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+        </menu:category>
     </menu:menu>
 </div>
