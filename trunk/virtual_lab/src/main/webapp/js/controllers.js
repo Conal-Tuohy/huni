@@ -723,28 +723,32 @@ function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, User
 			var userName = $scope.userName;
 			var password = $scope.password;
 			UserService.validateUser({userName: userName, password: password},
-				function(validProfile) {
-					if (validProfile.userName == userName) {
+				function(validResponse, status, headers, config) {
+					if (validResponse.userName == userName) {
 						// we have a valid profile so apply the username and password 
 						// and update the profile.
 						CredentialsService.setUserName(userName);
 						CredentialsService.setPassword(password);
-						ProfileService.setProfile(validProfile);				
+						ProfileService.setProfile(validResponse);				
+						dialog.close(result);
+					} else if (validResponse.status = 'failure') {
+						$scope.failedLogin = validResponse.reason;
 					}
 				}, 
-				function(inValidProfile) {
+				function(inValidProfile, status, headers, config) {
+					if (status == '404') {
+						$scope.failedLogin = "The requested resource is not available.";
+					}
 					if (inValidProfile) {
-						$scope.failedLogin = "Invalid username or password";
+						$scope.failedLogin = "Remote server failure";
 					}
 			});
 		}
-		dialog.close(result);
 	};
 }
 
 LoginModalCtrl.$inject = [ '$scope', 'dialog', 'CredentialsService', 'ProfileService', 'UserService'];
 //------------------------------------
-
 
 //==================================================
 

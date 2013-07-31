@@ -158,3 +158,8 @@ hint topics
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-31 13:41:47
 hint
 web mvc scaffold --class ~.web.UserRoleController --backingType ~.model.UserRole
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 20:15:29
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-31 21:57:37
+perform clean
+perform eclipse
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 22:13:28

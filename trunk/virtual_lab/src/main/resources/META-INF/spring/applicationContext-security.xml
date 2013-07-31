@@ -43,6 +43,7 @@
         <!-- MacOS X: 'echo -n your_desired_password  | shasum -a 256' -->
 		<authentication-provider user-service-ref="userDetailsService">
 			<!-- Get credentials from the database -->
+            <password-encoder hash="sha-256" />
 		</authentication-provider>
         <authentication-provider>
             <password-encoder hash="sha-256" />
