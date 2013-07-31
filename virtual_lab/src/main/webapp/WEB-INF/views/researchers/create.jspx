@@ -3,7 +3,10 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_au_net_huni_model_Researcher" modelAttribute="researcher" path="/console/researchers" render="${empty dependencies}" z="user-managed">
-        <field:textarea field="userName" id="c_au_net_huni_model_Researcher_userName" required="true" z="Wbekog3JrnXubamZBHGw6RuunT0="/>
+        <field:input field="userName" id="c_au_net_huni_model_Researcher_userName" required="true" type="text" z="user-managed"/>
+        <field:input field="password" id="c_au_net_huni_model_Researcher_password" type="password" z="user-managed"/>
+        <field:checkbox field="isAccountEnabled" id="c_au_net_huni_model_Researcher_isAccountEnabled" z="eNQ+Bf7dMBru+rzOSevZ9D9tYuY="/>
+        <field:select field="roles" id="c_au_net_huni_model_Researcher_roles" itemValue="id" items="${userroles}" multiple="true" path="/userroles" z="I9qAFRfc4SPYpwLkVIuLBkREl6M="/>
         <field:textarea field="givenName" id="c_au_net_huni_model_Researcher_givenName" required="true" z="L6Wlj0mcknPkXrc3VfkNuDikP78="/>
         <field:textarea field="familyName" id="c_au_net_huni_model_Researcher_familyName" required="true" z="DAQcTwVWJ9RsoY6CTQINNSFS/Yg="/>
         <field:select field="history" id="c_au_net_huni_model_Researcher_history" itemValue="id" items="${historyitems}" multiple="true" path="/console/historyitems" z="user-managed"/>

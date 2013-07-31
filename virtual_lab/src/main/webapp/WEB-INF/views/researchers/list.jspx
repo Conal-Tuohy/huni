@@ -5,6 +5,8 @@
     <page:list id="pl_au_net_huni_model_Researcher" items="${researchers}" z="pzER+XymerDuO/folZ8u3Cum4bM=">
         <table:table data="${researchers}" id="l_au_net_huni_model_Researcher" path="/console/researchers" z="user-managed">
             <table:column id="c_au_net_huni_model_Researcher_userName" property="userName" z="3l0rPXm2ourQIZ31HXADEPdKkck="/>
+            <table:column id="c_au_net_huni_model_Researcher_password" property="password" z="user-managed" render="false" />
+            <table:column id="c_au_net_huni_model_Researcher_isAccountEnabled" property="isAccountEnabled" z="XTFQs4aTQecByOwxXEg8aRzNdvY="/>
             <table:column id="c_au_net_huni_model_Researcher_givenName" property="givenName" z="7Rurb54yMheOjw8Ett2l3o+W3NY="/>
             <table:column id="c_au_net_huni_model_Researcher_familyName" property="familyName" z="EBVpdOSyB7tnNtz5RkOTBmMmhwU="/>
         </table:table>

@@ -4,6 +4,9 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_au_net_huni_model_Researcher" object="${researcher}" path="/console/researchers" z="user-managed">
         <field:display field="userName" id="s_au_net_huni_model_Researcher_userName" object="${researcher}" z="BfzrnbpyHB1kAhOKVElQAlbsViM="/>
+        <field:display field="password" id="s_au_net_huni_model_Researcher_password" object="${researcher}" z="user-managed"  render="false"/>
+        <field:display field="isAccountEnabled" id="s_au_net_huni_model_Researcher_isAccountEnabled" object="${researcher}" z="NWQZxJDggKlRZRlp5iG9TImEcCQ="/>
+        <field:display field="roles" id="s_au_net_huni_model_Researcher_roles" object="${researcher}" z="RDFOdN+UtV82OYseyknW2zPaOq0="/>
         <field:display field="givenName" id="s_au_net_huni_model_Researcher_givenName" object="${researcher}" z="3sxkXeaHjAUL6WYA5ET6ZqMeSG8="/>
         <field:display field="familyName" id="s_au_net_huni_model_Researcher_familyName" object="${researcher}" z="f0pXTqfZ3d7RGXT8gUMhD1pzQOc="/>
     </page:show>
