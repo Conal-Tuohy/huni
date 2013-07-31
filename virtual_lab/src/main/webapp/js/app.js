@@ -40,6 +40,7 @@ var virtualLab = angular.module('virtualab', [
                              'credentialsServices',
                              'profileServices',
                              'userServices',
+                             'httpInterceptors',
                              
                              'ui.bootstrap',
                              'ui.select2'

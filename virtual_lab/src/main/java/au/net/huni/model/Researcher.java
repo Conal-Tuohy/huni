@@ -1,5 +1,7 @@
 package au.net.huni.model;
 
+import flexjson.JSONSerializer;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,4 +65,12 @@ public class Researcher {
 	public void setEncryptedPassword(String encryptedPassword) {
         this.password = encryptedPassword;
 	}
+
+	public static String toJsonArray(Collection<Researcher> collection) {
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(collection);
+    }
+
+	public String toJson() {
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(this);
+    }
 }

@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -30,31 +32,29 @@ public class UsersController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	@RequestMapping(value = "/rest/users/validate/{userName}/{password}", headers = "Accept=application/json")
+	@RequestMapping(value = "/rest/users/validate/{userName}/{password}", headers = "Accept=application/json", produces = "text/html")
     @ResponseBody
     public ResponseEntity<String> isValidUser(@PathVariable("userName") String userName, @PathVariable("password") String password, HttpServletRequest request) {
-        HttpHeaders headers = new HttpHeaders();
+
+		HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
+        
 		Authentication authenticatedUser = null;
 		
 		try{		
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
 			token.setDetails(new WebAuthenticationDetails(request));
 			authenticatedUser = authenticationManager.authenticate(token);
+		} catch (LockedException lockedException) {
+	        return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Locked account\"}", headers, HttpStatus.OK);
+		} catch (BadCredentialsException badCredentialsException) {
+			return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Bad credentials\"}", headers, HttpStatus.OK);
 		} catch (Exception exception) {
-            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
 		}
 
         if (authenticatedUser.isAuthenticated()) {
-	        TypedQuery<Researcher> researcherQuery = Researcher.findResearchersByUserNameEquals(userName);
-	        Researcher researcher = null;
-	        try {
-		        researcher = researcherQuery.getSingleResult();
-			} catch (Exception exception) {
-				if (exception instanceof EmptyResultDataAccessException) {
-					researcher = null;
-				}
-			}
+	        Researcher researcher = findResearcher(userName);
 	        if (researcher == null) {
 	            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
 	        }
@@ -65,7 +65,20 @@ public class UsersController {
 		}
     }
 
-	@RequestMapping(value = "/rest/users/profile", method = RequestMethod.PUT, headers = "Accept=application/json")
+	protected Researcher findResearcher(String userName) {
+		TypedQuery<Researcher> researcherQuery = Researcher.findResearchersByUserNameEquals(userName);
+		Researcher researcher = null;
+		try {
+		    researcher = researcherQuery.getSingleResult();
+		} catch (Exception exception) {
+			if (exception instanceof EmptyResultDataAccessException) {
+				researcher = null;
+			}
+		}
+		return researcher;
+	}
+
+	@RequestMapping(value = "/rest/users/profile", method = RequestMethod.PUT, headers = "Accept=application/json", produces="application/json")
     public ResponseEntity<String> editProfile(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
@@ -108,4 +121,9 @@ public class UsersController {
     public ResponseEntity<String> jsonFindResearchersByUserNameEquals(@RequestParam("userName") String userName) {
         return null;
     }
+
+	public void setAuthenticationManager(
+			AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
+	}
 }

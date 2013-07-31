@@ -3,25 +3,16 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.Researcher;
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import flexjson.JSONDeserializer;
+
 privileged aspect Researcher_Roo_Json {
-    
-    public String Researcher.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
     
     public static Researcher Researcher.fromJsonToResearcher(String json) {
         return new JSONDeserializer<Researcher>().use(null, Researcher.class).deserialize(json);
-    }
-    
-    public static String Researcher.toJsonArray(Collection<Researcher> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
     public static Collection<Researcher> Researcher.fromJsonArrayToResearchers(String json) {

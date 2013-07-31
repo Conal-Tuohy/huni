@@ -24,6 +24,9 @@
 				<p>Not a registered user? Click here to create an account.</p>
 				<p>Forgot your password? Click here to retrieve it.</p>
 			</div>
+			<div>
+				{{failedLogin}}
+			</div>
 			<div class="modal-footer">
 				<button class="btn" aria-hidden="true"  ng-click="login(false)">Cancel</button>
 				<button class="btn btn-primary"  ng-click="login(true)">Submit</button>
