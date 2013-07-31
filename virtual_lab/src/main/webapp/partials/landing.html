@@ -24,57 +24,16 @@
 			<div class="search-container">
 				<h2>Aggregated Data Search</h2>
 
-				<div class="accordion" id="searchAccordian">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#searchAccordian" href="#collapseSimpleSearch">
-								Simple Search
-							</a>
+				<div class="accordion-inner" ng-controller="SimpleSearchController" ng-init="init()">
+					<form class="searchbox">
+						<div class="input-prepend">
+							<input id="simpleSearch" type="text" name="text"
+								placeholder="Type your search here to begin!"
+								ng-model="query" autofocus="autofocus"> <input
+								id="submitSimpleSearch" type="submit" value="Search"
+								ng-click="search()">
 						</div>
-						<div id="collapseSimpleSearch" class="accordion-body collapse in">
-							<div class="accordion-inner" ng-controller="SimpleSearchController" ng-init="init()">
-								<form class="searchbox">
-									<div class="input-prepend">
-										<input id="simpleSearch" type="text" name="text"
-											placeholder="Type your search here to begin!"
-											ng-model="query" autofocus="autofocus"> <input
-											id="submitSimpleSearch" type="submit" value="Search"
-											ng-click="search()">
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#searchAccordian" href="#collapseDeepSearch">
-								Deep Search
-							</a>
-						</div>
-						<div id="collapseDeepSearch" class="accordion-body collapse">
-							<div class="accordion-inner" ng-controller="DeepSearchController">
-								<form class="searchbox">
-									<div class="input-prepend">
-										<div class="btn-group">
-											<button class="btn dropdown-toggle" data-toggle="dropdown">
-												All fields <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu">
-												<li>Advanced</li>
-												<li>-</li>
-												<li>People</li>
-												<li>Places</li>
-												<li>Objects</li>
-												<li>Events</li>
-											</ul>
-										</div>
-										<input id="deepSearch" type="text" name="text" placeholder="Type your search here to begin!" ng-model="keywords">
-									</div>
-									<input id="submitDeepSearch" type="submit" value="Search" ng-click="search()">
-								</form>
-							</div>
-						</div>
-					</div>
+					</form>
 				</div>
 
 				<span style="float: left;"><form>
