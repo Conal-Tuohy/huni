@@ -28,48 +28,51 @@ import au.net.huni.model.Researcher;
 @RooWebJson(jsonObject = Researcher.class)
 @Controller
 public class UsersController {
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
 	@RequestMapping(value = "/rest/users/validate/{userName}/{password}", headers = "Accept=application/json", produces = "text/html")
-    @ResponseBody
-    public ResponseEntity<String> isValidUser(@PathVariable("userName") String userName, @PathVariable("password") String password, HttpServletRequest request) {
+	@ResponseBody
+	public ResponseEntity<String> isValidUser(
+			@PathVariable("userName") String userName,
+			@PathVariable("password") String password,
+			HttpServletRequest request) {
 
 		HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
-        
+		headers.add("Content-Type", "application/json; charset=utf-8");
+
 		Authentication authenticatedUser = null;
-		
-		try{		
+
+		try {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
 			token.setDetails(new WebAuthenticationDetails(request));
 			authenticatedUser = authenticationManager.authenticate(token);
 		} catch (LockedException lockedException) {
-	        return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Locked account\"}", headers, HttpStatus.OK);
+			return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Locked account\"}", headers, HttpStatus.OK);
 		} catch (BadCredentialsException badCredentialsException) {
 			return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Bad credentials\"}", headers, HttpStatus.OK);
 		} catch (Exception exception) {
 			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
 		}
 
-        if (authenticatedUser.isAuthenticated()) {
-	        Researcher researcher = findResearcher(userName);
-	        if (researcher == null) {
-	            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-	        }
-	        return new ResponseEntity<String>(researcher.toJson(), headers, HttpStatus.OK);
+		if (authenticatedUser.isAuthenticated()) {
+			Researcher researcher = findResearcher(userName);
+			if (researcher == null) {
+				return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<String>(researcher.toJson(), headers, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
 		}
-		else{
-            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-		}
-    }
+	}
 
+	// Used to stub out static method call for tests.
 	protected Researcher findResearcher(String userName) {
 		TypedQuery<Researcher> researcherQuery = Researcher.findResearchersByUserNameEquals(userName);
 		Researcher researcher = null;
 		try {
-		    researcher = researcherQuery.getSingleResult();
+			researcher = researcherQuery.getSingleResult();
 		} catch (Exception exception) {
 			if (exception instanceof EmptyResultDataAccessException) {
 				researcher = null;
@@ -78,52 +81,55 @@ public class UsersController {
 		return researcher;
 	}
 
-	@RequestMapping(value = "/rest/users/profile", method = RequestMethod.PUT, headers = "Accept=application/json", produces="application/json")
-    public ResponseEntity<String> editProfile(@RequestBody String json) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
-        Researcher researcher = Researcher.fromJsonToResearcher(json);
-        if (researcher.merge() == null) {
-            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<String>(headers, HttpStatus.OK);
-    }
+	@RequestMapping(value = "/rest/users/profile", method = RequestMethod.PUT, headers = "Accept=application/json", produces = "application/json")
+	public ResponseEntity<String> editProfile(@RequestBody String json) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json");
+		Researcher researcher = Researcher.fromJsonToResearcher(json);
+		if (researcher.merge() == null) {
+			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>(headers, HttpStatus.OK);
+	}
 
-
-    public ResponseEntity<String> showJson(@PathVariable("id") Long id) {
-        return null;
-    }
-
-    public ResponseEntity<String> listJson() {
-        return null;
-    }
-
-    public ResponseEntity<String> createFromJson(@RequestBody String json) {
-        return null;
-    }
-
-    public ResponseEntity<String> createFromJsonArray(@RequestBody String json) {
-        return null;
-    }
-
-    public ResponseEntity<String> updateFromJson(@RequestBody String json) {
-        return null;
-    }
-
-    public ResponseEntity<String> updateFromJsonArray(@RequestBody String json) {
-        return null;
-    }
-
-    public ResponseEntity<String> deleteFromJson(@PathVariable("id") Long id) {
-        return null;
-    }
-
-    public ResponseEntity<String> jsonFindResearchersByUserNameEquals(@RequestParam("userName") String userName) {
-        return null;
-    }
-
-	public void setAuthenticationManager(
-			AuthenticationManager authenticationManager) {
+	// Inject service for tests.
+	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
+	}
+
+	//====================================================
+	// Stubbed out to keep Roo from interfering.
+	
+	public ResponseEntity<String> showJson(@PathVariable("id") Long id) {
+		return null;
+	}
+
+	public ResponseEntity<String> listJson() {
+		return null;
+	}
+
+	public ResponseEntity<String> createFromJson(@RequestBody String json) {
+		return null;
+	}
+
+	public ResponseEntity<String> createFromJsonArray(@RequestBody String json) {
+		return null;
+	}
+
+	public ResponseEntity<String> updateFromJson(@RequestBody String json) {
+		return null;
+	}
+
+	public ResponseEntity<String> updateFromJsonArray(@RequestBody String json) {
+		return null;
+	}
+
+	public ResponseEntity<String> deleteFromJson(@PathVariable("id") Long id) {
+		return null;
+	}
+
+	public ResponseEntity<String> jsonFindResearchersByUserNameEquals(
+			@RequestParam("userName") String userName) {
+		return null;
 	}
 }
