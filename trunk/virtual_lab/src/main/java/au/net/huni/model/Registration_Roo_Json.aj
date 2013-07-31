@@ -3,12 +3,9 @@
 
 package au.net.huni.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import flexjson.JSONDeserializer;
+import au.net.huni.model.Registration;
 import flexjson.JSONSerializer;
+import java.util.Collection;
 
 privileged aspect Registration_Roo_Json {
     
@@ -16,10 +13,8 @@ privileged aspect Registration_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
-        
     public static String Registration.toJsonArray(Collection<Registration> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
-        
 }

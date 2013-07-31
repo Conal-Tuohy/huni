@@ -117,7 +117,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Researcher, String> ApplicationConversionServiceFactoryBean.getResearcherToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Researcher, java.lang.String>() {
             public String convert(Researcher researcher) {
-                return new StringBuilder().append(researcher.getUserName()).append(' ').append(researcher.getGivenName()).append(' ').append(researcher.getFamilyName()).toString();
+                return new StringBuilder().append(researcher.getPassword()).append(' ').append(researcher.getUserName()).append(' ').append(researcher.getGivenName()).append(' ').append(researcher.getFamilyName()).toString();
             }
         };
     }

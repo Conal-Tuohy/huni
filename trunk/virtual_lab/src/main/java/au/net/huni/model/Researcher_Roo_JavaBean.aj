@@ -5,6 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.UserRole;
 import java.util.Set;
 
 privileged aspect Researcher_Roo_JavaBean {
@@ -39,6 +40,22 @@ privileged aspect Researcher_Roo_JavaBean {
     
     public void Researcher.setHistory(Set<HistoryItem> history) {
         this.history = history;
+    }
+    
+    public Boolean Researcher.getIsAccountEnabled() {
+        return this.isAccountEnabled;
+    }
+    
+    public void Researcher.setIsAccountEnabled(Boolean isAccountEnabled) {
+        this.isAccountEnabled = isAccountEnabled;
+    }
+    
+    public Set<UserRole> Researcher.getRoles() {
+        return this.roles;
+    }
+    
+    public void Researcher.setRoles(Set<UserRole> roles) {
+        this.roles = roles;
     }
     
 }

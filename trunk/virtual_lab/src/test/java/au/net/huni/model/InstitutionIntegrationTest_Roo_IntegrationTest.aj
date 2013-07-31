@@ -21,7 +21,7 @@ privileged aspect InstitutionIntegrationTest_Roo_IntegrationTest {
     declare @type: InstitutionIntegrationTest: @Transactional;
     
     @Autowired
-    private InstitutionDataOnDemand InstitutionIntegrationTest.dod;
+    InstitutionDataOnDemand InstitutionIntegrationTest.dod;
     
     @Test
     public void InstitutionIntegrationTest.testCountInstitutions() {
