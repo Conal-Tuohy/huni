@@ -29,6 +29,11 @@ import au.net.huni.model.Researcher;
 @Controller
 public class UsersController {
 
+	private final static HttpHeaders JSON_HEADERS = new HttpHeaders();
+	static {
+		JSON_HEADERS.add("Content-Type", "application/json; charset=utf-8");
+	}
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -39,57 +44,48 @@ public class UsersController {
 			@PathVariable("password") String password,
 			HttpServletRequest request) {
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "application/json; charset=utf-8");
-
 		Authentication authenticatedUser = null;
-
 		try {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
 			token.setDetails(new WebAuthenticationDetails(request));
 			authenticatedUser = authenticationManager.authenticate(token);
-		} catch (LockedException lockedException) {
-			return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Locked account\"}", headers, HttpStatus.OK);
-		} catch (BadCredentialsException badCredentialsException) {
-			return new ResponseEntity<String>("{\"status\":\"failure\", \"reason\": \"Bad credentials\"}", headers, HttpStatus.OK);
-		} catch (Exception exception) {
-			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-		}
-
-		if (authenticatedUser.isAuthenticated()) {
-			Researcher researcher = findResearcher(userName);
-			if (researcher == null) {
-				return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+			Researcher researcher = null;
+			if (authenticatedUser.isAuthenticated() && (researcher = findResearcher(userName)) != null) {
+				return responsePacket(researcher.toJson(), HttpStatus.OK);
 			}
-			return new ResponseEntity<String>(researcher.toJson(), headers, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+		} catch (LockedException lockedException) {
+			return responsePacket("{\"status\":\"failure\", \"reason\": \"Locked account\"}", HttpStatus.OK);
+		} catch (BadCredentialsException badCredentialsException) {
+			return responsePacket("{\"status\":\"failure\", \"reason\": \"Bad credentials\"}", HttpStatus.OK);
+		} catch (EmptyResultDataAccessException emptyResultException) {
+			return responsePacket(HttpStatus.NOT_FOUND);
+		} catch (Exception exception) {
+			return responsePacket(HttpStatus.NOT_FOUND);
 		}
+		return responsePacket(HttpStatus.NOT_FOUND);
+	}
+
+	private ResponseEntity<String> responsePacket(HttpStatus status) {
+		return new ResponseEntity<String>(JSON_HEADERS, status);
+	}
+
+	private ResponseEntity<String> responsePacket(String payload, HttpStatus status) {
+		return new ResponseEntity<String>(payload, JSON_HEADERS, status);
 	}
 
 	// Used to stub out static method call for tests.
 	protected Researcher findResearcher(String userName) {
 		TypedQuery<Researcher> researcherQuery = Researcher.findResearchersByUserNameEquals(userName);
-		Researcher researcher = null;
-		try {
-			researcher = researcherQuery.getSingleResult();
-		} catch (Exception exception) {
-			if (exception instanceof EmptyResultDataAccessException) {
-				researcher = null;
-			}
-		}
-		return researcher;
+		return researcherQuery.getSingleResult();
 	}
 
 	@RequestMapping(value = "/rest/users/profile", method = RequestMethod.PUT, headers = "Accept=application/json", produces = "application/json")
 	public ResponseEntity<String> editProfile(@RequestBody String json) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "application/json");
 		Researcher researcher = Researcher.fromJsonToResearcher(json);
 		if (researcher.merge() == null) {
-			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+			return responsePacket(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<String>(headers, HttpStatus.OK);
+		return responsePacket(HttpStatus.OK);
 	}
 
 	// Inject service for tests.
