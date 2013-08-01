@@ -1,0 +1,165 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-05-06 15:45:31
+// [failed] jpa setup --database DERBY_EMBEDDED --provider HIBERNATE
+help
+// [failed] jpa setup --database DERBY_EMBEDDED --provider HIBERNATE
+jpa setup --database DERBY_EMBEDDED --provider HIBERNATE
+entity jpa --class ~.model.HistoryItem
+field string --fieldName toolName
+// [failed] field date --type java.util.Calendar --fieldName date --notNull true
+field date --type java.util.Calendar --fieldName executionDate --notNull true
+field other --type java.awt.Color --fieldName backgroundColour
+field string --fieldName json 
+entity jpa --class ~.model.Researcher
+field string --fieldName userName --notNull true --sizeMax 128
+field string --fieldName givenName --notNull true --sizeMax 256
+field string --fieldName familyName --notNull true --sizeMax 256
+field other --type Researcher --fieldName owner
+field set --fieldName history --type HistoryItem 
+focus --class ~.model.HistoryItem 
+field reference --type Researcher --fieldName owner
+test integration
+focus --class  ~.model.Researcher
+test integration
+test mock 
+focus --class ~.model.HistoryItem 
+test mock 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-05-06 17:20:33
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-05-07 10:14:22
+web mvc setup
+web mvc all --package ~.web
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-05-07 17:15:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 14:31:09
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-08 17:14:09
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-09 10:28:31
+logging setup --level DEBUG
+focus --class ~.model.HistoryItem
+hint field
+hint
+hint fields
+field date --fieldName executionDate --type java.util.Date --notNull 
+hint 
+hint fields
+hint fields
+hint relationships
+field set --fieldName history --class Researcher --type HistoryItem --mappedBy owner
+field reference --fieldName owner --class HistoryItem --type Researcher --notNull
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-09 17:11:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 08:14:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 08:17:05
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 08:24:48
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 08:35:46
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 11:42:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 11:52:36
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-10 12:06:56
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-10 12:45:27
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-12 10:57:59
+entity jpa --class ~.model.ToolParameter
+hint
+hint fields
+field string --fieldName name --sizeMin 2 --notNull
+// [failed] field string --fieldName value --notNull
+// [failed] field number --fieldName order --type int --digitsInteger 
+field number --fieldName displayOrder --type int --digitsInteger 
+// [failed] field set --fieldName toolParameters --type ~.model.ToolParameter
+// [failed] field set --fieldName toolParameters --type ~.model.ToolParameter
+field set --fieldName toolParameters --type ~.model.ToolParameter --class ~.model.HistoryItem
+hint
+hint topics
+test integration 
+test integration --entity ~.model.ToolParameter
+web mvc scaffold --class ~.model.ToolParameter
+web mvc scaffold --class ~.web.ToolParameterController
+// [failed] field string --fieldName value
+field string --fieldName amount
+// [failed] field reference --fieldName owner --type ~.model.HistoryItem --cardinality MANY_TO_MANY --notNull 
+field reference --fieldName owner --type ~.model.HistoryItem --cardinality MANY_TO_ONE --notNull 
+json all
+hint
+hint json
+web mvc json all
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-12 20:47:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-24 18:08:30
+hint
+hint
+hint
+entity jpa --class ~.model.FeedbackItem
+field string --fieldName context
+field enum --fieldName rating --type Rating
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-24 18:28:26
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-25 21:27:14
+// [failed] focus --class FeedbackItem
+// [failed] field string --fieldName comment
+// [failed] field string --fieldName comment --class ~.domain.FeedbackItem
+field string --fieldName comment --class ~.model.FeedbackItem
+test integration
+test mock
+web mvc scaffold --class FeedbackItemController --backingType FeedbackItem 
+web mvc json add --jsonObject ~.model.FeedbackItem 
+json add --class ~.model.FeedbackItem 
+web mvc json add --jsonObject ~.model.FeedbackItem --class ~.web.FeedbackItemController 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-25 22:56:38
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-26 22:29:58
+hint security
+addon search security
+security setup
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-26 23:12:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-06-29 17:24:18
+entity jpa --class ~.model.Registration
+field string --fieldName userName --notNull --sizeMax 10 --sizeMin 5 --unique
+field string --fieldName givenName --notNull --sizeMax 60 --sizeMin 1
+field string --fieldName familyName --notNull --sizeMax 60 --sizeMin 1
+field string --fieldName emailAddress --notNull --regexp ^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$
+entity jpa --class ~.model.Institution
+field string --fieldName name --notNull --sizeMax 10 --sizeMin 5 --unique
+field reference --class ~.model.Registration --fieldName institution --type Institution --cardinality MANY_TO_ONE --notNull 
+field date --fieldName applicationDate --type java.util.Calendar --dateFormat SHORT --notNull
+field date --fieldName approvalDate --type java.util.Calendar --dateFormat SHORT
+test integration
+focus --class Institution
+test integration
+test mock
+focus --class Registration
+test mock
+web mvc scaffold --class InstitutionController --backingType Institution
+web mvc scaffold --class RegistrationController --backingType Registration
+json add --class ~.model.Institution
+json add --class ~.model.Registration
+web mvc json add --jsonObject ~.model.Institution
+web mvc json add --jsonObject ~.model.Registration
+web mvc json add --jsonObject ~.web.Registration
+web mvc json add --jsonObject ~.web.Institution
+web mvc json add --jsonObject ~.model.Institution --class ~.web.InstitutionController
+web mvc json add --jsonObject ~.model.Registration --class ~.web.RegistrationController
+focus --class ~.model.Institution
+// [failed] field string --fieldName name --sizeMax 60 --sizeMin 5 --notNull --unique 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-06-29 21:01:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-19 10:16:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-19 11:48:06
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-27 17:05:58
+osgi start --url http://spring-roo-addons.googlecode.com/files/net.tzolov.roo.addon.oauth2-1.0.0.jar 
+web mvc json add --jsonObject ~.model.Researcher --class ~.web.ProfileController
+
+// [failed] finder list --class ~.model.Reseercher
+finder list --class ~.model.Researcher
+finder add --finderName findResearchersByUserNameEquals --class ~.model.Researcher 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-27 20:13:45
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-30 07:53:19
+// [failed] field string --class ~.domain.Researcher --fieldName password --sizeMax 30
+field string --class ~.model.Researcher --fieldName password --sizeMax 30
+field boolean --class ~.model.Researcher --fieldName isAccountEnabled 
+// [failed] field string --class ~.model.Roles --fieldName name --sizeMax 50 --notNUll
+// [failed] entity jpa --class ~.model.Role --testAutomatically 
+entity jpa --class ~.model.UserRole --testAutomatically 
+field string --fieldName name --notNull --sizeMax 50 --unique
+field set --fieldName roles --type ~.model.UserRole --cardinality MANY_TO_MANY --class  ~.model.Researcher
+hint
+hint topics
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 08:55:14
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-31 13:41:47
+hint
+web mvc scaffold --class ~.web.UserRoleController --backingType ~.model.UserRole
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 20:15:29
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-31 21:57:37
+perform clean
+perform eclipse
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 22:13:28

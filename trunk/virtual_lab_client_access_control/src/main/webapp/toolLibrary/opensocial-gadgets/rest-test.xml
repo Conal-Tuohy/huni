@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs title="HuNI: Test RESTful Web Services"  height="600" width= "500"/>
+	<Content type="url" view="canvas" href="/virtual_lab/toolLibrary/test/rest-test/index.html" />
+</Module>

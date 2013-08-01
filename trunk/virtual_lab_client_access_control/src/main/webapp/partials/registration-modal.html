@@ -1,0 +1,55 @@
+<div id="registrationModal" class="modal" tabindex="-1" role="dialog" 
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	
+	<form id="registration-form " class="">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h3 id="registrationModalLabel">New User Registration</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="registrationUserName">Username*</label>
+				<div class="controls">
+					<input type="text" id="registrationUserName" placeholder="UserName"  ng-model="userName">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="registrationGivenName">Given
+					Name*</label>
+				<div class="controls">
+					<input type="text" id="registrationGivenName" placeholder="GivenName"  ng-model="givenName">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="registrationFamilyName">Family Name*</label>
+				<div class="controls">
+					<input type="text" id="registrationFamilyName" placeholder="FamilyName"  ng-model="familyName">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="registrationEmail">Email Address*</label>
+				<div class="controls">
+					<input type="text" id="registrationEmail" placeholder="email@address.com.au"  ng-model="emailAddress">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="registrationInstitution">Institution</label>
+				<div class="controls">
+					<select ui-select2 ng-model="institutionId" data-placeholder="Pick an institution"  ng-required="true">
+					    <option value=""></option>
+					    <option ng-repeat="institution in institutions" value="{{institution.id}}">{{institution.name}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" aria-hidden="true" ng-click="apply(false)">Cancel</button>
+			<button class="btn btn-primary" ng-click="apply(true)">Submit</button>
+		</div>
+	</form>
+	
+</div>
+

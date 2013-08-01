@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_net_huni_model_FeedbackItem" items="${feedbackitems}" z="JdgRiHqPGxw4MoVDDoG33I3F7yQ=">
+        <table:table data="${feedbackitems}" id="l_au_net_huni_model_FeedbackItem" path="/console/feedbackitems" z="user-managed">
+            <table:column id="c_au_net_huni_model_FeedbackItem_context" property="context" z="WV/3SF4stjU3Nzrmk/GFyTXgoyI="/>
+            <table:column id="c_au_net_huni_model_FeedbackItem_rating" property="rating" z="7MuZEv1VcBtr5D4RLAPoQwCImUI="/>
+            <table:column id="c_au_net_huni_model_FeedbackItem_comment" property="comment" z="0FgMDvV62y0TYc1gDBouOGuJdsk="/>
+        </table:table>
+    </page:list>
+</div>

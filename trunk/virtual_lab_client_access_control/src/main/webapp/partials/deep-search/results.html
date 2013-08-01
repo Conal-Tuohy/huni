@@ -1,0 +1,45 @@
+<div class="container-fluid">
+
+	<div class="row-fluid">
+		<h2>Deep Search</h2>
+	</div>
+
+	<div class="row-fluid">
+
+		<div class="span4" style>
+			<form id="facets" name="facet-form" >
+				<div class="input-prepend searchboxSmall">
+					<div class="btn-group">
+						<input id="deepSearchRefresh" type="text" name="textValue" ng-model="textValue" />
+						<input type="submit" id="submitDeepSearchFacets"  value="Search" ng-click="refresh()"/>
+					</div>
+				</div>
+				<div ng-repeat="facet in facets">
+					<strong>{{facet.name}}</strong>
+					<ul>
+						<li ng-repeat="value in facet.values">
+							<span class="badge badge-important">{{value.count}}</span>
+							{{value.name}} 
+							<input type="checkbox" ng-model="value.selected" ng-change="refresh()" />
+						</li>
+					</ul>
+					</li>
+				</div>
+			</form>
+		</div>
+		<div class="span8">
+			<pagination on-select-page="turnPage(page)" num-pages="noOfPages" current-page="currentPage" previous-text="&laquo;" next-text="&raquo;" class="pagination-centered" ></pagination>
+			<hr />
+			<div id="hits" ng-repeat="hit in hits">
+				<a ng-href="{{hit.uri}}">{{hit.label}}</a>
+				<hr />				
+			</div>
+			<a class="results-as-rdf" ng-href="{{graphQueryURI}}">Export as RDF</a>
+			
+		</div>
+	</div>
+	<div class="row-fluid">
+		<!-- Button to trigger feedback modal - feedback-modal.html -->
+		<a href="#feedbackModal" role="button" data-toggle="modal" class="btn btn-info">Feedback</a>
+	</div>
+</div>
