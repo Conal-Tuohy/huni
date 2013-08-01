@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="virtualab">
+	<head>
+		<meta charset="utf-8">
+		<title>HuNI Virtual Laboratory | Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description"
+			content="A virtual laboratory for humanities researchers based on semantic web principles.">
+		<meta name="author"
+			content="Spencer Wu (Intersect), Richard Rothwell (VeRSI)">
+		
+		<!-- Le styles -->
+		<link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="./css/3column.css" rel="stylesheet">
+		<link href="./css/simple-search.css" rel="stylesheet">
+		<link href="./css/deep-search.css" rel="stylesheet">
+		<link href="lib/select2/select2.css" rel="stylesheet" >
+		<style type="text/css">
+			body {
+			  padding-top: 113px;
+			  padding-bottom: 40px;
+			}
+			.sidebar-nav {
+			  padding: 9px 0;
+			}
+			
+			@media (max-width: 980px) {
+			  /* Enable use of floated navbar text */
+			  .navbar-text.pull-right {
+			    float: none;
+			    padding-left: 5px;
+			    padding-right: 5px;
+			  }
+			}
+		</style>
+ 				
+		<!-- RR: this is not needed since its included in the current bootstrap css file.    
+			<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		 -->
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		      <script src="js/html5shiv.js"></script>
+		    <![endif]-->
+		
+		<!-- Fav and touch icons -->
+		<link rel="apple-touch-icon-precomposed" sizes="144x144"
+			href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114"
+			href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72"
+			href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed"
+			href="ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="ico/favicon.png">
+	</head>
+
+	<body id="index">
+		<div class="navbar navbar-fixed-top">
+			<!-- header start -->
+			<div class="navbar-inner">
+				<div class="container">
+	
+					<div id="user-information">
+						<!-- user information -->
+						<ul>
+							<li>Have you registered?</li>
+							<!-- Button to trigger register modal - registration-modal.html -->
+							<li ng-include="'partials/registration-button.html'"></li> 
+							|
+							<!-- Button to trigger login modal - login-modal.html -->
+							<li ng-include="'partials/login-button.html'"></li>
+							|
+							<li><a href="#">Find Out More</a></li>
+							<script>
+								var dateInfo = "$Date$";
+								dateInfo = dateInfo.match(/\d\d\d\d-\d\d-\d\d/g)[0];
+								var revInfo = "$Revision$";
+								revInfo = revInfo.match(/\d+/g)[0];
+							</script>
+							<li style="color: red; position:fixed; z-index:1000; top: 3px; right: 10px; font-size:  10px" >Version: 0.1.1, Date: <script>document.write(dateInfo)</script>, Rev: <script>document.write(revInfo)</script></li>
+						</ul>
+					</div>
+		
+					<button type="button" class="btn btn-navbar" data-toggle="collapse"
+						data-target=".nav-collapse">
+						<!-- navigation toggle button -->
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="brand" ng-href="#/landing">HuNI Virtual Lab</a>
+					<div class="nav-collapse collapse">
+						<!-- primary navigation -->
+						<ul class="nav  nav-pills">
+							<li class="active"><a href="index.html">Home</a></li>
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">About HuNI<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a ng-href="#/about">The HuNI Project</a></li>
+									<li><a ng-href="#/members-partners">Members/Partners</a></li>
+									<li><a ng-href="#/contact">Contact</a></li>
+								</ul></li>
+							<li><a ng-href="#/advanced-search">Browse/Search</a></li>
+							<li><a ng-href="#/workspace">Workspace</a></li>
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">Humanities Data<b
+									class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a ng-href="#/huni-aggregate">The HuNI Aggregate</a></li>
+									<li><a ng-href="#/dataset-directory">HuNI Data
+											Providers</a></li>
+									<li><a ng-href="#/humanities-datasources">Internet Sources</a></li>
+								</ul></li>
+							<li><a ng-href="#/help">Tutorials/Help</a></li>
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">Demo<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a ng-href="#/person">Person Record</a></li>
+									<li><a ng-href="#/group">Group Record</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- header end -->
+	
+		<!-- The partials are embedded here. -->
+		<div ng-view></div>
+	
+		<!-- footer start -->
+		<footer>
+			<div class="row-fluid">
+				<div class="footer-column span4">
+					<p>&copy; 2012 HuNI HuNI is proud to be working in partnership
+						with the NeCTAR (National eResearch Collaboration Tools and
+						Resources) project to create an online research community around
+						Australia's cultural datasets. This project will benefit Australian
+						researchers by providing them with access to a wealth of combined
+						resources and the tools with which to analyse and share them, thus
+						enhancing their research outcomes.</p>
+				</div>
+	
+				<div class="footer-column span4">
+					<h4>Brought to you by:</h4>
+					<a href="#"><img src="img/logo_nectar.gif" width="176"
+						height="99" alt="Nectar" /></a> <a href="#"><img
+						src="img/logo_deakin.gif" width="98" height="99" alt="Deakin" /></a>
+				</div>
+	
+				<div class="footer-column span4">
+					<h4>Connect with us!</h4>
+					<div id="footer-social">
+						<a href="#"><img src="img/img_facebook.gif" /></a> <a href="#"><img
+							src="img/img_google.gif" /></a> <a href="#"><img
+							src="img/img_twitter.gif" /></a> <a href="#"><img
+							src="img/img_skype.gif" /></a> <a href="#"><img
+							src="img/img_linkedin.gif" /></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- footer end -->
+		</div>
+	
+	
+	
+		<!-- Le javascript
+	    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+	
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+		
+<!-- 		
+		<script src="lib/angular/angular.js"></script>
+		<script src="lib/angular/angular-resource.js"></script>
+ -->		
+		
+		<script src="lib/angular-1.1.5/angular.js"></script>
+		<script src="lib/angular-1.1.5/angular-resource.js"></script>
+		<script src="lib/angular-ui/angular-ui.js"></script>
+		<script src="lib/select2/select2.js"></script>
+		<script src="lib/angular-ui-select2/select2.js"></script>
+		
+		
+		
+<!-- 		<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
+ -->			
+		<script src="js/app.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/filters.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/directives.js"></script>
+		
+		<script src="js/simple-search/controllers.js"></script>
+		<script src="js/simple-search/filters.js"></script>
+		<script src="js/simple-search/services.js"></script>
+		
+		<script type="text/javascript" id="facet-browser-engine" src="js/deep-search/controllers.js"></script>   
+	
+		<!-- /shindig-project/content/README 
+		    <script type="text/javascript" src="../../js/shindig-container:rpc.js?c=1"></script>
+		     -->
+		<!-- /shindig-project/content/samplecontainer/samplecontainer.html 
+			<script type="text/javascript" src="../gadgets/js/core:rpc:pubsub:shindig-container.js?c=1&debug=1"></script>
+			 -->
+		<!-- /shindig-project/content/samplecontainer/examples/commoncontainer/index.html -->
+		<!-- 	<script type="text/javascript" src="http://localhost:8080/shindig-server/gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&debug=1&container=default"></script> -->
+		<script type="text/javascript"
+			src="/shindig-server/gadgets/js/container:open-views:opensearch:rpc:xmlutil:pubsub-2.js?c=1&debug=1&container=default"></script>
+	
+		<script type="text/javascript" src="./opensocial/assembler.js"></script>
+		<script type="text/javascript" src="./opensocial/viewController.js"></script>
+		<script type="text/javascript" src="./opensocial/cconviews.js"></script>
+		<script type="text/javascript" src="./opensocial/search.js"></script>
+	
+	</body>
+</html>

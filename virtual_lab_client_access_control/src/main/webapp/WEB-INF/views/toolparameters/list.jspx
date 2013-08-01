@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_net_huni_model_ToolParameter" items="${toolparameters}" z="LE0jivFsRv78T7waukpmyPKMkQs=">
+        <table:table data="${toolparameters}" id="l_au_net_huni_model_ToolParameter" path="/console/toolparameters" z="user-managed">
+            <table:column id="c_au_net_huni_model_ToolParameter_name" property="name" z="mWmE+QS9R1G0JGSqudNHTa3E1BI="/>
+            <table:column id="c_au_net_huni_model_ToolParameter_displayOrder" property="displayOrder" z="Kw2kLrhlwL9JYCGirLvfXCsuvnk="/>
+            <table:column id="c_au_net_huni_model_ToolParameter_amount" property="amount" z="sjbADEupOX2YSXNPQWGoTAP0ag0="/>
+            <table:column id="c_au_net_huni_model_ToolParameter_owner" property="owner" z="Qgry+JERXdezhWgcyj2ZMywynk8="/>
+        </table:table>
+    </page:list>
+</div>
