@@ -1,2 +1,0 @@
-serviceClass: au.edu.versi.huni.gwt.client.GreetingService
-path: 306CEB0B850117AA6367AD8F5D8FD5D4.gwt.rpc
