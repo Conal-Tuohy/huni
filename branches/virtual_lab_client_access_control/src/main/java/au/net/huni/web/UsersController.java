@@ -79,6 +79,7 @@ public class UsersController {
 		return researcherQuery.getSingleResult();
 	}
 
+	// TODO RR: need to finalise user profile editing by user.
 	@RequestMapping(value = "/rest/users/profile", method = RequestMethod.PUT, headers = "Accept=application/json", produces = "application/json")
 	public ResponseEntity<String> editProfile(@RequestBody String json) {
 		Researcher researcher = Researcher.fromJsonToResearcher(json);
