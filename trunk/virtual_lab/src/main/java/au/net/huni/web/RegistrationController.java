@@ -172,6 +172,7 @@ public class RegistrationController {
 	        Registration registration = Registration.fromJsonToRegistration(json);
 	        Calendar currentDate = Calendar.getInstance();
 	        registration.setApplicationDate(currentDate);
+	        registration.setStatus(RegistrationStatus.PENDING);
 	        registration.persist();
 	        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 		} catch (Throwable exception) {
@@ -187,7 +188,10 @@ public class RegistrationController {
         headers.add("Content-Type", "application/json");
 
         json = prepareToInjectInstitution(json);
+        Calendar currentDate = Calendar.getInstance();
         for (Registration registration: Registration.fromJsonArrayToRegistrations(json)) {
+	        registration.setApplicationDate(currentDate);
+	        registration.setStatus(RegistrationStatus.PENDING);
             registration.persist();
         }
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
