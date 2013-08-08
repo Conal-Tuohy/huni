@@ -1,11 +1,15 @@
 package au.net.huni.model;
 
+import flexjson.JSONDeserializer;
+import flexjson.ObjectBinder;
+import flexjson.ObjectFactory;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,25 +23,21 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 
-import flexjson.JSONDeserializer;
-import flexjson.ObjectBinder;
-import flexjson.ObjectFactory;
-
-
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
 @RooJson
 @RooWebJson(jsonObject = Institution.class)
 public class Registration {
-	
-	private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
-		@Override
-		public Object instantiate(ObjectBinder context,
-				Object value, Type targetType, Class targetClass) {
-			Long id = Long.valueOf((String)value);
-			return Institution.findInstitution(id);
-		}};
+
+    private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
+
+        @Override
+        public Object instantiate(ObjectBinder context, Object value, Type targetType, Class targetClass) {
+            Long id = Long.valueOf((String) value);
+            return Institution.findInstitution(id);
+        }
+    };
 
     @NotNull
     @Column(unique = true)
@@ -68,19 +68,16 @@ public class Registration {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")
     private Calendar approvalDate;
-    
-    public static Registration fromJsonToRegistration(String json) {
-        return new JSONDeserializer<Registration>()
-        		.use(null, Registration.class)
-        		.use("institution", INSTITUTION_OBJECT_FACTORY)
-				.deserialize(json);
+
+    @NotNull
+    @Enumerated
+    private RegistrationStatus status;
+
+    public static au.net.huni.model.Registration fromJsonToRegistration(String json) {
+        return new JSONDeserializer<Registration>().use(null, Registration.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 
-	public static Collection<Registration> fromJsonArrayToRegistrations(String json) {
-        return new JSONDeserializer<List<Registration>>()
-        		.use(null, ArrayList.class)
-        		.use("values", Registration.class)
-        		.use("institution", INSTITUTION_OBJECT_FACTORY)
-        		.deserialize(json);
+    public static Collection<au.net.huni.model.Registration> fromJsonArrayToRegistrations(String json) {
+        return new JSONDeserializer<List<Registration>>().use(null, ArrayList.class).use("values", Registration.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 }

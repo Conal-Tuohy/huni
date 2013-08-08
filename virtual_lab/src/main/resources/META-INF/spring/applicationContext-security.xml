@@ -13,8 +13,9 @@
 		<intercept-url pattern="/rest/users/validate**" access="permitAll" />
 		<intercept-url pattern="/rest/users/profile**" access="isAuthenticated()" />  <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/historyitems/**" access="isAuthenticated()" />
-		<intercept-url pattern="/rest/feedbackitems/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/toolparameters/**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/feedbackitems/**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/feedbackitems/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/registrations/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/institutions/**" access="permitAll" /> <!-- Need method level access control for finer control -->
  		<http-basic />
@@ -35,18 +36,29 @@
         <intercept-url pattern="/**" access="permitAll" />
  	</http>
  	
+<!--  	<global-method-security pre-post-annotations="enabled">
+ 		<protect-pointcut access="execution(* au.net.huni.web.*Controller.*(..))" expression="ROLE_ADMIN"/>
+ 	</global-method-security>
+ --> 	
  	<beans:bean id="userDetailsService" class="au.net.huni.security.UserDetailsServiceImpl"/>
  		
     <!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
         <!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
         <!-- MacOS X: 'echo -n your_desired_password  | shasum -a 256' -->
+		<!-- Dor salt:  echo -n password{salt} | shasum -a 1 -->
 		<authentication-provider user-service-ref="userDetailsService">
 			<!-- Get credentials from the database -->
-            <password-encoder hash="sha-256" />
+			<!-- TODO RR get salt working -->
+            <password-encoder hash="sha-256" >
+            	<!--   salt-source user-property="username"/ -->
+            </password-encoder>
 		</authentication-provider>
         <authentication-provider>
-            <password-encoder hash="sha-256" />
+			<!-- TODO RR get salt working -->
+            <password-encoder hash="sha-256" >
+            	<!--   salt-source user-property="username"/ -->
+            </password-encoder>
             <user-service>
                 <user name="admin" password="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918" authorities="ROLE_ADMIN, ROLE_SUPERVISOR" />
                 <user name="user" password="04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb" authorities="ROLE_USER" />

@@ -3,11 +3,11 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.Researcher;
+import flexjson.JSONDeserializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import flexjson.JSONDeserializer;
 
 privileged aspect Researcher_Roo_Json {
     

@@ -10,6 +10,7 @@
         <field:select field="institution" id="c_au_net_huni_model_Registration_institution" itemValue="id" items="${institutions}" path="/institutions" required="true" z="Eg/ZM4l2g3ZveyFzux1SbELcwDU="/>
         <field:datetime dateTimePattern="${registration_applicationdate_date_format}" field="applicationDate" id="c_au_net_huni_model_Registration_applicationDate" required="true" z="vcCvgFlM38xbkloB0i2MdJFBoqk="/>
         <field:datetime dateTimePattern="${registration_approvaldate_date_format}" field="approvalDate" id="c_au_net_huni_model_Registration_approvalDate" z="bxji5/LFD5QDxoKso4oBEg+V6Ak="/>
+        <field:select field="status" id="c_au_net_huni_model_Registration_status" items="${registrationstatuses}" path="registrationstatuses" required="true" z="Qo82LTMj2d5om8A+qkPMs0e2kmM="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_au_net_huni_model_Registration" render="${not empty dependencies}" z="8K+NlqJUlNGQV243gHQwdKDww10="/>
 </div>

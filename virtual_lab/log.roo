@@ -163,3 +163,17 @@ web mvc scaffold --class ~.web.UserRoleController --backingType ~.model.UserRole
 perform clean
 perform eclipse
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-31 22:13:28
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-08 17:24:23
+focus --class ~.model.Registration
+field enum --fieldName status --type ~.model.RegistrationStatus --notNull 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-08 18:20:37
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-08 18:50:30
+json add --class ~.model.RegistrationStatus
+web mvc json add --jsonObject ~.model.RegistrationStatus
+web mvc json add --jsonObject ~.model.RegistrationStatus --class ~.web.RegistrationStatusController
+// [failed] field reference --class ~.model.Registration --fieldName status --type ~.model.RegistrationStatus --notNull 
+focus --class ~.model.Registration
+field enum --fieldName status --type ~.model.RegistrationStatus --notNull
+web mvc json add --jsonObject ~.model.RegistrationStatus --class ~.web.RegistrationStatusController
+web mvc scaffold --class ~.web.RegistrationStatusController --backingType ~.model.RegistrationStatus --
+web mvc scaffold --class ~.web.RegistrationStatusController --backingType ~.model.RegistrationStatus
