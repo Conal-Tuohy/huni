@@ -2,6 +2,7 @@ package au.net.huni.web;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import org.springframework.web.util.WebUtils;
 
 import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
+import au.net.huni.model.RegistrationStatus;
 
 @Controller
 @RooWebScaffold(path = "registrations", formBackingObject = Registration.class)
@@ -119,6 +121,7 @@ public class RegistrationController {
         uiModel.addAttribute("registration", registration);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("institutions", Institution.findAllInstitutions());
+        uiModel.addAttribute("registrationstatuses", Arrays.asList(RegistrationStatus.values()));
     }
 
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

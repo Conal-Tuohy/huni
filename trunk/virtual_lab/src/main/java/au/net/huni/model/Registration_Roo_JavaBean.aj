@@ -5,6 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
+import au.net.huni.model.RegistrationStatus;
 import java.util.Calendar;
 
 privileged aspect Registration_Roo_JavaBean {
@@ -63,6 +64,14 @@ privileged aspect Registration_Roo_JavaBean {
     
     public void Registration.setApprovalDate(Calendar approvalDate) {
         this.approvalDate = approvalDate;
+    }
+    
+    public RegistrationStatus Registration.getStatus() {
+        return this.status;
+    }
+    
+    public void Registration.setStatus(RegistrationStatus status) {
+        this.status = status;
     }
     
 }

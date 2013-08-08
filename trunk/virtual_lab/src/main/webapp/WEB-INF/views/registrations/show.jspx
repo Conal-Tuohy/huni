@@ -10,5 +10,6 @@
         <field:display field="institution" id="s_au_net_huni_model_Registration_institution" object="${registration}" z="rVnRoQbWHr+Pq7v9aHTG9d2Vr30="/>
         <field:display calendar="true" dateTimePattern="${registration_applicationdate_date_format}" field="applicationDate" id="s_au_net_huni_model_Registration_applicationDate" object="${registration}" z="0HU/jP9UIMkDFQN5e2ftbXCNz8o="/>
         <field:display calendar="true" dateTimePattern="${registration_approvaldate_date_format}" field="approvalDate" id="s_au_net_huni_model_Registration_approvalDate" object="${registration}" z="RB/ZtNArE4M9mz8IgG7ruL+og2k="/>
+        <field:display field="status" id="s_au_net_huni_model_Registration_status" object="${registration}" z="MyOjJIsHyntPqwLv+6hGlJLePZY="/>
     </page:show>
 </div>
