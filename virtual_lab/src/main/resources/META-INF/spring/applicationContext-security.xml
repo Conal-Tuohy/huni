@@ -26,7 +26,7 @@
 		<intercept-url pattern="/rest/toolparameters/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/feedbackitems/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/feedbackitems/**" access="permitAll" /> <!-- Need method level access control for finer control -->
-		<!-- intercept-url pattern="/rest/registrations/**" access="permitAll" / --> <!-- Need method level access control for finer control -->
+		<intercept-url pattern="/rest/registrations/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/institutions/**" access="permitAll" /> <!-- Need method level access control for finer control -->
  		<http-basic />
 	</http>
