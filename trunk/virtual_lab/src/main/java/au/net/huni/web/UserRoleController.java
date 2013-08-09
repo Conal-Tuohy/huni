@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+//Access by default is restricted to the ADMIN role within the console webapp.
+//This is over-ridden by annotations in this file.
+//See webmvc-config.xml
 @Controller
 @RooWebScaffold(path = "userroles", formBackingObject = UserRole.class)
 public class UserRoleController {

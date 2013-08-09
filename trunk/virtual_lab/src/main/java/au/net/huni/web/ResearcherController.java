@@ -23,6 +23,9 @@ import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
 
+//Access by default is restricted to the ADMIN role within the console webapp.
+//This is over-ridden by annotations in this file.
+//See webmvc-config.xml
 @Controller
 @RooWebScaffold(path = "researchers", formBackingObject = Researcher.class)
 @RooWebJson(jsonObject = Researcher.class)

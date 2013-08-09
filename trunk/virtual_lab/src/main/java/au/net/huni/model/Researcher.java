@@ -45,7 +45,7 @@ public class Researcher {
 
     private Boolean isAccountEnabled;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private Set<UserRole> roles = new HashSet<UserRole>();
 
 	// Accepts a plain text password and stores it in encrypted form
