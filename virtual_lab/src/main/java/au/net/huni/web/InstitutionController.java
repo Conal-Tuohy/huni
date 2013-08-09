@@ -1,15 +1,17 @@
 package au.net.huni.web;
 
-import au.net.huni.model.Institution;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+import au.net.huni.model.Institution;
+
+//Access by default is restricted to the ADMIN role within the console webapp.
+//This is over-ridden by annotations in this file.
+//See webmvc-config.xml
 @Controller
 @RooWebScaffold(path = "institutions", formBackingObject = Institution.class)
 @RooWebJson(jsonObject = Institution.class)
@@ -120,6 +127,8 @@ public class InstitutionController {
         return new ResponseEntity<String>(institution.toJson(), headers, HttpStatus.OK);
     }
 
+	// Allow access for VL web app.
+	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/rest/institutions", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> listJson() {

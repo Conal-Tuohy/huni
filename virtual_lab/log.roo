@@ -177,3 +177,4 @@ field enum --fieldName status --type ~.model.RegistrationStatus --notNull
 web mvc json add --jsonObject ~.model.RegistrationStatus --class ~.web.RegistrationStatusController
 web mvc scaffold --class ~.web.RegistrationStatusController --backingType ~.model.RegistrationStatus --
 web mvc scaffold --class ~.web.RegistrationStatusController --backingType ~.model.RegistrationStatus
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-08 21:12:08

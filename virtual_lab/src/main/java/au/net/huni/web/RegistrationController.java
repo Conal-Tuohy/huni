@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,9 @@ import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
 
+// Access by default is restricted to the ADMIN role within the console webapp.
+// This is over-ridden by annotations in this file.
+// See webmvc-config.xml
 @Controller
 @RooWebScaffold(path = "registrations", formBackingObject = Registration.class)
 @RooWebJson(jsonObject = Registration.class)
@@ -161,6 +165,8 @@ public class RegistrationController {
         return new ResponseEntity<String>(Registration.toJsonArray(result), headers, HttpStatus.OK);
     }
 
+	// Allow access for VL web app.
+	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/rest/registrations", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> createFromJson(@RequestBody String json) {
 		

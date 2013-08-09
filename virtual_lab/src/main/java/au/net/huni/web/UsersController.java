@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.net.huni.model.Researcher;
 
+//Access by default is restricted to the ADMIN role within the console webapp.
+//This is over-ridden by annotations in this file.
+//See webmvc-config.xml
 @RooWebJson(jsonObject = Researcher.class)
 @Controller
 public class UsersController {
