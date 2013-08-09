@@ -34,6 +34,7 @@ public class RegistrationDataOnDemand {
         setGivenName(obj, index);
         setInstitution(obj, index);
         setUserName(obj, index);
+        setStatus(obj, index);
         return obj;
     }
 
@@ -132,5 +133,10 @@ public class RegistrationDataOnDemand {
             obj.flush();
             data.add(obj);
         }
+    }
+
+	public void setStatus(Registration obj, int index) {
+        RegistrationStatus status = RegistrationStatus.class.getEnumConstants()[0];
+        obj.setStatus(status);
     }
 }
