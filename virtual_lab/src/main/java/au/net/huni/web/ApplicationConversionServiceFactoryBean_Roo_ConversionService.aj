@@ -7,7 +7,6 @@ import au.net.huni.model.FeedbackItem;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
-import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolParameter;
 import au.net.huni.model.UserRole;
 import au.net.huni.web.ApplicationConversionServiceFactoryBean;
@@ -111,30 +110,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Registration>() {
             public au.net.huni.model.Registration convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Registration.class);
-            }
-        };
-    }
-    
-    public Converter<Researcher, String> ApplicationConversionServiceFactoryBean.getResearcherToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Researcher, java.lang.String>() {
-            public String convert(Researcher researcher) {
-                return new StringBuilder().append(researcher.getPassword()).append(' ').append(researcher.getUserName()).append(' ').append(researcher.getGivenName()).append(' ').append(researcher.getFamilyName()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, Researcher> ApplicationConversionServiceFactoryBean.getIdToResearcherConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.Researcher>() {
-            public au.net.huni.model.Researcher convert(java.lang.Long id) {
-                return Researcher.findResearcher(id);
-            }
-        };
-    }
-    
-    public Converter<String, Researcher> ApplicationConversionServiceFactoryBean.getStringToResearcherConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Researcher>() {
-            public au.net.huni.model.Researcher convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Researcher.class);
             }
         };
     }

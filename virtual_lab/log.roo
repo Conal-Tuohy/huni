@@ -178,3 +178,12 @@ web mvc json add --jsonObject ~.model.RegistrationStatus --class ~.web.Registrat
 web mvc scaffold --class ~.web.RegistrationStatusController --backingType ~.model.RegistrationStatus --
 web mvc scaffold --class ~.web.RegistrationStatusController --backingType ~.model.RegistrationStatus
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-08 21:12:08
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-09 14:24:20
+hint finder
+hint find
+hint dynamic
+hint dynamicFinder
+focus --class ~.model.UserRole
+hint finder
+finder list
+finder add --finderName findUserRolesByNameEquals
