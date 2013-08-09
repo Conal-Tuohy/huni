@@ -1,6 +1,8 @@
 package au.net.huni.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,4 +62,23 @@ public class ResearcherTest {
     	assertFalse(Researcher.toJsonArray(researchers).contains("password"));
     	assertFalse(Researcher.toJsonArray(researchers).contains("encryptedPassword"));  	
     }
+    
+	@Test
+	public void testToStringIncludesUserNameEtc() {
+		Researcher researcher = new Researcher();
+		researcher.setUserName("jdoe");
+		researcher.setFamilyName("Doe");
+		researcher.setGivenName("Jane");
+		researcher.setPassword("dirty-little-secret");
+		assertEquals("Doe, Jane (jdoe)", researcher.toString());
+	}
+
+	@Test
+	public void testToStringExcludesPasswords() {
+		Researcher researcher = new Researcher();
+		researcher.setPassword("dirty-little-secret");
+		assertTrue(researcher.toString().length() < 64);
+		assertFalse(researcher.toString().contains("dirty-little-secret"));
+	}
+
 }

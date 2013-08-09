@@ -39,7 +39,8 @@ public class ResearcherController {
 			populateEditForm(uiModel, researcher);
 			return "researchers/create";
 		}
-		uiModel.asMap().clear();		
+		uiModel.asMap().clear();
+		researcher.getRoles().add(UserRole.findUserRolesByNameEquals("USER_ROLE").getSingleResult());
 		researcher.persist();
 		return "redirect:/console/researchers/"
 				+ encodeUrlPathSegment(researcher.getId().toString(),

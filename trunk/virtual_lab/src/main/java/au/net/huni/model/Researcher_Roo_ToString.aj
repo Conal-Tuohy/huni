@@ -3,14 +3,18 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.Researcher;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 privileged aspect Researcher_Roo_ToString {
     
     public String Researcher.toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    	StringBuilder buffer = new StringBuilder();
+    	buffer.append(this.getFamilyName());
+    	buffer.append(", ");
+    	buffer.append(getGivenName());
+    	buffer.append(" (");
+    	buffer.append(getUserName());
+    	buffer.append(")");
+        return  buffer.toString() ;
     }
     
 }

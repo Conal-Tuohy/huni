@@ -9,25 +9,24 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findUserRolesByNameEquals" })
 public class UserRole {
-
+	
     @NotNull
     @Column(unique = true)
     @Size(max = 50)
     private String name = "";
 
-	public UserRole(String name) {
+    public UserRole(String name) {
         super();
-		this.name = name;
-	}
-	
-	public UserRole() {
+        this.name = name;
+    }
+
+    public UserRole() {
         this("");
     }
 
-	public String toString() {
+    public String toString() {
         return name;
     }
-
 }
