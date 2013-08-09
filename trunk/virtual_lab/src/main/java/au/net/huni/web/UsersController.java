@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
@@ -40,6 +41,8 @@ public class UsersController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
+	// Allow access for VL web app.
+	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/rest/users/validate/{userName}/{password}", headers = "Accept=application/json", produces = "text/html")
 	@ResponseBody
 	public ResponseEntity<String> isValidUser(
