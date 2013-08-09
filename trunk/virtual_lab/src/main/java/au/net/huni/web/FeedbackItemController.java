@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -114,6 +115,8 @@ public class FeedbackItemController {
         return pathSegment;
     }
 
+	// Allow access for VL web app.
+	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/rest/feedbackitems", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> createFromJson(@RequestBody String json) {
         FeedbackItem feedbackItem = FeedbackItem.fromJsonToFeedbackItem(json);
