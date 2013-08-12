@@ -2,6 +2,7 @@ package au.net.huni.model;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +26,8 @@ public class FeedbackItemDataOnDemand {
         setComment(obj, index);
         setContext(obj, index);
         setRating(obj, index);
+        setFeedbackDate(obj, index);
+        setVisitorIpAddress(obj, index);
         return obj;
     }
 
@@ -94,5 +97,15 @@ public class FeedbackItemDataOnDemand {
             obj.flush();
             data.add(obj);
         }
+    }
+
+	public void setFeedbackDate(FeedbackItem obj, int index) {
+        Calendar feedbackDate = Calendar.getInstance();
+        obj.setFeedbackDate(feedbackDate);
+    }
+
+	public void setVisitorIpAddress(FeedbackItem obj, int index) {
+        String visitorIpAddress = "visitorIpAddress_" + index;
+        obj.setVisitorIpAddress(visitorIpAddress);
     }
 }

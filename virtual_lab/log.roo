@@ -192,3 +192,6 @@ finder add --finderName findUserRolesByNameEquals
 field date --class ~.model.FeedbackItem --fieldName feedbackDate --type java.util.Date --notNull
 field string --class ~.model.FeedbackItem --fieldName visitorIpAddress
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-12 17:10:58
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-12 21:53:07
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-12 21:54:02
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-12 22:03:13
