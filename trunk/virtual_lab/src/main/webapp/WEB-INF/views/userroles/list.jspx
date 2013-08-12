@@ -5,6 +5,7 @@
     <page:list id="pl_au_net_huni_model_UserRole" items="${userroles}" z="4VOFZG6Cdgf3rq9UukUA8+emdWI=">
         <table:table data="${userroles}" id="l_au_net_huni_model_UserRole" path="/console/userroles" z="user-managed">
             <table:column id="c_au_net_huni_model_UserRole_name" property="name" z="d+vVIu1hGDApBOQPH5XK+DisBgw="/>
+            <table:column id="c_au_net_huni_model_UserRole_researchers" property="researchers" z="jqCv7fYdndJJfEB2yU5ZCBPffLg="/>
         </table:table>
     </page:list>
 </div>
