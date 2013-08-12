@@ -18,7 +18,8 @@
         <menu:category id="c_feedbackitem" z="oLisAXmRyb9eXc61s7VbFQaOlU0=">
             <menu:item id="i_feedbackitem_new" messageCode="global_menu_new" url="/console/feedbackitems?form" z="user-managed"/>
             <menu:item id="i_feedbackitem_list" messageCode="global_menu_list" url="/console/feedbackitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-        </menu:category>
+			<menu:item id="i_feedbackitem_export" messageCode="global_menu_export" url="/console/feedbackitems/export" z="user-managed"/>
+ 		</menu:category>
         <menu:category id="c_institution" z="5+H17nsNm0/SudzTa4gvanI68Ak=">
             <menu:item id="i_institution_new" messageCode="global_menu_new" url="/console/institutions?form" z="user-managed"/>
             <menu:item id="i_institution_list" messageCode="global_menu_list" url="/console/institutions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>

@@ -36,8 +36,10 @@
 	 	<logout logout-url="/resources/j_spring_security_logout" />
     	<http-basic />
 <!--     	<intercept-url pattern="/css/**" filters="none"/>
- -->		<intercept-url pattern="/console/historyitems/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/console/feedbackitems/**" access="hasRole('ROLE_ADMIN')" />
+ -->		
+ 		<intercept-url pattern="/console/historyitems/**" access="hasRole('ROLE_ADMIN')" />
+<!-- 		<intercept-url pattern="/console/feedbackitems/export" access="hasRole('ROLE_ADMIN')" />
+ -->		<intercept-url pattern="/console/feedbackitems/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/researchers/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/toolparameters/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/institutions/**" access="hasRole('ROLE_ADMIN')" />

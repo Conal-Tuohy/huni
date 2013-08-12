@@ -51,6 +51,8 @@ public class RegistrationController {
             return "registrations/create";
         }
         uiModel.asMap().clear();
+        Calendar currentDate = Calendar.getInstance();
+        registration.setApplicationDate(currentDate);
         registration.persist();
         return "redirect:/console/registrations/" + encodeUrlPathSegment(registration.getId().toString(), httpServletRequest);
     }

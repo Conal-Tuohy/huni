@@ -6,6 +6,8 @@
         <field:input field="context" id="c_au_net_huni_model_FeedbackItem_context" z="OKwU1LlsPtg6NNgckKY02XkDRU4="/>
         <field:select field="rating" id="c_au_net_huni_model_FeedbackItem_rating" items="${ratings}" path="ratings" z="iDIJoeJAFK674q4qSeKs4IGxTaw="/>
         <field:input field="comment" id="c_au_net_huni_model_FeedbackItem_comment" z="WeP+3QCEpMRESrpwB/4yxAom23E="/>
+        <field:datetime dateTimePattern="${feedbackItem_feedbackdate_date_format}" field="feedbackDate" id="c_au_net_huni_model_FeedbackItem_feedbackDate" required="true" z="2BHIxaqLbaKz8bK5zCdVmLuqnAo="/>
+        <field:input field="visitorIpAddress" id="c_au_net_huni_model_FeedbackItem_visitorIpAddress" z="IjXVp+psVExuXNesqGsFKB6jnBU="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_au_net_huni_model_FeedbackItem" render="${not empty dependencies}" z="ieNxlKKLTLwCL2c50dqhQfVaU/M="/>
 </div>
