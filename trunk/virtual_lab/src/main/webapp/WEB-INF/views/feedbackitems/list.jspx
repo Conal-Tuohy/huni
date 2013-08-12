@@ -7,6 +7,8 @@
             <table:column id="c_au_net_huni_model_FeedbackItem_context" property="context" z="WV/3SF4stjU3Nzrmk/GFyTXgoyI="/>
             <table:column id="c_au_net_huni_model_FeedbackItem_rating" property="rating" z="7MuZEv1VcBtr5D4RLAPoQwCImUI="/>
             <table:column id="c_au_net_huni_model_FeedbackItem_comment" property="comment" z="0FgMDvV62y0TYc1gDBouOGuJdsk="/>
+            <table:column calendar="true" dateTimePattern="${feedbackItem_feedbackdate_date_format}" id="c_au_net_huni_model_FeedbackItem_feedbackDate" property="feedbackDate" z="pJPp1YrlyVKOq0Yi93R/jBqNc7s="/>
+            <table:column id="c_au_net_huni_model_FeedbackItem_visitorIpAddress" property="visitorIpAddress" z="VxvFQJn9PSrX1YT1LxlDceb5x9I="/>
         </table:table>
     </page:list>
 </div>

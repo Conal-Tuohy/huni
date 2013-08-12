@@ -73,4 +73,16 @@ public class Researcher {
 	public String toJson() {
         return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(this);
     }
+	
+    public String toString() {
+    	StringBuilder buffer = new StringBuilder();
+    	buffer.append(this.getFamilyName());
+    	buffer.append(", ");
+    	buffer.append(getGivenName());
+    	buffer.append(" (");
+    	buffer.append(getUserName());
+    	buffer.append(")");
+        return  buffer.toString() ;
+    }
+
 }

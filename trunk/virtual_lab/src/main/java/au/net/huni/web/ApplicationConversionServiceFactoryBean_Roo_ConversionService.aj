@@ -21,7 +21,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<FeedbackItem, String> ApplicationConversionServiceFactoryBean.getFeedbackItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.FeedbackItem, java.lang.String>() {
             public String convert(FeedbackItem feedbackItem) {
-                return new StringBuilder().append(feedbackItem.getContext()).append(' ').append(feedbackItem.getComment()).toString();
+                return new StringBuilder().append(feedbackItem.getContext()).append(' ').append(feedbackItem.getComment()).append(' ').append(feedbackItem.getFeedbackDate()).append(' ').append(feedbackItem.getVisitorIpAddress()).toString();
             }
         };
     }

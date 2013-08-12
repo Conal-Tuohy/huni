@@ -6,5 +6,7 @@
         <field:display field="context" id="s_au_net_huni_model_FeedbackItem_context" object="${feedbackitem}" z="syF4vxK6p45AyGjC+aIJHyJttH8="/>
         <field:display field="rating" id="s_au_net_huni_model_FeedbackItem_rating" object="${feedbackitem}" z="8gwo3RgwO6bCP3EolZ8jmHQ8uZM="/>
         <field:display field="comment" id="s_au_net_huni_model_FeedbackItem_comment" object="${feedbackitem}" z="/vcgbd6TJbAi4tQJnL6F03SJN8U="/>
+        <field:display calendar="true" dateTimePattern="${feedbackItem_feedbackdate_date_format}" field="feedbackDate" id="s_au_net_huni_model_FeedbackItem_feedbackDate" object="${feedbackitem}" z="KHr0lATZNmCcuPW+cUhOB6dJyq4="/>
+        <field:display field="visitorIpAddress" id="s_au_net_huni_model_FeedbackItem_visitorIpAddress" object="${feedbackitem}" z="zMnvZspRf9bjxYEM3PpccTxAXOQ="/>
     </page:show>
 </div>

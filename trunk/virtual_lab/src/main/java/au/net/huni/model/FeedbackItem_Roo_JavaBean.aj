@@ -5,6 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.FeedbackItem;
 import au.net.huni.model.Rating;
+import java.util.Calendar;
 
 privileged aspect FeedbackItem_Roo_JavaBean {
     
@@ -30,6 +31,22 @@ privileged aspect FeedbackItem_Roo_JavaBean {
     
     public void FeedbackItem.setComment(String comment) {
         this.comment = comment;
+    }
+    
+    public Calendar FeedbackItem.getFeedbackDate() {
+        return this.feedbackDate;
+    }
+    
+    public void FeedbackItem.setFeedbackDate(Calendar feedbackDate) {
+        this.feedbackDate = feedbackDate;
+    }
+    
+    public String FeedbackItem.getVisitorIpAddress() {
+        return this.visitorIpAddress;
+    }
+    
+    public void FeedbackItem.setVisitorIpAddress(String visitorIpAddress) {
+        this.visitorIpAddress = visitorIpAddress;
     }
     
 }

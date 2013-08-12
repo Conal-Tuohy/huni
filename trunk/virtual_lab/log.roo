@@ -187,3 +187,8 @@ focus --class ~.model.UserRole
 hint finder
 finder list
 finder add --finderName findUserRolesByNameEquals
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-09 17:18:41
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-12 13:45:52
+field date --class ~.model.FeedbackItem --fieldName feedbackDate --type java.util.Date --notNull
+field string --class ~.model.FeedbackItem --fieldName visitorIpAddress
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-12 17:10:58
