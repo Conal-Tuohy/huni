@@ -45,8 +45,7 @@ public class Researcher {
 
     private Boolean isAccountEnabled;
 
-    // TODO RR: write a test to ensure the ownership is correct.
-    @ManyToMany(mappedBy = "researchers")
+    @ManyToMany
     private Set<UserRole> roles = new HashSet<UserRole>();
 
 	// Accepts a plain text password and stores it in encrypted form

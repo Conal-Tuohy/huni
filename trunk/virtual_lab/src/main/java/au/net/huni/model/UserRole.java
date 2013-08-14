@@ -21,10 +21,6 @@ public class UserRole {
     @Column(unique = true)
     @Size(max = 50)
     private String name = "";
-    
-    // TODO RR: write a test to ensure the ownership is correct.
-    @ManyToMany
-    private Set<Researcher> researchers = new HashSet<Researcher>();
 
     public UserRole(String name) {
         super();

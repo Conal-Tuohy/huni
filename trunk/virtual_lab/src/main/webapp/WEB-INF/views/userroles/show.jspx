@@ -4,6 +4,5 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_au_net_huni_model_UserRole" object="${userrole}" path="/console/userroles" z="user-managed">
         <field:display field="name" id="s_au_net_huni_model_UserRole_name" object="${userrole}" z="T1tk5yGoheI8IN05cSigiN47ixE="/>
-        <field:display field="researchers" id="s_au_net_huni_model_UserRole_researchers" object="${userrole}" z="y9wm5yfl5Z7CaYsUj+WUsDIZs9o="/>
     </page:show>
 </div>
