@@ -1,10 +1,14 @@
 package au.net.huni.web;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -20,6 +24,7 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 import au.net.huni.model.HistoryItem;
+import au.net.huni.model.Institution;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
 
@@ -75,11 +80,17 @@ public class ResearcherController {
 	@RequestMapping(value = "/console/researchers", params = "form", produces = "text/html")
     public String createForm(Model uiModel) {
         populateEditForm(uiModel, new Researcher());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (Institution.countInstitutions() == 0) {
+            dependencies.add(new String[] { "institution", "institutions" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "researchers/create";
     }
 
 	@RequestMapping(value = "/console/researchers/{id}", produces = "text/html")
     public String show(@PathVariable("id") Long id, Model uiModel) {
+        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("researcher", Researcher.findResearcher(id));
         uiModel.addAttribute("itemId", id);
         return "researchers/show";
@@ -96,6 +107,7 @@ public class ResearcherController {
         } else {
             uiModel.addAttribute("researchers", Researcher.findAllResearchers());
         }
+        addDateTimeFormatPatterns(uiModel);
         return "researchers/list";
     }
 
@@ -118,8 +130,14 @@ public class ResearcherController {
 
 	void populateEditForm(Model uiModel, Researcher researcher) {
         uiModel.addAttribute("researcher", researcher);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("institutions", Institution.findAllInstitutions());
         uiModel.addAttribute("historyitems", HistoryItem.findAllHistoryItems());
         uiModel.addAttribute("userroles", UserRole.findAllUserRoles());
+    }
+
+    void addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("researcher_creationdate_date_format", DateTimeFormat.patternForStyle("S-", LocaleContextHolder.getLocale()));
     }
 	
 	// The REST access points do not need to be exposed.

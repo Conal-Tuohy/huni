@@ -118,16 +118,16 @@ public class RegistrationController {
         return "redirect:/console/registrations";
     }
 
-    void addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("registration_applicationdate_date_format", DateTimeFormat.patternForStyle("S-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("registration_approvaldate_date_format", DateTimeFormat.patternForStyle("S-", LocaleContextHolder.getLocale()));
-    }
-
     void populateEditForm(Model uiModel, Registration registration) {
         uiModel.addAttribute("registration", registration);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("institutions", Institution.findAllInstitutions());
         uiModel.addAttribute("registrationstatuses", Arrays.asList(RegistrationStatus.values()));
+    }
+
+    void addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("registration_applicationdate_date_format", DateTimeFormat.patternForStyle("S-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("registration_approvaldate_date_format", DateTimeFormat.patternForStyle("S-", LocaleContextHolder.getLocale()));
     }
 
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
