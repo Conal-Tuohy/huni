@@ -16,6 +16,8 @@ import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -79,7 +81,8 @@ public class RegistrationControllerTest {
         		return null;
         	}
         };
-		controller.update(registration, bindingResult, uiModel, httpServletRequest);
+
+        controller.update(registration, bindingResult, uiModel, httpServletRequest);
 		assertFalse(wasApproved[0]);
 	}
 
@@ -134,7 +137,8 @@ public class RegistrationControllerTest {
         	}
 
         };
-		controller.update(registration, bindingResult, uiModel, httpServletRequest);
+
+        controller.update(registration, bindingResult, uiModel, httpServletRequest);
 		assertTrue("Is approval condition causes approval", wasApproved[0]);
 	}
 
@@ -380,6 +384,11 @@ public class RegistrationControllerTest {
 		existingRegistration.setInstitution(new Institution("omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
+        
+		final MailSender mailTemplate = context.mock(MailSender.class);
+		context.checking(new Expectations() {{
+		    oneOf (mailTemplate).send(with(any(SimpleMailMessage.class)));
+		}});
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -405,7 +414,9 @@ public class RegistrationControllerTest {
     		}
         };
 
-		Researcher researcher = controller.approve(updatedRegistration);
+        controller.setMailTemplate(mailTemplate);
+
+        Researcher researcher = controller.approve(updatedRegistration);
 		assertEquals("Created researcher on approval", "user1", researcher.getUserName());
 		assertNotNull("Created researcher has creation date", researcher.getCreationDate());
 		assertTrue("Created researcher has enabled account", researcher.getIsAccountEnabled());
@@ -437,6 +448,11 @@ public class RegistrationControllerTest {
 		existingRegistration.setInstitution(new Institution("omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
+        
+		final MailSender mailTemplate = context.mock(MailSender.class);
+		context.checking(new Expectations() {{
+		    oneOf (mailTemplate).send(with(any(SimpleMailMessage.class)));
+		}});
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -462,10 +478,138 @@ public class RegistrationControllerTest {
     		}
         };
 
-		Researcher researcher = controller.reject(updatedRegistration);
+        controller.setMailTemplate(mailTemplate);
+
+        Researcher researcher = controller.reject(updatedRegistration);
 		assertNull("Created null researcher on rejection", researcher);
 		assertEquals("Registration status is now rejected", RegistrationStatus.REJECTED, updatedRegistration.getStatus());
 		assertNotNull("Registration status now has approval/rejection date", updatedRegistration.getApprovalDate());
+	}
+
+	@Test
+	public void testChangeOfStatusFromPendingToApprovedSendsEmail() {
+
+		final Registration updatedRegistration = new Registration();
+		updatedRegistration.setId(25L);
+		updatedRegistration.setUserName("user1");
+		updatedRegistration.setGivenName("given1");
+		updatedRegistration.setFamilyName("family1");
+		updatedRegistration.setEmailAddress("user1@test.net");
+		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setApplicationDate(Calendar.getInstance());
+		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
+
+		final Registration existingRegistration = new Registration();
+		existingRegistration.setId(25L);
+		existingRegistration.setUserName("user1");
+		existingRegistration.setGivenName("given1");
+		existingRegistration.setFamilyName("family1");
+		existingRegistration.setEmailAddress("user1@test.net");
+		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setApplicationDate(Calendar.getInstance());
+		existingRegistration.setStatus(RegistrationStatus.PENDING);
+		
+		final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("huniproject@gmail.com");
+        mailMessage.setSubject("HuNI Virtual Lab: Registration Approval");
+        mailMessage.setTo("user1@test.net");
+        mailMessage.setText("Thank you for your interest in the HuNI Project. Your application has been accepted. ");
+        
+		final MailSender mailTemplate = context.mock(MailSender.class);
+		context.checking(new Expectations() {{
+		    oneOf (mailTemplate).send(mailMessage);
+		}});
+
+		final boolean wasApproved[] = new boolean[1];
+		wasApproved[0] = false;
+        RegistrationController controller = new RegistrationController() {
+        	protected Registration findExistingRegistration(Registration registration) {
+        		return existingRegistration;
+        	}
+        	
+        	protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
+        		return true;
+        	}
+
+        	protected void updateRegistration(Registration registration) {
+        		// Stub out;
+        	}
+
+    		protected UserRole assignDefaultRole() {
+    			return new UserRole("USER_ROLE");
+    		}
+    		
+    		protected void persistResearcher(Researcher newResearcher) {
+    			// Stub out.
+    		}
+        };
+        controller.setMailTemplate(mailTemplate);
+		controller.approve(updatedRegistration);
+	}
+
+	@Test
+	public void testChangeOfStatusFromPendingToRejectedSendsEmail() {
+
+		final Registration updatedRegistration = new Registration();
+		updatedRegistration.setId(25L);
+		updatedRegistration.setUserName("user1");
+		updatedRegistration.setGivenName("given1");
+		updatedRegistration.setFamilyName("family1");
+		updatedRegistration.setEmailAddress("user1@test.net");
+		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setApplicationDate(Calendar.getInstance());
+		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
+
+		final Registration existingRegistration = new Registration();
+		existingRegistration.setId(25L);
+		existingRegistration.setUserName("user1");
+		existingRegistration.setGivenName("given1");
+		existingRegistration.setFamilyName("family1");
+		existingRegistration.setEmailAddress("user1@test.net");
+		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setApplicationDate(Calendar.getInstance());
+		existingRegistration.setStatus(RegistrationStatus.PENDING);
+		
+		final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("huniproject@gmail.com");
+        mailMessage.setSubject("HuNI Virtual Lab: Registration Rejection");
+        mailMessage.setTo("user1@test.net");
+        mailMessage.setText("Thank you for your interest in the HuNI Project. Your application has been rejected. ");
+        
+		final MailSender mailTemplate = context.mock(MailSender.class);
+		context.checking(new Expectations() {{
+		    oneOf (mailTemplate).send(mailMessage);
+		}});
+
+		final boolean wasApproved[] = new boolean[1];
+		wasApproved[0] = false;
+        RegistrationController controller = new RegistrationController() {
+        	protected Registration findExistingRegistration(Registration registration) {
+        		return existingRegistration;
+        	}
+        	
+        	protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
+        		return false;
+        	}
+
+        	protected boolean isRejection(Registration updatedRegistration, Registration existingRegistration) {
+        		return true;
+        	}
+
+        	protected void updateRegistration(Registration registration) {
+        		// Stub out;
+        	}
+
+    		protected UserRole assignDefaultRole() {
+    			return new UserRole("USER_ROLE");
+    		}
+    		
+    		protected void persistResearcher(Researcher newResearcher) {
+    			// Stub out.
+    		}
+        };
+        controller.setMailTemplate(mailTemplate);
+		controller.reject(updatedRegistration);
 	}
 
 }
