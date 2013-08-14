@@ -11,5 +11,6 @@
         <field:display field="familyName" id="s_au_net_huni_model_Researcher_familyName" object="${researcher}" z="f0pXTqfZ3d7RGXT8gUMhD1pzQOc="/>
         <field:display field="emailAddress" id="s_au_net_huni_model_Researcher_emailAddress" object="${researcher}" z="Nsgw6jSGGr8FyKxCEVjD39i27vw="/>
         <field:display field="institution" id="s_au_net_huni_model_Researcher_institution" object="${researcher}" z="pmxtE3td9QlEaRmkfBMKaLWDC+4="/>
+        <field:display calendar="true" dateTimePattern="${researcher_creationdate_date_format}" field="creationDate" id="s_au_net_huni_model_Researcher_creationDate" object="${researcher}" z="1QoOa4aCUkUcDE60nXnqAO9M9GA="/>
     </page:show>
 </div>

@@ -7,6 +7,7 @@ import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
+import java.util.Calendar;
 import java.util.Set;
 
 privileged aspect Researcher_Roo_JavaBean {
@@ -73,6 +74,14 @@ privileged aspect Researcher_Roo_JavaBean {
     
     public void Researcher.setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+    
+    public Calendar Researcher.getCreationDate() {
+        return this.creationDate;
+    }
+    
+    public void Researcher.setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
     }
     
 }

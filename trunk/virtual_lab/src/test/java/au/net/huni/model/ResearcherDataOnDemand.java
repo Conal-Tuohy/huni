@@ -33,6 +33,7 @@ public class ResearcherDataOnDemand {
         setInstitution(obj, index);
         setFamilyName(obj, index);
         setGivenName(obj, index);
+        setCreationDate(obj, index);
         //setHistoryList(obj, index);
         return obj;
     }

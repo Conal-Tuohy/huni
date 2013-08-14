@@ -15,8 +15,16 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJson
 public class Institution {
 
-    @NotNull
+	@NotNull
     @Column(unique = true)
     @Size(min = 5, max = 60)
     private String name;
+
+    public Institution() {
+		this("UNKNOWN");
+	}
+
+    public Institution(String name) {
+		this.name = name;
+	}
 }

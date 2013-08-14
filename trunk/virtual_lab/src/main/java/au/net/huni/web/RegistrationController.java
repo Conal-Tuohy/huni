@@ -6,12 +6,14 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,8 @@ import org.springframework.web.util.WebUtils;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
+import au.net.huni.model.Researcher;
+import au.net.huni.model.UserRole;
 
 // Access by default is restricted to the ADMIN role within the console webapp.
 // This is over-ridden by annotations in this file.
@@ -98,11 +102,111 @@ public class RegistrationController {
             return "registrations/update";
         }
         uiModel.asMap().clear();
-        registration.merge();
+        
+        Registration existingRegistration = findExistingRegistration(registration);
+        if (isApproval(registration, existingRegistration)) {
+        	approve(registration);
+        } else if (isRejection(registration, existingRegistration)) {
+        	reject(registration);
+        }
+        updateRegistration(registration);
+        
         return "redirect:/console/registrations/" + encodeUrlPathSegment(registration.getId().toString(), httpServletRequest);
     }
 
-    @RequestMapping(value = "/console/registrations/{id}", params = "form", produces = "text/html")
+	protected Registration findExistingRegistration(Registration registration) {
+		return Registration.findRegistration(registration.getId());
+	}
+
+	protected void updateRegistration(Registration registration) {
+		registration.merge();
+	}
+
+	protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
+		if (updatedRegistration == null || existingRegistration == null) {
+			return false;
+		}
+		RegistrationStatus proposedStatus = updatedRegistration.getStatus();
+		RegistrationStatus existingStatus = existingRegistration.getStatus();
+		return proposedStatus == RegistrationStatus.APPROVED && existingStatus  == RegistrationStatus.PENDING;
+	}
+
+	protected boolean isRejection(Registration updatedRegistration, Registration existingRegistration) {
+		if (updatedRegistration == null || existingRegistration == null) {
+			return false;
+		}
+		RegistrationStatus proposedStatus = updatedRegistration.getStatus();
+		RegistrationStatus existingStatus = existingRegistration.getStatus();
+		return proposedStatus == RegistrationStatus.REJECTED && existingStatus  == RegistrationStatus.PENDING;
+	}
+
+	protected Researcher approve(Registration updatedRegistration) {
+
+		Researcher newResearcher = null;
+		try {
+			String userName = updatedRegistration.getUserName();
+			newResearcher = new Researcher();
+			newResearcher.setUserName(userName);
+			newResearcher.setGivenName(updatedRegistration.getGivenName());
+			newResearcher.setFamilyName(updatedRegistration.getFamilyName());
+			newResearcher.setEmailAddress(updatedRegistration.getEmailAddress());
+			newResearcher.setInstitution(updatedRegistration.getInstitution());
+			Calendar calendar = Calendar.getInstance();
+			newResearcher.setCreationDate(calendar);
+			newResearcher.setIsAccountEnabled(true);
+			UserRole userRole = assignDefaultRole();
+			newResearcher.getRoles().add(userRole);
+			updatedRegistration.setApprovalDate(calendar);
+			persistResearcher(newResearcher);
+		} catch (Exception exception) {
+			throw new RuntimeException("Failed to save the new researcher", exception);
+		}
+		return newResearcher;
+	}
+
+	protected Researcher reject(Registration updatedRegistration) {
+
+		Researcher newResearcher = null;
+		Calendar calendar = Calendar.getInstance();
+		updatedRegistration.setApprovalDate(calendar);
+		return newResearcher;
+	}
+
+	protected UserRole assignDefaultRole() {
+		UserRole userRole = null;
+		try {
+			userRole = UserRole.findUserRolesByNameEquals("USER_ROLE").getSingleResult();
+		} catch (NoResultException missingRole) {
+			throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
+		} catch (EmptyResultDataAccessException missingRole) {
+			throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
+		} catch (Exception exception) {
+			throw new RuntimeException("Failed to find the default role", exception);
+		}
+		return userRole;
+	}
+	
+	protected void persistResearcher(Researcher newResearcher) {
+		newResearcher.persist();
+	}
+	
+//	Researcher existingResearcher = null;
+//	while (existingResearcher != null) {
+//		try {
+//			existingResearcher = Researcher.findResearchersByUserNameEquals(userName).getSingleResult();
+//		} catch (NoResultException returnNull) {
+//			// just return null for the result.
+//		} catch (EmptyResultDataAccessException returnNull) {
+//			// just return null for the result.
+//		} catch (Exception exception) {
+//			throw new RuntimeException("Failed to retrieve researcher", exception);
+//		}
+//		userName += rnd.nextInt(100);
+//	}
+
+
+
+	@RequestMapping(value = "/console/registrations/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, Registration.findRegistration(id));
         return "registrations/update";
@@ -176,6 +280,9 @@ public class RegistrationController {
         headers.add("Content-Type", "application/json");
         
 		try {
+			//TODO RR: check for used username as it must be unique.
+			// Return error if the user name is already in use as a registration 
+			// OR researcher username.
 			json = prepareToInjectInstitution(json);
 	        Registration registration = Registration.fromJsonToRegistration(json);
 	        Calendar currentDate = Calendar.getInstance();
