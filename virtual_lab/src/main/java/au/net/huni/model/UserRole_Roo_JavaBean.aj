@@ -3,9 +3,7 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
-import java.util.Set;
 
 privileged aspect UserRole_Roo_JavaBean {
     
@@ -15,14 +13,6 @@ privileged aspect UserRole_Roo_JavaBean {
     
     public void UserRole.setName(String name) {
         this.name = name;
-    }
-    
-    public Set<Researcher> UserRole.getResearchers() {
-        return this.researchers;
-    }
-    
-    public void UserRole.setResearchers(Set<Researcher> researchers) {
-        this.researchers = researchers;
     }
     
 }
