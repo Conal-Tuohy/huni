@@ -39,17 +39,13 @@
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
-    
     <!-- File upload conversion -->
     <bean class="org.springframework.web.multipart.support.MultipartFilter" id="multipartFilter">
         <property name="multipartResolverBeanName" value="multipartResolver"/>
     </bean>
-    
-    
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
-               
+    
 </beans>

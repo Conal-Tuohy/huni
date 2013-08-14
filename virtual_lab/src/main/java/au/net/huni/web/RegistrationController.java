@@ -12,11 +12,14 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,15 +41,15 @@ import au.net.huni.model.RegistrationStatus;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
 
-// Access by default is restricted to the ADMIN role within the console webapp.
-// This is over-ridden by annotations in this file.
-// See webmvc-config.xml
 @Controller
 @RooWebScaffold(path = "registrations", formBackingObject = Registration.class)
 @RooWebJson(jsonObject = Registration.class)
 public class RegistrationController {
-	
-	final static Logger logger = Logger.getLogger(RegistrationController.class);
+
+    static final Logger logger = Logger.getLogger(RegistrationController.class);
+
+    @Autowired
+    private transient MailSender mailTemplate;
 
     @RequestMapping(value = "/console/registrations", method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid Registration registration, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -72,7 +75,7 @@ public class RegistrationController {
         return "registrations/create";
     }
 
-    @RequestMapping(value = "/console/registrations/{id}",  produces = "text/html")
+    @RequestMapping(value = "/console/registrations/{id}", produces = "text/html")
     public String show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("registration", Registration.findRegistration(id));
@@ -102,111 +105,97 @@ public class RegistrationController {
             return "registrations/update";
         }
         uiModel.asMap().clear();
-        
         Registration existingRegistration = findExistingRegistration(registration);
         if (isApproval(registration, existingRegistration)) {
-        	approve(registration);
+            approve(registration);
         } else if (isRejection(registration, existingRegistration)) {
-        	reject(registration);
+            reject(registration);
         }
         updateRegistration(registration);
-        
         return "redirect:/console/registrations/" + encodeUrlPathSegment(registration.getId().toString(), httpServletRequest);
     }
 
-	protected Registration findExistingRegistration(Registration registration) {
-		return Registration.findRegistration(registration.getId());
-	}
+    protected Registration findExistingRegistration(Registration registration) {
+        return Registration.findRegistration(registration.getId());
+    }
 
-	protected void updateRegistration(Registration registration) {
-		registration.merge();
-	}
+    protected void updateRegistration(Registration registration) {
+        registration.merge();
+    }
 
-	protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
-		if (updatedRegistration == null || existingRegistration == null) {
-			return false;
-		}
-		RegistrationStatus proposedStatus = updatedRegistration.getStatus();
-		RegistrationStatus existingStatus = existingRegistration.getStatus();
-		return proposedStatus == RegistrationStatus.APPROVED && existingStatus  == RegistrationStatus.PENDING;
-	}
+    protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
+        if (updatedRegistration == null || existingRegistration == null) {
+            return false;
+        }
+        RegistrationStatus proposedStatus = updatedRegistration.getStatus();
+        RegistrationStatus existingStatus = existingRegistration.getStatus();
+        return proposedStatus == RegistrationStatus.APPROVED && existingStatus == RegistrationStatus.PENDING;
+    }
 
-	protected boolean isRejection(Registration updatedRegistration, Registration existingRegistration) {
-		if (updatedRegistration == null || existingRegistration == null) {
-			return false;
-		}
-		RegistrationStatus proposedStatus = updatedRegistration.getStatus();
-		RegistrationStatus existingStatus = existingRegistration.getStatus();
-		return proposedStatus == RegistrationStatus.REJECTED && existingStatus  == RegistrationStatus.PENDING;
-	}
+    protected boolean isRejection(Registration updatedRegistration, Registration existingRegistration) {
+        if (updatedRegistration == null || existingRegistration == null) {
+            return false;
+        }
+        RegistrationStatus proposedStatus = updatedRegistration.getStatus();
+        RegistrationStatus existingStatus = existingRegistration.getStatus();
+        return proposedStatus == RegistrationStatus.REJECTED && existingStatus == RegistrationStatus.PENDING;
+    }
 
-	protected Researcher approve(Registration updatedRegistration) {
+    protected Researcher approve(Registration updatedRegistration) {
+        Researcher newResearcher = null;
+        try {
+            String userName = updatedRegistration.getUserName();
+            newResearcher = new Researcher();
+            newResearcher.setUserName(userName);
+            newResearcher.setGivenName(updatedRegistration.getGivenName());
+            newResearcher.setFamilyName(updatedRegistration.getFamilyName());
+            String emailAddress = updatedRegistration.getEmailAddress();
+			newResearcher.setEmailAddress(emailAddress);
+            newResearcher.setInstitution(updatedRegistration.getInstitution());
+            Calendar calendar = Calendar.getInstance();
+            newResearcher.setCreationDate(calendar);
+            newResearcher.setIsAccountEnabled(true);
+            UserRole userRole = assignDefaultRole();
+            newResearcher.getRoles().add(userRole);
+            updatedRegistration.setApprovalDate(calendar);
+            persistResearcher(newResearcher);
+            String message = "Thank you for your interest in the HuNI Project. Your application has been accepted. ";
+            sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Approval", emailAddress, message);
+        } catch (Exception exception) {
+            throw new RuntimeException("Failed to save the new researcher", exception);
+        }
+        return newResearcher;
+    }
 
-		Researcher newResearcher = null;
-		try {
-			String userName = updatedRegistration.getUserName();
-			newResearcher = new Researcher();
-			newResearcher.setUserName(userName);
-			newResearcher.setGivenName(updatedRegistration.getGivenName());
-			newResearcher.setFamilyName(updatedRegistration.getFamilyName());
-			newResearcher.setEmailAddress(updatedRegistration.getEmailAddress());
-			newResearcher.setInstitution(updatedRegistration.getInstitution());
-			Calendar calendar = Calendar.getInstance();
-			newResearcher.setCreationDate(calendar);
-			newResearcher.setIsAccountEnabled(true);
-			UserRole userRole = assignDefaultRole();
-			newResearcher.getRoles().add(userRole);
-			updatedRegistration.setApprovalDate(calendar);
-			persistResearcher(newResearcher);
-		} catch (Exception exception) {
-			throw new RuntimeException("Failed to save the new researcher", exception);
-		}
-		return newResearcher;
-	}
+    protected Researcher reject(Registration updatedRegistration) {
+        Researcher newResearcher = null;
+        Calendar calendar = Calendar.getInstance();
+        updatedRegistration.setApprovalDate(calendar);
+        String emailAddress = updatedRegistration.getEmailAddress();
+        String message = "Thank you for your interest in the HuNI Project. Your application has been rejected. ";
+        sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Rejection", emailAddress, message);
+        return newResearcher;
+    }
 
-	protected Researcher reject(Registration updatedRegistration) {
+    protected UserRole assignDefaultRole() {
+        UserRole userRole = null;
+        try {
+            userRole = UserRole.findUserRolesByNameEquals("USER_ROLE").getSingleResult();
+        } catch (NoResultException missingRole) {
+            throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
+        } catch (EmptyResultDataAccessException missingRole) {
+            throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
+        } catch (Exception exception) {
+            throw new RuntimeException("Failed to find the default role", exception);
+        }
+        return userRole;
+    }
 
-		Researcher newResearcher = null;
-		Calendar calendar = Calendar.getInstance();
-		updatedRegistration.setApprovalDate(calendar);
-		return newResearcher;
-	}
+    protected void persistResearcher(Researcher newResearcher) {
+        newResearcher.persist();
+    }
 
-	protected UserRole assignDefaultRole() {
-		UserRole userRole = null;
-		try {
-			userRole = UserRole.findUserRolesByNameEquals("USER_ROLE").getSingleResult();
-		} catch (NoResultException missingRole) {
-			throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
-		} catch (EmptyResultDataAccessException missingRole) {
-			throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
-		} catch (Exception exception) {
-			throw new RuntimeException("Failed to find the default role", exception);
-		}
-		return userRole;
-	}
-	
-	protected void persistResearcher(Researcher newResearcher) {
-		newResearcher.persist();
-	}
-	
-//	Researcher existingResearcher = null;
-//	while (existingResearcher != null) {
-//		try {
-//			existingResearcher = Researcher.findResearchersByUserNameEquals(userName).getSingleResult();
-//		} catch (NoResultException returnNull) {
-//			// just return null for the result.
-//		} catch (EmptyResultDataAccessException returnNull) {
-//			// just return null for the result.
-//		} catch (Exception exception) {
-//			throw new RuntimeException("Failed to retrieve researcher", exception);
-//		}
-//		userName += rnd.nextInt(100);
-//	}
-
-
-
-	@RequestMapping(value = "/console/registrations/{id}", params = "form", produces = "text/html")
+    @RequestMapping(value = "/console/registrations/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, Registration.findRegistration(id));
         return "registrations/update";
@@ -246,13 +235,11 @@ public class RegistrationController {
         return pathSegment;
     }
 
-	@RequestMapping(value = "/rest/registrations/{id}", headers = "Accept=application/json")
+    @RequestMapping(value = "/rest/registrations/{id}", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> showJson(@PathVariable("id") Long id) {
-		
+    public ResponseEntity<java.lang.String> showJson(@PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        
         Registration registration = Registration.findRegistration(id);
         if (registration == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
@@ -260,65 +247,53 @@ public class RegistrationController {
         return new ResponseEntity<String>(registration.toJson(), headers, HttpStatus.OK);
     }
 
-	@RequestMapping(value = "/rest/registrations", headers = "Accept=application/json")
+    @RequestMapping(value = "/rest/registrations", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> listJson() {
-		
+    public ResponseEntity<java.lang.String> listJson() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        
         List<Registration> result = Registration.findAllRegistrations();
         return new ResponseEntity<String>(Registration.toJsonArray(result), headers, HttpStatus.OK);
     }
 
-	// Allow access for VL web app.
-	@PreAuthorize("isAnonymous()")
-	@RequestMapping(value = "/rest/registrations", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> createFromJson(@RequestBody String json) {
-		
+    @PreAuthorize("isAnonymous()")
+    @RequestMapping(value = "/rest/registrations", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ResponseEntity<java.lang.String> createFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        
-		try {
-			//TODO RR: check for used username as it must be unique.
-			// Return error if the user name is already in use as a registration 
-			// OR researcher username.
-			json = prepareToInjectInstitution(json);
-	        Registration registration = Registration.fromJsonToRegistration(json);
-	        Calendar currentDate = Calendar.getInstance();
-	        registration.setApplicationDate(currentDate);
-	        registration.setStatus(RegistrationStatus.PENDING);
-	        registration.persist();
-	        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
-		} catch (Throwable exception) {
-			logger.error("createFromJson", exception);
-			return new ResponseEntity<String>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+        try {
+            json = prepareToInjectInstitution(json);
+            Registration registration = Registration.fromJsonToRegistration(json);
+            Calendar currentDate = Calendar.getInstance();
+            registration.setApplicationDate(currentDate);
+            registration.setStatus(RegistrationStatus.PENDING);
+            registration.persist();
+            return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+        } catch (Throwable exception) {
+            logger.error("createFromJson", exception);
+            return new ResponseEntity<String>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-	@RequestMapping(value = "/rest/registrations/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> createFromJsonArray(@RequestBody String json) {
-
+    @RequestMapping(value = "/rest/registrations/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ResponseEntity<java.lang.String> createFromJsonArray(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-
         json = prepareToInjectInstitution(json);
         Calendar currentDate = Calendar.getInstance();
-        for (Registration registration: Registration.fromJsonArrayToRegistrations(json)) {
-	        registration.setApplicationDate(currentDate);
-	        registration.setStatus(RegistrationStatus.PENDING);
+        for (Registration registration : Registration.fromJsonArrayToRegistrations(json)) {
+            registration.setApplicationDate(currentDate);
+            registration.setStatus(RegistrationStatus.PENDING);
             registration.persist();
         }
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
-	@RequestMapping(value = "/rest/registrations", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> updateFromJson(@RequestBody String json) {
-		
+    @RequestMapping(value = "/rest/registrations", method = RequestMethod.PUT, headers = "Accept=application/json")
+    public ResponseEntity<java.lang.String> updateFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        
-		json = prepareToInjectInstitution(json);
+        json = prepareToInjectInstitution(json);
         Registration registration = Registration.fromJsonToRegistration(json);
         if (registration.merge() == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
@@ -326,14 +301,12 @@ public class RegistrationController {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 
-	@RequestMapping(value = "/rest/registrations/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> updateFromJsonArray(@RequestBody String json) {
-		
+    @RequestMapping(value = "/rest/registrations/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
+    public ResponseEntity<java.lang.String> updateFromJsonArray(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        
-		json = prepareToInjectInstitution(json);
-        for (Registration registration: Registration.fromJsonArrayToRegistrations(json)) {
+        json = prepareToInjectInstitution(json);
+        for (Registration registration : Registration.fromJsonArrayToRegistrations(json)) {
             if (registration.merge() == null) {
                 return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
             }
@@ -341,12 +314,10 @@ public class RegistrationController {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 
-	@RequestMapping(value = "/rest/registrations/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<String> deleteFromJson(@PathVariable("id") Long id) {
-
+    @RequestMapping(value = "/rest/registrations/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
+    public ResponseEntity<java.lang.String> deleteFromJson(@PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-
         Registration registration = Registration.findRegistration(id);
         if (registration == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
@@ -355,11 +326,25 @@ public class RegistrationController {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 
-	private String prepareToInjectInstitution(String json) {
-		// A name change for the field allows FlexJSON 
-		// to substitute a Institution object for the string institutionId 
-		// that comes across in the JSON packet.
-		json = json.replaceAll("institutionId", "institution");
-		return json;
+    private String prepareToInjectInstitution(String json) {
+        json = json.replaceAll("institutionId", "institution");
+        return json;
+    }
+
+    protected void sendMessage(String mailFrom, String subject, String mailTo, String message) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(mailFrom);
+        mailMessage.setSubject(subject);
+        mailMessage.setTo(mailTo);
+        mailMessage.setText(message);
+        getMailTemplate().send(mailMessage);
+    }
+
+	public MailSender getMailTemplate() {
+		return mailTemplate;
+	}
+
+	public void setMailTemplate(MailSender mailTemplate) {
+		this.mailTemplate = mailTemplate;
 	}
 }

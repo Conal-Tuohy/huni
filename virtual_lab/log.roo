@@ -204,3 +204,7 @@ field string --class ~.model.FeedbackItem --fieldName visitorIpAddress
 field date --class ~.model.Researcher --fieldName creationDate --type java.util.Calendar --dateFormat SHORT --notNull 
 // [failed] field date --class ~.model.Researcher --fieldName creationDate --type java.util.Calendar --dateFormat SHORT --notNull 
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-14 17:07:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-14 22:07:41
+email sender setup --hostServer smtp.gmail.com --username huniproject --password huniproject%$#@! --port 587 --protocol SMTP 
+field email template --class ~.web.RegistrationController 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-14 23:36:41
