@@ -4,6 +4,7 @@
 package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
+import au.net.huni.model.Institution;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
 import java.util.Set;
@@ -32,6 +33,22 @@ privileged aspect Researcher_Roo_JavaBean {
     
     public void Researcher.setFamilyName(String familyName) {
         this.familyName = familyName;
+    }
+    
+    public String Researcher.getEmailAddress() {
+        return this.emailAddress;
+    }
+    
+    public void Researcher.setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+    
+    public Institution Researcher.getInstitution() {
+        return this.institution;
+    }
+    
+    public void Researcher.setInstitution(Institution institution) {
+        this.institution = institution;
     }
     
     public Set<HistoryItem> Researcher.getHistory() {

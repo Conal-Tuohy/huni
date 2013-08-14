@@ -3,10 +3,26 @@
 
 package au.net.huni.model;
 
+import au.net.huni.model.Institution;
+import au.net.huni.model.InstitutionDataOnDemand;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ResearcherDataOnDemand;
+import org.springframework.beans.factory.annotation.Autowired;
 
 privileged aspect ResearcherDataOnDemand_Roo_DataOnDemand {
+    
+    @Autowired
+    InstitutionDataOnDemand ResearcherDataOnDemand.institutionDataOnDemand;
+    
+    public void ResearcherDataOnDemand.setEmailAddress(Researcher obj, int index) {
+        String emailAddress = "foo" + index + "@bar.com";
+        obj.setEmailAddress(emailAddress);
+    }
+    
+    public void ResearcherDataOnDemand.setInstitution(Researcher obj, int index) {
+        Institution institution = institutionDataOnDemand.getRandomInstitution();
+        obj.setInstitution(institution);
+    }
     
     public void ResearcherDataOnDemand.setIsAccountEnabled(Researcher obj, int index) {
         Boolean isAccountEnabled = Boolean.TRUE;

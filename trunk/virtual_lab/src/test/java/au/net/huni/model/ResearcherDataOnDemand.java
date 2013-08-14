@@ -26,34 +26,45 @@ public class ResearcherDataOnDemand {
 
 	public Researcher getNewTransientResearcher(int index) {
         Researcher obj = new Researcher();
+        setUserName(obj, index);
+        setPassword(obj, index);
+        setIsAccountEnabled(obj, index);
+        setEmailAddress(obj, index);
+        setInstitution(obj, index);
         setFamilyName(obj, index);
         setGivenName(obj, index);
-        setUserName(obj, index);
+        //setHistoryList(obj, index);
         return obj;
     }
 
 	public void setFamilyName(Researcher obj, int index) {
         String familyName = "familyName_" + index;
-        if (familyName.length() > 256) {
-            familyName = familyName.substring(0, 256);
+        if (familyName.length() > 60) {
+            familyName = familyName.substring(0, 60);
         }
         obj.setFamilyName(familyName);
     }
 
 	public void setGivenName(Researcher obj, int index) {
         String givenName = "givenName_" + index;
-        if (givenName.length() > 256) {
-            givenName = givenName.substring(0, 256);
+        if (givenName.length() > 60) {
+            givenName = givenName.substring(0, 60);
         }
         obj.setGivenName(givenName);
     }
 
 	public void setUserName(Researcher obj, int index) {
-        String userName = "userName_" + index;
-        if (userName.length() > 128) {
-            userName = userName.substring(0, 128);
+		// The base name  is shortened as field has a length constraint.
+        String userName = "uNme_" + index;
+        if (userName.length() > 10) {
+            userName = userName.substring(0, 10);
         }
         obj.setUserName(userName);
+    }
+	
+	public void setHistoryList(Researcher obj, int index) {
+        HistoryItem historyItem = historyItemDataOnDemand.getRandomHistoryItem();
+        obj.getHistory().add(historyItem);
     }
 
 	public Researcher getSpecificResearcher(int index) {
