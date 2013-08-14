@@ -200,3 +200,7 @@ field string --class ~.model.FeedbackItem --fieldName visitorIpAddress
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-14 13:23:09
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-14 13:29:10
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-14 14:15:50
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-14 16:56:46
+field date --class ~.model.Researcher --fieldName creationDate --type java.util.Calendar --dateFormat SHORT --notNull 
+// [failed] field date --class ~.model.Researcher --fieldName creationDate --type java.util.Calendar --dateFormat SHORT --notNull 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-14 17:07:15

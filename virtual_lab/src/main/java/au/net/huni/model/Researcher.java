@@ -4,24 +4,25 @@ import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import flexjson.ObjectBinder;
 import flexjson.ObjectFactory;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
@@ -35,7 +36,8 @@ public class Researcher {
 
     private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
 
-        @Override
+        @SuppressWarnings("rawtypes")
+		@Override
         public Object instantiate(ObjectBinder context, Object value, Type targetType, Class targetClass) {
             Long id = Long.valueOf((String) value);
             return Institution.findInstitution(id);
@@ -66,8 +68,6 @@ public class Researcher {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<HistoryItem> history = new HashSet<HistoryItem>();
 
-    // This field is expected to be set with an sha-256 encoded password
-    // and so needs to be exactly 64 characters. 
     @Size(max = 64, min = 64)
     private String password;
 
@@ -76,48 +76,48 @@ public class Researcher {
     @ManyToMany
     private Set<UserRole> roles = new HashSet<UserRole>();
 
-	// Accepts a plain text password and stores it in encrypted form
-	public void setPassword(String clearTextPassword) {
-        // Encrypt the password to be saved in the database.
-		// TODO RR: where do we handle the salt?
-		String encryptedPassword = DigestUtils.sha256Hex(clearTextPassword);
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(style = "S-")
+    private Calendar creationDate;
+
+    public void setPassword(String clearTextPassword) {
+        String encryptedPassword = DigestUtils.sha256Hex(clearTextPassword);
         this.password = encryptedPassword;
     }
 
-	// Returns the encrypted password
-	public String getPassword() {
+    public String getPassword() {
         return this.password;
     }
 
-	// Used to set the encrypted password for preservation purposes.
-	public void setEncryptedPassword(String encryptedPassword) {
+    public void setEncryptedPassword(String encryptedPassword) {
         this.password = encryptedPassword;
-	}
-	
-    public String toString() {
-    	StringBuilder buffer = new StringBuilder();
-    	buffer.append(this.getFamilyName());
-    	buffer.append(", ");
-    	buffer.append(getGivenName());
-    	buffer.append(" (");
-    	buffer.append(getUserName());
-    	buffer.append(")");
-        return  buffer.toString() ;
     }
 
-	public static String toJsonArray(Collection<Researcher> collection) {
+    public String toString() {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(this.getFamilyName());
+        buffer.append(", ");
+        buffer.append(getGivenName());
+        buffer.append(" (");
+        buffer.append(getUserName());
+        buffer.append(")");
+        return buffer.toString();
+    }
+
+    public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
         return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(collection);
     }
 
-	public String toJson() {
+    public String toJson() {
         return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(this);
     }
 
-	public static Researcher fromJsonToResearcher(String json) {
+    public static au.net.huni.model.Researcher fromJsonToResearcher(String json) {
         return new JSONDeserializer<Researcher>().use(null, Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 
-	public static Collection<Researcher> fromJsonArrayToResearchers(String json) {
+    public static Collection<au.net.huni.model.Researcher> fromJsonArrayToResearchers(String json) {
         return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 }

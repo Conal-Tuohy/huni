@@ -32,7 +32,8 @@ public class Registration {
 
     private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
 
-        @Override
+        @SuppressWarnings("rawtypes")
+		@Override
         public Object instantiate(ObjectBinder context, Object value, Type targetType, Class targetClass) {
             Long id = Long.valueOf((String) value);
             return Institution.findInstitution(id);
