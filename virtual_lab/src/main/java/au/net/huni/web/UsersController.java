@@ -3,6 +3,7 @@ package au.net.huni.web;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +33,8 @@ import au.net.huni.model.Researcher;
 @RooWebJson(jsonObject = Researcher.class)
 @Controller
 public class UsersController {
+		
+    static final Logger logger = Logger.getLogger(UsersController.class);
 
 	private final static HttpHeaders JSON_HEADERS = new HttpHeaders();
 	static {
@@ -51,21 +54,26 @@ public class UsersController {
 			HttpServletRequest request) {
 
 		Authentication authenticatedUser = null;
+		Researcher researcher = null;
 		try {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
 			token.setDetails(new WebAuthenticationDetails(request));
 			authenticatedUser = authenticationManager.authenticate(token);
-			Researcher researcher = null;
 			if (authenticatedUser.isAuthenticated() && (researcher = findResearcher(userName)) != null) {
+				logger.info("Successful validation of " + researcher);
 				return responsePacket(researcher.toJson(), HttpStatus.OK);
 			}
 		} catch (LockedException lockedException) {
+			logger.error("Locked account for " + researcher, lockedException);
 			return responsePacket("{\"status\":\"failure\", \"reason\": \"Locked account\"}", HttpStatus.OK);
 		} catch (BadCredentialsException badCredentialsException) {
+			logger.error("Bad credentials for " + researcher, badCredentialsException);
 			return responsePacket("{\"status\":\"failure\", \"reason\": \"Bad credentials\"}", HttpStatus.OK);
 		} catch (EmptyResultDataAccessException emptyResultException) {
+			logger.error("Unable to retrieve single researcher from database " + researcher, emptyResultException);
 			return responsePacket(HttpStatus.NOT_FOUND);
 		} catch (Exception exception) {
+			logger.error("Unable to retrieve researcher form database " + researcher, exception);
 			return responsePacket(HttpStatus.NOT_FOUND);
 		}
 		return responsePacket(HttpStatus.NOT_FOUND);
