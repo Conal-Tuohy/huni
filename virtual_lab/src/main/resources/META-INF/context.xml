@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!-- Allow the tool lib folder to be a symlink to a directory outside the webapp folder. -->
+	<Context path="/virtual_lab" allowLinking="true" override="true" >
+
+</Context>

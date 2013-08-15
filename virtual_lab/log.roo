@@ -208,3 +208,5 @@ field date --class ~.model.Researcher --fieldName creationDate --type java.util.
 email sender setup --hostServer smtp.gmail.com --username huniproject --password huniproject%$#@! --port 587 --protocol SMTP 
 field email template --class ~.web.RegistrationController 
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-14 23:36:41
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-15 15:19:23
+perform package
