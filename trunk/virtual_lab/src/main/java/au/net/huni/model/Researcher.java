@@ -1,16 +1,12 @@
 package au.net.huni.model;
 
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
-import flexjson.ObjectBinder;
-import flexjson.ObjectFactory;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
@@ -21,12 +17,20 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
+import flexjson.ObjectFactory;
+import flexjson.ObjectBinder;
+import flexjson.transformer.DateTransformer;
+import java.lang.reflect.Type;
 
 @RooJavaBean
 @RooToString
@@ -106,18 +110,21 @@ public class Researcher {
     }
 
     public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(collection);
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "creationDate")
+        		.transform(new DateTransformer("dd/MM/yyyy HH:mm:ss z"),"creationDate.time")
+        		.serialize(collection);
     }
-
     public String toJson() {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").serialize(this);
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "creationDate")
+        		.transform(new DateTransformer("dd/MM/yyyy HH:mm:ss z"), "creationDate.time")
+        		.serialize(this);
     }
 
-    public static au.net.huni.model.Researcher fromJsonToResearcher(String json) {
+    public static Researcher fromJsonToResearcher(String json) {
         return new JSONDeserializer<Researcher>().use(null, Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 
-    public static Collection<au.net.huni.model.Researcher> fromJsonArrayToResearchers(String json) {
+    public static Collection<Researcher> fromJsonArrayToResearchers(String json) {
         return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 }
