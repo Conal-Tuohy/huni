@@ -26,6 +26,7 @@ import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
+import au.net.huni.security.PasswordGenerator;
 
 public class RegistrationControllerTest {
 
@@ -389,6 +390,11 @@ public class RegistrationControllerTest {
 		context.checking(new Expectations() {{
 		    oneOf (mailTemplate).send(with(any(SimpleMailMessage.class)));
 		}});
+        
+		final PasswordGenerator passwordGenerator = context.mock(PasswordGenerator.class);
+		context.checking(new Expectations() {{
+		    oneOf (passwordGenerator).generate(); will(returnValue("password1"));
+		}});
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -415,6 +421,7 @@ public class RegistrationControllerTest {
         };
 
         controller.setMailTemplate(mailTemplate);
+        controller.setPasswordGenerator(passwordGenerator);
 
         Researcher researcher = controller.approve(updatedRegistration);
 		assertEquals("Created researcher on approval", "user1", researcher.getUserName());
@@ -508,13 +515,24 @@ public class RegistrationControllerTest {
 		existingRegistration.setInstitution(new Institution("omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
-		
+
+		String expectedMessage = "Dear given1 family1,"
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been accepted. "
+				+ " Your user name is: user1"
+				+ " and your temporary password is: password1";
+
 		final SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom("huniproject@gmail.com");
         mailMessage.setSubject("HuNI Virtual Lab: Registration Approval");
         mailMessage.setTo("user1@test.net");
-        mailMessage.setText("Thank you for your interest in the HuNI Project. Your application has been accepted. ");
-        
+        mailMessage.setText(expectedMessage);
+             
+		final PasswordGenerator passwordGenerator = context.mock(PasswordGenerator.class);
+		context.checking(new Expectations() {{
+		    oneOf (passwordGenerator).generate(); will(returnValue("password1"));
+		}});
+
 		final MailSender mailTemplate = context.mock(MailSender.class);
 		context.checking(new Expectations() {{
 		    oneOf (mailTemplate).send(mailMessage);
@@ -544,7 +562,9 @@ public class RegistrationControllerTest {
     		}
         };
         controller.setMailTemplate(mailTemplate);
-		controller.approve(updatedRegistration);
+        controller.setPasswordGenerator(passwordGenerator);
+
+        controller.approve(updatedRegistration);
 	}
 
 	@Test
@@ -569,12 +589,16 @@ public class RegistrationControllerTest {
 		existingRegistration.setInstitution(new Institution("omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
-		
+
+		String expectedMessage = "Dear given1 family1,"
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been rejected. ";
+
 		final SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom("huniproject@gmail.com");
         mailMessage.setSubject("HuNI Virtual Lab: Registration Rejection");
         mailMessage.setTo("user1@test.net");
-        mailMessage.setText("Thank you for your interest in the HuNI Project. Your application has been rejected. ");
+        mailMessage.setText(expectedMessage);
         
 		final MailSender mailTemplate = context.mock(MailSender.class);
 		context.checking(new Expectations() {{
@@ -610,6 +634,107 @@ public class RegistrationControllerTest {
         };
         controller.setMailTemplate(mailTemplate);
 		controller.reject(updatedRegistration);
+	}
+
+	@Test
+	public void testChangeOfStatusFromPendingToApprovedGeneratesPassword() {
+
+		final Registration updatedRegistration = new Registration();
+		updatedRegistration.setId(25L);
+		updatedRegistration.setUserName("user1");
+		updatedRegistration.setGivenName("given1");
+		updatedRegistration.setFamilyName("family1");
+		updatedRegistration.setEmailAddress("user1@test.net");
+		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setApplicationDate(Calendar.getInstance());
+		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
+
+		final Registration existingRegistration = new Registration();
+		existingRegistration.setId(25L);
+		existingRegistration.setUserName("user1");
+		existingRegistration.setGivenName("given1");
+		existingRegistration.setFamilyName("family1");
+		existingRegistration.setEmailAddress("user1@test.net");
+		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setApplicationDate(Calendar.getInstance());
+		existingRegistration.setStatus(RegistrationStatus.PENDING);
+		
+		final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("huniproject@gmail.com");
+        mailMessage.setSubject("HuNI Virtual Lab: Registration Approval");
+        mailMessage.setTo("user1@test.net");
+        mailMessage.setText("Thank you for your interest in the HuNI Project. Your application has been accepted. ");
+        
+		final MailSender mailTemplate = context.mock(MailSender.class);
+		context.checking(new Expectations() {{
+		    oneOf (mailTemplate).send(with(any(SimpleMailMessage.class)));
+		}});
+        
+		final PasswordGenerator passwordGenerator = context.mock(PasswordGenerator.class);
+		context.checking(new Expectations() {{
+		    oneOf (passwordGenerator).generate(); will(returnValue("12345678"));
+		}});
+
+		final boolean wasApproved[] = new boolean[1];
+		wasApproved[0] = false;
+        RegistrationController controller = new RegistrationController() {
+        	protected Registration findExistingRegistration(Registration registration) {
+        		return existingRegistration;
+        	}
+        	
+        	protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
+        		return true;
+        	}
+
+        	protected void updateRegistration(Registration registration) {
+        		// Stub out;
+        	}
+
+    		protected UserRole assignDefaultRole() {
+    			return new UserRole("USER_ROLE");
+    		}
+    		
+    		protected void persistResearcher(Researcher newResearcher) {
+    			// Stub out.
+    		}
+        };
+        controller.setMailTemplate(mailTemplate);
+        controller.setPasswordGenerator(passwordGenerator);
+		Researcher researcher = controller.approve(updatedRegistration);
+		assertNotNull("Password is set for researcher", researcher.getPassword());
+		assertEquals("Hashed password has correct for researcher", 64, researcher.getPassword().length());
+	}
+
+	@Test
+	public void testConstructApprovalMessage() {
+
+		String expectedMessage = "Dear given1 family1,"
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been accepted. "
+				+ " Your user name is: user1"
+				+ " and your temporary password is: password1";
+
+		RegistrationController controller = new RegistrationController();
+ 		String givenName = "given1";
+		String familyName = "family1";
+		String userName = "user1";
+		String cleartextPassword = "password1";
+		String message = controller.constructApprovalMessage(givenName, familyName, userName, cleartextPassword);
+		assertEquals("Approval message is correct", expectedMessage, message);
+	}
+
+	@Test
+	public void testConstructRejectionMessage() {
+
+		String expectedMessage = "Dear given1 family1,"
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been rejected. ";
+
+		RegistrationController controller = new RegistrationController();
+ 		String givenName = "given1";
+		String familyName = "family1";
+		String message = controller.constructRejectionMessage(givenName, familyName);
+		assertEquals("Rejection message is correct", expectedMessage, message);
 	}
 
 }
