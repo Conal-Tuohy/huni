@@ -18,6 +18,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
@@ -40,6 +41,7 @@ import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.UserRole;
+import au.net.huni.security.PasswordGenerator;
 
 @Controller
 @RooWebScaffold(path = "registrations", formBackingObject = Registration.class)
@@ -50,6 +52,9 @@ public class RegistrationController {
 
     @Autowired
     private transient MailSender mailTemplate;
+
+    @Autowired
+	private PasswordGenerator passwordGenerator;
 
     @RequestMapping(value = "/console/registrations", method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid Registration registration, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -147,8 +152,10 @@ public class RegistrationController {
             String userName = updatedRegistration.getUserName();
             newResearcher = new Researcher();
             newResearcher.setUserName(userName);
-            newResearcher.setGivenName(updatedRegistration.getGivenName());
-            newResearcher.setFamilyName(updatedRegistration.getFamilyName());
+            String givenName = updatedRegistration.getGivenName();
+            newResearcher.setGivenName(givenName);
+            String familyName = updatedRegistration.getFamilyName();
+			newResearcher.setFamilyName(familyName);
             String emailAddress = updatedRegistration.getEmailAddress();
 			newResearcher.setEmailAddress(emailAddress);
             newResearcher.setInstitution(updatedRegistration.getInstitution());
@@ -157,9 +164,11 @@ public class RegistrationController {
             newResearcher.setIsAccountEnabled(true);
             UserRole userRole = assignDefaultRole();
             newResearcher.getRoles().add(userRole);
+            String clearTextPassword = getPasswordGenerator().generate();
+            newResearcher.setPassword(clearTextPassword);
             updatedRegistration.setApprovalDate(calendar);
             persistResearcher(newResearcher);
-            String message = "Thank you for your interest in the HuNI Project. Your application has been accepted. ";
+			String message = constructApprovalMessage(givenName, familyName, userName, clearTextPassword);
             sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Approval", emailAddress, message);
         } catch (Exception exception) {
             throw new RuntimeException("Failed to save the new researcher", exception);
@@ -167,12 +176,30 @@ public class RegistrationController {
         return newResearcher;
     }
 
+	protected String constructApprovalMessage(String givenName, String familyName, String userName, String password) {
+		String message = "Dear " + givenName + " " + familyName + ","
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been accepted. "
+				+ " Your user name is: " + userName
+				+ " and your temporary password is: " + password;
+		return message;
+	}
+
+	public String constructRejectionMessage(String givenName, String familyName) {
+		String message = "Dear " + givenName + " " + familyName + ","
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been rejected. ";
+		return message;
+	}
+
     protected Researcher reject(Registration updatedRegistration) {
         Researcher newResearcher = null;
         Calendar calendar = Calendar.getInstance();
         updatedRegistration.setApprovalDate(calendar);
         String emailAddress = updatedRegistration.getEmailAddress();
-        String message = "Thank you for your interest in the HuNI Project. Your application has been rejected. ";
+        String givenName = updatedRegistration.getGivenName();
+        String familyName = updatedRegistration.getFamilyName();
+		String message = constructRejectionMessage(givenName, familyName);
         sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Rejection", emailAddress, message);
         return newResearcher;
     }
@@ -332,19 +359,32 @@ public class RegistrationController {
     }
 
     protected void sendMessage(String mailFrom, String subject, String mailTo, String message) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(mailFrom);
-        mailMessage.setSubject(subject);
-        mailMessage.setTo(mailTo);
-        mailMessage.setText(message);
-        getMailTemplate().send(mailMessage);
+        try {
+			SimpleMailMessage mailMessage = new SimpleMailMessage();
+			mailMessage.setFrom(mailFrom);
+			mailMessage.setSubject(subject);
+			mailMessage.setTo(mailTo);
+			mailMessage.setText(message);
+			getMailTemplate().send(mailMessage);
+		} catch (MailException mailException) {
+			throw new RuntimeException("Email message failed to send", mailException);
+		}
     }
 
-	public MailSender getMailTemplate() {
+	MailSender getMailTemplate() {
 		return mailTemplate;
 	}
 
 	public void setMailTemplate(MailSender mailTemplate) {
 		this.mailTemplate = mailTemplate;
 	}
+
+	PasswordGenerator getPasswordGenerator() {
+		return this.passwordGenerator;
+	}
+
+	public void setPasswordGenerator(PasswordGenerator passwordGenerator) {
+		this.passwordGenerator = passwordGenerator;
+	}
+
 }
