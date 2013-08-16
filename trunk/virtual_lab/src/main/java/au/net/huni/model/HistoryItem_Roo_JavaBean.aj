@@ -6,7 +6,7 @@ package au.net.huni.model;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolParameter;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Set;
 
 privileged aspect HistoryItem_Roo_JavaBean {
@@ -27,11 +27,11 @@ privileged aspect HistoryItem_Roo_JavaBean {
         this.backgroundColour = backgroundColour;
     }
     
-    public Date HistoryItem.getExecutionDate() {
+    public Calendar HistoryItem.getExecutionDate() {
         return this.executionDate;
     }
     
-    public void HistoryItem.setExecutionDate(Date executionDate) {
+    public void HistoryItem.setExecutionDate(Calendar executionDate) {
         this.executionDate = executionDate;
     }
     

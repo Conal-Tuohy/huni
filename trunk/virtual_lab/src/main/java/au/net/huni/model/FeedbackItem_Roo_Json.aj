@@ -5,23 +5,14 @@ package au.net.huni.model;
 
 import au.net.huni.model.FeedbackItem;
 import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect FeedbackItem_Roo_Json {
     
-    public String FeedbackItem.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
     public static FeedbackItem FeedbackItem.fromJsonToFeedbackItem(String json) {
         return new JSONDeserializer<FeedbackItem>().use(null, FeedbackItem.class).deserialize(json);
-    }
-    
-    public static String FeedbackItem.toJsonArray(Collection<FeedbackItem> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
     public static Collection<FeedbackItem> FeedbackItem.fromJsonArrayToFeedbackItems(String json) {

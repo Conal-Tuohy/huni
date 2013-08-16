@@ -5,7 +5,7 @@
     <page:show id="ps_au_net_huni_model_HistoryItem" object="${historyitem}" path="/console/historyitems" z="user-managed">
         <field:display field="toolName" id="s_au_net_huni_model_HistoryItem_toolName" object="${historyitem}" z="CESxH/YIPBjz7wlbSktJZeS5+jU="/>
         <field:display field="backgroundColour" id="s_au_net_huni_model_HistoryItem_backgroundColour" object="${historyitem}" z="oBcLTx45+kOkSrP3X/YEWAntWz0="/>
-        <field:display date="true" dateTimePattern="${historyItem_executiondate_date_format}" field="executionDate" id="s_au_net_huni_model_HistoryItem_executionDate" object="${historyitem}" z="98FAObFDVjq7swLiw12VFSa4ZSQ="/>
+        <field:display calendar="true" dateTimePattern="${historyItem_executiondate_date_format}" field="executionDate" id="s_au_net_huni_model_HistoryItem_executionDate" object="${historyitem}" z="a3KdTDE/x4iMq0jybE24JK1ye5Y="/>
         <field:display field="owner" id="s_au_net_huni_model_HistoryItem_owner" object="${historyitem}" z="j1lBnjts3V3THW+sDvnJ5p+fhfw="/>
     </page:show>
 </div>

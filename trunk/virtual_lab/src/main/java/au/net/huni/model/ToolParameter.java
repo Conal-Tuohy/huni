@@ -29,10 +29,14 @@ public class ToolParameter {
     private HistoryItem owner;
 
 	public static String toJsonArray(Collection<ToolParameter> collection) {
-        return new JSONSerializer().exclude("*.class", "owner").serialize(collection);
+        return new JSONSerializer()
+        .exclude("*.class", "owner", "version")
+        .serialize(collection);
     }
 
 	public String toJson() {
-        return new JSONSerializer().exclude("*.class", "owner").serialize(this);
+        return new JSONSerializer()
+        .exclude("*.class", "owner", "version")
+        .serialize(this);
     }
 }

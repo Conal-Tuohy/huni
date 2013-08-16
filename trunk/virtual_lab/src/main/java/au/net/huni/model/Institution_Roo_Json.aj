@@ -5,23 +5,14 @@ package au.net.huni.model;
 
 import au.net.huni.model.Institution;
 import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect Institution_Roo_Json {
     
-    public String Institution.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
     public static Institution Institution.fromJsonToInstitution(String json) {
         return new JSONDeserializer<Institution>().use(null, Institution.class).deserialize(json);
-    }
-    
-    public static String Institution.toJsonArray(Collection<Institution> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
     public static Collection<Institution> Institution.fromJsonArrayToInstitutions(String json) {

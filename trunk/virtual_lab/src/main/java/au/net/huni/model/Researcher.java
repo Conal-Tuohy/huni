@@ -1,5 +1,6 @@
 package au.net.huni.model;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -25,12 +26,11 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import au.net.huni.json.CalendarTransformer;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
-import flexjson.ObjectFactory;
 import flexjson.ObjectBinder;
-import flexjson.transformer.DateTransformer;
-import java.lang.reflect.Type;
+import flexjson.ObjectFactory;
 
 @RooJavaBean
 @RooToString
@@ -109,14 +109,19 @@ public class Researcher {
         return buffer.toString();
     }
 
+    
+   	// TODO RR Add roles to JSON
+    
     public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "creationDate")
-        		.transform(new DateTransformer("dd/MM/yyyy HH:mm:ss z"),"creationDate.time")
+        return new JSONSerializer()
+        		.exclude("*.class", "password", "encryptedPassword", "version", "institution.version")
+        		.transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
         		.serialize(collection);
     }
     public String toJson() {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "creationDate")
-        		.transform(new DateTransformer("dd/MM/yyyy HH:mm:ss z"), "creationDate.time")
+        return new JSONSerializer()
+        		.exclude("*.class", "password", "encryptedPassword", "version", "institution.version")
+        		.transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
         		.serialize(this);
     }
 
