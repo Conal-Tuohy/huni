@@ -2,7 +2,7 @@ package au.net.huni.model;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -42,7 +42,7 @@ public class HistoryItemDataOnDemand {
     }
 
 	public void setExecutionDate(HistoryItem obj, int index) {
-        Date executionDate = new Date();
+        Calendar executionDate = Calendar.getInstance();
         obj.setExecutionDate(executionDate);
     }
 

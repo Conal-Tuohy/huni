@@ -1,6 +1,7 @@
 package au.net.huni.model;
 
 import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 import flexjson.ObjectBinder;
 import flexjson.ObjectFactory;
 import java.lang.reflect.Type;
@@ -22,6 +23,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
+
+import au.net.huni.json.CalendarTransformer;
 
 @RooJavaBean
 @RooToString
@@ -75,10 +78,31 @@ public class Registration {
     private RegistrationStatus status;
 
     public static au.net.huni.model.Registration fromJsonToRegistration(String json) {
-        return new JSONDeserializer<Registration>().use(null, Registration.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
+        return new JSONDeserializer<Registration>()
+        		.use(null, Registration.class)
+        		.use("institution", INSTITUTION_OBJECT_FACTORY)
+        		.deserialize(json);
     }
 
     public static Collection<au.net.huni.model.Registration> fromJsonArrayToRegistrations(String json) {
-        return new JSONDeserializer<List<Registration>>().use(null, ArrayList.class).use("values", Registration.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
+        return new JSONDeserializer<List<Registration>>()
+        		.use(null, ArrayList.class)
+        		.use("values", Registration.class)
+        		.use("institution", INSTITUTION_OBJECT_FACTORY)
+        		.deserialize(json);
+    }
+
+	public static String toJsonArray(Collection<Registration> collection) {
+        return new JSONSerializer()
+        .exclude("*.class", "version", "institution.version")
+        .transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
+        .serialize(collection);
+    }
+
+	public String toJson() {
+        return new JSONSerializer()
+        .exclude("*.class", "version", "institution.version")
+        .transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
+        .serialize(this);
     }
 }

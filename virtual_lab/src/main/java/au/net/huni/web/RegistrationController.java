@@ -120,108 +120,6 @@ public class RegistrationController {
         return "redirect:/console/registrations/" + encodeUrlPathSegment(registration.getId().toString(), httpServletRequest);
     }
 
-    protected Registration findExistingRegistration(Registration registration) {
-        return Registration.findRegistration(registration.getId());
-    }
-
-    protected void updateRegistration(Registration registration) {
-        registration.merge();
-    }
-
-    protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
-        if (updatedRegistration == null || existingRegistration == null) {
-            return false;
-        }
-        RegistrationStatus proposedStatus = updatedRegistration.getStatus();
-        RegistrationStatus existingStatus = existingRegistration.getStatus();
-        return proposedStatus == RegistrationStatus.APPROVED && existingStatus == RegistrationStatus.PENDING;
-    }
-
-    protected boolean isRejection(Registration updatedRegistration, Registration existingRegistration) {
-        if (updatedRegistration == null || existingRegistration == null) {
-            return false;
-        }
-        RegistrationStatus proposedStatus = updatedRegistration.getStatus();
-        RegistrationStatus existingStatus = existingRegistration.getStatus();
-        return proposedStatus == RegistrationStatus.REJECTED && existingStatus == RegistrationStatus.PENDING;
-    }
-
-    protected Researcher approve(Registration updatedRegistration) {
-        Researcher newResearcher = null;
-        try {
-            String userName = updatedRegistration.getUserName();
-            newResearcher = new Researcher();
-            newResearcher.setUserName(userName);
-            String givenName = updatedRegistration.getGivenName();
-            newResearcher.setGivenName(givenName);
-            String familyName = updatedRegistration.getFamilyName();
-			newResearcher.setFamilyName(familyName);
-            String emailAddress = updatedRegistration.getEmailAddress();
-			newResearcher.setEmailAddress(emailAddress);
-            newResearcher.setInstitution(updatedRegistration.getInstitution());
-            Calendar calendar = Calendar.getInstance();
-            newResearcher.setCreationDate(calendar);
-            newResearcher.setIsAccountEnabled(true);
-            UserRole userRole = assignDefaultRole();
-            newResearcher.getRoles().add(userRole);
-            String clearTextPassword = getPasswordGenerator().generate();
-            newResearcher.setPassword(clearTextPassword);
-            updatedRegistration.setApprovalDate(calendar);
-            persistResearcher(newResearcher);
-			String message = constructApprovalMessage(givenName, familyName, userName, clearTextPassword);
-            sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Approval", emailAddress, message);
-        } catch (Exception exception) {
-            throw new RuntimeException("Failed to save the new researcher", exception);
-        }
-        return newResearcher;
-    }
-
-	protected String constructApprovalMessage(String givenName, String familyName, String userName, String password) {
-		String message = "Dear " + givenName + " " + familyName + ","
-				+ "\n\nThank you for your interest in the HuNI Project."
-				+ " Your application has been accepted. "
-				+ " Your user name is: " + userName
-				+ " and your temporary password is: " + password;
-		return message;
-	}
-
-	public String constructRejectionMessage(String givenName, String familyName) {
-		String message = "Dear " + givenName + " " + familyName + ","
-				+ "\n\nThank you for your interest in the HuNI Project."
-				+ " Your application has been rejected. ";
-		return message;
-	}
-
-    protected Researcher reject(Registration updatedRegistration) {
-        Researcher newResearcher = null;
-        Calendar calendar = Calendar.getInstance();
-        updatedRegistration.setApprovalDate(calendar);
-        String emailAddress = updatedRegistration.getEmailAddress();
-        String givenName = updatedRegistration.getGivenName();
-        String familyName = updatedRegistration.getFamilyName();
-		String message = constructRejectionMessage(givenName, familyName);
-        sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Rejection", emailAddress, message);
-        return newResearcher;
-    }
-
-    protected UserRole assignDefaultRole() {
-        UserRole userRole = null;
-        try {
-            userRole = UserRole.findUserRolesByNameEquals("USER_ROLE").getSingleResult();
-        } catch (NoResultException missingRole) {
-            throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
-        } catch (EmptyResultDataAccessException missingRole) {
-            throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
-        } catch (Exception exception) {
-            throw new RuntimeException("Failed to find the default role", exception);
-        }
-        return userRole;
-    }
-
-    protected void persistResearcher(Researcher newResearcher) {
-        newResearcher.persist();
-    }
-
     @RequestMapping(value = "/console/registrations/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, Registration.findRegistration(id));
@@ -356,6 +254,111 @@ public class RegistrationController {
     private String prepareToInjectInstitution(String json) {
         json = json.replaceAll("institutionId", "institution");
         return json;
+    }
+    
+    //------------------------------
+    // Approval workflow.
+
+    protected Registration findExistingRegistration(Registration registration) {
+        return Registration.findRegistration(registration.getId());
+    }
+
+    protected void updateRegistration(Registration registration) {
+        registration.merge();
+    }
+
+    protected boolean isApproval(Registration updatedRegistration, Registration existingRegistration) {
+        if (updatedRegistration == null || existingRegistration == null) {
+            return false;
+        }
+        RegistrationStatus proposedStatus = updatedRegistration.getStatus();
+        RegistrationStatus existingStatus = existingRegistration.getStatus();
+        return proposedStatus == RegistrationStatus.APPROVED && existingStatus == RegistrationStatus.PENDING;
+    }
+
+    protected boolean isRejection(Registration updatedRegistration, Registration existingRegistration) {
+        if (updatedRegistration == null || existingRegistration == null) {
+            return false;
+        }
+        RegistrationStatus proposedStatus = updatedRegistration.getStatus();
+        RegistrationStatus existingStatus = existingRegistration.getStatus();
+        return proposedStatus == RegistrationStatus.REJECTED && existingStatus == RegistrationStatus.PENDING;
+    }
+
+    protected Researcher approve(Registration updatedRegistration) {
+        Researcher newResearcher = null;
+        try {
+            String userName = updatedRegistration.getUserName();
+            newResearcher = new Researcher();
+            newResearcher.setUserName(userName);
+            String givenName = updatedRegistration.getGivenName();
+            newResearcher.setGivenName(givenName);
+            String familyName = updatedRegistration.getFamilyName();
+			newResearcher.setFamilyName(familyName);
+            String emailAddress = updatedRegistration.getEmailAddress();
+			newResearcher.setEmailAddress(emailAddress);
+            newResearcher.setInstitution(updatedRegistration.getInstitution());
+            Calendar calendar = Calendar.getInstance();
+            newResearcher.setCreationDate(calendar);
+            newResearcher.setIsAccountEnabled(true);
+            UserRole userRole = assignDefaultRole();
+            newResearcher.getRoles().add(userRole);
+            String clearTextPassword = getPasswordGenerator().generate();
+            newResearcher.setPassword(clearTextPassword);
+            updatedRegistration.setApprovalDate(calendar);
+            persistResearcher(newResearcher);
+			String message = constructApprovalMessage(givenName, familyName, userName, clearTextPassword);
+            sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Approval", emailAddress, message);
+        } catch (Exception exception) {
+            throw new RuntimeException("Failed to save the new researcher", exception);
+        }
+        return newResearcher;
+    }
+
+	protected String constructApprovalMessage(String givenName, String familyName, String userName, String password) {
+		String message = "Dear " + givenName + " " + familyName + ","
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been accepted. "
+				+ " Your user name is: " + userName
+				+ " and your temporary password is: " + password;
+		return message;
+	}
+
+	public String constructRejectionMessage(String givenName, String familyName) {
+		String message = "Dear " + givenName + " " + familyName + ","
+				+ "\n\nThank you for your interest in the HuNI Project."
+				+ " Your application has been rejected. ";
+		return message;
+	}
+
+    protected Researcher reject(Registration updatedRegistration) {
+        Researcher newResearcher = null;
+        Calendar calendar = Calendar.getInstance();
+        updatedRegistration.setApprovalDate(calendar);
+        String emailAddress = updatedRegistration.getEmailAddress();
+        String givenName = updatedRegistration.getGivenName();
+        String familyName = updatedRegistration.getFamilyName();
+		String message = constructRejectionMessage(givenName, familyName);
+        sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Rejection", emailAddress, message);
+        return newResearcher;
+    }
+
+    protected UserRole assignDefaultRole() {
+        UserRole userRole = null;
+        try {
+            userRole = UserRole.findUserRolesByNameEquals("USER_ROLE").getSingleResult();
+        } catch (NoResultException missingRole) {
+            throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
+        } catch (EmptyResultDataAccessException missingRole) {
+            throw new RuntimeException("Failed to save the new researcher, since default role is missing", missingRole);
+        } catch (Exception exception) {
+            throw new RuntimeException("Failed to find the default role", exception);
+        }
+        return userRole;
+    }
+
+    protected void persistResearcher(Researcher newResearcher) {
+        newResearcher.persist();
     }
 
     protected void sendMessage(String mailFrom, String subject, String mailTo, String message) {

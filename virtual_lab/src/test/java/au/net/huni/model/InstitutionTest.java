@@ -1,5 +1,8 @@
 package au.net.huni.model;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,5 +19,18 @@ public class InstitutionTest {
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.expectReturn(expectedCount);
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
         org.junit.Assert.assertEquals(expectedCount, Institution.countInstitutions());
+    }
+
+    
+    @Test 
+    public void testToJsonProducesCorrectJson() {
+    	Institution institution = new Institution();
+    	institution.setName("Monash");
+		institution.setId(10L);
+    	
+    	String actualJson = institution.toJson();
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"Monash\""));
+    	assertFalse("JSON has no version", actualJson.contains("\"version\":10"));
     }
 }
