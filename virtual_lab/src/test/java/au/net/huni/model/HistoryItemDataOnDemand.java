@@ -27,11 +27,13 @@ public class HistoryItemDataOnDemand {
 
 	private List<HistoryItem> data;
 
-	public HistoryItem getNewTransientHistoryItem(int index) {
+	public HistoryItem getNewTransientHistoryItem(int index, Researcher researcher) {
         HistoryItem obj = new HistoryItem();
         setBackgroundColour(obj, index);
         setExecutionDate(obj, index);
-        setOwner(obj, index);
+        if (researcher == null) {
+            setOwner(obj, index);        	
+        }
         setToolName(obj, index);
         return obj;
     }
@@ -57,7 +59,7 @@ public class HistoryItemDataOnDemand {
     }
 
 	public HistoryItem getSpecificHistoryItem(int index) {
-        init();
+        init(null);
         if (index < 0) {
             index = 0;
         }
@@ -70,7 +72,14 @@ public class HistoryItemDataOnDemand {
     }
 
 	public HistoryItem getRandomHistoryItem() {
-        init();
+        init(null);
+        HistoryItem obj = data.get(rnd.nextInt(data.size()));
+        Long id = obj.getId();
+        return HistoryItem.findHistoryItem(id);
+    }
+
+	public HistoryItem getOwnerlessRandomHistoryItem(Researcher researcher) {
+        init(researcher);
         HistoryItem obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
         return HistoryItem.findHistoryItem(id);
@@ -80,7 +89,7 @@ public class HistoryItemDataOnDemand {
         return false;
     }
 
-	public void init() {
+	public void init(Researcher researcher) {
         int from = 0;
         int to = 10;
         data = HistoryItem.findHistoryItemEntries(from, to);
@@ -93,7 +102,7 @@ public class HistoryItemDataOnDemand {
         
         data = new ArrayList<HistoryItem>();
         for (int i = 0; i < 10; i++) {
-            HistoryItem obj = getNewTransientHistoryItem(i);
+            HistoryItem obj = getNewTransientHistoryItem(i, researcher);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

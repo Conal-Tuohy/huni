@@ -12,5 +12,7 @@
         <field:display field="emailAddress" id="s_au_net_huni_model_Researcher_emailAddress" object="${researcher}" z="Nsgw6jSGGr8FyKxCEVjD39i27vw="/>
         <field:display field="institution" id="s_au_net_huni_model_Researcher_institution" object="${researcher}" z="pmxtE3td9QlEaRmkfBMKaLWDC+4="/>
         <field:display calendar="true" dateTimePattern="${researcher_creationdate_date_format}" field="creationDate" id="s_au_net_huni_model_Researcher_creationDate" object="${researcher}" z="1QoOa4aCUkUcDE60nXnqAO9M9GA="/>
+        <field:display field="defaultTool" id="s_au_net_huni_model_Researcher_defaultTool" object="${researcher}" z="NWgQEZwTwho7UHb/e+LLmtNfM1Q="/>
+        <field:display field="toolkit" id="s_au_net_huni_model_Researcher_toolkit" object="${researcher}" z="r8w28DfvoSofnF4Pa8/iHPMn2R0="/>
     </page:show>
 </div>

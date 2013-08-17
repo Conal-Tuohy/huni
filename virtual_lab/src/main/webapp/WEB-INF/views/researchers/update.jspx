@@ -13,5 +13,7 @@
         <field:input field="emailAddress" id="c_au_net_huni_model_Researcher_emailAddress" required="true" validationMessageCode="field_invalid_email" validationRegex="^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$" z="HyZjbfBMBc0deSBrEc6bDb5vbEE="/>
         <field:select field="institution" id="c_au_net_huni_model_Researcher_institution" itemValue="id" items="${institutions}" path="/institutions" required="true" z="ZnFoRJvGeCO2++WZDRjZv1VhRmE="/>
         <field:datetime dateTimePattern="${researcher_creationdate_date_format}" field="creationDate" id="c_au_net_huni_model_Researcher_creationDate" required="true" z="pfRwH7G6TEAVyG4cWDp75oWMmQw="/>
+        <field:select field="defaultTool" id="c_au_net_huni_model_Researcher_defaultTool" itemValue="id" items="${toolcatalogitems}" path="/toolcatalogitems" required="true" z="35ikyyerlvsQhUGi2skr8mOkrr4="/>
+        <field:select field="toolkit" id="c_au_net_huni_model_Researcher_toolkit" itemValue="id" items="${toolcatalogitems}" multiple="true" path="/toolcatalogitems" required="true" z="lij5UF18MUrH4wNaO1MStGt0PqU="/>
     </form:update>
 </div>

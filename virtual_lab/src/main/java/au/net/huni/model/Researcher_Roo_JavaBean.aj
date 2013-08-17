@@ -6,6 +6,7 @@ package au.net.huni.model;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.UserRole;
 import java.util.Calendar;
 import java.util.Set;
@@ -82,6 +83,22 @@ privileged aspect Researcher_Roo_JavaBean {
     
     public void Researcher.setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
+    }
+    
+    public ToolCatalogItem Researcher.getDefaultTool() {
+        return this.defaultTool;
+    }
+    
+    public void Researcher.setDefaultTool(ToolCatalogItem defaultTool) {
+        this.defaultTool = defaultTool;
+    }
+    
+    public Set<ToolCatalogItem> Researcher.getToolkit() {
+        return this.toolkit;
+    }
+    
+    public void Researcher.setToolkit(Set<ToolCatalogItem> toolkit) {
+        this.toolkit = toolkit;
     }
     
 }

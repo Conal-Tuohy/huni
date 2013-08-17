@@ -7,6 +7,8 @@ import au.net.huni.model.FeedbackItem;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
+import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolCategory;
 import au.net.huni.model.ToolParameter;
 import au.net.huni.model.UserRole;
 import au.net.huni.web.ApplicationConversionServiceFactoryBean;
@@ -114,6 +116,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<ToolCatalogItem, String> ApplicationConversionServiceFactoryBean.getToolCatalogItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolCatalogItem, java.lang.String>() {
+            public String convert(ToolCatalogItem toolCatalogItem) {
+                return new StringBuilder().append(toolCatalogItem.getName()).append(' ').append(toolCatalogItem.getDescription()).append(' ').append(toolCatalogItem.getUrl()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ToolCatalogItem> ApplicationConversionServiceFactoryBean.getIdToToolCatalogItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.ToolCatalogItem>() {
+            public au.net.huni.model.ToolCatalogItem convert(java.lang.Long id) {
+                return ToolCatalogItem.findToolCatalogItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, ToolCatalogItem> ApplicationConversionServiceFactoryBean.getStringToToolCatalogItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.ToolCatalogItem>() {
+            public au.net.huni.model.ToolCatalogItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ToolCatalogItem.class);
+            }
+        };
+    }
+    
+    public Converter<ToolCategory, String> ApplicationConversionServiceFactoryBean.getToolCategoryToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolCategory, java.lang.String>() {
+            public String convert(ToolCategory toolCategory) {
+                return new StringBuilder().append(toolCategory.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ToolCategory> ApplicationConversionServiceFactoryBean.getIdToToolCategoryConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.ToolCategory>() {
+            public au.net.huni.model.ToolCategory convert(java.lang.Long id) {
+                return ToolCategory.findToolCategory(id);
+            }
+        };
+    }
+    
+    public Converter<String, ToolCategory> ApplicationConversionServiceFactoryBean.getStringToToolCategoryConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.ToolCategory>() {
+            public au.net.huni.model.ToolCategory convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ToolCategory.class);
+            }
+        };
+    }
+    
     public Converter<ToolParameter, String> ApplicationConversionServiceFactoryBean.getToolParameterToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolParameter, java.lang.String>() {
             public String convert(ToolParameter toolParameter) {
@@ -178,6 +228,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getResearcherToStringConverter());
         registry.addConverter(getIdToResearcherConverter());
         registry.addConverter(getStringToResearcherConverter());
+        registry.addConverter(getToolCatalogItemToStringConverter());
+        registry.addConverter(getIdToToolCatalogItemConverter());
+        registry.addConverter(getStringToToolCatalogItemConverter());
+        registry.addConverter(getToolCategoryToStringConverter());
+        registry.addConverter(getIdToToolCategoryConverter());
+        registry.addConverter(getStringToToolCategoryConverter());
         registry.addConverter(getToolParameterToStringConverter());
         registry.addConverter(getIdToToolParameterConverter());
         registry.addConverter(getStringToToolParameterConverter());

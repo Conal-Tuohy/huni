@@ -1,5 +1,10 @@
 package au.net.huni.model;
 
+import au.net.huni.json.CalendarTransformer;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
+import flexjson.ObjectBinder;
+import flexjson.ObjectFactory;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,7 +12,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
@@ -18,19 +22,12 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
-
-import au.net.huni.json.CalendarTransformer;
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
-import flexjson.ObjectBinder;
-import flexjson.ObjectFactory;
 
 @RooJavaBean
 @RooToString
@@ -41,7 +38,7 @@ public class Researcher {
     private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
 
         @SuppressWarnings("rawtypes")
-		@Override
+        @Override
         public Object instantiate(ObjectBinder context, Object value, Type targetType, Class targetClass) {
             Long id = Long.valueOf((String) value);
             return Institution.findInstitution(id);
@@ -85,6 +82,14 @@ public class Researcher {
     @DateTimeFormat(style = "S-")
     private Calendar creationDate;
 
+    @NotNull
+    @ManyToOne
+    private ToolCatalogItem defaultTool;
+
+    @NotNull
+    @ManyToMany
+    private Set<ToolCatalogItem> toolkit = new HashSet<ToolCatalogItem>();
+
     public void setPassword(String clearTextPassword) {
         String encryptedPassword = DigestUtils.sha256Hex(clearTextPassword);
         this.password = encryptedPassword;
@@ -109,27 +114,19 @@ public class Researcher {
         return buffer.toString();
     }
 
-    
-   	// TODO RR Add roles to JSON
-    
     public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
-        return new JSONSerializer()
-        		.exclude("*.class", "password", "encryptedPassword", "version", "institution.version")
-        		.transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
-        		.serialize(collection);
-    }
-    public String toJson() {
-        return new JSONSerializer()
-        		.exclude("*.class", "password", "encryptedPassword", "version", "institution.version")
-        		.transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
-        		.serialize(this);
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(collection);
     }
 
-    public static Researcher fromJsonToResearcher(String json) {
+    public String toJson() {
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(this);
+    }
+
+    public static au.net.huni.model.Researcher fromJsonToResearcher(String json) {
         return new JSONDeserializer<Researcher>().use(null, Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 
-    public static Collection<Researcher> fromJsonArrayToResearchers(String json) {
+    public static Collection<au.net.huni.model.Researcher> fromJsonArrayToResearchers(String json) {
         return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 }

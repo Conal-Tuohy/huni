@@ -214,3 +214,55 @@ perform package
 test mock --entity ~.model.ToolParameter
 json add --class ~.model.UserRole
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-16 14:46:03
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-16 15:08:57
+perform package
+perform package
+perform package
+entity jpa --class ~.model.ToolCatalogItem
+field string --fieldName name --notNull --sizeMax 64 --sizeMin 5 --unique 
+field string --fieldName description
+field other --fieldName url --type java.net.URL --notNull 
+entity jpa --class ~.model.ToolCategory
+field string --fieldName name --notNull --sizeMax 64 --sizeMin 5 --unique
+// [failed] field set --fieldName categories --type ~.model.ToolCategories --cardinality MANY_TO_MANY --notNull
+field set --fieldName categories --type ~.model.ToolCategory --cardinality MANY_TO_MANY --notNull
+// [failed] field boolean --fieldName default --notNull --primitive
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-16 17:18:31
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-16 21:01:17
+focus --class ~.model.ToolCatalogItem
+osgi start --url http://code.google.com/p/spring-roo-addon-flyway/downloads/detail?name=org.alexsotob.roo.addon.flyway-0.6.0.RELEASE.jar&can=2&q=
+osgi start --url file:///Users/developer/Development/workspace-huni/virtual_lab_google/libs/org.alexsotob.roo.addon.flyway-0.6.0.RELEASE.jar
+help
+osgi find --bundleSymbolicName org.alexsotob.roo.addon.flyway
+addon info bundle --bundleSymbolicName org.alexsotob.roo.addon.flyway
+addon install bundle --bundleSymbolicName org.alexsotob.roo.addon.flyway
+addon list 
+osgi headers --bundleSymbolicName org.alexsotob.roo.addon.flyway
+osgi log
+osgi start --url file:///Users/developer/Development/workspace-huni/virtual_lab_google/libs/org.alexsotob.roo.addon.flyway-0.6.0.RELEASE.jar
+hint
+osgi ps
+osgi uninstall --bundleSymbolicName org.alexsotob.roo.addon.flyway
+osgi ps
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-16 23:41:58
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-17 17:50:38
+focus --class ~.model.ToolCatalogItem
+field set --class ~.model.ToolCatalogItem --fieldName categories --type ~.model.ToolCategory --cardinality MANY_TO_MANY --notNull 
+// [failed] field set --class ~.model.ToolCatalogItem --fieldName categories --type ~.model.ToolCategory --cardinality MANY_TO_MANY --notNull 
+focus --class ~.model.Researcher 
+field reference --fieldName defaultTool --type ~.model.ToolCatalogItem --cardinality MANY_TO_ONE --notNull 
+field set --fieldName toolkit --type ~.model.ToolCatalogItem --cardinality MANY_TO_MANY --notNull 
+focus --class ~.model.ToolCategory
+json add
+web mvc scaffold --class ~.web.ToolCategoryController --backingType ~.model.ToolCategory
+test integration
+test mock
+focus --class ~.model.ToolCatalogItem
+json add
+web mvc scaffold --class ~.web.ToolCatalogItemController --backingType ~.model.ToolCatalogItem
+test integration
+test mock
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-17 18:23:39
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-17 22:32:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-17 22:34:36
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-17 22:38:21
