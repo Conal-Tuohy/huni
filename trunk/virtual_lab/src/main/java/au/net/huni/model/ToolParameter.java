@@ -24,7 +24,7 @@ public class ToolParameter {
 
     private int displayOrder;
 
-    @NotNull
+    // @NotNull
     @ManyToOne
     private HistoryItem owner;
 

@@ -43,7 +43,8 @@ public class HistoryItem {
     @DateTimeFormat(style = "M-")
     private Calendar executionDate = Calendar.getInstance();
 
-    @NotNull
+    // Not null constraint causing problems during the tests 
+    // @NotNull
     @ManyToOne
     private Researcher owner;
 

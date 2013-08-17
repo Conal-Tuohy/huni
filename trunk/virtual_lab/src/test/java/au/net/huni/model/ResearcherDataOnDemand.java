@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,11 @@ import org.springframework.stereotype.Component;
 @RooDataOnDemand(entity = Researcher.class)
 public class ResearcherDataOnDemand {
 
+	@Autowired
 	private HistoryItemDataOnDemand historyItemDataOnDemand;
+
+	@Autowired
+	private ToolCatalogItemDataOnDemand toolCatalogItemDataOnDemand;
 	
 	private Random rnd = new SecureRandom();
 
@@ -34,7 +39,10 @@ public class ResearcherDataOnDemand {
         setFamilyName(obj, index);
         setGivenName(obj, index);
         setCreationDate(obj, index);
-        //setHistoryList(obj, index);
+        setDefaultTool(obj, index);
+        setToolList(obj, index);
+        // Last so all fields are valid before passing to history item as an owner.
+        setHistoryList(obj, index);
         return obj;
     }
 
@@ -63,9 +71,20 @@ public class ResearcherDataOnDemand {
         obj.setUserName(userName);
     }
 	
-	public void setHistoryList(Researcher obj, int index) {
-        HistoryItem historyItem = historyItemDataOnDemand.getRandomHistoryItem();
-        obj.getHistory().add(historyItem);
+	public void setHistoryList(Researcher researcher, int index) {
+        HistoryItem historyItem = historyItemDataOnDemand.getOwnerlessRandomHistoryItem(researcher);
+        historyItem.setOwner(researcher);
+        researcher.getHistory().add(historyItem);
+    }
+
+	public void setDefaultTool(Researcher obj, int index) {
+        ToolCatalogItem defaultTool = toolCatalogItemDataOnDemand.getRandomToolCatalogItem();
+        obj.setDefaultTool(defaultTool);
+    }
+	
+	public void setToolList(Researcher obj, int index) {
+		ToolCatalogItem toolCatalogItem = toolCatalogItemDataOnDemand.getRandomToolCatalogItem();
+        obj.getToolkit().add(toolCatalogItem);
     }
 
 	public Researcher getSpecificResearcher(int index) {

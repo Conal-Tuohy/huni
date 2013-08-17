@@ -1,0 +1,12 @@
+insert into TOOL_CATEGORY (ID, NAME) values (1, '_tutorial');
+insert into TOOL_CATEGORY (ID, NAME) values (2, 'data_management');
+insert into TOOL_CATEGORY (ID, NAME) values (3, 'dataset');
+insert into TOOL_CATEGORY (ID, NAME) values (4, 'export');
+insert into TOOL_CATEGORY (ID, NAME) values (5, 'import');
+insert into TOOL_CATEGORY (ID, NAME) values (6, 'reporting');
+insert into TOOL_CATEGORY (ID, NAME) values (7, 'search');
+insert into TOOL_CATEGORY (ID, NAME) values (8, 'visualisation');
+insert into TOOL_CATEGORY (ID, NAME) values (9, 'corbicula');
+insert into TOOL_CATEGORY (ID, NAME) values (10, 'storage');
+insert into TOOL_CATEGORY (ID, NAME) values (11, 'annotation');
+insert into TOOL_CATEGORY (ID, NAME) values (12, 'test');

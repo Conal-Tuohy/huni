@@ -21,7 +21,12 @@
         <property name="numTestsPerEvictionRun" value="3"/>
         <property name="minEvictableIdleTimeMillis" value="1800000"/>
     </bean>
-     
+   
+<!--     <bean id="flyway" class="com.googlecode.flyway.core.Flyway" init-method="migrate">
+    	<property name="dataSource" ref="dataSource"/>   	
+    	<property name="locations" value="classpath:/db-common/migrations, classpath:/db-test/migrations"/>   	
+	</bean>
+ -->     
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
         <property name="persistenceUnitName" value="testPersistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
