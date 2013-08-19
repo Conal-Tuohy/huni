@@ -4,5 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_au_net_huni_model_Institution" object="${institution}" path="/console/institutions" z="user-managed">
         <field:display field="name" id="s_au_net_huni_model_Institution_name" object="${institution}" z="zF+KVir66KqgX1jCZxPZJQh6V7Y="/>
+        <field:display field="code" id="s_au_net_huni_model_Institution_code" object="${institution}" z="LhvFWrSI4quxkB7uJY3JAQrwE5A="/>
     </page:show>
 </div>

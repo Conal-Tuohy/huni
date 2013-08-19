@@ -95,7 +95,7 @@ public class ResearcherTest {
 		calendar.setTimeZone(timeZone );
 		researcher.setCreationDate(calendar);
 		researcher.setEmailAddress("jblogs@ordinary.com");
-		Institution institution = new Institution("Monash");
+		Institution institution = new Institution("MONASH", "Monash");
 		institution.setId(10L);
 		researcher.setInstitution(institution);
     	researcher.setPassword("dirty-little-secret");
@@ -108,7 +108,7 @@ public class ResearcherTest {
     	assertTrue("JSON username is correct", actualJson.contains("\"userName\":\"jbloggs\""));
     	assertTrue("JSON given name is correct", actualJson.contains("\"givenName\":\"Joseph\""));
     	assertTrue("JSON family is correct", actualJson.contains("\"familyName\":\"Bloggs\""));
-    	assertTrue("JSON institution is correct", actualJson.contains("\"institution\":{\"id\":10,\"name\":\"Monash\"}"));
+    	assertTrue("JSON institution is correct", actualJson.contains("\"institution\":{\"code\":\"MONASH\",\"id\":10,\"name\":\"Monash\"}"));
     	assertTrue("JSON creation date is correct", actualJson.contains("\"creationDate\":\"25/12/2013 18:30:45 EST"));
     	assertTrue("JSON email is correct", actualJson.contains("\"emailAddress\":\"jblogs@ordinary.com\""));
     	assertTrue("JSON enable account is correct", actualJson.contains("\"isAccountEnabled\":true"));

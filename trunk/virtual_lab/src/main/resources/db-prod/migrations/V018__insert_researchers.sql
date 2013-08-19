@@ -12,7 +12,7 @@ INSERT INTO "APP"."RESEARCHER" (ID,FAMILY_NAME,GIVEN_NAME,USER_NAME,VERSION,IS_A
 (12,'Holmes','Mycroft','mholmes',0,1,null,{ts '2013-08-14 23:53:19.999000'},'richard.rothwell@versi.edu.au',5,1),
 (13,'kkkkkkk','yyyyyyy','ttttttt',0,1,'a48162cb44303cdd2f632237222a8d1abb2f142d58ef6a109ef2d99a7d133dd2',{ts '2013-08-15 14:39:25.209000'},'wwwww@sssss.com',3,1),
 (14,'Fester','Slam','sfest',0,1,'76f8dda40e08a3c26b3e2abe12b6a6ae0f0dd599fb5ec1b1c542ccf89066ba69',{ts '2013-08-15 14:47:45.109000'},'sfest@sfest.org',4,1),
-(15,'Holmes','Mycroft','mholmes',0,1,'52213b76875e95a1cf1b8790cdd4ac37e9c9b7ee5f82e91aa18ed454b4f19e72',{ts '2013-08-15 14:48:43.239000'},'richard.rothwell@versi.edu.au',5,1),
+(15,'Holmes','Sherlock','sholmes',0,1,'52213b76875e95a1cf1b8790cdd4ac37e9c9b7ee5f82e91aa18ed454b4f19e72',{ts '2013-08-15 14:48:43.239000'},'richard.rothwell@versi.edu.au',5,1),
 (16,'sssssssss','vvvvvvv','bbbbbbb',0,1,'f34a4a2e524f3c97d6ba46e94bceefa3d439e00ca395aad0bf48f2c116937df6',{ts '2013-08-15 14:49:39.929000'},'richard.rothwell@versi.edu.au',4,1),
 (17,'Lightning','Percy','plightning',0,1,'a1e0d5b46282e721140964dc3cc624d820d94cb6d478df106dedee7645903003',{ts '2013-08-15 21:59:37.970000'},'richard.rothwell@versi.edu.au',5,1),
 (18,'Dog','Mad','mdogg',0,1,'5d202c1fc4e83698c66a717b439bc0adefbf4b5544687f69d5e9f4325edff323',{ts '2013-08-16 15:03:09.960000'},'richard.rothwell@versi.edu.au',5,1)

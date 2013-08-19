@@ -5,7 +5,6 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
@@ -17,24 +16,33 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJson
 public class Institution {
 
-	@NotNull
+    @NotNull
     @Column(unique = true)
+    private String code;
+
+    @NotNull
+    @Column(unique = false)
     @Size(min = 5, max = 60)
     private String name;
 
     public Institution() {
-		this("UNKNOWN");
-	}
+        this("?", "UNKNOWN");
+    }
 
-    public Institution(String name) {
-		this.name = name;
-	}
+//    public Institution(String code) {
+//        this.code = code;
+//    }
 
-	public static String toJsonArray(Collection<Institution> collection) {
+    public Institution(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
+    public static String toJsonArray(Collection<au.net.huni.model.Institution> collection) {
         return new JSONSerializer().exclude("*.class", "version").serialize(collection);
     }
 
-	public String toJson() {
+    public String toJson() {
         return new JSONSerializer().exclude("*.class", "version").serialize(this);
     }
 }

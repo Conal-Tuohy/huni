@@ -42,7 +42,7 @@ public class RegistrationControllerTest {
 		registration.setGivenName("given1");
 		registration.setFamilyName("family1");
 		registration.setEmailAddress("user1@test.net");
-		registration.setInstitution(new Institution("omaha community college"));
+		registration.setInstitution(new Institution("occ", "omaha community college"));
 		registration.setApplicationDate(Calendar.getInstance());
 		registration.setStatus(RegistrationStatus.PENDING);
 
@@ -97,7 +97,7 @@ public class RegistrationControllerTest {
 		registration.setGivenName("given1");
 		registration.setFamilyName("family1");
 		registration.setEmailAddress("user1@test.net");
-		registration.setInstitution(new Institution("omaha community college"));
+		registration.setInstitution(new Institution("occ", "omaha community college"));
 		registration.setApplicationDate(Calendar.getInstance());
 		registration.setStatus(RegistrationStatus.PENDING);
 
@@ -152,7 +152,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -162,7 +162,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -196,7 +196,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -206,7 +206,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -240,7 +240,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -250,7 +250,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -284,7 +284,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.REJECTED);
 
@@ -294,7 +294,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -328,7 +328,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.REJECTED);
 
@@ -338,7 +338,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -372,7 +372,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -382,7 +382,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
         
@@ -442,7 +442,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.REJECTED);
 
@@ -452,7 +452,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
         
@@ -502,7 +502,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -512,7 +512,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -576,7 +576,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -586,7 +586,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 
@@ -645,7 +645,7 @@ public class RegistrationControllerTest {
 		updatedRegistration.setGivenName("given1");
 		updatedRegistration.setFamilyName("family1");
 		updatedRegistration.setEmailAddress("user1@test.net");
-		updatedRegistration.setInstitution(new Institution("omaha community college"));
+		updatedRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		updatedRegistration.setApplicationDate(Calendar.getInstance());
 		updatedRegistration.setStatus(RegistrationStatus.APPROVED);
 
@@ -655,7 +655,7 @@ public class RegistrationControllerTest {
 		existingRegistration.setGivenName("given1");
 		existingRegistration.setFamilyName("family1");
 		existingRegistration.setEmailAddress("user1@test.net");
-		existingRegistration.setInstitution(new Institution("omaha community college"));
+		existingRegistration.setInstitution(new Institution("occ", "omaha community college"));
 		existingRegistration.setApplicationDate(Calendar.getInstance());
 		existingRegistration.setStatus(RegistrationStatus.PENDING);
 		

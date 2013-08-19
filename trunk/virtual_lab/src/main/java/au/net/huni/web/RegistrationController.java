@@ -40,6 +40,7 @@ import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.UserRole;
 import au.net.huni.security.PasswordGenerator;
 
@@ -305,6 +306,8 @@ public class RegistrationController {
             newResearcher.getRoles().add(userRole);
             String clearTextPassword = getPasswordGenerator().generate();
             newResearcher.setPassword(clearTextPassword);
+            ToolCatalogItem defaultTool = ToolCatalogItem.findToolCatalogItem(1L);
+            newResearcher.setDefaultTool(defaultTool);
             updatedRegistration.setApprovalDate(calendar);
             persistResearcher(newResearcher);
 			String message = constructApprovalMessage(givenName, familyName, userName, clearTextPassword);

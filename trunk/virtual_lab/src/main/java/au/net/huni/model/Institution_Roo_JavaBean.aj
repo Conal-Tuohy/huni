@@ -7,6 +7,14 @@ import au.net.huni.model.Institution;
 
 privileged aspect Institution_Roo_JavaBean {
     
+    public String Institution.getCode() {
+        return this.code;
+    }
+    
+    public void Institution.setCode(String code) {
+        this.code = code;
+    }
+    
     public String Institution.getName() {
         return this.name;
     }
