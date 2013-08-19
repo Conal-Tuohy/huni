@@ -32,4 +32,8 @@ public class ToolCatalogItem {
     @NotNull
     @ManyToMany
     private Set<ToolCategory> categories = new HashSet<ToolCategory>();
+
+	public String toString() {
+        return this.name;
+    }
 }

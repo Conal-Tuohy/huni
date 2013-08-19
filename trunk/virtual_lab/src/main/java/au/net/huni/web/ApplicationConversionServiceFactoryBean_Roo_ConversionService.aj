@@ -116,14 +116,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<ToolCatalogItem, String> ApplicationConversionServiceFactoryBean.getToolCatalogItemToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolCatalogItem, java.lang.String>() {
-            public String convert(ToolCatalogItem toolCatalogItem) {
-                return new StringBuilder().append(toolCatalogItem.getName()).append(' ').append(toolCatalogItem.getDescription()).append(' ').append(toolCatalogItem.getUrl()).toString();
-            }
-        };
-    }
-    
+        
     public Converter<Long, ToolCatalogItem> ApplicationConversionServiceFactoryBean.getIdToToolCatalogItemConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.ToolCatalogItem>() {
             public au.net.huni.model.ToolCatalogItem convert(java.lang.Long id) {

@@ -1,5 +1,7 @@
 package au.net.huni.model;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,5 +18,12 @@ public class ToolCategoryTest {
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.expectReturn(expectedCount);
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
         org.junit.Assert.assertEquals(expectedCount, ToolCategory.countToolCategorys());
+    }
+
+    @Test
+    public void testToString() {
+    	ToolCategory toolCategory = new ToolCategory();
+    	toolCategory.setName("toolcategory0");
+    	assertEquals("Tool category toString is name.", "toolcategory0", toolCategory.toString());
     }
 }
