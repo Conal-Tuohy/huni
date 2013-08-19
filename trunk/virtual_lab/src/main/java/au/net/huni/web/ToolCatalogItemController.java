@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-@RequestMapping("/toolcatalogitems")
+//Access by default is restricted to the ADMIN role within the console webapp.
+//This is over-ridden by annotations in this file.
+//See webmvc-config.xml
 @Controller
 @RooWebScaffold(path = "toolcatalogitems", formBackingObject = ToolCatalogItem.class)
 public class ToolCatalogItemController {
 
-	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems", method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid ToolCatalogItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, toolCatalogItem);
@@ -29,23 +31,23 @@ public class ToolCatalogItemController {
         }
         uiModel.asMap().clear();
         toolCatalogItem.persist();
-        return "redirect:/toolcatalogitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
+        return "redirect:/console/toolcatalogitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
     }
 
-	@RequestMapping(params = "form", produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems", params = "form", produces = "text/html")
     public String createForm(Model uiModel) {
         populateEditForm(uiModel, new ToolCatalogItem());
         return "toolcatalogitems/create";
     }
 
-	@RequestMapping(value = "/{id}", produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems/{id}", produces = "text/html")
     public String show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("toolcatalogitem", ToolCatalogItem.findToolCatalogItem(id));
         uiModel.addAttribute("itemId", id);
         return "toolcatalogitems/show";
     }
 
-	@RequestMapping(produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems", produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
@@ -59,7 +61,7 @@ public class ToolCatalogItemController {
         return "toolcatalogitems/list";
     }
 
-	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems", method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid ToolCatalogItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, toolCatalogItem);
@@ -67,23 +69,23 @@ public class ToolCatalogItemController {
         }
         uiModel.asMap().clear();
         toolCatalogItem.merge();
-        return "redirect:/toolcatalogitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
+        return "redirect:/console/toolcatalogitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
     }
 
-	@RequestMapping(value = "/{id}", params = "form", produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, ToolCatalogItem.findToolCatalogItem(id));
         return "toolcatalogitems/update";
     }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
+	@RequestMapping(value = "/console/toolcatalogitems/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         ToolCatalogItem toolCatalogItem = ToolCatalogItem.findToolCatalogItem(id);
         toolCatalogItem.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/toolcatalogitems";
+        return "redirect:/console/toolcatalogitems";
     }
 
 	void populateEditForm(Model uiModel, ToolCatalogItem toolCatalogItem) {

@@ -2,10 +2,10 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_au_net_huni_model_ToolCatalogItem" modelAttribute="toolCatalogItem" path="/toolcatalogitems" versionField="Version" z="UbDUGKJRCa3+VIVDXRIGU15SE0M=">
-        <field:textarea field="name" id="c_au_net_huni_model_ToolCatalogItem_name" required="true" z="e1G1hJrO++u+TXSyFR/dcj/41pM="/>
-        <field:input field="description" id="c_au_net_huni_model_ToolCatalogItem_description" z="wNzV2K307SWHbV2wBqrkQpaHZEc="/>
-        <field:input field="url" id="c_au_net_huni_model_ToolCatalogItem_url" required="true" z="SA5Z60uAcI3G+NSNet3xUmD9UXI="/>
-        <field:select field="categories" id="c_au_net_huni_model_ToolCatalogItem_categories" itemValue="id" items="${toolcategorys}" multiple="true" path="/toolcategorys" required="true" z="WJ77oqGCpQ+KGeRKqzn7Gvq4w2o="/>
+    <form:update id="fu_au_net_huni_model_ToolCatalogItem" modelAttribute="toolCatalogItem" path="/console/toolcatalogitems" versionField="Version" z="user-managed">
+        <field:input type="text" field="name" id="c_au_net_huni_model_ToolCatalogItem_name" required="true" z="user-managed"/>
+        <field:textarea field="description" id="c_au_net_huni_model_ToolCatalogItem_description" z="user-managed"/>
+        <field:input type="text" field="url" id="c_au_net_huni_model_ToolCatalogItem_url" required="true" z="user-managed"/>
+        <field:select field="categories" id="c_au_net_huni_model_ToolCatalogItem_categories" itemValue="id" items="${toolcategorys}" multiple="true" path="/console/toolcategorys" required="true" z="user-managed"/>
     </form:update>
 </div>
