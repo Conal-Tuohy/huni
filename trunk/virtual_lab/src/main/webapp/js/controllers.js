@@ -673,15 +673,30 @@ RegistrationButtonCtrl.$inject = [ '$scope', '$dialog'];
 //------------------------------------
 
 function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionService) {
-		
+
+	$scope.master= {};
+ 
+	$scope.update = function(applicant) {
+		$scope.master= angular.copy(applicant);
+	};
+ 
+	$scope.reset = function() {
+		$scope.applicant = angular.copy($scope.master);
+	};
+ 
+	$scope.isUnchanged = function(applicant) {
+		return angular.equals(applicant, $scope.master);
+	};
+ 
+	$scope.reset();
+	  
 	$scope.apply = function(result) {
 		if (result) {
-			var userName = $scope.userName;
-			var givenName = $scope.givenName;
-			var familyName = $scope.familyName;
-			var emailAddress = $scope.emailAddress;
-			var institutionId = $scope.institutionId;
-			//var institution = $scope.institution;
+			var userName = $scope.applicant.userName;
+			var givenName = $scope.applicant.givenName;
+			var familyName = $scope.applicant.familyName;
+			var emailAddress = $scope.applicant.emailAddress;
+			var institutionId = $scope.applicant.institutionId;
 			result = {'userName': userName, 'givenName': givenName, 'familyName': familyName, 'emailAddress': emailAddress, 'institutionId': institutionId};
 			var registrationItem = new RegistrationService(result);
 			registrationItem.$save();
