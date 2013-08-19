@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_au_net_huni_model_Project" modelAttribute="project" path="/projects" versionField="Version" z="Jjx/T4m5vEI7ZnQNI8r1ZX5+uE8=">
+        <field:textarea field="name" id="c_au_net_huni_model_Project_name" required="true" z="TQF+k07T+hOuWTgfesQ/P5kQM48="/>
+        <field:datetime dateTimePattern="${project_startdate_date_format}" field="startDate" id="c_au_net_huni_model_Project_startDate" required="true" z="dT8GuiHXkFdMnxMF1StggrEmpeM="/>
+        <field:simple field="dataSources" id="c_au_net_huni_model_Project_dataSources" messageCode="entity_reference_not_managed" messageCodeAttribute="Data Source" z="+8h9XGRZzvixY0x5zvPfwxdTTYE="/>
+    </form:update>
+</div>

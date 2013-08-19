@@ -24,7 +24,10 @@ public class ResearcherDataOnDemand {
 
 	@Autowired
 	private ToolCatalogItemDataOnDemand toolCatalogItemDataOnDemand;
-	
+
+	@Autowired
+	private ProjectDataOnDemand projectDataOnDemand;
+
 	private Random rnd = new SecureRandom();
 
 	private List<Researcher> data;
@@ -43,6 +46,7 @@ public class ResearcherDataOnDemand {
         setToolList(obj, index);
         // Last so all fields are valid before passing to history item as an owner.
         setHistoryList(obj, index);
+        setProjectList(obj, index);
         return obj;
     }
 
@@ -72,9 +76,10 @@ public class ResearcherDataOnDemand {
     }
 	
 	public void setHistoryList(Researcher researcher, int index) {
-        HistoryItem historyItem = historyItemDataOnDemand.getOwnerlessRandomHistoryItem(researcher);
+        HistoryItem historyItem = new HistoryItem();
+        historyItem.setToolName("tool1");
         historyItem.setOwner(researcher);
-        researcher.getHistory().add(historyItem);
+        researcher.addHistoryItem(historyItem);
     }
 
 	public void setDefaultTool(Researcher obj, int index) {
@@ -85,6 +90,11 @@ public class ResearcherDataOnDemand {
 	public void setToolList(Researcher obj, int index) {
 		ToolCatalogItem toolCatalogItem = toolCatalogItemDataOnDemand.getRandomToolCatalogItem();
         obj.getToolkit().add(toolCatalogItem);
+    }
+	
+	public void setProjectList(Researcher obj, int index) {
+		Project project = projectDataOnDemand.getRandomProject();
+        obj.getProjects().add(project);
     }
 
 	public Researcher getSpecificResearcher(int index) {

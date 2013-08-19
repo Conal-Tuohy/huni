@@ -1,5 +1,6 @@
 package au.net.huni.model;
 
+import au.net.huni.json.CalendarTransformer;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import flexjson.ObjectBinder;
@@ -17,6 +18,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -24,19 +27,18 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 
-import au.net.huni.json.CalendarTransformer;
-
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
 @RooJson
+// TODO RR is this right?
 @RooWebJson(jsonObject = Institution.class)
+@RooJpaActiveRecord(finders = { "findRegistrationsByUserNameEquals" })
 public class Registration {
 
     private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
 
         @SuppressWarnings("rawtypes")
-		@Override
+        @Override
         public Object instantiate(ObjectBinder context, Object value, Type targetType, Class targetClass) {
             Long id = Long.valueOf((String) value);
             return Institution.findInstitution(id);
@@ -78,31 +80,40 @@ public class Registration {
     private RegistrationStatus status;
 
     public static au.net.huni.model.Registration fromJsonToRegistration(String json) {
-        return new JSONDeserializer<Registration>()
-        		.use(null, Registration.class)
-        		.use("institution", INSTITUTION_OBJECT_FACTORY)
-        		.deserialize(json);
+        return new JSONDeserializer<Registration>().use(null, Registration.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 
     public static Collection<au.net.huni.model.Registration> fromJsonArrayToRegistrations(String json) {
-        return new JSONDeserializer<List<Registration>>()
-        		.use(null, ArrayList.class)
-        		.use("values", Registration.class)
-        		.use("institution", INSTITUTION_OBJECT_FACTORY)
-        		.deserialize(json);
+        return new JSONDeserializer<List<Registration>>().use(null, ArrayList.class).use("values", Registration.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
 
-	public static String toJsonArray(Collection<Registration> collection) {
-        return new JSONSerializer()
-        .exclude("*.class", "version", "institution.version")
-        .transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
-        .serialize(collection);
+    public static String toJsonArray(Collection<au.net.huni.model.Registration> collection) {
+        return new JSONSerializer().exclude("*.class", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(collection);
     }
 
-	public String toJson() {
-        return new JSONSerializer()
-        .exclude("*.class", "version", "institution.version")
-        .transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
-        .serialize(this);
+    public String toJson() {
+        return new JSONSerializer().exclude("*.class", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(this);
+    }
+    
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Registration.class))) {
+            return false;
+        }
+
+        Registration candidate = (Registration) obj;
+
+        return this.getUserName().equals(candidate.getUserName())
+                && this.getApplicationDate().equals(candidate.getApplicationDate())
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getUserName().hashCode()
+                + this.getApplicationDate().hashCode()
+             ;
     }
 }

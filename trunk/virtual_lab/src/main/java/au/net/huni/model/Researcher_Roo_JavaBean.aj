@@ -5,6 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
+import au.net.huni.model.Project;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.UserRole;
@@ -99,6 +100,14 @@ privileged aspect Researcher_Roo_JavaBean {
     
     public void Researcher.setToolkit(Set<ToolCatalogItem> toolkit) {
         this.toolkit = toolkit;
+    }
+    
+    public Set<Project> Researcher.getProjects() {
+        return this.projects;
+    }
+    
+    public void Researcher.setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
     
 }

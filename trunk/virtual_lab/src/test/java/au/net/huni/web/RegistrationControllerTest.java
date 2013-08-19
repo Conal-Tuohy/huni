@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jmock.Expectations;
@@ -25,6 +26,7 @@ import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.UserRole;
 import au.net.huni.security.PasswordGenerator;
 
@@ -395,6 +397,8 @@ public class RegistrationControllerTest {
 		context.checking(new Expectations() {{
 		    oneOf (passwordGenerator).generate(); will(returnValue("password1"));
 		}});
+		
+		final ToolCatalogItem defaultToolCatalogItem = new ToolCatalogItem();
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -418,6 +422,15 @@ public class RegistrationControllerTest {
     		protected void persistResearcher(Researcher newResearcher) {
     			// Stub out.
     		}
+    		
+    		protected boolean isExistingResearcher(String userName) {
+    	        return false;
+    		}
+
+    		protected ToolCatalogItem findDefaultToolCatalogItem() {
+    			return defaultToolCatalogItem;
+    		}
+
         };
 
         controller.setMailTemplate(mailTemplate);
@@ -538,6 +551,8 @@ public class RegistrationControllerTest {
 		    oneOf (mailTemplate).send(mailMessage);
 		}});
 
+		final ToolCatalogItem defaultToolCatalogItem = new ToolCatalogItem();
+
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
         RegistrationController controller = new RegistrationController() {
@@ -559,6 +574,14 @@ public class RegistrationControllerTest {
     		
     		protected void persistResearcher(Researcher newResearcher) {
     			// Stub out.
+    		}
+    		
+    		protected boolean isExistingResearcher(String userName) {
+    	        return false;
+    		}
+
+    		protected ToolCatalogItem findDefaultToolCatalogItem() {
+    			return defaultToolCatalogItem;
     		}
         };
         controller.setMailTemplate(mailTemplate);
@@ -674,6 +697,8 @@ public class RegistrationControllerTest {
 		context.checking(new Expectations() {{
 		    oneOf (passwordGenerator).generate(); will(returnValue("12345678"));
 		}});
+		
+		final ToolCatalogItem defaultToolCatalogItem = new ToolCatalogItem();
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -696,6 +721,14 @@ public class RegistrationControllerTest {
     		
     		protected void persistResearcher(Researcher newResearcher) {
     			// Stub out.
+    		}
+    		
+    		protected boolean isExistingResearcher(String userName) {
+    	        return false;
+    		}
+
+    		protected ToolCatalogItem findDefaultToolCatalogItem() {
+    			return defaultToolCatalogItem;
     		}
         };
         controller.setMailTemplate(mailTemplate);

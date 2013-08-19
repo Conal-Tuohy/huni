@@ -3,6 +3,8 @@ package au.net.huni.web;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.*;
 
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +38,7 @@ public class UserControllerTest {
 		researcher.setUserName("user1");
 		researcher.setGivenName("given1");
 		researcher.setFamilyName("family1");
+		researcher.setCreationDate(Calendar.getInstance());
 		
 		final Authentication authenticatedUser = context.mock(Authentication.class);
 		context.checking(new Expectations() {{

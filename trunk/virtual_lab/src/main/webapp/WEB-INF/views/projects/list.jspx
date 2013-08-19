@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_net_huni_model_Project" items="${projects}" z="pecCOsSjxA4s0kZWba7YEe9blCA=">
+        <table:table data="${projects}" id="l_au_net_huni_model_Project" path="/projects" z="I5oRdIxy/IO0zp6QgeE/zwfZC58=">
+            <table:column id="c_au_net_huni_model_Project_name" property="name" z="DcK3xvth4+RjTsTglbqyJWb224k="/>
+            <table:column calendar="true" dateTimePattern="${project_startdate_date_format}" id="c_au_net_huni_model_Project_startDate" property="startDate" z="gmQOWxvKG+V6BHScg7mjQQrB5W8="/>
+        </table:table>
+    </page:list>
+</div>
