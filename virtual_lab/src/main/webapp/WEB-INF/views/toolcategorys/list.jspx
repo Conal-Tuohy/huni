@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_au_net_huni_model_ToolCategory" items="${toolcategorys}" z="EdMlBzhUfBc/c0e8qSNx3qjPQLs=">
-        <table:table data="${toolcategorys}" id="l_au_net_huni_model_ToolCategory" path="/toolcategorys" z="1huySU/Ls51fQJy6XDSNs3ULGtE=">
+        <table:table data="${toolcategorys}" id="l_au_net_huni_model_ToolCategory" path="/console/toolcategorys" z="user-managed">
             <table:column id="c_au_net_huni_model_ToolCategory_name" property="name" z="8pIqct2wAsAOpIg/hyLiBdgzcNE="/>
         </table:table>
     </page:list>

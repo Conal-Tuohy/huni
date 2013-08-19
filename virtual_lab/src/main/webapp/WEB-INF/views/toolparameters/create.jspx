@@ -6,7 +6,7 @@
         <field:input field="name" id="c_au_net_huni_model_ToolParameter_name" min="2" required="true" z="go3c89CalrvOtKZsqi2JMMtcPM8="/>
         <field:input field="amount" id="c_au_net_huni_model_ToolParameter_amount" z="Hq7OuPApltBqm1XMoGm4N1YmJtc="/>
         <field:input field="displayOrder" id="c_au_net_huni_model_ToolParameter_displayOrder" z="Ytm2qmMKjILOEm0dghexoCRpwvs="/>
-        <field:select field="owner" id="c_au_net_huni_model_ToolParameter_owner" itemValue="id" items="${historyitems}" path="/historyitems" required="true" z="Ug1Rbmfda+KR9b760TEw577OF3c="/>
+        <field:select field="owner" id="c_au_net_huni_model_ToolParameter_owner" itemValue="id" items="${historyitems}" path="/historyitems" z="XCOeFk9h3J37lGIpydW/nECzL/Q="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_au_net_huni_model_ToolParameter" render="${not empty dependencies}" z="+cBWRVEGBcGoIVGIObDE24q7qLs="/>
 </div>

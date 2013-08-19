@@ -5,7 +5,6 @@ package au.net.huni.model;
 
 import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.ToolCategory;
-import java.net.URL;
 import java.util.Set;
 
 privileged aspect ToolCatalogItem_Roo_JavaBean {
@@ -26,11 +25,11 @@ privileged aspect ToolCatalogItem_Roo_JavaBean {
         this.description = description;
     }
     
-    public URL ToolCatalogItem.getUrl() {
+    public String ToolCatalogItem.getUrl() {
         return this.url;
     }
     
-    public void ToolCatalogItem.setUrl(URL url) {
+    public void ToolCatalogItem.setUrl(String url) {
         this.url = url;
     }
     

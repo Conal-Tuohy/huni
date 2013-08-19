@@ -1,6 +1,5 @@
 package au.net.huni.model;
 
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +27,7 @@ public class ToolCatalogItem {
     private String description;
 
     @NotNull
-    private URL url;
+    private String url;
 
     @NotNull
     @ManyToMany

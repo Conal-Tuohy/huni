@@ -1,8 +1,5 @@
 package au.net.huni.model;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 
@@ -28,13 +25,7 @@ public class ToolCatalogItemDataOnDemand {
 	}
 
 	public void setUrl(ToolCatalogItem obj, int index) {
-        String path = "path_" + index;
-        URL url = null;
-		try {
-			url = new URL("http://localhost/path_" + path);
-		} catch (MalformedURLException ignore) {
-			// Do nothing
-		}
+        String url = "http://localhost/path_" + + index;
         obj.setUrl(url);
     }
 }

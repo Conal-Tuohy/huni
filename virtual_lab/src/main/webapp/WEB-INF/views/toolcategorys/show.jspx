@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_au_net_huni_model_ToolCategory" object="${toolcategory}" path="/toolcategorys" z="GgbBoqYho87rngjdgcROqDdoCP4=">
+    <page:show id="ps_au_net_huni_model_ToolCategory" object="${toolcategory}" path="/console/toolcategorys" z="user-managed">
         <field:display field="name" id="s_au_net_huni_model_ToolCategory_name" object="${toolcategory}" z="UZeT7qzvdokTftMllQrfJ9WQMXA="/>
     </page:show>
 </div>
