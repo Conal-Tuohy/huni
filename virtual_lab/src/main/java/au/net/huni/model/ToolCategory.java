@@ -19,4 +19,8 @@ public class ToolCategory {
     @Column(unique = true)
     @Size(min = 5, max = 64)
     private String name;
+
+	public String toString() {
+        return this.name;
+    }
 }

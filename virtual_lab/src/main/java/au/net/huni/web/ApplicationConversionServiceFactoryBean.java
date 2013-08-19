@@ -1,6 +1,7 @@
 package au.net.huni.web;
 
 import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolCatalogItem;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
@@ -39,6 +40,14 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Researcher>() {
             public au.net.huni.model.Researcher convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Researcher.class);
+            }
+        };
+    }
+
+	public Converter<ToolCatalogItem, String> getToolCatalogItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolCatalogItem, java.lang.String>() {
+            public String convert(ToolCatalogItem toolCatalogItem) {
+                return new StringBuilder().append(toolCatalogItem.getName()).toString();
             }
         };
     }
