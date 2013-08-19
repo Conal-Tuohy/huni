@@ -273,3 +273,28 @@ test mock
 focus --class ~.model.Institution
 field string --fieldName code --class ~.model.Institution --notNull --unique 
 // [failed] field string --fieldName code --class ~.model.Institution --notNull --unique 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-19 17:22:46
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-19 20:45:04
+entity jpa --class ~.model.Project 
+field string --fieldName name --unique --notNull --sizeMin 2 --sizeMax 64
+field date --type java.util.Calendar --fieldName startDate --notNull true
+entity jpa --class ~.model.DataSource
+field string --fieldName name --unique --notNull --sizeMin 2 --sizeMax 64
+field date --type java.util.Calendar --fieldName importDate --notNull true
+field string --fieldName description
+focus --class ~.model.Project
+field set --fieldName dataSources --type ~.model.DataSource --cardinality ONE_TO_MANY
+test integration
+test mock
+focus --class ~.model.DataSource
+test integration
+test mock
+json add 
+json add --class ~.model.Project
+web mvc scaffold --class ~.web.DataSourceController --backingType ~.model.DataSource
+web mvc scaffold --class ~.web.ProjectController --backingType ~.model.Project
+field set --class ~.model.Researcher --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY 
+finder add --finderName findRegistrationByUserNameEquals --class ~.model.Registration
+finder add --finderName findRegistrationsByUserNameEquals --class ~.model.Registration
+focus --class ~.model.HistoryItem
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-20 00:18:37

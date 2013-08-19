@@ -15,6 +15,7 @@
         <field:datetime dateTimePattern="${researcher_creationdate_date_format}" field="creationDate" id="c_au_net_huni_model_Researcher_creationDate" required="true" z="pfRwH7G6TEAVyG4cWDp75oWMmQw="/>
         <field:select field="defaultTool" id="c_au_net_huni_model_Researcher_defaultTool" itemValue="id" items="${toolcatalogitems}" path="/console/toolcatalogitems" required="true" z="user-managed"/>
         <field:select field="toolkit" id="c_au_net_huni_model_Researcher_toolkit" itemValue="id" items="${toolcatalogitems}" multiple="true" path="/console/toolcatalogitems" required="true" z="user-managed"/>
+        <field:simple field="projects" id="c_au_net_huni_model_Researcher_projects" messageCode="entity_reference_not_managed" messageCodeAttribute="Project" z="asl2oktGjkwDLkLiX3Ie2uiyz0Y="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_au_net_huni_model_Researcher" render="${not empty dependencies}" z="OAuPxwL2T9Xkshtzx8f24CfSMos="/>
 </div>

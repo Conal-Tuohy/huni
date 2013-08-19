@@ -50,6 +50,11 @@ import au.net.huni.security.PasswordGenerator;
 public class RegistrationController {
 
     static final Logger logger = Logger.getLogger(RegistrationController.class);
+    
+	private final static HttpHeaders JSON_HEADERS = new HttpHeaders();
+	static {
+		JSON_HEADERS.add("Content-Type", "application/json; charset=utf-8");
+	}
 
     @Autowired
     private transient MailSender mailTemplate;
@@ -184,17 +189,23 @@ public class RegistrationController {
 
     @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/rest/registrations", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<java.lang.String> createFromJson(@RequestBody String json) {
+    public ResponseEntity<String> createFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
+        Registration registration = null;
         try {
             json = prepareToInjectInstitution(json);
-            Registration registration = Registration.fromJsonToRegistration(json);
-            Calendar currentDate = Calendar.getInstance();
-            registration.setApplicationDate(currentDate);
-            registration.setStatus(RegistrationStatus.PENDING);
-            registration.persist();
-            return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+            registration = Registration.fromJsonToRegistration(json);
+            String userName = registration.getUserName();
+            if (isExistingResearcher(userName) || isExistingApplicant(userName)) {
+    			return responsePacket("{\"status\":\"failure\", \"reason\": \"User name is already in use.\"}", HttpStatus.OK);
+            } else {
+                Calendar currentDate = Calendar.getInstance();
+                registration.setApplicationDate(currentDate);
+                registration.setStatus(RegistrationStatus.PENDING);
+                registration.persist();
+    			return responsePacket(HttpStatus.CREATED);
+            }
         } catch (Throwable exception) {
             logger.error("createFromJson", exception);
             return new ResponseEntity<String>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -202,7 +213,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/rest/registrations/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<java.lang.String> createFromJsonArray(@RequestBody String json) {
+    public ResponseEntity<String> createFromJsonArray(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         json = prepareToInjectInstitution(json);
@@ -216,7 +227,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/rest/registrations", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<java.lang.String> updateFromJson(@RequestBody String json) {
+    public ResponseEntity<String> updateFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         json = prepareToInjectInstitution(json);
@@ -241,7 +252,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/rest/registrations/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<java.lang.String> deleteFromJson(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteFromJson(@PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         Registration registration = Registration.findRegistration(id);
@@ -251,6 +262,14 @@ public class RegistrationController {
         registration.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
+
+	private ResponseEntity<String> responsePacket(HttpStatus status) {
+		return new ResponseEntity<String>(JSON_HEADERS, status);
+	}
+
+	private ResponseEntity<String> responsePacket(String payload, HttpStatus status) {
+		return new ResponseEntity<String>(payload, JSON_HEADERS, status);
+	}
 
     private String prepareToInjectInstitution(String json) {
         json = json.replaceAll("institutionId", "institution");
@@ -288,35 +307,72 @@ public class RegistrationController {
 
     protected Researcher approve(Registration updatedRegistration) {
         Researcher newResearcher = null;
+        String userName = updatedRegistration.getUserName();
         try {
-            String userName = updatedRegistration.getUserName();
-            newResearcher = new Researcher();
-            newResearcher.setUserName(userName);
-            String givenName = updatedRegistration.getGivenName();
-            newResearcher.setGivenName(givenName);
-            String familyName = updatedRegistration.getFamilyName();
-			newResearcher.setFamilyName(familyName);
-            String emailAddress = updatedRegistration.getEmailAddress();
-			newResearcher.setEmailAddress(emailAddress);
-            newResearcher.setInstitution(updatedRegistration.getInstitution());
-            Calendar calendar = Calendar.getInstance();
-            newResearcher.setCreationDate(calendar);
-            newResearcher.setIsAccountEnabled(true);
-            UserRole userRole = assignDefaultRole();
-            newResearcher.getRoles().add(userRole);
-            String clearTextPassword = getPasswordGenerator().generate();
-            newResearcher.setPassword(clearTextPassword);
-            ToolCatalogItem defaultTool = ToolCatalogItem.findToolCatalogItem(1L);
-            newResearcher.setDefaultTool(defaultTool);
-            updatedRegistration.setApprovalDate(calendar);
-            persistResearcher(newResearcher);
-			String message = constructApprovalMessage(givenName, familyName, userName, clearTextPassword);
-            sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Approval", emailAddress, message);
-        } catch (Exception exception) {
-            throw new RuntimeException("Failed to save the new researcher", exception);
-        }
+            if (!isExistingResearcher(userName)) {
+                newResearcher = new Researcher();
+                newResearcher.setUserName(userName);
+                String givenName = updatedRegistration.getGivenName();
+                newResearcher.setGivenName(givenName);
+                String familyName = updatedRegistration.getFamilyName();
+    			newResearcher.setFamilyName(familyName);
+                String emailAddress = updatedRegistration.getEmailAddress();
+    			newResearcher.setEmailAddress(emailAddress);
+                newResearcher.setInstitution(updatedRegistration.getInstitution());
+                Calendar calendar = Calendar.getInstance();
+                newResearcher.setCreationDate(calendar);
+                newResearcher.setIsAccountEnabled(true);
+                UserRole userRole = assignDefaultRole();
+                newResearcher.getRoles().add(userRole);
+                String clearTextPassword = getPasswordGenerator().generate();
+                newResearcher.setPassword(clearTextPassword);
+                ToolCatalogItem defaultTool = findDefaultToolCatalogItem();
+                newResearcher.setDefaultTool(defaultTool);
+                updatedRegistration.setApprovalDate(calendar);
+                persistResearcher(newResearcher);
+    			String message = constructApprovalMessage(givenName, familyName, userName, clearTextPassword);
+                sendMessage("huniproject@gmail.com", "HuNI Virtual Lab: Registration Approval", emailAddress, message);
+            }
+	    } catch (Exception exception) {
+	        throw new RuntimeException("Failed to save the new researcher", exception);
+	    }
         return newResearcher;
     }
+
+	protected ToolCatalogItem findDefaultToolCatalogItem() {
+		ToolCatalogItem defaultTool = ToolCatalogItem.findToolCatalogItem(1L);
+		return defaultTool;
+	}
+
+	protected boolean isExistingResearcher(String userName) {
+		boolean isFound = false;
+		Researcher existingResearcher = null;
+        try {
+        	existingResearcher = Researcher.findResearchersByUserNameEquals(userName).getSingleResult();
+        	isFound = true;
+        	String message = "A researcher already owns that username" + userName 
+    				+ ". See: " + existingResearcher.getGivenName() + " " + existingResearcher.getFamilyName();
+        	logger.info(message);
+        } catch (NoResultException ignore) {
+        	// Do noting;
+        }
+        return isFound;
+	}
+
+	protected boolean isExistingApplicant(String userName) {
+		boolean isFound = false;
+		Registration existingRegistration = null;
+        try {
+        	existingRegistration = Registration.findRegistrationsByUserNameEquals(userName).getSingleResult();
+        	isFound = true;
+        	String message = "An applicant already owns that username" + userName 
+    				+ ". See: " + existingRegistration.getGivenName() + " " + existingRegistration.getFamilyName();
+        	logger.info(message);
+        } catch (NoResultException ignore) {
+        	// Do noting;
+        }
+        return isFound;
+	}
 
 	protected String constructApprovalMessage(String givenName, String familyName, String userName, String password) {
 		String message = "Dear " + givenName + " " + familyName + ","

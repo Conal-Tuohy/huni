@@ -40,5 +40,13 @@
             <menu:item id="i_toolcatalogitem_new" messageCode="global_menu_new" url="/console/toolcatalogitems?form" z="user-managed"/>
             <menu:item id="i_toolcatalogitem_list" messageCode="global_menu_list" url="/console/toolcatalogitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
         </menu:category>
+        <menu:category id="c_datasource" z="7SDGeX8HZy84nuffgI15GsW1QwA=">
+            <menu:item id="i_datasource_new" messageCode="global_menu_new" url="/datasources?form" z="4zS9DUMc0XXZoc+mYnDUsPyrXxk="/>
+            <menu:item id="i_datasource_list" messageCode="global_menu_list" url="/datasources?page=1&amp;size=${empty param.size ? 10 : param.size}" z="oYjIvdcRq0sobfuO34p1mJwt4Io="/>
+        </menu:category>
+        <menu:category id="c_project" z="u0PzRIwMDmEv/J6b8vbKakXGIdQ=">
+            <menu:item id="i_project_new" messageCode="global_menu_new" url="/projects?form" z="1BazRC1rLnod0a+MpP1flWTvehA="/>
+            <menu:item id="i_project_list" messageCode="global_menu_list" url="/projects?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GHL05c3Rvr+eKDgRCk3Ttak0W+g="/>
+        </menu:category>
     </menu:menu>
 </div>

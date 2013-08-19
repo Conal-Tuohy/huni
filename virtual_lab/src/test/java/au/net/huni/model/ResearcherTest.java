@@ -49,6 +49,10 @@ public class ResearcherTest {
     @Test 
     public void testToJsonExcludesPasswords() {
     	Researcher researcher = new Researcher();
+    	// Set to keep hashcode happy.
+    	researcher.setUserName("user1");
+    	// Set to keep hashcode happy.
+    	researcher.setCreationDate(Calendar.getInstance());
     	researcher.setPassword("dirty-little-secret");
     	assertFalse(researcher.toJson().contains("password"));
     	assertFalse(researcher.toJson().contains("encryptedPassword"));   	

@@ -10,7 +10,6 @@ import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 import org.springframework.stereotype.Component;
@@ -20,9 +19,6 @@ import org.springframework.stereotype.Component;
 @RooDataOnDemand(entity = HistoryItem.class)
 public class HistoryItemDataOnDemand {	
 
-	@Autowired
-    private ResearcherDataOnDemand researcherDataOnDemand;
-
 	private Random rnd = new SecureRandom();
 
 	private List<HistoryItem> data;
@@ -31,9 +27,6 @@ public class HistoryItemDataOnDemand {
         HistoryItem obj = new HistoryItem();
         setBackgroundColour(obj, index);
         setExecutionDate(obj, index);
-        if (researcher == null) {
-            setOwner(obj, index);        	
-        }
         setToolName(obj, index);
         return obj;
     }
@@ -48,18 +41,13 @@ public class HistoryItemDataOnDemand {
         obj.setExecutionDate(executionDate);
     }
 
-	public void setOwner(HistoryItem obj, int index) {
-        Researcher owner = researcherDataOnDemand.getRandomResearcher();
-        obj.setOwner(owner);
-    }
-
 	public void setToolName(HistoryItem obj, int index) {
         String toolName = "toolName_" + index;
         obj.setToolName(toolName);
     }
 
 	public HistoryItem getSpecificHistoryItem(int index) {
-        init(null);
+        init();
         if (index < 0) {
             index = 0;
         }
@@ -72,14 +60,7 @@ public class HistoryItemDataOnDemand {
     }
 
 	public HistoryItem getRandomHistoryItem() {
-        init(null);
-        HistoryItem obj = data.get(rnd.nextInt(data.size()));
-        Long id = obj.getId();
-        return HistoryItem.findHistoryItem(id);
-    }
-
-	public HistoryItem getOwnerlessRandomHistoryItem(Researcher researcher) {
-        init(researcher);
+        init();
         HistoryItem obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
         return HistoryItem.findHistoryItem(id);
@@ -89,7 +70,7 @@ public class HistoryItemDataOnDemand {
         return false;
     }
 
-	public void init(Researcher researcher) {
+	public void init() {
         int from = 0;
         int to = 10;
         data = HistoryItem.findHistoryItemEntries(from, to);
@@ -102,7 +83,7 @@ public class HistoryItemDataOnDemand {
         
         data = new ArrayList<HistoryItem>();
         for (int i = 0; i < 10; i++) {
-            HistoryItem obj = getNewTransientHistoryItem(i, researcher);
+            HistoryItem obj = getNewTransientHistoryItem(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

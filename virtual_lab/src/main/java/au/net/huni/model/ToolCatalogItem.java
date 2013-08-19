@@ -8,6 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
@@ -35,5 +36,27 @@ public class ToolCatalogItem {
 
 	public String toString() {
         return this.name;
+    }
+    
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolCatalogItem.class))) {
+            return false;
+        }
+
+        ToolCatalogItem candidate = (ToolCatalogItem) obj;
+
+        return this.getName().equals(candidate.getName())
+                && this.getUrl().equals(candidate.getUrl())
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode()
+                + this.getUrl().hashCode()
+             ;
     }
 }

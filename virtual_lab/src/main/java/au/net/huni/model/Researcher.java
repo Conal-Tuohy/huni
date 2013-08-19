@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,6 +24,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -90,6 +92,10 @@ public class Researcher {
     @ManyToMany
     private Set<ToolCatalogItem> toolkit = new HashSet<ToolCatalogItem>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")
+    private Set<Project> projects = new HashSet<Project>();
+
     public void setPassword(String clearTextPassword) {
         String encryptedPassword = DigestUtils.sha256Hex(clearTextPassword);
         this.password = encryptedPassword;
@@ -103,6 +109,13 @@ public class Researcher {
         this.password = encryptedPassword;
     }
 
+    public void addHistoryItem(HistoryItem historyItem) {
+        this.history.add(historyItem);
+        if (historyItem.getOwner() != this) {
+        	historyItem.setOwner(this);
+        }
+    }
+    
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append(this.getFamilyName());
@@ -128,5 +141,27 @@ public class Researcher {
 
     public static Collection<au.net.huni.model.Researcher> fromJsonArrayToResearchers(String json) {
         return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
+    }
+    
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Researcher.class))) {
+            return false;
+        }
+
+        Researcher candidate = (Researcher) obj;
+
+        return this.getUserName().equals(candidate.getUserName())
+                && this.getCreationDate().equals(candidate.getCreationDate())
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getUserName().hashCode()
+                + this.getCreationDate().hashCode()
+             ;
     }
 }

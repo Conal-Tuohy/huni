@@ -3,9 +3,11 @@
 
 package au.net.huni.web;
 
+import au.net.huni.model.DataSource;
 import au.net.huni.model.FeedbackItem;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
+import au.net.huni.model.Project;
 import au.net.huni.model.Registration;
 import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.ToolCategory;
@@ -19,6 +21,30 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<DataSource, String> ApplicationConversionServiceFactoryBean.getDataSourceToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.DataSource, java.lang.String>() {
+            public String convert(DataSource dataSource) {
+                return new StringBuilder().append(dataSource.getName()).append(' ').append(dataSource.getImportDate()).append(' ').append(dataSource.getDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, DataSource> ApplicationConversionServiceFactoryBean.getIdToDataSourceConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.DataSource>() {
+            public au.net.huni.model.DataSource convert(java.lang.Long id) {
+                return DataSource.findDataSource(id);
+            }
+        };
+    }
+    
+    public Converter<String, DataSource> ApplicationConversionServiceFactoryBean.getStringToDataSourceConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.DataSource>() {
+            public au.net.huni.model.DataSource convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), DataSource.class);
+            }
+        };
+    }
     
     public Converter<FeedbackItem, String> ApplicationConversionServiceFactoryBean.getFeedbackItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.FeedbackItem, java.lang.String>() {
@@ -88,6 +114,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Institution>() {
             public au.net.huni.model.Institution convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Institution.class);
+            }
+        };
+    }
+    
+    public Converter<Project, String> ApplicationConversionServiceFactoryBean.getProjectToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Project, java.lang.String>() {
+            public String convert(Project project) {
+                return new StringBuilder().append(project.getName()).append(' ').append(project.getStartDate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Project> ApplicationConversionServiceFactoryBean.getIdToProjectConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.Project>() {
+            public au.net.huni.model.Project convert(java.lang.Long id) {
+                return Project.findProject(id);
+            }
+        };
+    }
+    
+    public Converter<String, Project> ApplicationConversionServiceFactoryBean.getStringToProjectConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Project>() {
+            public au.net.huni.model.Project convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Project.class);
             }
         };
     }
@@ -205,6 +255,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getDataSourceToStringConverter());
+        registry.addConverter(getIdToDataSourceConverter());
+        registry.addConverter(getStringToDataSourceConverter());
         registry.addConverter(getFeedbackItemToStringConverter());
         registry.addConverter(getIdToFeedbackItemConverter());
         registry.addConverter(getStringToFeedbackItemConverter());
@@ -214,6 +267,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getInstitutionToStringConverter());
         registry.addConverter(getIdToInstitutionConverter());
         registry.addConverter(getStringToInstitutionConverter());
+        registry.addConverter(getProjectToStringConverter());
+        registry.addConverter(getIdToProjectConverter());
+        registry.addConverter(getStringToProjectConverter());
         registry.addConverter(getRegistrationToStringConverter());
         registry.addConverter(getIdToRegistrationConverter());
         registry.addConverter(getStringToRegistrationConverter());

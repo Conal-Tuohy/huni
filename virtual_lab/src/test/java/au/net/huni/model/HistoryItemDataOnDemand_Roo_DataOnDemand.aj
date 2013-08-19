@@ -5,14 +5,15 @@ package au.net.huni.model;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.HistoryItemDataOnDemand;
-import java.util.ArrayList;
+import au.net.huni.model.ResearcherDataOnDemand;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 privileged aspect HistoryItemDataOnDemand_Roo_DataOnDemand {
+    
+    @Autowired
+    ResearcherDataOnDemand HistoryItemDataOnDemand.researcherDataOnDemand;
     
     public HistoryItem HistoryItemDataOnDemand.getNewTransientHistoryItem(int index) {
         HistoryItem obj = new HistoryItem();
@@ -20,35 +21,6 @@ privileged aspect HistoryItemDataOnDemand_Roo_DataOnDemand {
         setExecutionDate(obj, index);
         setToolName(obj, index);
         return obj;
-    }
-    
-    public void HistoryItemDataOnDemand.init() {
-        int from = 0;
-        int to = 10;
-        data = HistoryItem.findHistoryItemEntries(from, to);
-        if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'HistoryItem' illegally returned null");
-        }
-        if (!data.isEmpty()) {
-            return;
-        }
-        
-        data = new ArrayList<HistoryItem>();
-        for (int i = 0; i < 10; i++) {
-            HistoryItem obj = getNewTransientHistoryItem(i);
-            try {
-                obj.persist();
-            } catch (ConstraintViolationException e) {
-                StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
-                    ConstraintViolation<?> cv = iter.next();
-                    msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
-                }
-                throw new RuntimeException(msg.toString(), e);
-            }
-            obj.flush();
-            data.add(obj);
-        }
     }
     
 }

@@ -39,10 +39,6 @@ privileged aspect HistoryItem_Roo_JavaBean {
         return this.owner;
     }
     
-    public void HistoryItem.setOwner(Researcher owner) {
-        this.owner = owner;
-    }
-    
     public Set<ToolParameter> HistoryItem.getToolParameters() {
         return this.toolParameters;
     }
