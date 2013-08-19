@@ -71,7 +71,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Institution, String> ApplicationConversionServiceFactoryBean.getInstitutionToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Institution, java.lang.String>() {
             public String convert(Institution institution) {
-                return new StringBuilder().append(institution.getName()).toString();
+                return new StringBuilder().append(institution.getCode()).append(' ').append(institution.getName()).toString();
             }
         };
     }
@@ -116,7 +116,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-        
     public Converter<Long, ToolCatalogItem> ApplicationConversionServiceFactoryBean.getIdToToolCatalogItemConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.ToolCatalogItem>() {
             public au.net.huni.model.ToolCatalogItem convert(java.lang.Long id) {

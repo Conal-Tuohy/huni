@@ -37,7 +37,7 @@ public class RegistrationTest {
 		registration.setApplicationDate(calendar);
 		registration.setApprovalDate(calendar);
 		registration.setEmailAddress("jblogs@ordinary.com");
-		Institution institution = new Institution("Monash");
+		Institution institution = new Institution("MONASH", "Monash");
 		institution.setId(10L);
 		registration.setInstitution(institution);
     	registration.setStatus(RegistrationStatus.PENDING);
@@ -47,7 +47,7 @@ public class RegistrationTest {
     	assertTrue("JSON username is correct", actualJson.contains("\"userName\":\"jbloggs\""));
     	assertTrue("JSON given name is correct", actualJson.contains("\"givenName\":\"Joseph\""));
     	assertTrue("JSON family is correct", actualJson.contains("\"familyName\":\"Bloggs\""));
-    	assertTrue("JSON institution is correct", actualJson.contains("\"institution\":{\"id\":10,\"name\":\"Monash\"}"));
+    	assertTrue("JSON institution is correct", actualJson.contains("\"institution\":{\"code\":\"MONASH\",\"id\":10,\"name\":\"Monash\"}"));
     	assertTrue("JSON application date is correct", actualJson.contains("\"applicationDate\":\"25/12/2013 18:30:45 EST"));
     	assertTrue("JSON approval date is correct", actualJson.contains("\"approvalDate\":\"25/12/2013 18:30:45 EST"));
     	assertTrue("JSON email is correct", actualJson.contains("\"emailAddress\":\"jblogs@ordinary.com\""));

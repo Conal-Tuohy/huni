@@ -4,5 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_au_net_huni_model_Institution" modelAttribute="institution" path="/console/institutions" versionField="Version" z="user-managed">
         <field:input field="name" id="c_au_net_huni_model_Institution_name" max="60" min="5" required="true" z="user-managed"/>
+        <field:input field="code" id="c_au_net_huni_model_Institution_code" required="true" z="nAmAQa0PMKvsckhECAyNR4amLYs="/>
     </form:update>
 </div>

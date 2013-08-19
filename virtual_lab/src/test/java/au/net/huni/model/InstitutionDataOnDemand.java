@@ -22,6 +22,7 @@ public class InstitutionDataOnDemand {
 
 	public Institution getNewTransientInstitution(int index) {
         Institution obj = new Institution();
+        setCode(obj, index);
         setName(obj, index);
         return obj;
     }

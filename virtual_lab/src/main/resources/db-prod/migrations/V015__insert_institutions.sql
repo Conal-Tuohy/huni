@@ -1,7 +1,7 @@
-INSERT INTO "APP"."INSTITUTION" (ID,NAME,VERSION) VALUES 
-(1,'UNKNOWN',0),
-(2,'Unaffiliated',0),
-(3,'Deakin University',0),
-(4,'Monash University',0),
-(5,'RMIT University of Technology',0),
-(6,'University of Melbourne',0)
+INSERT INTO "APP"."INSTITUTION" (ID,CODE,NAME,VERSION) VALUES 
+(1,'?','UNKNOWN',0),
+(2,'UNAFFILIATED','Unaffiliated',0),
+(3,'DEAKIN','Deakin University',0),
+(4,'MONASH','Monash University',0),
+(5,'RMIT','RMIT University of Technology',0),
+(6,'UNIMELB','University of Melbourne',0)
