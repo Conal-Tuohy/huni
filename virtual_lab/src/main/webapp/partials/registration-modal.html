@@ -1,7 +1,7 @@
 <div id="registrationModal" class="modal" tabindex="-1" role="dialog" 
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	
-	<form id="registration-form " class="">
+	<form id="registration-form " name="form" class="css-form" novalidate>
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true">&times;</button>
@@ -11,34 +11,53 @@
 			<div class="control-group">
 				<label class="control-label" for="registrationUserName">Username*</label>
 				<div class="controls">
-					<input type="text" id="registrationUserName" placeholder="UserName"  ng-model="userName">
+					<input type="text" id="registrationUserName" name="registrationUserName" placeholder="UserName"  ng-model="applicant.userName"  ng-required="true" ng-minlength="5" ng-maxlength="10">
+				</div>
+				<div ng-show="form.registrationUserName.$dirty && form.registrationUserName.$invalid">Invalid:
+					<span ng-show="form.registrationUserName.$error.required">enter your preferred user name.</span>
+					<span ng-show="form.registrationUserName.$error.minlength">the user name is too short.</span>
+					<span ng-show="form.registrationUserName.$error.maxlength">the user name is too long.</span>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="registrationGivenName">Given
 					Name*</label>
 				<div class="controls">
-					<input type="text" id="registrationGivenName" placeholder="GivenName"  ng-model="givenName">
+					<input type="text" id="registrationGivenName" name="registrationGivenName" placeholder="GivenName"  ng-model="applicant.givenName" ng-required="true"  required ng-minlength="1" ng-maxlength="60">
+				</div>
+				<div ng-show="form.registrationGivenName.$dirty && form.registrationGivenName.$invalid">Invalid:
+					<span ng-show="form.registrationGivenName.$error.required">enter your given name.</span>
+					<span ng-show="form.registrationGivenName.$error.minlength">the given name is too short.</span>
+					<span ng-show="form.registrationGivenName.$error.maxlength">the given name is too long.</span>
 				</div>
 			</div>
 
 			<div class="control-group">
 				<label class="control-label" for="registrationFamilyName">Family Name*</label>
 				<div class="controls">
-					<input type="text" id="registrationFamilyName" placeholder="FamilyName"  ng-model="familyName">
+					<input type="text" id="registrationFamilyName" name="registrationFamilyName" placeholder="FamilyName"  ng-model="applicant.familyName" ng-required="true" ng-minlength="1" ng-maxlength="60">
+				</div>
+				<div ng-show="form.registrationFamilyName.$dirty && form.registrationFamilyName.$invalid">Invalid:
+					<span ng-show="form.registrationFamilyName.$error.required">enter your given name.</span>
+					<span ng-show="form.registrationFamilyName.$error.minlength">the given name is too short.</span>
+					<span ng-show="form.registrationFamilyName.$error.maxlength">the given name is too long.</span>
 				</div>
 			</div>
 
 			<div class="control-group">
 				<label class="control-label" for="registrationEmail">Email Address*</label>
 				<div class="controls">
-					<input type="text" id="registrationEmail" placeholder="email@address.com.au"  ng-model="emailAddress">
-				</div>
+					<input type="email" id="registrationEmail" name="registrationEmail" placeholder="email@address.com.au"  ng-model="applicant.emailAddress"  ng-required="true">
+					<div ng-show="form.registrationEmail.$dirty && form.registrationEmail.$invalid">Invalid:
+						<span ng-show="form.registrationEmail.$error.required">enter your email address.</span>
+						<span ng-show="form.registrationEmail.$error.email">the email address is invalid.</span>
+					</div>
+        	</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="registrationInstitution">Institution</label>
 				<div class="controls">
-					<select ui-select2 ng-model="institutionId" data-placeholder="Pick an institution"  ng-required="true">
+					<select ui-select2 ng-model="applicant.institutionId" data-placeholder="Pick an institution"  ng-required="true">
 					    <option value=""></option>
 					    <option ng-repeat="institution in institutions" value="{{institution.id}}">{{institution.name}}</option>
 					</select>
@@ -47,7 +66,7 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn" aria-hidden="true" ng-click="apply(false)">Cancel</button>
-			<button class="btn btn-primary" ng-click="apply(true)">Submit</button>
+			<button class="btn btn-primary" ng-click="apply(true)" ng-disabled="form.$invalid || isUnchanged(applicant)">Submit</button>
 		</div>
 	</form>
 	
