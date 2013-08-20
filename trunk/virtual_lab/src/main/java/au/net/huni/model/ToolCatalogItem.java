@@ -37,26 +37,26 @@ public class ToolCatalogItem {
 	public String toString() {
         return this.name;
     }
-    
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolCatalogItem.class))) {
-            return false;
-        }
-
-        ToolCatalogItem candidate = (ToolCatalogItem) obj;
-
-        return this.getName().equals(candidate.getName())
-                && this.getUrl().equals(candidate.getUrl())
-            ;
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.getName().hashCode()
-                + this.getUrl().hashCode()
-             ;
-    }
+//    
+//    @Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj) {
+//            return true;
+//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolCatalogItem.class))) {
+//            return false;
+//        }
+//
+//        ToolCatalogItem candidate = (ToolCatalogItem) obj;
+//
+//        return this.getName().equals(candidate.getName())
+//                && this.getUrl().equals(candidate.getUrl())
+//            ;
+//    }
+//    
+//    @Override
+//    public int hashCode() {
+//        return this.getName().hashCode()
+//                + this.getUrl().hashCode()
+//             ;
+//    }
 }

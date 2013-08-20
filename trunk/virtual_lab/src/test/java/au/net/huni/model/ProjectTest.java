@@ -1,5 +1,7 @@
 package au.net.huni.model;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,5 +18,12 @@ public class ProjectTest {
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.expectReturn(expectedCount);
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
         org.junit.Assert.assertEquals(expectedCount, Project.countProjects());
+    }
+
+    @Test
+    public void testToString() {
+    	Project project = new Project();
+    	project.setName("datasource0");
+    	assertEquals("Data source toString is name.", "datasource0", project.toString());
     }
 }

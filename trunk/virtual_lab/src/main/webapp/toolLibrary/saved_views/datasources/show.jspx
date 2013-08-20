@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_au_net_huni_model_DataSource" object="${datasource}" path="/datasources" z="7oIMPYR1xoUPm+0KhwsI4FSxcqY=">
+    <page:show id="ps_au_net_huni_model_DataSource" object="${datasource}" path="/console/datasources" z="user-managed">
         <field:display field="name" id="s_au_net_huni_model_DataSource_name" object="${datasource}" z="nAUBylre9LlTCRhGpKVkLpAS35s="/>
         <field:display calendar="true" dateTimePattern="${dataSource_importdate_date_format}" field="importDate" id="s_au_net_huni_model_DataSource_importDate" object="${datasource}" z="3e5CghynmnMkhvXgDTNbZtz12og="/>
         <field:display field="description" id="s_au_net_huni_model_DataSource_description" object="${datasource}" z="o6HfMu6S9R715z0zStF6FfU6DAo="/>

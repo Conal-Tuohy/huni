@@ -20,7 +20,6 @@ public class InstitutionTest {
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
         org.junit.Assert.assertEquals(expectedCount, Institution.countInstitutions());
     }
-
     
     @Test 
     public void testToJsonProducesCorrectJson() {

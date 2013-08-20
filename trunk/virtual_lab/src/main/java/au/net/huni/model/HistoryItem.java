@@ -76,27 +76,27 @@ public class HistoryItem {
         	researcher.getHistory().add(this);
         }
     }
-    
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(HistoryItem.class))) {
-            return false;
-        }
-
-        HistoryItem candidate = (HistoryItem) obj;
-
-        return this.getToolName().equals(candidate.getToolName())
-            && this.getBackgroundColour().equals(candidate.getBackgroundColour())
-            && this.getExecutionDate().equals(candidate.getExecutionDate());
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.getToolName().hashCode()
-             + this.getBackgroundColour().hashCode()
-             + this.getExecutionDate().hashCode();
-    }
+//    
+//    @Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj) {
+//            return true;
+//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(HistoryItem.class))) {
+//            return false;
+//        }
+//
+//        HistoryItem candidate = (HistoryItem) obj;
+//
+//        return this.getToolName().equals(candidate.getToolName())
+//            && this.getBackgroundColour().equals(candidate.getBackgroundColour())
+//            && this.getExecutionDate().equals(candidate.getExecutionDate());
+//    }
+//    
+//    @Override
+//    public int hashCode() {
+//        return this.getToolName().hashCode()
+//             + this.getBackgroundColour().hashCode()
+//             + this.getExecutionDate().hashCode();
+//    }
 
 }

@@ -82,24 +82,24 @@ public class UserDetails {
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
-
-	@Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(UserDetails.class))) {
-            return false;
-        }
-
-        UserDetails candidate = (UserDetails) obj;
-
-        return this.getUserName().equals(candidate.getUserName())
-            ;
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.getUserName().hashCode()
-             ;
-    }
+//
+//	@Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj) {
+//            return true;
+//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(UserDetails.class))) {
+//            return false;
+//        }
+//
+//        UserDetails candidate = (UserDetails) obj;
+//
+//        return this.getUserName().equals(candidate.getUserName())
+//            ;
+//    }
+//    
+//    @Override
+//    public int hashCode() {
+//        return this.getUserName().hashCode()
+//             ;
+//    }
 }
