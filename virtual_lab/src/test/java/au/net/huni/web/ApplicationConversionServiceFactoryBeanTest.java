@@ -4,9 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import org.junit.Test;
 import org.springframework.core.convert.converter.Converter;
 
+import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.ToolCategory;
@@ -54,6 +58,20 @@ public class ApplicationConversionServiceFactoryBeanTest {
 		ToolCatalogItem toolCatalogItem = new ToolCatalogItem();
 		toolCatalogItem.setName("toolcatalogitem1");
 		assertEquals("toolcatalogitem1", converter.convert(toolCatalogItem));
+	}
+
+	@Test
+	public void testHistoryItemConverter() {
+		ApplicationConversionServiceFactoryBean converterFactory = new ApplicationConversionServiceFactoryBean();
+		Converter<au.net.huni.model.HistoryItem, String> converter = converterFactory.getHistoryItemToStringConverter();
+		HistoryItem historyItem = new HistoryItem();
+		historyItem.setToolName("tool1");
+    	Calendar today = Calendar.getInstance();
+    	today.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+    	today.setTimeZone(timeZone );
+    	historyItem.setExecutionDate(today);
+		assertEquals("tool1(25/12/2013 18:30:45 EST)", converter.convert(historyItem));
 	}
 
 }

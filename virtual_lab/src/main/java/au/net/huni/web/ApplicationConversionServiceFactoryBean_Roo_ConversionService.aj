@@ -70,14 +70,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<HistoryItem, String> ApplicationConversionServiceFactoryBean.getHistoryItemToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.HistoryItem, java.lang.String>() {
-            public String convert(HistoryItem historyItem) {
-                return new StringBuilder().append(historyItem.getToolName()).append(' ').append(historyItem.getBackgroundColour()).append(' ').append(historyItem.getExecutionDate()).toString();
-            }
-        };
-    }
-    
+        
     public Converter<Long, HistoryItem> ApplicationConversionServiceFactoryBean.getIdToHistoryItemConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.HistoryItem>() {
             public au.net.huni.model.HistoryItem convert(java.lang.Long id) {
