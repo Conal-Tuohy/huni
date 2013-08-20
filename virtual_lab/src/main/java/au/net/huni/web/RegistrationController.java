@@ -262,6 +262,14 @@ public class RegistrationController {
         registration.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
+    
+	@RequestMapping(value = "/rest/registrations", params = "find=ByUserNameEquals", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> jsonFindRegistrationsByUserNameEquals(@RequestParam("userName") String userName) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(Registration.toJsonArray(Registration.findRegistrationsByUserNameEquals(userName).getResultList()), headers, HttpStatus.OK);
+    }
 
 	private ResponseEntity<String> responsePacket(HttpStatus status) {
 		return new ResponseEntity<String>(JSON_HEADERS, status);
@@ -448,5 +456,4 @@ public class RegistrationController {
 	public void setPasswordGenerator(PasswordGenerator passwordGenerator) {
 		this.passwordGenerator = passwordGenerator;
 	}
-
 }

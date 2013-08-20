@@ -25,23 +25,23 @@ public class ToolCategory {
         return this.name;
     }
     
-//    @Override
-//    public boolean equals(final Object obj) {
-//        if (this == obj) {
-//            return true;
-//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolCategory.class))) {
-//            return false;
-//        }
-//
-//        ToolCategory candidate = (ToolCategory) obj;
-//
-//        return this.getName().equals(candidate.getName())
-//            ;
-//    }
-//    
-//    @Override
-//    public int hashCode() {
-//        return this.getName().hashCode()
-//             ;
-//    }
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolCategory.class))) {
+            return false;
+        }
+
+        ToolCategory candidate = (ToolCategory) obj;
+
+        return this.getName().equals(candidate.getName())
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode()
+             ;
+    }
 }

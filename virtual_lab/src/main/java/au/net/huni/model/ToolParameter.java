@@ -42,27 +42,27 @@ public class ToolParameter {
         .serialize(this);
     }
     
-//    @Override
-//    public boolean equals(final Object obj) {
-//        if (this == obj) {
-//            return true;
-//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolParameter.class))) {
-//            return false;
-//        }
-//
-//        ToolParameter candidate = (ToolParameter) obj;
-//
-//        return this.getName().equals(candidate.getName())
-//                && this.getAmount().equals(candidate.getAmount())
-//                && this.getDisplayOrder() == candidate.getDisplayOrder()
-//            ;
-//    }
-//    
-//    @Override
-//    public int hashCode() {
-//        return this.getName().hashCode()
-//                + this.getAmount().hashCode()
-//                + this.getDisplayOrder() * 37
-//             ;
-//    }
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolParameter.class))) {
+            return false;
+        }
+
+        ToolParameter candidate = (ToolParameter) obj;
+
+        return this.getName().equals(candidate.getName())
+                && this.getAmount().equals(candidate.getAmount())
+                && this.getDisplayOrder() == candidate.getDisplayOrder()
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode()
+                + this.getAmount().hashCode()
+                + this.getDisplayOrder() * 37
+             ;
+    }
 }

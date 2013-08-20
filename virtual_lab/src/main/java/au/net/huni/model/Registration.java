@@ -94,26 +94,26 @@ public class Registration {
     public String toJson() {
         return new JSONSerializer().exclude("*.class", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(this);
     }
-//    
-//    @Override
-//    public boolean equals(final Object obj) {
-//        if (this == obj) {
-//            return true;
-//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Registration.class))) {
-//            return false;
-//        }
-//
-//        Registration candidate = (Registration) obj;
-//
-//        return this.getUserName().equals(candidate.getUserName())
-//                && this.getApplicationDate().equals(candidate.getApplicationDate())
-//            ;
-//    }
-//    
-//    @Override
-//    public int hashCode() {
-//        return this.getUserName().hashCode()
-//                + this.getApplicationDate().hashCode()
-//             ;
-//    }
+    
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Registration.class))) {
+            return false;
+        }
+
+        Registration candidate = (Registration) obj;
+
+        return this.getUserName().equals(candidate.getUserName())
+                && this.getApplicationDate().equals(candidate.getApplicationDate())
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getUserName().hashCode()
+                + this.getApplicationDate().hashCode()
+             ;
+    }
 }
