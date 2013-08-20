@@ -47,24 +47,24 @@ public class UserRole {
         .exclude("*.class", "version")
         .serialize(this);
     }
-	
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(UserRole.class))) {
-            return false;
-        }
-
-        UserRole candidate = (UserRole) obj;
-
-        return this.getName().equals(candidate.getName())
-            ;
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.getName().hashCode()
-             ;
-    }
+//	
+//    @Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj) {
+//            return true;
+//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(UserRole.class))) {
+//            return false;
+//        }
+//
+//        UserRole candidate = (UserRole) obj;
+//
+//        return this.getName().equals(candidate.getName())
+//            ;
+//    }
+//    
+//    @Override
+//    public int hashCode() {
+//        return this.getName().hashCode()
+//             ;
+//    }
 }

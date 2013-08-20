@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_au_net_huni_model_DataSource" items="${datasources}" z="fr2HylcIa7/wA/JXUcYg3a9iLfg=">
-        <table:table data="${datasources}" id="l_au_net_huni_model_DataSource" path="/datasources" z="rxYx6zNa7TUNdNibF+TVUm3Uuto=">
+        <table:table data="${datasources}" id="l_au_net_huni_model_DataSource" path="/console/datasources" z="user-managed">
             <table:column id="c_au_net_huni_model_DataSource_name" property="name" z="ZY5K8LnSE5Vc9qbXDUdNw1XfEy4="/>
             <table:column calendar="true" dateTimePattern="${dataSource_importdate_date_format}" id="c_au_net_huni_model_DataSource_importDate" property="importDate" z="3AtOjKCRzyQyTDlItJb913tOPNM="/>
             <table:column id="c_au_net_huni_model_DataSource_description" property="description" z="1Lu+Y8xg96nrxAPEL211N+fbLp0="/>

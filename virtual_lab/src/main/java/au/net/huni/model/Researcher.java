@@ -143,25 +143,25 @@ public class Researcher {
         return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
     
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Researcher.class))) {
-            return false;
-        }
-
-        Researcher candidate = (Researcher) obj;
-
-        return this.getUserName().equals(candidate.getUserName())
-                && this.getCreationDate().equals(candidate.getCreationDate())
-            ;
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.getUserName().hashCode()
-                + this.getCreationDate().hashCode()
-             ;
-    }
+//    @Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj) {
+//            return true;
+//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Researcher.class))) {
+//            return false;
+//        }
+//
+//        Researcher candidate = (Researcher) obj;
+//
+//        return this.getUserName().equals(candidate.getUserName())
+//                && this.getCreationDate().equals(candidate.getCreationDate())
+//            ;
+//    }
+//    
+//    @Override
+//    public int hashCode() {
+//        return this.getUserName().hashCode()
+//                + this.getCreationDate().hashCode()
+//             ;
+//    }
 }

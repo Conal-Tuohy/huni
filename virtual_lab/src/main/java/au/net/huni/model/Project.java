@@ -40,25 +40,29 @@ public class Project {
     @JoinColumn(name="PROJECT_ID", referencedColumnName="ID")
     private Set<DataSource> dataSources = new HashSet<DataSource>();
     
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Project.class))) {
-            return false;
-        }
+//    @Override
+//    public boolean equals(final Object obj) {
+//        if (this == obj) {
+//            return true;
+//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Project.class))) {
+//            return false;
+//        }
+//
+//        Project candidate = (Project) obj;
+//
+//        return this.getName().equals(candidate.getName())
+//                && this.getStartDate().equals(candidate.getStartDate())
+//            ;
+//    }
+//    
+//    @Override
+//    public int hashCode() {
+//        return this.getName().hashCode()
+//                + this.getStartDate().hashCode()
+//             ;
+//    }
 
-        Project candidate = (Project) obj;
-
-        return this.getName().equals(candidate.getName())
-                && this.getStartDate().equals(candidate.getStartDate())
-            ;
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.getName().hashCode()
-                + this.getStartDate().hashCode()
-             ;
+	public String toString() {
+        return getName();
     }
 }
