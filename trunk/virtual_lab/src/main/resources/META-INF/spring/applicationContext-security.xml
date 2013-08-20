@@ -46,9 +46,9 @@
 		<intercept-url pattern="/console/userroles/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/toolcategorys/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/toolcatalogitems/**" access="hasRole('ROLE_ADMIN')" />
-<!-- 		<intercept-url pattern="/console/projects/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/projects/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/datasources/**" access="hasRole('ROLE_ADMIN')" />
- -->		<intercept-url pattern="/console/**" access="permitAll" />
+		<intercept-url pattern="/console/**" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
  	</http>

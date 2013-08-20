@@ -47,24 +47,24 @@ public class Institution {
     public String toJson() {
         return new JSONSerializer().exclude("*.class", "version").serialize(this);
     }
-//    
-//    @Override
-//    public boolean equals(final Object obj) {
-//        if (this == obj) {
-//            return true;
-//        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Institution.class))) {
-//            return false;
-//        }
-//
-//        Institution candidate = (Institution) obj;
-//
-//        return this.getCode().equals(candidate.getCode())
-//            ;
-//    }
-//    
-//    @Override
-//    public int hashCode() {
-//        return this.getCode().hashCode()
-//             ;
-//    }
+    
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(Institution.class))) {
+            return false;
+        }
+
+        Institution candidate = (Institution) obj;
+
+        return this.getCode().equals(candidate.getCode())
+            ;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.getCode().hashCode()
+             ;
+    }
 }
