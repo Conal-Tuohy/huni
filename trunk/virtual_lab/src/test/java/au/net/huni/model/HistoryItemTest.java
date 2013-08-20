@@ -1,5 +1,6 @@
 package au.net.huni.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -46,5 +47,18 @@ public class HistoryItemTest {
     	assertTrue("JSON tool parameters is correct", actualJson.contains("\"toolParameters\":[]"));
     	//assertTrue("JSON owner is correct", actualJson.contains("\"owner\":\"jbloggs\""));
     	assertFalse("JSON version is not present", actualJson.contains("\"version\":"));
+    }
+
+    @Test
+    public void testToString() {
+    	HistoryItem historyItem = new HistoryItem();
+    	historyItem.setToolName("tool0");
+    	Calendar today = Calendar.getInstance();
+    	today.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+    	today.setTimeZone(timeZone );
+    	historyItem.setExecutionDate(today);
+    	
+    	assertEquals("History item toString is tool name and date of execution.", "tool0(25/12/2013 18:30:45 EST)", historyItem.toString());
     }
 }

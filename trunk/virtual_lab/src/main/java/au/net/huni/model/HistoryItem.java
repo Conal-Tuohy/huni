@@ -1,7 +1,9 @@
 package au.net.huni.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +33,9 @@ import flexjson.JSONSerializer;
 @RooJpaActiveRecord
 @RooJson
 public class HistoryItem {
+	
+	private final static String dataTimePattern = "dd/MM/yyyy HH:mm:ss z";
+	private final static SimpleDateFormat formatter = new SimpleDateFormat(dataTimePattern);
 
     @NotNull
     @Size(min = 2)
@@ -88,15 +93,19 @@ public class HistoryItem {
         HistoryItem candidate = (HistoryItem) obj;
 
         return this.getToolName().equals(candidate.getToolName())
-            && this.getBackgroundColour().equals(candidate.getBackgroundColour())
             && this.getExecutionDate().equals(candidate.getExecutionDate());
     }
     
     @Override
     public int hashCode() {
         return this.getToolName().hashCode()
-             + this.getBackgroundColour().hashCode()
              + this.getExecutionDate().hashCode();
     }
 
+
+	public String toString() {
+		Date date = getExecutionDate().getTime();
+		String formattedDateTime = formatter.format(date);
+        return getToolName() + "(" + formattedDateTime + ")";
+    }
 }
