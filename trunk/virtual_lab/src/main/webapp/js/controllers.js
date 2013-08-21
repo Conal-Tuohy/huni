@@ -692,36 +692,35 @@ function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionS
 	  
 	$scope.apply = function(result) {
 		if (result) {
+			// Submit button.
 			var userName = $scope.applicant.userName;
 			var givenName = $scope.applicant.givenName;
 			var familyName = $scope.applicant.familyName;
 			var emailAddress = $scope.applicant.emailAddress;
 			var institutionId = $scope.applicant.institutionId;
 			result = {'userName': userName, 'givenName': givenName, 'familyName': familyName, 'emailAddress': emailAddress, 'institutionId': institutionId};
-			var registrationItem = new RegistrationService(result, 
-					function(validResponse, status, headers, config) {
-						if (validResponse.userName == userName) {
-							// we have a valid profile so apply the username and password 
-							// and update the profile.
-							CredentialsService.setUserName(userName);
-							CredentialsService.setPassword(password);
-							ProfileService.setProfile(validResponse);				
-							dialog.close(result);
-						} else if (validResponse.status = 'failure') {
-							$scope.failedLogin = validResponse.reason;
-						}
-					}, 
-					function(inValidProfile, status, headers, config) {
-						if (status == '404') {
-							$scope.failedLogin = "The requested resource is not available.";
-						}
-						if (inValidProfile) {
-							$scope.failedLogin = "Remote server failure";
-						}
+			var registrationItem = new RegistrationService(result);
+			registrationItem.$save( 
+				function(validResponse, status, headers, config) {
+					if (validResponse.status == 'failure') {
+						$scope.failedRegistration = validResponse.reason;
+					} else {
+						dialog.close(result);
+					}
+				}, 
+				function(inValidResponse, status, headers, config) {
+					if (status == '404') {
+						$scope.failedRegistration = "The requested resource is not available.";
+					}
+					else if (inValidResponse) {
+						$scope.failedRegistration = "Remote server failure";
+					}
 				});
-			registrationItem.$save();
+		} else {
+			// Cancel button.
+			dialog.close(result);
 		}
-		dialog.close(result);
+			
 	};	
 	$scope.institutions = InstitutionService.query();	
 }

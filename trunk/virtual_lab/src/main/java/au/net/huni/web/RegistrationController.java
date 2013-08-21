@@ -363,7 +363,10 @@ public class RegistrationController {
         	logger.info(message);
         } catch (NoResultException ignore) {
         	// Do noting;
+        } catch (EmptyResultDataAccessException ignore) {
+        	// Do noting;	
         }
+        
         return isFound;
 	}
 
@@ -378,6 +381,8 @@ public class RegistrationController {
         	logger.info(message);
         } catch (NoResultException ignore) {
         	// Do noting;
+        } catch (EmptyResultDataAccessException ignore) {
+        	// Do noting;	
         }
         return isFound;
 	}
