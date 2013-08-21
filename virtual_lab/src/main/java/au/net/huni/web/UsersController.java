@@ -46,7 +46,7 @@ public class UsersController {
 
 	// Allow access for VL web app.
 	@PreAuthorize("isAnonymous()")
-	@RequestMapping(value = "/rest/users/validate/{userName}/{password}", headers = "Accept=application/json", produces = "text/html")
+	@RequestMapping(value = "/rest/users/validate/{userName}/{password}", headers = "Accept=application/json", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<String> isValidUser(
 			@PathVariable("userName") String userName,

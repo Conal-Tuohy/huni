@@ -751,11 +751,28 @@ LoginButtonCtrl.$inject = [ '$scope', '$dialog'];
 //------------------------------------
 
 function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, UserService) {
-	
+
+	$scope.master= {};
+	 
+	$scope.update = function(user) {
+		$scope.master= angular.copy(user);
+	};
+ 
+	$scope.reset = function() {
+		$scope.user = angular.copy($scope.master);
+	};
+ 
+	$scope.isUnchanged = function(user) {
+		return angular.equals(user, $scope.master);
+	};
+ 
+	$scope.reset();
+
 	$scope.login = function(result) {
+		// Submit button.
 		if (result) {
-			var userName = $scope.userName;
-			var password = $scope.password;
+			var userName = $scope.user.userName;
+			var password = $scope.user.password;
 			UserService.validateUser({userName: userName, password: password},
 				function(validResponse, status, headers, config) {
 					if (validResponse.userName == userName) {
@@ -777,6 +794,9 @@ function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, User
 						$scope.failedLogin = "Remote server failure";
 					}
 			});
+		} else {
+			// Cancel button.
+			dialog.close(result);
 		}
 	};
 }
