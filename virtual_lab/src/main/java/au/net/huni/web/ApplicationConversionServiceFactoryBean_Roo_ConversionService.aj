@@ -70,7 +70,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-        
     public Converter<Long, HistoryItem> ApplicationConversionServiceFactoryBean.getIdToHistoryItemConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.HistoryItem>() {
             public au.net.huni.model.HistoryItem convert(java.lang.Long id) {
