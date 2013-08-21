@@ -1,24 +1,33 @@
 <div id="loginModal" class="modal" tabindex="-1" role="dialog"
 	aria-labelledby="loginModalLabel" aria-hidden="true">
 	
-	<form id="login-form" class="">
+	<form id="login-form" name="form" class="css-form" novalidate>
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"  ng-click="login(false)">&times;</button>
 			<h3 id="loginModalLabel">Researcher Login</h3>
 		</div>
 		<div class="modal-body">
 			<div class="modal-body">
 				<div class="control-group">
-					<label class="control-label" for="inputUsername">Username</label>
+					<label class="control-label" for="inputUsername">Username*</label>
 					<div class="controls">
-						<input type="text" id="inputUsername" placeholder="Username" ng-model="userName">
+						<input type="text" id="inputUsername" name="inputUsername" placeholder="Username" ng-model="user.userName" ng-required="true" ng-minlength="5" ng-maxlength="10">
+					</div>
+					<div ng-show="form.inputUsername.$dirty && form.inputUsername.$invalid">Invalid:
+						<span ng-show="form.inputUsername.$error.required">enter your assigned user name.</span>
+						<span ng-show="form.inputUsername.$error.minlength">the user name is too short.</span>
+						<span ng-show="form.inputUsername.$error.maxlength">the user name is too long.</span>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="inputPassword">Password</label>
+					<label class="control-label" for="inputPassword">Password*</label>
 					<div class="controls">
-						<input type="text" id="inputPassword" placeholder="Password" ng-model="password">
+						<input type="text" id="inputPassword" name="inputPassword" placeholder="Password" ng-model="user.password" ng-required="true" ng-minlength="5" ng-maxlength="10">
+					</div>
+					<div ng-show="form.inputPassword.$dirty && form.inputPassword.$invalid">Invalid:
+						<span ng-show="form.inputPassword.$error.required">enter your assigned password.</span>
+						<span ng-show="form.inputPassword.$error.minlength">the password is too short.</span>
+						<span ng-show="form.inputPassword.$error.maxlength">the password is too long.</span>
 					</div>
 				</div>
 				<p>Not a registered user? Click here to create an account.</p>
@@ -29,7 +38,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" aria-hidden="true"  ng-click="login(false)">Cancel</button>
-				<button class="btn btn-primary"  ng-click="login(true)">Submit</button>
+				<button class="btn btn-primary"  ng-click="login(true)"ng-disabled="form.$invalid || isUnchanged(user)">Submit</button>
 			</div>
 		</div>
 	</form>
