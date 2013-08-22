@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -39,7 +40,9 @@ public class HistoryItem {
 
     @NotNull
     @Size(min = 2)
-    private String toolName;
+    // Set to random string so hashcode works even when the object is first created.
+    // Otherwise contains and hence setOwner fails.
+    private String toolName = RandomStringUtils.random(10);
 
     @NotNull
     @Pattern(regexp = "#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]")
@@ -52,8 +55,8 @@ public class HistoryItem {
 
     // Not null constraint causing problems during the tests 
     // @NotNull
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="RESEARCHER_ID")
+    @ManyToOne()
+    @JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")
     private Researcher owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
@@ -77,6 +80,8 @@ public class HistoryItem {
 
     public void setOwner(Researcher researcher) {
         this.owner = researcher;
+        // Ensure that we have a valid object before we execute contains.
+        // Do this by initialising the tool name to some random string.
         if (!researcher.getHistory().contains(this)) {
         	researcher.getHistory().add(this);
         }

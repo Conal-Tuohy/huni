@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,7 +64,9 @@ public class HistoryItemController {
             return "historyitems/update";
         }
         uiModel.asMap().clear();
+        Researcher owner = historyItem.getOwner().merge();
         historyItem.merge();
+        historyItem.setOwner(owner);
         return "redirect:/console/historyitems/" + encodeUrlPathSegment(historyItem.getId().toString(), httpServletRequest);
     }
 
@@ -129,6 +132,7 @@ public class HistoryItemController {
         return pathSegment;
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> createFromJson(@RequestBody String json) {
         HistoryItem historyItem = HistoryItem.fromJsonToHistoryItem(json);
@@ -138,6 +142,7 @@ public class HistoryItemController {
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> createFromJsonArray(@RequestBody String json) {
         for (HistoryItem historyItem: HistoryItem.fromJsonArrayToHistoryItems(json)) {
@@ -148,6 +153,7 @@ public class HistoryItemController {
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
     public ResponseEntity<String> deleteFromJson(@PathVariable("id") Long id) {
         HistoryItem historyItem = HistoryItem.findHistoryItem(id);
@@ -160,6 +166,7 @@ public class HistoryItemController {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> listJson() {
@@ -169,6 +176,7 @@ public class HistoryItemController {
         return new ResponseEntity<String>(HistoryItem.toJsonArray(result), headers, HttpStatus.OK);
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems/{id}", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> showJson(@PathVariable("id") Long id) {
@@ -181,6 +189,7 @@ public class HistoryItemController {
         return new ResponseEntity<String>(historyItem.toJson(), headers, HttpStatus.OK);
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems", method = RequestMethod.PUT, headers = "Accept=application/json")
     public ResponseEntity<String> updateFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
@@ -192,6 +201,7 @@ public class HistoryItemController {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/rest/historyitems/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
     public ResponseEntity<String> updateFromJsonArray(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();

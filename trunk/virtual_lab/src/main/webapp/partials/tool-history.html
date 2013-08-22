@@ -18,19 +18,24 @@
 }
  -->
 </style>
-<div>
-	<ul class="nav nav-list"">
-	    <li ng-repeat="action in $parent.actions()" class="nav-header" >{{action.toolName}} ({{action.executionDate}})
-	    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
-		    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">
-		    		<span style="font-weight: bold;">{{parameter.name}}:&nbsp;</span><span>{{parameter.amount}}</span>
+<div ng-controller="HistoryCtrl" ng-init="fetchHistory()">
+	<div class = "well">
+		<ul class="nav nav-list">
+		    <li ng-repeat="action in actions" class="nav-header" >{{action.toolName}} ({{action.executionDate}})
+		    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
+			    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">
+			    		<span style="font-weight: bold;">{{parameter.name}}:&nbsp;</span><span>{{parameter.amount}}</span>
+			    	</div>
 		    	</div>
-	    	</div>
-	    </li>
-	</ul>
-</div>
-<div style='display: block;'>
-	<button id="clearHistory">Clear</button><button id="exportHistory">Export</button>
+		    </li>
+		</ul>
+	</div>
+	<div>
+		{{failedHistoryFetch}}
+	</div>
+	<div style='display: block;'>
+		<button id="clearHistory">Clear</button><button id="exportHistory">Export</button>
+	</div>
 </div>
 
  

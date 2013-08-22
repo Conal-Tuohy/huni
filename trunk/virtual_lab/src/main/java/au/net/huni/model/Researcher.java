@@ -24,6 +24,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -50,7 +51,7 @@ public class Researcher {
     @NotNull
     @Column(unique = true)
     @Size(min = 5, max = 10)
-    private String userName;
+    private String userName = RandomStringUtils.random(10);
 
     @NotNull
     @Size(min = 1, max = 60)
@@ -68,7 +69,7 @@ public class Researcher {
     @ManyToOne
     private Institution institution;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<HistoryItem> history = new HashSet<HistoryItem>();
 
     @Size(max = 64, min = 64)
@@ -92,8 +93,7 @@ public class Researcher {
     @ManyToMany
     private Set<ToolCatalogItem> toolkit = new HashSet<ToolCatalogItem>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")
+    @OneToMany
     private Set<Project> projects = new HashSet<Project>();
 
     public void setPassword(String clearTextPassword) {

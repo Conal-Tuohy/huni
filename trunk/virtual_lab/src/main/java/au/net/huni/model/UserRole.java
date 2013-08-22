@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -21,7 +22,7 @@ public class UserRole {
     @NotNull
     @Column(unique = true)
     @Size(max = 50)
-    private String name = "";
+    private String name = RandomStringUtils.random(10);
 
     public UserRole(String name) {
         super();

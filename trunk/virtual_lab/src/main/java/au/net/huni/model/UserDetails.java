@@ -8,13 +8,14 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 
 public class UserDetails {
 
     @NotNull
     @Size(max = 128)
-    private String userName;
+    private String userName = RandomStringUtils.random(10);
 
     @NotNull
     @Size(max = 256)

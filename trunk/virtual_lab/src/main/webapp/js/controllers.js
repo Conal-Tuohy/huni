@@ -145,13 +145,27 @@ function ToolKitCtrl($scope, $routeParams, ToolKit) {
 
 function HistoryCtrl($scope, $routeParams, History) {
 
-	this.scope = $scope;
-
-	this.scope.history = History.query();
-
-	this.scope.actions = function() {
-		return this.history;
-	};
+	$scope.actions = [];
+	
+	$scope.fetchHistory = function() {
+		History.query({}, 
+			function(validResponse, status, headers, config) {
+				if (validResponse[0][0] =='<') {
+					// Bad response.
+					$scope.failedHistoryFetch = "The returned resource is XML not JSON.";
+				} else {
+					$scope.actions = validResponse;
+				}
+			}, 
+			function(inValidResponse, status, headers, config) {
+				if (status == '404') {
+					$scope.failedHistoryFetch = "The requested resource is not available.";
+				}
+				if (inValidResponse) {
+					$scope.failedHistoryFetch = "Remote server failure";
+				}
+			});
+	}
 }
 
 //ProjectDirectoryCtrl.$inject = ['$scope', '$routeParams', 'ProjectDirectory'];
@@ -786,14 +800,14 @@ function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, User
 						$scope.failedLogin = validResponse.reason;
 					}
 				}, 
-				function(inValidProfile, status, headers, config) {
+				function(inValidResponse, status, headers, config) {
 					if (status == '404') {
 						$scope.failedLogin = "The requested resource is not available.";
 					}
-					if (inValidProfile) {
+					if (inValidResponse) {
 						$scope.failedLogin = "Remote server failure";
 					}
-			});
+				});
 		} else {
 			// Cancel button.
 			dialog.close(result);
