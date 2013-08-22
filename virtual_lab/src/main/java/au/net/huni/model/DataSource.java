@@ -7,6 +7,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -23,12 +24,12 @@ public class DataSource {
     @NotNull
     @Column(unique = true)
     @Size(min = 2, max = 64)
-    private String name;
-
+    private String name = RandomStringUtils.random(10);
+    
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
-    private Calendar importDate;
+    private Calendar importDate = Calendar.getInstance();
 
     private String description;
 

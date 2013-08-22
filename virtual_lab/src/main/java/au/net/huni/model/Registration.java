@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -48,7 +49,7 @@ public class Registration {
     @NotNull
     @Column(unique = true)
     @Size(min = 5, max = 10)
-    private String userName;
+    private String userName = RandomStringUtils.random(10);
 
     @NotNull
     @Size(min = 1, max = 60)
@@ -69,7 +70,7 @@ public class Registration {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")
-    private Calendar applicationDate;
+    private Calendar applicationDate = Calendar.getInstance();
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")

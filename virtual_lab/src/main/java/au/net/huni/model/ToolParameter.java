@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -20,11 +21,11 @@ public class ToolParameter {
 
     @NotNull
     @Size(min = 2)
-    private String name;
+    private String name  = RandomStringUtils.random(10);
 
-    private String amount;
+    private String amount = "";
 
-    private int displayOrder;
+    private int displayOrder = 0;
 
     // @NotNull
     @ManyToOne
