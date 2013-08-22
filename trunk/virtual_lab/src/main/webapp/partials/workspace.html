@@ -5,21 +5,14 @@
 	</div>
 
 	<div class="row-fluid">
-
- 		<div class="well sidebar-nav left">
-			<div ng-controller="ProjectDirectoryCtrl">
+ 		<div class="sidebar-nav left">
 				<span ng-include src="'partials/project-directory.html'"></span>
-			</div>
-			<div ng-controller="ToolKitCtrl">
+				<hr/>
 				<span ng-include src="'partials/tool-kit.html'"></span>
-			</div>
 		</div>
-
-
 		<div class="sidebar-nav right">
 			<span ng-include src="'partials/tool-history.html'"></span>
 		</div>
-
 		<div class="content fixed-fixed">
 			<div id="gadgetArea">
 				<div id="gadgetSite"></div>
