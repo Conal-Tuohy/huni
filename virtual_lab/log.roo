@@ -304,3 +304,6 @@ focus --class ~.model.HistoryItem
 perform package
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-21 21:45:09
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-22 10:11:54
+perform package
+perform package
+perform package
