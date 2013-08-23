@@ -64,9 +64,11 @@ public class HistoryItemController {
             return "historyitems/update";
         }
         uiModel.asMap().clear();
+        // This is a bit perverse. We are merging the owner object and relying on the 
+        // the back-link and cascade-all to merge the fields of the historyItem.
         Researcher owner = historyItem.getOwner().merge();
-        historyItem.merge();
-        historyItem.setOwner(owner);
+//        historyItem.merge();
+//        historyItem.setOwner(owner);
         return "redirect:/console/historyitems/" + encodeUrlPathSegment(historyItem.getId().toString(), httpServletRequest);
     }
 
