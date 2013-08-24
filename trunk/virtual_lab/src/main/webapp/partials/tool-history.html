@@ -1,25 +1,26 @@
-<h3>Notebook</h3>
-<div ng-controller="HistoryCtrl" ng-init="fetchHistory()">
-	<div class = "well">
-		<ul class="nav nav-list">
-		    <li ng-repeat="action in actions" class="nav-header" >{{action.toolName}} ({{action.executionDate}})
-		    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
-			    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">
-			    		<span style="font-weight: bold;">{{parameter.name}}:&nbsp;</span><span>{{parameter.amount}}</span>
-			    	</div>
-		    	</div>
-		    </li>
-		</ul>
-	</div>
-	<div>
-		{{failedHistoryFetch}}
-	</div>
-	<div style='display: block;'>
-		<button id="clearHistory">Clear</button><button id="exportHistory">Export</button>
-	</div>
-</div>
 <style type="text/css">
 <!--    
+.notebook
+{
+	line-height: 1.5;
+}
+
+.tool-name
+{
+	font-size: 10px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+}
+
+.activity-date
+{
+	font-size: 10px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+}
+
 .activity-item
 {
 	font-size: 10px;
@@ -33,9 +34,41 @@
 	background-color:green;
 	background-color:rgba(0, 255, 0, 0.2);
 	border: 1px solid green;
+	padding:5px;
+	line-height: 1.5;
+}
+
+.parameter-item
+{	font-size: 10px;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.5;
 }
  -->
 </style>
+
+<h3>Notebook</h3>
+<div ng-controller="HistoryCtrl" ng-init="fetchHistory()">
+	<div class = "well">
+		<ul class="nav nav-list notebook">
+		    <li ng-repeat="action in actions" class="nav-header" >
+		    	<div class="tool-name">{{action.toolName}}</div>
+			    <div class="activity-date"> ({{action.executionDate}})</div>
+		    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
+			    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">
+			    		<span style="font-weight: bold;">{{parameter.name}}:&nbsp;</span><span>{{parameter.amount}}</span>
+			    	</div>
+		    	</div>			    
+		    </li>
+		</ul>
+	</div>
+	<div>
+		{{failedHistoryFetch}}
+	</div>
+	<div style='display: block;'>
+		<button id="clearHistory">Clear</button><button id="exportHistory">Export</button>
+	</div>
+</div>
 
 
  

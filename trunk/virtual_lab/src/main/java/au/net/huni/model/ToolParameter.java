@@ -21,6 +21,9 @@ import flexjson.JSONSerializer;
 @RooJson
 public class ToolParameter {
 
+    @ManyToOne
+    private HistoryItem owner;
+
     @NotNull
     @Size(min = 2)
     private String name  = RandomStringUtils.random(10);
@@ -28,10 +31,6 @@ public class ToolParameter {
     private String amount = "";
 
     private int displayOrder = 0;
-
-    // @NotNull
-    @ManyToOne
-    private HistoryItem owner;
 
 	public static String toJsonArray(Collection<ToolParameter> collection) {
         return new JSONSerializer()
