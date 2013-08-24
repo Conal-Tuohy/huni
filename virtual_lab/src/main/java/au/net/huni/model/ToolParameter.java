@@ -1,7 +1,7 @@
 package au.net.huni.model;
 
-import flexjson.JSONSerializer;
 import java.util.Collection;
+
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,6 +12,8 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
@@ -33,13 +35,13 @@ public class ToolParameter {
 
 	public static String toJsonArray(Collection<ToolParameter> collection) {
         return new JSONSerializer()
-        .exclude("*.class", "owner", "version")
+        .exclude("*.class", "owner")
         .serialize(collection);
     }
 
 	public String toJson() {
         return new JSONSerializer()
-        .exclude("*.class", "owner", "version")
+        .exclude("*.class", "owner")
         .serialize(this);
     }
     
@@ -62,8 +64,12 @@ public class ToolParameter {
     @Override
     public int hashCode() {
         return this.getName().hashCode()
-                + this.getAmount().hashCode()
-                + this.getDisplayOrder() * 37
+                + this.getAmount().hashCode() *37
+                + this.getDisplayOrder() * 57
              ;
+    }
+
+    public String toString() {
+        return getName();
     }
 }

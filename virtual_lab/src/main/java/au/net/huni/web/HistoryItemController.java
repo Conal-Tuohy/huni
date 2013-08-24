@@ -1,13 +1,12 @@
 package au.net.huni.web;
 
-import au.net.huni.model.HistoryItem;
-import au.net.huni.model.Researcher;
-import au.net.huni.model.ToolParameter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import au.net.huni.model.Constant;
+import au.net.huni.model.HistoryItem;
+import au.net.huni.model.Researcher;
+import au.net.huni.model.ToolParameter;
 
 //Access by default is restricted to the ADMIN role within the console webapp.
 //This is over-ridden by annotations in this file.
@@ -62,13 +67,27 @@ public class HistoryItemController {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, historyItem);
             return "historyitems/update";
+        }       
+        HistoryItem persistedHistoryItem = HistoryItem.findHistoryItem(historyItem.getId());
+        if (!historyItem.equals(persistedHistoryItem)) {
+        	String originalDateStr = Constant.DATE_FORMATTER.format(persistedHistoryItem.getExecutionDate());
+        	bindingResult.addError(new FieldError("historyItem", "executionDate", "The creation date of the history item must not be changed from . " + originalDateStr));
+            populateEditForm(uiModel, historyItem);
+            return "historyitems/update";
+        } else if (historyItem.getOwner() == null) {
+        	bindingResult.addError(new FieldError("historyItem", "owner", "The owner of the history item must be selected. "));
+            populateEditForm(uiModel, historyItem);
+            return "historyitems/update";
+        } else if (persistedHistoryItem.getOwner() == null) {
+        	historyItem.getOwner().merge();
+        	// That's OK, we can now try to set its value.
+        } else if (!historyItem.getOwner().equals(persistedHistoryItem.getOwner())) {
+        	bindingResult.addError(new FieldError("historyItem", "owner", "The owner of the history item must not be changed. "));
+            populateEditForm(uiModel, historyItem);
+            return "historyitems/update";
         }
         uiModel.asMap().clear();
-        // This is a bit perverse. We are merging the owner object and relying on the 
-        // the back-link and cascade-all to merge the fields of the historyItem.
-        Researcher owner = historyItem.getOwner().merge();
-//        historyItem.merge();
-//        historyItem.setOwner(owner);
+        historyItem.merge();
         return "redirect:/console/historyitems/" + encodeUrlPathSegment(historyItem.getId().toString(), httpServletRequest);
     }
 

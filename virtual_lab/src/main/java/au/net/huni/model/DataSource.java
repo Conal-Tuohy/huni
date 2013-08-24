@@ -51,7 +51,7 @@ public class DataSource {
     @Override
     public int hashCode() {
         return this.getName().hashCode()
-             + this.getImportDate().hashCode();
+             + this.getImportDate().hashCode() * 37;
     }
 
 	public String toString() {

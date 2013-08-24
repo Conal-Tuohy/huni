@@ -26,4 +26,26 @@ public class ToolCategoryTest {
     	toolCategory.setName("toolcategory0");
     	assertEquals("Tool category toString is name.", "toolcategory0", toolCategory.toString());
     }
+
+    @Test
+    public void testEquals() {
+    	ToolCategory toolCategory0 = new ToolCategory();
+    	toolCategory0.setName("toolCategory name0");
+    	
+    	ToolCategory toolCategory1 = new ToolCategory();
+    	toolCategory1.setName("toolCategory name0");
+    	
+    	assertTrue("ToolCategory equals is based on name.", toolCategory0.equals(toolCategory1));
+    }
+
+    @Test
+    public void testHashCode() {
+    	ToolCategory toolCategory0 = new ToolCategory();
+    	toolCategory0.setName("toolCategory name0");
+    	
+    	ToolCategory toolCategory1 = new ToolCategory();
+    	toolCategory1.setName("toolCategory name0");
+    	
+    	assertEquals("ToolCategory hashcode is based on name.", toolCategory0.hashCode(), toolCategory1.hashCode());
+    }
 }

@@ -1,7 +1,6 @@
 package au.net.huni.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
@@ -46,19 +45,56 @@ public class HistoryItemTest {
     	assertTrue("JSON executionDate is correct", actualJson.contains("\"executionDate\":\"25/12/2013 18:30:45 EST\""));
     	assertTrue("JSON tool parameters is correct", actualJson.contains("\"toolParameters\":[]"));
     	//assertTrue("JSON owner is correct", actualJson.contains("\"owner\":\"jbloggs\""));
-    	assertFalse("JSON version is not present", actualJson.contains("\"version\":"));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":"));
     }
 
     @Test
     public void testToString() {
-    	HistoryItem historyItem = new HistoryItem();
-    	historyItem.setToolName("tool0");
     	Calendar today = Calendar.getInstance();
     	today.set(2013, 11, 25, 2, 30, 45);
     	TimeZone timeZone = TimeZone.getTimeZone("EST");
     	today.setTimeZone(timeZone );
+
+    	HistoryItem historyItem = new HistoryItem();
+    	historyItem.setToolName("tool0");
     	historyItem.setExecutionDate(today);
     	
     	assertEquals("History item toString is tool name and date of execution.", "tool0(25/12/2013 18:30:45 EST)", historyItem.toString());
+    }
+
+    @Test
+    public void testEquals() {
+    	Calendar today = Calendar.getInstance();
+    	today.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+    	today.setTimeZone(timeZone);
+
+    	HistoryItem historyItem0 = new HistoryItem();
+    	historyItem0.setToolName("tool0");
+    	historyItem0.setExecutionDate(today);
+    	
+    	HistoryItem historyItem1 = new HistoryItem();
+    	historyItem1.setToolName("tool1");
+    	historyItem1.setExecutionDate(today);
+    	
+    	assertTrue("History item equals is based on date of execution.", historyItem0.equals(historyItem1));
+    }
+
+    @Test
+    public void testHashCode() {
+    	Calendar today = Calendar.getInstance();
+    	today.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+    	today.setTimeZone(timeZone);
+
+    	HistoryItem historyItem0 = new HistoryItem();
+    	historyItem0.setToolName("tool0");
+    	historyItem0.setExecutionDate(today);
+    	
+    	HistoryItem historyItem1 = new HistoryItem();
+    	historyItem1.setToolName("tool1");
+    	historyItem1.setExecutionDate(today);
+    	
+    	assertEquals("History item hashcode is based on date of execution.", historyItem0.hashCode(), historyItem1.hashCode());
     }
 }

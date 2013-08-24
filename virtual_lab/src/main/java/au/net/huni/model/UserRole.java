@@ -34,18 +34,18 @@ public class UserRole {
     }
 
     public String toString() {
-        return name;
+        return getName();
     }
 
 	public static String toJsonArray(Collection<UserRole> collection) {
         return new JSONSerializer()
-        .exclude("*.class", "version")
+        .exclude("*.class")
         .serialize(collection);
     }
 
 	public String toJson() {
         return new JSONSerializer()
-        .exclude("*.class", "version")
+        .exclude("*.class")
         .serialize(this);
     }
 	
