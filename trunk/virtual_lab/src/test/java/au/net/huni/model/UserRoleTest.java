@@ -1,7 +1,6 @@
 package au.net.huni.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -23,12 +22,34 @@ public class UserRoleTest {
     @Test 
     public void testToJsonProducesCorrectJson() {
     	UserRole userRole = new UserRole();
+    	userRole.setVersion(33);
     	userRole.setName("name1");
     	
     	String actualJson = userRole.toJson();
     	
     	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"name1\""));
-    	assertFalse("JSON version is not present", actualJson.contains("\"version\":"));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":33"));
     }
 
+    @Test
+    public void testEquals() {
+    	UserRole userRole0 = new UserRole();
+    	userRole0.setName("userRole name0");
+    	
+    	UserRole userRole1 = new UserRole();
+    	userRole1.setName("userRole name0");
+    	
+    	assertTrue("UserRole equals is based on name.", userRole0.equals(userRole1));
+    }
+
+    @Test
+    public void testHashCode() {
+       	UserRole userRole0 = new UserRole();
+    	userRole0.setName("userRole name0");
+    	
+    	UserRole userRole1 = new UserRole();
+    	userRole1.setName("userRole name0");
+    	
+    	assertEquals("UserRole hashcode is based on name.", userRole0.hashCode(), userRole1.hashCode());
+    }
 }

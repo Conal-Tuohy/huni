@@ -69,6 +69,42 @@ public class ResearcherTest {
     	assertFalse(Researcher.toJsonArray(researchers).contains("encryptedPassword"));  	
     }
     
+    @Test 
+    public void testToJsonProducesCorrectJson() {
+    	Researcher researcher = new Researcher();
+    	researcher.setId(25L);
+    	researcher.setVersion(30);
+    	researcher.setUserName("jbloggs");
+    	researcher.setGivenName("Joseph");
+    	researcher.setFamilyName("Bloggs");
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+		calendar.setTimeZone(timeZone );
+		researcher.setCreationDate(calendar);
+		researcher.setEmailAddress("jblogs@ordinary.com");
+		Institution institution = new Institution("MONASH", "Monash");
+		researcher.setInstitution(institution);
+    	researcher.setPassword("dirty-little-secret");
+    	researcher.setIsAccountEnabled(true);
+		institution.setId(10L);
+		institution.setVersion(20);
+    	
+    	// TODO RR Add roles
+    	
+    	String actualJson = researcher.toJson();
+    	
+    	assertTrue("JSON username is correct", actualJson.contains("\"userName\":\"jbloggs\""));
+    	assertTrue("JSON given name is correct", actualJson.contains("\"givenName\":\"Joseph\""));
+    	assertTrue("JSON family is correct", actualJson.contains("\"familyName\":\"Bloggs\""));
+    	assertTrue("JSON institution is correct", actualJson.contains("\"institution\":{\"code\":\"MONASH\",\"id\":10,\"name\":\"Monash\",\"version\":20}"));
+    	assertTrue("JSON creation date is correct", actualJson.contains("\"creationDate\":\"25/12/2013 18:30:45 EST"));
+    	assertTrue("JSON email is correct", actualJson.contains("\"emailAddress\":\"jblogs@ordinary.com\""));
+    	assertTrue("JSON enable account is correct", actualJson.contains("\"isAccountEnabled\":true"));
+    	assertTrue("JSON version for institution is present", actualJson.contains("\"version\":20"));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+    }
+    
 	@Test
 	public void testToStringIncludesUserNameEtc() {
 		Researcher researcher = new Researcher();
@@ -86,37 +122,41 @@ public class ResearcherTest {
 		assertTrue(researcher.toString().length() < 64);
 		assertFalse(researcher.toString().contains("dirty-little-secret"));
 	}
-    
-    @Test 
-    public void testToJsonProducesCorrectJson() {
-    	Researcher researcher = new Researcher();
-    	researcher.setUserName("jbloggs");
-    	researcher.setGivenName("Joseph");
-    	researcher.setFamilyName("Bloggs");
-    	Calendar calendar = Calendar.getInstance();
-    	calendar.set(2013, 11, 25, 2, 30, 45);
+
+    @Test
+    public void testEquals() {
+    	Calendar creationDate = Calendar.getInstance();
+    	creationDate.set(2013, 11, 25, 2, 30, 45);
     	TimeZone timeZone = TimeZone.getTimeZone("EST");
-		calendar.setTimeZone(timeZone );
-		researcher.setCreationDate(calendar);
-		researcher.setEmailAddress("jblogs@ordinary.com");
-		Institution institution = new Institution("MONASH", "Monash");
-		institution.setId(10L);
-		researcher.setInstitution(institution);
-    	researcher.setPassword("dirty-little-secret");
-    	researcher.setIsAccountEnabled(true);
+    	creationDate.setTimeZone(timeZone);
+
+    	Researcher researcher0 = new Researcher();
+    	researcher0.setUserName("researcher name0");
+    	researcher0.setCreationDate(creationDate);
     	
-    	// TODO RR Add roles
+    	Researcher researcher1 = new Researcher();
+    	researcher1.setUserName("researcher name0");
+    	researcher1.setCreationDate(creationDate);
     	
-    	String actualJson = researcher.toJson();
+    	assertTrue("Researcher equals is based on user name and start date.", researcher0.equals(researcher1));
+    }
+
+    @Test
+    public void testHashCode() {
+    	Calendar creationDate = Calendar.getInstance();
+    	creationDate.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+    	creationDate.setTimeZone(timeZone);
+
+    	Researcher researcher0 = new Researcher();
+    	researcher0.setUserName("researcher name0");
+    	researcher0.setCreationDate(creationDate);
     	
-    	assertTrue("JSON username is correct", actualJson.contains("\"userName\":\"jbloggs\""));
-    	assertTrue("JSON given name is correct", actualJson.contains("\"givenName\":\"Joseph\""));
-    	assertTrue("JSON family is correct", actualJson.contains("\"familyName\":\"Bloggs\""));
-    	assertTrue("JSON institution is correct", actualJson.contains("\"institution\":{\"code\":\"MONASH\",\"id\":10,\"name\":\"Monash\"}"));
-    	assertTrue("JSON creation date is correct", actualJson.contains("\"creationDate\":\"25/12/2013 18:30:45 EST"));
-    	assertTrue("JSON email is correct", actualJson.contains("\"emailAddress\":\"jblogs@ordinary.com\""));
-    	assertTrue("JSON enable account is correct", actualJson.contains("\"isAccountEnabled\":true"));
-    	assertFalse("JSON version is not present", actualJson.contains("\"version\":"));
+    	Researcher researcher1 = new Researcher();
+    	researcher1.setUserName("researcher name0");
+    	researcher1.setCreationDate(creationDate);
+    	
+    	assertEquals("Researcher hashcode is based on user name and start date.", researcher0.hashCode(), researcher1.hashCode());
     }
 
 }

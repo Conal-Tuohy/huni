@@ -1,10 +1,5 @@
 package au.net.huni.model;
 
-import au.net.huni.json.CalendarTransformer;
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
-import flexjson.ObjectBinder;
-import flexjson.ObjectFactory;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -23,6 +19,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.proxy.HibernateProxyHelper;
@@ -31,6 +28,11 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
+import flexjson.ObjectBinder;
+import flexjson.ObjectFactory;
 
 @RooJavaBean
 @RooToString
@@ -93,7 +95,8 @@ public class Researcher {
     @ManyToMany
     private Set<ToolCatalogItem> toolkit = new HashSet<ToolCatalogItem>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")
     private Set<Project> projects = new HashSet<Project>();
 
     public void setPassword(String clearTextPassword) {
@@ -115,6 +118,22 @@ public class Researcher {
         	historyItem.setOwner(this);
         }
     }
+
+    public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(collection);
+    }
+
+    public String toJson() {
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
+    }
+
+    public static au.net.huni.model.Researcher fromJsonToResearcher(String json) {
+        return new JSONDeserializer<Researcher>().use(null, Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
+    }
+
+    public static Collection<au.net.huni.model.Researcher> fromJsonArrayToResearchers(String json) {
+        return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
+    }
     
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -125,22 +144,6 @@ public class Researcher {
         buffer.append(getUserName());
         buffer.append(")");
         return buffer.toString();
-    }
-
-    public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(collection);
-    }
-
-    public String toJson() {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword", "version", "institution.version").transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class).serialize(this);
-    }
-
-    public static au.net.huni.model.Researcher fromJsonToResearcher(String json) {
-        return new JSONDeserializer<Researcher>().use(null, Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
-    }
-
-    public static Collection<au.net.huni.model.Researcher> fromJsonArrayToResearchers(String json) {
-        return new JSONDeserializer<List<Researcher>>().use(null, ArrayList.class).use("values", Researcher.class).use("institution", INSTITUTION_OBJECT_FACTORY).deserialize(json);
     }
     
     @Override
@@ -161,7 +164,7 @@ public class Researcher {
     @Override
     public int hashCode() {
         return this.getUserName().hashCode()
-                + this.getCreationDate().hashCode()
+                + this.getCreationDate().hashCode() * 37
              ;
     }
 }

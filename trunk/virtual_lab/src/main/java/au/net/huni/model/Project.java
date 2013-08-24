@@ -59,7 +59,7 @@ public class Project {
     @Override
     public int hashCode() {
         return this.getName().hashCode()
-                + this.getStartDate().hashCode()
+                + this.getStartDate().hashCode() * 37
              ;
     }
 

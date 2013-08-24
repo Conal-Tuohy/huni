@@ -57,7 +57,7 @@ public class ToolCatalogItem {
     @Override
     public int hashCode() {
         return this.getName().hashCode()
-                + this.getUrl().hashCode()
+                + this.getUrl().hashCode() * 37
              ;
     }
 }

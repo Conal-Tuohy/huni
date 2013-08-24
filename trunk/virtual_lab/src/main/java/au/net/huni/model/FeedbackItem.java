@@ -1,8 +1,11 @@
 package au.net.huni.model;
 
-import flexjson.JSONSerializer;
+import static au.net.huni.model.Constant.CALENDAR_TRANSFORMER;
+
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +18,7 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import au.net.huni.json.CalendarTransformer;
+import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
@@ -39,18 +42,30 @@ public class FeedbackItem {
 
 	public static String toJsonArray(Collection<FeedbackItem> collection) {
         return new JSONSerializer()
-        .exclude("*.class", "version")
-        .transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
+        .exclude("*.class")
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
     }
 
 	public String toJson() {
         return new JSONSerializer()
-        .exclude("*.class", "version")
-        .transform(new CalendarTransformer("dd/MM/yyyy HH:mm:ss z"), Calendar.class)
+        .exclude("*.class")
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
-    
+
+    @Override
+	public String toString() {
+		Date date = getFeedbackDate().getTime();
+		String formattedDateTime = Constant.DATE_FORMATTER.format(date);
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("Context: ").append(getContext())
+		.append(", Date: ").append(formattedDateTime)
+		.append(", Origin: ").append(getVisitorIpAddress());
+        return builder.toString();
+    }
+
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -62,8 +77,6 @@ public class FeedbackItem {
         FeedbackItem candidate = (FeedbackItem) obj;
 
         return this.getContext().equals(candidate.getContext())
-                && this.getRating().equals(candidate.getRating())
-                && this.getComment().equals(candidate.getComment())
                 && this.getFeedbackDate().equals(candidate.getFeedbackDate())
                 && this.getVisitorIpAddress().equals(candidate.getVisitorIpAddress())
             ;
@@ -72,10 +85,8 @@ public class FeedbackItem {
     @Override
     public int hashCode() {
         return this.getContext().hashCode()
-                + this.getRating().hashCode()
-                + this.getComment().hashCode()
-                + this.getFeedbackDate().hashCode()
-                + this.getVisitorIpAddress().hashCode()
+                + this.getFeedbackDate().hashCode() * 37
+                + this.getVisitorIpAddress().hashCode() * 57
              ;
     }
 }
