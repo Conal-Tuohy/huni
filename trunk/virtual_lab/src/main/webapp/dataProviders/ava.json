@@ -1,11 +1,11 @@
 {
-    "id": "abi", 
-    "imageUrl": "img/data-providers/abi-400px.png", 
-    "name": "The Aboriginal Biographical Index", 
-    "abbreviation": "ABI", 
+    "id": "ava", 
+    "imageUrl": "img/data-providers/ava-400px.png", 
+    "name": "Audiovisual Archive", 
+    "abbreviation": "AVA", 
     "organisation": "The Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)", 
-    "description": "The ABI is a personal name index to published material held in the AIATSIS Library. The ABI forms part of Mura, the AIATSIS catalogue.",
-    "siteUrl":"http://www.aiatsis.gov.au//fhu/abi.html",
+    "description": "AIATSIS Audiovisual Archive holds the world's premier collection of moving image, recorded sound and photographic materials relating to Australian Aboriginal and Torres Strait Islander cultures and histories. ",
+    "siteUrl":"http://www.aiatsis.gov.au/collections/ava.html",
     "entityCount":3,
     "entities":
     	[

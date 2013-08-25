@@ -1,11 +1,11 @@
 {
-    "id": "abi", 
-    "imageUrl": "img/data-providers/abi-400px.png", 
-    "name": "The Aboriginal Biographical Index", 
-    "abbreviation": "ABI", 
+    "id": "austlang", 
+    "imageUrl": "img/data-providers/austlang-400px.png", 
+    "name": "AustLang", 
+    "abbreviation": "AustLang", 
     "organisation": "The Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)", 
-    "description": "The ABI is a personal name index to published material held in the AIATSIS Library. The ABI forms part of Mura, the AIATSIS catalogue.",
-    "siteUrl":"http://www.aiatsis.gov.au//fhu/abi.html",
+    "description": "AUSTLANG provides information about Aboriginal and Torres Strait Islander languages. The core of AUSTLANG is a database which assembles information about Aboriginal and Torres Strait Islander languages from a number of sources. ",
+    "siteUrl":"http://austlang.aiatsis.gov.au/main.php",
     "entityCount":3,
     "entities":
     	[

@@ -1,0 +1,28 @@
+{
+    "id": "emelbourne", 
+    "imageUrl": "img/data-providers/emelbourne-400px.png", 
+    "name": "eMelbourne: The City Past & Present", 
+    "abbreviation": "EMELBOURNE", 
+    "organisation": " School of Historical Studies, Department of History, The University of Melbourne", 
+    "description": "The print volume of the Encyclopedia of Melbourne was published in 2005 by Cambridge University Press. The Encyclopedia is an A to Z reference work covering the city's history from pre-European settlement up to the present day. Alphabetical entries range from short factual summaries about places, institutions and events, through to extended survey articles on key topics such as Architecture, Aboriginal Melbourne, Economy, Foundation and Early Settlement, Law and Order, Literature, Science, Sport, Suburbia, Theatre and Transport. Although Australia has long ranked amongst the world's most urbanised countries, no comparable reference work exists on any Australian metropolis. The online Encyclopedia of Melbourne - eMelbourne - now contains the full text of the print volume, with additional text and digital resources.",
+    "siteUrl":"http://www.emelbourne.net.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

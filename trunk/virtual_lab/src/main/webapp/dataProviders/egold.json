@@ -1,0 +1,28 @@
+{
+    "id": "egold", 
+    "imageUrl": "img/data-providers/egold-400px.png", 
+    "name": "eGold: A Nation's Heritage", 
+    "abbreviation": "EGOLD", 
+    "organisation": "Australian Science and Technology Heritage Centre, The University of Melbourne", 
+    "description": "This website is a living resource for those interested in family or local history, technology or material culture, and is tailored to the needs of students, scholars, enthusiasts, visitors and the general public.",
+    "siteUrl":"http://www.egold.net.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

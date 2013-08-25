@@ -1,0 +1,28 @@
+{
+    "id": "capf", 
+    "imageUrl": "img/data-providers/capf-400px.png", 
+    "name": "Colonial Australian Popular Fiction: A Digital Archive", 
+    "abbreviation": "CAPF", 
+    "organisation": "The University of Melbourne", 
+    "description": "Colonial Australian Popular Fiction is an online bibliography and digital archive that gathers together for the first time a wide range of vibrant colonial writing that has previously been difficult to access. This archive began as part of a larger ARC-funded project based at The University of Melbourne, Australia, which has been examining the history of Australian popular or genre fiction from the early to late colonial period. Colonial Australian Popular Fiction is designed to operate as a major reading, research and teaching resource. It makes available a wide selection of popular colonial publications, many of which are now rare and out of print. Texts are imaged and presented in their original format, highlighting the physical and visual aspects of book production in what was a dynamic and competitive colonial publishing scene. The archive is now being extended and developed as part of an ongoing collaboration with the Library at the University of Melbourne.",
+    "siteUrl":"http://www.apfa.esrc.unimelb.edu.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

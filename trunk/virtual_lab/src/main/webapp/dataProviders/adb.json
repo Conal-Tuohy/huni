@@ -1,0 +1,28 @@
+{
+    "id": "adb", 
+    "imageUrl": "img/data-providers/adb-400px.png", 
+    "name": "The Australian Dictionary of Biography", 
+    "abbreviation": "ADB", 
+    "organisation": "National Centre of Biography at the Australian National University (ANU)", 
+    "description": "The Australian Dictionary of Biography is Australia's pre-eminent dictionary of national biography. In it you will find concise, informative and fascinating descriptions of the lives of over 12,000 significant and representative persons in Australian history. The subjects come from all walks of life — from prime ministers, governor-generals and premiers, generals and bishops, artists, actors and authors, engineers and schoolteachers, to prostitutes, thieves and murderers — providing a cross-section of Australian society.",
+    "siteUrl":"http://adb.anu.edu.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

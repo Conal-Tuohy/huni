@@ -1,0 +1,28 @@
+{
+    "id": "map", 
+    "imageUrl": "img/data-providers/map-400px.png", 
+    "name": "Media Archives Project", 
+    "abbreviation": "MAP", 
+    "organisation": "Centre for Media History at Macquarie University", 
+    "description": "The Media Archives Project database, created by the Centre for Media History at Macquarie University, lists easily searchable archives pertaining to the Australian media, including newspapers and magazines, broadcasting and advertising. The entries provide a keyword-searchable summary of what each archive contains. Database users can check access conditions for each archive listed and contact archive holders to make arrangements to see material that interests them. The MAP database focuses on private and lesser-known archives, held by companies, peak bodies, community groups and individuals. Holdings of major collecting institutions, including research libraries and archives, are not listed. Organisations such as the National Film and Sound Archive, the National Library of Australia, the National Archives of Australia and state libraries have their own online catalogues; see the Links page. As well, multi-database search tools, such as Trove http://trove.nla.gov.au/, allow searching across a wide range of resources and institutions.",
+    "siteUrl":"https://mediaarchivesproject.mq.edu.au/redbox/default/home",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

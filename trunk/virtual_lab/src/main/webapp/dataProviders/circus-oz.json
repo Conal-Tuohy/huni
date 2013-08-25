@@ -1,0 +1,28 @@
+{
+    "id": "circus-oz", 
+    "imageUrl": "img/data-providers/circus-oz-400px.png", 
+    "name": "Circus Oz Living Archive", 
+    "abbreviation": "circus-oz", 
+    "organisation": "RMIT", 
+    "description": "This three year ARC Linkage project aims to create and analyse an experimental prototype for an online participatory ‘living archive’, built upon the Circus Oz collection of performance and rehearsal video documentation, to drive innovations in repertoire development, performance research and audience interaction. ",
+    "siteUrl":"http://www.circusarchive.net",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 
