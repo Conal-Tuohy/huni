@@ -2,26 +2,20 @@
 
 /* Controllers */
 
-function ProjectListCtrl($scope, Project) {
-	$scope.projects = Project.query();
+
+function DataProviderListCtrl($scope, DataProvider) {
+	$scope.dataProviders = DataProvider.list();
 	$scope.orderProp = 'age';
 }
 
-//ProjectListCtrl.$inject = ['$scope', 'Project'];
+//DataProviderListCtrl.$inject = ['$scope', 'DataProvider'];
 
-function ProjectDetailCtrl($scope, $routeParams, Project) {
-	$scope.project = Project.get({
-		projectId : $routeParams.projectId
-	}, function(project) {
-		$scope.mainImageUrl = project.images[0];
-	});
-
-	$scope.setImage = function(imageUrl) {
-		$scope.mainImageUrl = imageUrl;
-	};
+function DataProviderDetailCtrl($scope, $routeParams, DataProvider) {
+	$scope.dataProvider = DataProvider.provider(
+			{dataProviderId: $routeParams.providerId});
 }
 
-//ProjectDetailCtrl.$inject = ['$scope', '$routeParams', 'Project'];
+//DataProviderDetailCtrl.$inject = ['$scope', '$routeParams', 'DataProvider'];
 
 //------------------------------------
 

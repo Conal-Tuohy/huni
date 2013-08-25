@@ -40,6 +40,8 @@ var virtualLab = angular.module('virtualab', [
                              'credentialsServices',
                              'profileServices',
                              'userServices',
+                             'dataProviderServices',
+                             'dataProviderFilters',
                              'httpInterceptors',
                              
                              'ui.bootstrap',
@@ -49,8 +51,8 @@ var virtualLab = angular.module('virtualab', [
   config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 		when('/landing', {templateUrl: 'partials/landing.html', controller: LandingCtrl}).
-		when('/projects', {templateUrl: 'partials/project-list.html', controller: ProjectListCtrl}).
-		when('/projects/:projectId', {templateUrl: 'partials/project-detail.html', controller: ProjectDetailCtrl}).
+		//when('/projects', {templateUrl: 'partials/project-list.html', controller: ProjectListCtrl}).
+		//when('/projects/:projectId', {templateUrl: 'partials/project-detail.html', controller: ProjectDetailCtrl}).
 		when('/global-data', {templateUrl: 'partials/global-data.html', controller: GlobalDataCtrl}).
 		when('/advanced-search', {templateUrl: 'partials/advanced-search.html', controller: AdvancedSearchCtrl}).
 		when('/workspace', {templateUrl: 'partials/workspace.html', controller: WorkspaceCtrl}).
@@ -76,9 +78,13 @@ var virtualLab = angular.module('virtualab', [
 		when('/objectname-search', {templateUrl: 'partials/huniaggregate/objects/objectname.html', controller: ObjectSearchCtrl}).
 		when('/eventname-search', {templateUrl: 'partials/huniaggregate/events/eventname.html', controller: EventSearchCtrl}).
 
+		when('/data-providers', {templateUrl: 'partials/data-provider/list.html', controller: DataProviderListCtrl}).
+		when('/data-providers/:providerId', {templateUrl: 'partials/data-provider/detail.html', controller: DataProviderDetailCtrl}).
+
 	    when('/results', {templateUrl: 'partials/simple-search/results.html', controller: ResultsController}).
 	    
 	    when('/deep-search', {templateUrl: 'partials/deep-search/results.html', controller: FacetBrowserController}).
 
 	    otherwise({redirectTo: '/landing'});
 }]);
+

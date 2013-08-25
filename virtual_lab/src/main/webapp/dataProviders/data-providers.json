@@ -1,0 +1,163 @@
+[
+    {
+        "age": 0, 
+        "id": "abi", 
+        "imageUrl": "img/data-providers/abi-100px.png", 
+        "name": "The Aboriginal Biographical Index", 
+        "snippet": "The ABI is a personal name index to published material held in the AIATSIS Library. The ABI forms part of Mura, the AIATSIS catalogue."
+    }, 
+    {
+        "age": 1, 
+        "id": "adb", 
+        "imageUrl": "img/data-providers/adb-100px.png", 
+        "name": "The Australian Dictionary of Biography", 
+        "snippet": "The Australian Dictionary of Biography is Australia's pre-eminent dictionary of national biography. In it you will find concise, informative and fascinating descriptions of the lives of significant and representative persons in Australian history."
+    }, 
+    {
+        "age": 2, 
+        "id": "atua", 
+        "imageUrl": "img/data-providers/atua-100px.png", 
+        "name": "Australian Trade Union Archives", 
+        "snippet": "Australian Trade Union Archives (ATUA) is a gateway for researchers and scholars of labour history, linking together historical detail, archival resources, published material and information about Australian industrial organisations, mainly including trade unions and also employer bodies.."
+    }, 
+    {
+        "age": 3, 
+        "id": "austage", 
+        "imageUrl": "img/data-providers/austage-100px.png", 
+        "name": "AusStage", 
+        "snippet": " Researching Australian live performance. "
+    }, 
+    {
+        "age": 4, 
+        "id": "austlang", 
+        "imageUrl": "img/data-providers/austlang-100px.png", 
+        "name": "AUSTLANG", 
+        "snippet": "The AUSTLANG system assembles information about Aboriginal and Torres Strait Islander languages from various sources."
+    }, 
+    {
+        "age": 5, 
+        "id": "austlit", 
+        "imageUrl": "img/data-providers/austlit-100px.png", 
+        "name": "AustLit", 
+        "snippet": "AustLit aims to be the definitive virtual research environment and information resource for Australian literary, print, and narrative culture. "
+    }, 
+    {
+        "age": 6, 
+        "id": "ava", 
+        "imageUrl": "img/data-providers/ava-100px.png", 
+        "name": "Audio Visual Archive", 
+        "snippet": "AIATSIS Audiovisual Archive holds the world's premier collection of moving image, recorded sound and photographic materials relating to Australian Aboriginal and Torres Strait Islander cultures and histories. "
+    }, 
+    {
+        "age": 7, 
+        "id": "awr", 
+        "imageUrl": "img/data-providers/awr-100px.png", 
+        "name": "The Australian Women's Register", 
+        "snippet": "The Australian Women's Register is a rich and growing source of information about Australian women and their organisations. It contains 5359 entries with references to 2896 archival resources, 6760 published resources and 834 digital resources."
+    }, 
+    {
+        "age": 8, 
+        "id": "bonza", 
+        "imageUrl": "img/data-providers/bonza-100px.png", 
+        "name": "BONZA - National Cinema & Television Database", 
+        "snippet": "bonza is an online collection of national cinema databases (to date French, Australian and New Zealand) prepared by film researchers and students. "
+    }, 
+    {
+        "age": 9, 
+        "id": "caarp", 
+        "imageUrl": "img/data-providers/caarp-100px.png", 
+        "name": "CAARP", 
+        "snippet": "People, Theatres, Works, Organisations, Places, Events. "
+    }, 
+    {
+        "age": 10, 
+        "id": "capf", 
+        "imageUrl": "img/data-providers/capf-100px.png", 
+        "name": "Colonial Australian Popular Fiction: A Digital Archive", 
+        "snippet": "Colonial Australian Popular Fiction is an online bibliography and digital archive that gathers together for the first time materials that have previously been difficult to access. Part of a larger ARC-funded project producing a complete critical history of Australian popular or genre fiction from the early to late colonial period, it is designed to operate as a major reading, research and teaching resource. It makes available a wide selection of popular colonial publications, many of which are now rare and out of print."
+    }, 
+    {
+        "age": 11, 
+        "id": "chia", 
+        "imageUrl": "img/data-providers/chia-100px.png", 
+        "name": "Chinese-Australian Historical Images in Australia", 
+        "snippet": "The Chinese-Australian Historical Images in Australia (CHIA) database is a catalogue of historical images of Chinese, Chinese immigrants and their descendants held in Australia. "
+    }, 
+    {
+        "age": 12, 
+        "id": "circus-oz", 
+        "imageUrl": "img/data-providers/circus-oz-100px.png", 
+        "name": "Circus Oz Living Archive Video Collection", 
+        "snippet": "This three year ARC Linkage project aims to create and analyse an experimental prototype for an online participatory ‘living archive’, built upon the Circus Oz collection of performance and rehearsal video documentation, to drive innovations in repertoire development, performance research and audience interaction. "
+    }, 
+    {
+        "age": 13, 
+        "id": "daao", 
+        "imageUrl": "img/data-providers/daao-100px.png", 
+        "name": "Design and Art Australia Online (DAAO)", 
+        "snippet": "Design and Art Australia Online (DAAO) is a collaborative e-Research tool built upon the foundations of the Dictionary of Australian Artists Online. DAAO is an open source freely accessible scholarly e-Research tool that presents biographical data about Australian artists, designers, craftspeople and curators. "
+    }, 
+    {
+        "age": 14, 
+        "id": "dos", 
+        "imageUrl": "img/data-providers/dos-100px.png", 
+        "name": "The Dictionary of Sydney", 
+        "snippet": "Based on a permanent historical digital repository, the Dictionary aims to gather resources on every aspect of human habitation in the greater Sydney area from the first arrival of people to the present. "
+    }, 
+    {
+        "age": 15, 
+        "id": "egold", 
+        "imageUrl": "img/data-providers/egold-100px.png", 
+        "name": "eGold: A Nation's Heritage", 
+        "snippet": "Towns and communities around Australia form part of the story of the gold rush. To help ensure these stories are passed on to future generations, the Castlemaine Diggings and the Eureka Stockade Gardens have been included in the National Heritage List. "
+    }, 
+    {
+        "age": 16, 
+        "id": "emelbourne", 
+        "imageUrl": "img/data-providers/emelbourne-100px.png", 
+        "name": "eMelbourne", 
+        "snippet": "Great cities deserve great encyclopedias. The Encyclopedia of Melbourne reflects and encompasses the city's historical position as one of the world's pre-eminent nineteenth-century metropolises, and as one of the twenty-first century's most liveable cities. "
+    }, 
+    {
+        "age": 17, 
+        "id": "eoas", 
+        "imageUrl": "img/data-providers/eoas-100px.png", 
+        "name": "Encyclopedia of Australian Science", 
+        "snippet": "The Encyclopedia of Australian Science brings together Bright Sparcs and Australian Science at Work to form a register of the people and the many industries, corporations, research institutions, scientific societies and other organisations that have contributed to Australia's scientific, technological and medical heritage, with references to their archival materials and a bibliography of their historical published literature. "
+    }, 
+    {
+        "age": 18, 
+        "id": "gabr", 
+        "imageUrl": "img/data-providers/gabr-100px.png", 
+        "name": "Guide to Australian Business Records", 
+        "snippet": "This Guide is an endeavour to draw together historical information on Australian businesses and business people (business entities). The intention is to link business entities with information on extant archival records created by the entities and held in archives and libraries, together with citations of published works about the entities. Where business entities are known to be related these relationships have been included as hypertext links. "
+    }, 
+    {
+        "age": 19, 
+        "id": "map", 
+        "imageUrl": "img/data-providers/map-100px.png", 
+        "name": "Media Archives Project", 
+        "snippet": "The Media Archives Project database, created by the Centre for Media History at Macquarie University, lists easily searchable archives pertaining to the Australian media, including newspapers and magazines, broadcasting and advertising. The entries provide a keyword-searchable summary of what each archive contains. Database users can check access conditions for each archive listed and contact archive holders to make arrangements to see material that interests them. "
+    },
+    {
+        "age": 20, 
+        "id": "paradisec", 
+        "imageUrl": "img/data-providers/paradisec-100px.png", 
+        "name": "The Pacific and Regional Archive for Digital Sources in Endangered Cultures (PARADISEC)", 
+        "snippet": "The Pacific and Regional Archive for Digital Sources in Endangered Cultures offers a facility for digital conservation and access to endangered materials from all over the world. Our research group has developed models to ensure that the archive can provide access to interested communities and conforms to emerging international standards for digital archiving. "
+    },
+    {
+        "age": 21, 
+        "id": "pathways", 
+        "imageUrl": "img/data-providers/pathways-100px.png", 
+        "name": "AIATSIS Pathways", 
+        "snippet": "Pathways contains the terms we use to describe the items in the AIATSIS Collections. Including, a thesaurus for subjects relating to Australian Aboriginal and Torres Strait Islander studies, language groups and people, and place names. "
+    },
+    {
+        "age": 22, 
+        "id": "reason-in-revolt", 
+        "imageUrl": "img/data-providers/reason-in-revolt-100px.png", 
+        "name": "Reason in Revolt: Source Documents of Australian Radicalism", 
+        "snippet": "Reason in Revolt brings together primary source documents of Australian radicalism as a readily accessible digitised resource. By 'radical' we refer to those who aimed to make society more equal and to emancipate the exploited or oppressed. Reason in Revolt is an expanding record of the movements, institutions, venues and publications through which radicals sought to influence Australian society. "
+    }
+]

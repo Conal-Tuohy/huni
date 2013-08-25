@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="age">Newest</option>
+      </select>
+
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="data-providers">
+        <li ng-repeat="dataProvider in dataProviders | filter:query | orderBy:orderProp" class="thumbnail">
+	        <table>
+	        	<tr>
+	        		<td rowspan="2" class="thumb"><a href="#/data-providers/{{dataProvider.id}}"><img ng-src="{{dataProvider.imageUrl}}"></a></td>
+	        		<th style="text-align: left; "><a href="#/data-providers/{{dataProvider.id}}">{{dataProvider.name}}</a><th>
+	        	</tr>
+	        	<tr>
+	        		<td style="text-align: left; "><p style="line-height: 1.5; height: 70px; overflow: auto;" >{{dataProvider.snippet}}</p></td>
+	        	</tr>
+	        </table>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
