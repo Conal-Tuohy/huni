@@ -1,11 +1,11 @@
 {
-    "id": "abi", 
-    "imageUrl": "img/data-providers/abi-400px.png", 
-    "name": "The Aboriginal Biographical Index", 
-    "abbreviation": "ABI", 
+    "id": "bonza", 
+    "imageUrl": "img/data-providers/bonza-400px.png", 
+    "name": "BONZA: National Cinema and Television Databases", 
+    "abbreviation": "BONZA", 
     "organisation": "The Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)", 
-    "description": "The ABI is a personal name index to published material held in the AIATSIS Library. The ABI forms part of Mura, the AIATSIS catalogue.",
-    "siteUrl":"http://www.aiatsis.gov.au//fhu/abi.html",
+    "description": "BONZA is an online collection of national cinema databases (to date French, Australian and New Zealand) prepared by film researchers and students.",
+    "siteUrl":"http://www.bonzadb.com.au",
     "entityCount":3,
     "entities":
     	[

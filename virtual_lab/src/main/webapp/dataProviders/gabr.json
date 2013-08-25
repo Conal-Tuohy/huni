@@ -1,0 +1,28 @@
+{
+    "id": "gabr", 
+    "imageUrl": "img/data-providers/gabr-400px.png", 
+    "name": "Guide to Australian Business Records", 
+    "abbreviation": "GABR", 
+    "organisation": "Archive Research Consultancy,", 
+    "description": "This Guide is an endeavour to draw together historical information on Australian businesses and business people (business entities). The intention is to link business entities with information on extant archival records created by the entities and held in archives and libraries, together with citations of published works about the entities. Where business entities are known to be related these relationships have been included as hypertext links.",
+    "siteUrl":"http://www.gabr.net.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

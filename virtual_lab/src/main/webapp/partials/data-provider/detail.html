@@ -133,7 +133,7 @@
 
 	<div class="row-fluid">
 		<div class="span3">
-			<img ng-src="{{dataProvider.imageUrl}}" style="margin:10px;" class="data-provider-site-image">
+			<a ng-href="{{dataProvider.siteUrl}}"><img ng-src="{{dataProvider.imageUrl}}" style="margin:10px; width: 400px;"" class="data-provider-site-image"/></a>
 		</div>
 		<div class="span9">
 			<h3 class="data-provider-name">{{dataProvider.name}}</h3>
@@ -149,7 +149,7 @@
 					<th  class="data-provider-label">Description:</th><td class="data-provider-value">{{dataProvider.description}}</td>
 					</tr>
 					<tr>
-					<th  class="data-provider-label">Site URL:</th><td class="data-provider-value"><a href="{{dataProvider.urlSite}}">{{dataProvider.siteUrl}}</a></td>
+					<th  class="data-provider-label">Site URL:</th><td class="data-provider-value"><a ng-href="{{dataProvider.siteUrl}}">{{dataProvider.siteUrl}}</a></td>
 					</tr>
 				</tbody>
 			</table>

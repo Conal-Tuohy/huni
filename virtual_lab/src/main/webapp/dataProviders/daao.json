@@ -1,0 +1,28 @@
+{
+    "id": "daao", 
+    "imageUrl": "img/data-providers/daao-400px.png", 
+    "name": "Design and Art Australia Online", 
+    "abbreviation": "DAAO", 
+    "organisation": "University of NSW etc.. in a consortium.", 
+    "description": "Design and Art Australia Online (DAAO) is a collaborative e-Research tool built upon the foundations of the Dictionary of Australian Artists Online. DAAO is an open source freely accessible scholarly e-Research tool that presents biographical data about Australian artists, designers, craftspeople and curators.",
+    "siteUrl":"http://www.daao.org.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

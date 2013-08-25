@@ -1,0 +1,28 @@
+{
+    "id": "awr", 
+    "imageUrl": "img/data-providers/awr-400px.png", 
+    "name": "The Australian Women's Register", 
+    "abbreviation": "AWR", 
+    "organisation": "The Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)", 
+    "description": "The searchable-on-line Australian Women's Register is a valuable and growing source of biographical data about Australian women and their organisations, with hyper-links to the archival repositories and libraries where their records are held and to other sources of information. Women and women's organisations are listed alphabetically. You'll also be able to search by functional classification, for example, 'P' covers physicists, politicians, pharmacists, pacifists and many more.",
+    "siteUrl":"http://www.womenaustralia.info",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

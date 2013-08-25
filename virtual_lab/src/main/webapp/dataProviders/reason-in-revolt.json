@@ -1,0 +1,28 @@
+{
+    "id": "reason-in-revolt", 
+    "imageUrl": "img/data-providers/reason-in-revolt-400px.png", 
+    "name": "Reason in Revolt", 
+    "abbreviation": "RIR", 
+    "organisation": "University of Melbourne Department of Social and Political Sciences and Monash University Centre for Comparative Literature and Cultural Studies", 
+    "description": "Reason in Revolt project aims to bring together primary source documents of Australian radicalism as a readily accessible digitised resource. By 'radical' we refer to those who aimed to make society more equal and to emancipate the exploited or oppressed. As it grows and develops, the project website will become an expanding record of the movements, institutions, venues and publications through which radicals sought to influence Australian society.",
+    "siteUrl":"http://www.reasoninrevolt.net.au",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 

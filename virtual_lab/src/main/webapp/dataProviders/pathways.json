@@ -1,11 +1,11 @@
 {
-    "id": "abi", 
-    "imageUrl": "img/data-providers/abi-400px.png", 
-    "name": "The Aboriginal Biographical Index", 
-    "abbreviation": "ABI", 
+    "id": "pathways", 
+    "imageUrl": "img/data-providers/pathways-400px.png", 
+    "name": "Pathways", 
+    "abbreviation": "Pathways", 
     "organisation": "The Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)", 
-    "description": "The ABI is a personal name index to published material held in the AIATSIS Library. The ABI forms part of Mura, the AIATSIS catalogue.",
-    "siteUrl":"http://www.aiatsis.gov.au//fhu/abi.html",
+    "description": "Pathways contains the terms we use to describe the items in the AIATSIS Collections. Including, a thesaurus for subjects relating to Australian Aboriginal and Torres Strait Islander studies, language groups and people, and place names.",
+    "siteUrl":"http://www1.aiatsis.gov.au/thesaurus/",
     "entityCount":3,
     "entities":
     	[

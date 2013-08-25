@@ -1,0 +1,28 @@
+{
+    "id": "dos", 
+    "imageUrl": "img/data-providers/dos-400px.png", 
+    "name": "The Dictionary of Sydney", 
+    "abbreviation": "DOS", 
+    "organisation": "Dictionary of Sydney Trust", 
+    "description": "The Dictionary of Sydney is a landmark digital history initiative supported by the City of Sydney, the Australian Research Council and a number of Sydney’s leading cultural institutions and universities. The Dictionary is a window into historical material covering metropolitan Sydney, from earliest human habitation to the present. With input from more than 200 authors, the Dictionary is an ever-expanding resource. Currently there are over 690 entries, 121,602 words and over 2,700 multimedia items. And new content is being added all the time.",
+    "siteUrl":"http://home.dictionaryofsydney.org",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 
