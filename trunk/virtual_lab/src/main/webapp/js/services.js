@@ -256,7 +256,15 @@ factory('HttpInterceptor', function($q){
 	}).
 config(function ($httpProvider) {
     $httpProvider.interceptors.push('HttpInterceptor');
-    });
+});
+
+angular.module('dataProviderServices', ['ngResource']).
+factory('DataProvider', function($resource){
+	return $resource(baseServiceURL + '/dataProviders/:dataProviderId.json', {}, {
+		list: {method:'GET', params:{dataProviderId:'data-providers'}, isArray:true},
+		provider: {method:'GET'}
+	});
+});
 
 
 

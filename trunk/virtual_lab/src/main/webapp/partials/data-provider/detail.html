@@ -1,0 +1,208 @@
+<style type="text/css">
+<!--    
+.data-provider-label
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.data-provider-value
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	vertical-align: top;	
+}
+
+.entity-property-label-head
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: top;
+	width: 50%;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+.entity-property-value-head
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	width: 50%;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+.entity-property-caption
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: right;
+	vertical-align: top;
+	width: 50%;
+	padding: 5px;
+}
+
+.entity-property-label
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: right;
+	vertical-align: top;
+	width: 50%;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+.entity-property-value
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: left;
+	vertical-align: top;
+	width: 50%;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+
+.entity-statistics-caption
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: right;
+	vertical-align: top;
+	font-weight: bold;
+	width: 50%;
+	padding: 5px;
+}
+
+.entity-statistics-label
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: right;
+	vertical-align: top;
+	font-weight: bold;
+	width: 50%;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+.entity-statistics-value
+{
+	font-size: 12px;
+	line-height: 1.5;
+	padding:2px;
+	margin: 0px;
+	text-align: left;
+	vertical-align: top;
+	width: 50%;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+ -->
+</style>
+<div class="container-fluid">
+
+	<div class="row-fluid">
+		<div class="span3">
+			<img ng-src="{{dataProvider.imageUrl}}" style="margin:10px;" class="data-provider-site-image">
+		</div>
+		<div class="span9">
+			<h3 class="data-provider-name">{{dataProvider.name}}</h3>
+			<table style="width: 400px;" >
+				<tbody>
+				<tr>
+					<th class="data-provider-label">Abbreviation:</th><td class="data-provider-value">{{dataProvider.abbreviation}}</td>
+					</tr>
+					<tr>
+					<th  class="data-provider-label">Organisation:</th><td class="data-provider-value">{{dataProvider.organisation}}</td>
+					</tr>
+					<tr>
+					<th  class="data-provider-label">Description:</th><td class="data-provider-value">{{dataProvider.description}}</td>
+					</tr>
+					<tr>
+					<th  class="data-provider-label">Site URL:</th><td class="data-provider-value"><a href="{{dataProvider.urlSite}}">{{dataProvider.siteUrl}}</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<hr/>
+	<div class="row-fluid">
+		<div class="span12">
+			<h4>Entities: {{dataProvider.entityCount}}</h4>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+			<h5>Solr Mappings</h5>
+			<div style="overflow: auto;">
+				<div ng-repeat="entity in dataProvider.entities" >
+					<h6 style="font-size: 14px">{{entity.name}}</h6>				
+					<table style="background-color: #EEEEEE; width: 250px;">
+						<caption style="text-align: left;">
+							<span style="text-align: left;"  class="entity-statistics-caption">
+								Statistics
+							</span>
+						</caption>
+						<tbody>
+							<tbody>
+								<tr>
+									<td class="entity-statistics-label">Count:</td><td class="entity-statistics-value">{{entity.count}}</td>
+								</tr>
+							</tbody>
+						</tbody>
+					</table>
+					<table style="background-color: #EEEEEE; width: 250px;">
+						<caption style="text-align: left;">
+							<span style="text-align: left;"  class="entity-statistics-caption">
+								Property Map
+							</span>
+						</caption>
+						<tbody>
+							<thead>
+								<tr>
+									<th class="entity-property-label-head">Solr Index</th><td class="entity-property-value-head">Data Provider</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="propertyPair in entity.solrMapping">
+									<td class="entity-property-label">{{propertyPair.solrProperty}}</td><td class="entity-property-value">{{propertyPair.providerProperty}}</td>
+								</tr>
+							</tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

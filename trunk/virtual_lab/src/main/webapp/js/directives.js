@@ -11,3 +11,9 @@ angular.module('toolKitListModule', []).directive('toolKitList', function factor
 			  };
 	  return directiveDefinitionObject;	  
 });
+
+angular.module('dataProviderFilters', []).filter('checkmark', function() {
+	  return function(input) {
+	    return input ? '\u2713' : '\u2718';
+	  };
+	});

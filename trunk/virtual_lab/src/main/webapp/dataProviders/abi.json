@@ -1,0 +1,28 @@
+{
+    "id": "abi", 
+    "imageUrl": "img/data-providers/abi-400px.png", 
+    "name": "The Aboriginal Biographical Index", 
+    "abbreviation": "ABI", 
+    "organisation": "AIATIS", 
+    "description": "The ABI is a personal name index to published material held in the AIATSIS Library. The ABI forms part of Mura, the AIATSIS catalogue.",
+    "siteUrl":"",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 
