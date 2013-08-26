@@ -140,6 +140,13 @@
         "snippet": "The Media Archives Project database, created by the Centre for Media History at Macquarie University, lists easily searchable archives pertaining to the Australian media, including newspapers and magazines, broadcasting and advertising. The entries provide a keyword-searchable summary of what each archive contains. Database users can check access conditions for each archive listed and contact archive holders to make arrangements to see material that interests them. "
     },
     {
+        "age": 19, 
+        "id": "amhd", 
+        "imageUrl": "img/data-providers/amhd-100px.png", 
+        "name": "Australian Media History Database", 
+        "snippet": "The Australian Media History Database is a portal for all aspects of research into the history of the media in Australia. It aims to alert researchers - from industry, academe and the wider community - to current work being undertaken in the field, and to direct them to relevant resources across Australia. "
+    },
+    {
         "age": 20, 
         "id": "paradisec", 
         "imageUrl": "img/data-providers/paradisec-100px.png", 
@@ -154,10 +161,31 @@
         "snippet": "Pathways contains the terms we use to describe the items in the AIATSIS Collections. Including, a thesaurus for subjects relating to Australian Aboriginal and Torres Strait Islander studies, language groups and people, and place names. "
     },
     {
+        "age": 21, 
+        "id": "mura", 
+        "imageUrl": "img/data-providers/mura-100px.png", 
+        "name": "AIATSIS Mura", 
+        "snippet": "Mura® is AIATSIS's online catalogue. It is a condition of use of this catalogue that users ensure that any disclosure of the information contained in this catalogue is consistent with the views and sensitivities of relevant Aboriginal and Torres Strait Islander peoples. "
+    },
+    {
         "age": 22, 
         "id": "reason-in-revolt", 
         "imageUrl": "img/data-providers/reason-in-revolt-100px.png", 
         "name": "Reason in Revolt: Source Documents of Australian Radicalism", 
         "snippet": "Reason in Revolt brings together primary source documents of Australian radicalism as a readily accessible digitised resource. By 'radical' we refer to those who aimed to make society more equal and to emancipate the exploited or oppressed. Reason in Revolt is an expanding record of the movements, institutions, venues and publications through which radicals sought to influence Australian society. "
+    },
+    {
+        "age": 23, 
+        "id": "find-and-connect-victoria", 
+        "imageUrl": "img/data-providers/find-and-connect-victoria-100px.png", 
+        "name": "Find & Connect Victoria", 
+        "snippet": "The Find & Connect web resource is for Forgotten Australians, Former Child Migrants and everyone with an interest in the history of out-of-home \"care\" in Australia. "
+    },
+    {
+        "age": 24, 
+        "id": "afirc", 
+        "imageUrl": "img/data-providers/afirc-100px.png", 
+        "name": "AFI Research Collection", 
+        "snippet": "The  AFI (Australian Film Institute) Research Collection is a specialist film and television industry resource open to the public. The Collection has materials encompassing cinema and television from the world over (with particular strengths in screen theory and history and in Australian cinema). The collection features a diverse range of newspaper clippings files, books, journals, film and television scripts, directories, reports, film promotional material, and film festival catalogues. "
     }
 ]

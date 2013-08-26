@@ -1,0 +1,28 @@
+{
+    "id": "mura", 
+    "imageUrl": "img/data-providers/mura-400px.png", 
+    "name": "Mura", 
+    "abbreviation": "MURA", 
+    "organisation": "The Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS)", 
+    "description": "Mura® is AIATSIS's online catalogue. It is a condition of use of this catalogue that users ensure that any disclosure of the information contained in this catalogue is consistent with the views and sensitivities of relevant Aboriginal and Torres Strait Islander peoples. ",
+    "siteUrl":"http://www.aiatsis.gov.au/collections/muraread.html",
+    "entityCount":3,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":100000,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"something0",
+    					"providerProperty":"something else0"
+    					},
+    					{
+    					"solrProperty":"something1",
+    					"providerProperty":"something else1"
+    					}
+    				]
+    		}   		
+    	]
+} 
