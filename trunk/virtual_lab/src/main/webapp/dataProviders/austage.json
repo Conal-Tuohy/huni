@@ -6,21 +6,94 @@
     "organisation": "AusStage", 
     "description": "AusStage provides an accessible online resource for researching live performance in Australia. Development is led by a consortium of universities, government agencies, industry organisations and collecting institutions with funding from the Australian Research Council and other sources.",
     "siteUrl":"http://www.ausstage.edu.au",
-    "entityCount":3,
+    "entityCount":5,
     "entities":
     	[
     		{
-    			"name":"Person",
-    			"count":100000,
+    			"name":"Item",
+    			"count":51010,
     			"solrMapping": 
     				[
     					{
-    					"solrProperty":"something0",
-    					"providerProperty":"something else0"
+    					"solrProperty":"name",
+    					"providerProperty":"CITATION"
     					},
     					{
-    					"solrProperty":"something1",
-    					"providerProperty":"something else1"
+    					"solrProperty":"description",
+    					"providerProperty":"DETAIL_COMMENTS"
+    					},
+    					{
+    					"solrProperty":"description",
+    					"providerProperty":"TEM_DESCRIPTION"
+    					}
+    				]
+    		}, 		
+    		{
+    			"name":"Person",
+    			"count":92088,
+    			"solrMapping": 
+    				[
+    					{
+	    					"solrProperty":"family_name",
+	    					"providerProperty":"last_name"
+    					},
+    					{
+	    					"solrProperty":"given_name",
+	    					"providerProperty":"first_name"
+    					},
+    					{
+	    					"solrProperty":"date_begin",
+	    					"providerProperty":"date_of_birth"
+    					},
+    					{
+	    					"solrProperty":"date_end",
+	    					"providerProperty":"date_of_death"
+    					}
+    				]
+    		},  		
+    		{
+    			"name":"Organisation",
+    			"count":11234,
+    			"solrMapping": 
+    				[
+    					{
+	    					"solrProperty":"name",
+	    					"providerProperty":"NAME"
+    					},
+    					{
+	    					"solrProperty":"address",
+	    					"providerProperty":"ADDRESS"
+    					},
+    					{
+	    					"solrProperty":"suburb",
+	    					"providerProperty":"SUBURB"
+    					},
+    					{
+	    					"solrProperty":"description",
+	    					"providerProperty":"notes"
+    					}
+    				]
+    		},   		
+    		{
+    			"name":"Events",
+    			"count":67892,
+    			"solrMapping": 
+    				[
+    					{
+	    					"solrProperty":"name",
+	    					"providerProperty":"EVENT_NAME"
+    					},
+    					{
+	    					"solrProperty":"date_begin",
+	    					"providerProperty":"YYYYFIRST_DATE"
+    					},
+    					{
+	    					"solrProperty":"date_end",
+	    					"providerProperty":"YYYYLAST_DATE"
+    					},
+    					{
+	    					"solrProperty":"description",
+	    					"providerProperty":"description"
     					}
     				]
     		}   		

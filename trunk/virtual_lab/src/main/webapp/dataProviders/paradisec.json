@@ -6,21 +6,66 @@
     "organisation": "The University of Sydney", 
     "description": "PARADISEC (the Pacific And Regional Archive for Digital Sources in Endangered Cultures) offers a facility for digital conservation and access to endangered materials from all over the world. Our research group has developed models to ensure that the archive can provide access to interested communities, and conforms with emerging international standards for digital archiving. We have established a framework for accessioning, cataloguing and digitising audio, text and visual material, and preserving digital copies. The primary focus of this initial stage is safe preservation of material that would otherwise be lost, especially field tapes from the 1950s and 1960s.",
     "siteUrl":"http://www.paradisec.org.au",
-    "entityCount":3,
+    "entityCount":4,
     "entities":
     	[
     		{
-    			"name":"Person",
-    			"count":100000,
+    			"name":"Collection",
+    			"count":12589,
     			"solrMapping": 
     				[
     					{
-    					"solrProperty":"something0",
-    					"providerProperty":"something else0"
+    					"solrProperty":"title",
+    					"providerProperty":"namePart"
     					},
     					{
-    					"solrProperty":"something1",
-    					"providerProperty":"something else1"
+    					"solrProperty":"description",
+    					"providerProperty":"description"
+    					}
+    				]
+    		},  		
+    		{
+    			"name":"Person",
+    			"count":123456,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"given_name",
+    					"providerProperty":"type='given'"
+    					},
+    					{
+    					"solrProperty":"family_name",
+    					"providerProperty":"type='family'"
+    					}
+    				]
+    		},   		
+    		{
+    			"name":"Group",
+    			"count":123456,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"name",
+    					"providerProperty":"type='primary'"
+    					}
+    				]
+    		},   		
+    		{
+    			"name":"Item",
+    			"count":123456,
+    			"solrMapping": 
+    				[
+    					{
+    					"solrProperty":"title",
+    					"providerProperty":"title"
+    					},
+    					{
+    					"solrProperty":"description",
+    					"providerProperty":"description"
+    					},
+    					{
+    					"solrProperty":"physdesc",
+    					"providerProperty":"physdesc"
     					}
     				]
     		}   		

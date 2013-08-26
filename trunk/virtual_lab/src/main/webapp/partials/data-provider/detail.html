@@ -166,41 +166,43 @@
 		<div class="span12">
 			<h5>Solr Mappings</h5>
 			<div style="overflow: auto;">
-				<div ng-repeat="entity in dataProvider.entities" >
-					<h6 style="font-size: 14px">{{entity.name}}</h6>				
-					<table style="background-color: #EEEEEE; width: 250px;">
-						<caption style="text-align: left;">
-							<span style="text-align: left;"  class="entity-statistics-caption">
-								Statistics
-							</span>
-						</caption>
-						<tbody>
+				<div style="width:2000px">
+					<span ng-repeat="entity in dataProvider.entities" style="display: inline-block; margin:10px;">
+						<h6 style="font-size: 14px">{{entity.name}}</h6>				
+						<table style="background-color: #EEEEEE; width: 250px;">
+							<caption style="text-align: left;">
+								<span style="text-align: left;"  class="entity-statistics-caption">
+									Statistics
+								</span>
+							</caption>
 							<tbody>
-								<tr>
-									<td class="entity-statistics-label">Count:</td><td class="entity-statistics-value">{{entity.count}}</td>
-								</tr>
+								<tbody>
+									<tr>
+										<td class="entity-statistics-label">Count:</td><td class="entity-statistics-value">{{entity.count}}</td>
+									</tr>
+								</tbody>
 							</tbody>
-						</tbody>
-					</table>
-					<table style="background-color: #EEEEEE; width: 250px;">
-						<caption style="text-align: left;">
-							<span style="text-align: left;"  class="entity-statistics-caption">
-								Property Map
-							</span>
-						</caption>
-						<tbody>
-							<thead>
-								<tr>
-									<th class="entity-property-label-head">Solr Index</th><td class="entity-property-value-head">Data Provider</td>
-								</tr>
-							</thead>
+						</table>
+						<table style="background-color: #EEEEEE; width: 250px;">
+							<caption style="text-align: left;">
+								<span style="text-align: left;"  class="entity-statistics-caption">
+									Property Map
+								</span>
+							</caption>
 							<tbody>
-								<tr ng-repeat="propertyPair in entity.solrMapping">
-									<td class="entity-property-label">{{propertyPair.solrProperty}}</td><td class="entity-property-value">{{propertyPair.providerProperty}}</td>
-								</tr>
+								<thead>
+									<tr>
+										<th class="entity-property-label-head">Solr Index</th><td class="entity-property-value-head">Data Provider</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="propertyPair in entity.solrMapping">
+										<td class="entity-property-label">{{propertyPair.solrProperty}}</td><td class="entity-property-value">{{propertyPair.providerProperty}}</td>
+									</tr>
+								</tbody>
 							</tbody>
-						</tbody>
-					</table>
+						</table>
+					</span>
 				</div>
 			</div>
 		</div>

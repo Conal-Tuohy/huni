@@ -187,5 +187,12 @@
         "imageUrl": "img/data-providers/afirc-100px.png", 
         "name": "AFI Research Collection", 
         "snippet": "The  AFI (Australian Film Institute) Research Collection is a specialist film and television industry resource open to the public. The Collection has materials encompassing cinema and television from the world over (with particular strengths in screen theory and history and in Australian cinema). The collection features a diverse range of newspaper clippings files, books, journals, film and television scripts, directories, reports, film promotional material, and film festival catalogues. "
+    },
+    {
+        "age": 24, 
+        "id": "oa", 
+        "imageUrl": "img/data-providers/oa-100px.png", 
+        "name": "Obituaries Australia", 
+        "snippet": "A digital repository of obituaries about Australians, and those who have made an impact on Australian history, published in newspapers, journals, magazines and bulletins. "
     }
 ]
