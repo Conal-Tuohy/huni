@@ -1,0 +1,44 @@
+{
+    "id": "oa", 
+    "imageUrl": "img/data-providers/oa-400px.png", 
+    "name": "Obituaries Australia", 
+    "abbreviation": "OA", 
+    "organisation": "National Centre of Biography at the Australian National University", 
+    "description": "A digital repository of obituaries about Australians, and those who have made an impact on Australian history, published in newspapers, journals, magazines and bulletins.",
+    "siteUrl":"http://oa.anu.edu.au/",
+    "entityCount":1,
+    "entities":
+    	[
+    		{
+    			"name":"Person",
+    			"count":4133,
+    			"solrMapping": 
+    				[
+    					{
+	    					"solrProperty":"family_name",
+	    					"providerProperty":"surname"
+    					},
+    					{
+	    					"solrProperty":"given_name",
+	    					"providerProperty":"forename"
+    					},
+    					{
+	    					"solrProperty":"date_begin",
+	    					"providerProperty":"fromDate"
+    					},
+    					{
+	    					"solrProperty":"date_end",
+	    					"providerProperty":"toDate"
+    					},
+    					{
+	    					"solrProperty":"occupation",
+	    					"providerProperty":"term"
+    					},
+    					{
+	    					"solrProperty":"bio",
+	    					"providerProperty":"biogHist"
+    					}
+    				]
+    		}   		
+    	]
+} 
