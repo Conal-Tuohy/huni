@@ -12,7 +12,7 @@ import org.springframework.core.convert.converter.Converter;
 
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Researcher;
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import au.net.huni.model.ToolCategory;
 
 public class ApplicationConversionServiceFactoryBeanTest {
@@ -52,10 +52,10 @@ public class ApplicationConversionServiceFactoryBeanTest {
 	}
 
 	@Test
-	public void testToolCatalogItemConverter() {
+	public void testToolLibraryItemConverter() {
 		ApplicationConversionServiceFactoryBean converterFactory = new ApplicationConversionServiceFactoryBean();
-		Converter<au.net.huni.model.ToolCatalogItem, java.lang.String> converter = converterFactory.getToolCatalogItemToStringConverter();
-		ToolCatalogItem toolCatalogItem = new ToolCatalogItem();
+		Converter<au.net.huni.model.ToolLibraryItem, java.lang.String> converter = converterFactory.getToolLibraryItemToStringConverter();
+		ToolLibraryItem toolCatalogItem = new ToolLibraryItem();
 		toolCatalogItem.setName("toolcatalogitem1");
 		assertEquals("toolcatalogitem1", converter.convert(toolCatalogItem));
 	}

@@ -3,8 +3,8 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolCatalogItem;
-import au.net.huni.model.ToolCatalogItemDataOnDemand;
+import au.net.huni.model.ToolLibraryItem;
+import au.net.huni.model.ToolLibraryItemDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,20 +14,28 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.springframework.stereotype.Component;
 
-privileged aspect ToolCatalogItemDataOnDemand_Roo_DataOnDemand {
+privileged aspect ToolLibraryItemDataOnDemand_Roo_DataOnDemand {
     
-    declare @type: ToolCatalogItemDataOnDemand: @Component;
+    declare @type: ToolLibraryItemDataOnDemand: @Component;
     
-    private Random ToolCatalogItemDataOnDemand.rnd = new SecureRandom();
+    private Random ToolLibraryItemDataOnDemand.rnd = new SecureRandom();
     
-    private List<ToolCatalogItem> ToolCatalogItemDataOnDemand.data;
+    private List<ToolLibraryItem> ToolLibraryItemDataOnDemand.data;
     
-    public void ToolCatalogItemDataOnDemand.setDescription(ToolCatalogItem obj, int index) {
-        String description = "description_" + index;
+    public ToolLibraryItem ToolLibraryItemDataOnDemand.getNewTransientToolLibraryItem(int index) {
+        ToolLibraryItem obj = new ToolLibraryItem();
+        setDescription(obj, index);
+        setName(obj, index);
+        setUrl(obj, index);
+        return obj;
+    }
+    
+    public void ToolLibraryItemDataOnDemand.setDescription(ToolLibraryItem obj, int index) {
+        String description = "_" + index;
         obj.setDescription(description);
     }
     
-    public void ToolCatalogItemDataOnDemand.setName(ToolCatalogItem obj, int index) {
+    public void ToolLibraryItemDataOnDemand.setName(ToolLibraryItem obj, int index) {
         String name = "name_" + index;
         if (name.length() > 64) {
             name = new Random().nextInt(10) + name.substring(1, 64);
@@ -35,7 +43,7 @@ privileged aspect ToolCatalogItemDataOnDemand_Roo_DataOnDemand {
         obj.setName(name);
     }
     
-    public ToolCatalogItem ToolCatalogItemDataOnDemand.getSpecificToolCatalogItem(int index) {
+    public ToolLibraryItem ToolLibraryItemDataOnDemand.getSpecificToolLibraryItem(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -43,36 +51,36 @@ privileged aspect ToolCatalogItemDataOnDemand_Roo_DataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        ToolCatalogItem obj = data.get(index);
+        ToolLibraryItem obj = data.get(index);
         Long id = obj.getId();
-        return ToolCatalogItem.findToolCatalogItem(id);
+        return ToolLibraryItem.findToolLibraryItem(id);
     }
     
-    public ToolCatalogItem ToolCatalogItemDataOnDemand.getRandomToolCatalogItem() {
+    public ToolLibraryItem ToolLibraryItemDataOnDemand.getRandomToolLibraryItem() {
         init();
-        ToolCatalogItem obj = data.get(rnd.nextInt(data.size()));
+        ToolLibraryItem obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return ToolCatalogItem.findToolCatalogItem(id);
+        return ToolLibraryItem.findToolLibraryItem(id);
     }
     
-    public boolean ToolCatalogItemDataOnDemand.modifyToolCatalogItem(ToolCatalogItem obj) {
+    public boolean ToolLibraryItemDataOnDemand.modifyToolLibraryItem(ToolLibraryItem obj) {
         return false;
     }
     
-    public void ToolCatalogItemDataOnDemand.init() {
+    public void ToolLibraryItemDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = ToolCatalogItem.findToolCatalogItemEntries(from, to);
+        data = ToolLibraryItem.findToolLibraryItemEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'ToolCatalogItem' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'ToolLibraryItem' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<ToolCatalogItem>();
+        data = new ArrayList<ToolLibraryItem>();
         for (int i = 0; i < 10; i++) {
-            ToolCatalogItem obj = getNewTransientToolCatalogItem(i);
+            ToolLibraryItem obj = getNewTransientToolLibraryItem(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

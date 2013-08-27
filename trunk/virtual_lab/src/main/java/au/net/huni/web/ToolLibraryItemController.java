@@ -1,6 +1,6 @@
 package au.net.huni.web;
 
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import au.net.huni.model.ToolCategory;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,75 +20,75 @@ import org.springframework.web.util.WebUtils;
 //This is over-ridden by annotations in this file.
 //See webmvc-config.xml
 @Controller
-@RooWebScaffold(path = "toolcatalogitems", formBackingObject = ToolCatalogItem.class)
-public class ToolCatalogItemController {
+@RooWebScaffold(path = "toollibraryitems", formBackingObject = ToolLibraryItem.class)
+public class ToolLibraryItemController {
 
-	@RequestMapping(value = "/console/toolcatalogitems", method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid ToolCatalogItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+	@RequestMapping(value = "/console/toollibraryitems", method = RequestMethod.POST, produces = "text/html")
+    public String create(@Valid ToolLibraryItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, toolCatalogItem);
-            return "toolcatalogitems/create";
+            return "toollibraryitems/create";
         }
         uiModel.asMap().clear();
         toolCatalogItem.persist();
-        return "redirect:/console/toolcatalogitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
+        return "redirect:/console/toollibraryitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
     }
 
-	@RequestMapping(value = "/console/toolcatalogitems", params = "form", produces = "text/html")
+	@RequestMapping(value = "/console/toollibraryitems", params = "form", produces = "text/html")
     public String createForm(Model uiModel) {
-        populateEditForm(uiModel, new ToolCatalogItem());
-        return "toolcatalogitems/create";
+        populateEditForm(uiModel, new ToolLibraryItem());
+        return "toollibraryitems/create";
     }
 
-	@RequestMapping(value = "/console/toolcatalogitems/{id}", produces = "text/html")
+	@RequestMapping(value = "/console/toollibraryitems/{id}", produces = "text/html")
     public String show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("toolcatalogitem", ToolCatalogItem.findToolCatalogItem(id));
+        uiModel.addAttribute("toollibraryitem", ToolLibraryItem.findToolLibraryItem(id));
         uiModel.addAttribute("itemId", id);
-        return "toolcatalogitems/show";
+        return "toollibraryitems/show";
     }
 
-	@RequestMapping(value = "/console/toolcatalogitems", produces = "text/html")
+	@RequestMapping(value = "/console/toollibraryitems", produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("toolcatalogitems", ToolCatalogItem.findToolCatalogItemEntries(firstResult, sizeNo));
-            float nrOfPages = (float) ToolCatalogItem.countToolCatalogItems() / sizeNo;
+            uiModel.addAttribute("toollibraryitems", ToolLibraryItem.findToolLibraryItemEntries(firstResult, sizeNo));
+            float nrOfPages = (float) ToolLibraryItem.countToolLibraryItems() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("toolcatalogitems", ToolCatalogItem.findAllToolCatalogItems());
+            uiModel.addAttribute("toollibraryitems", ToolLibraryItem.findAllToolLibraryItems());
         }
-        return "toolcatalogitems/list";
+        return "toollibraryitems/list";
     }
 
-	@RequestMapping(value = "/console/toolcatalogitems", method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid ToolCatalogItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+	@RequestMapping(value = "/console/toollibraryitems", method = RequestMethod.PUT, produces = "text/html")
+    public String update(@Valid ToolLibraryItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, toolCatalogItem);
-            return "toolcatalogitems/update";
+            return "toollibraryitems/update";
         }
         uiModel.asMap().clear();
         toolCatalogItem.merge();
-        return "redirect:/console/toolcatalogitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
+        return "redirect:/console/toollibraryitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
     }
 
-	@RequestMapping(value = "/console/toolcatalogitems/{id}", params = "form", produces = "text/html")
+	@RequestMapping(value = "/console/toollibraryitems/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, ToolCatalogItem.findToolCatalogItem(id));
-        return "toolcatalogitems/update";
+        populateEditForm(uiModel, ToolLibraryItem.findToolLibraryItem(id));
+        return "toollibraryitems/update";
     }
 
-	@RequestMapping(value = "/console/toolcatalogitems/{id}", method = RequestMethod.DELETE, produces = "text/html")
+	@RequestMapping(value = "/console/toollibraryitems/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        ToolCatalogItem toolCatalogItem = ToolCatalogItem.findToolCatalogItem(id);
+        ToolLibraryItem toolCatalogItem = ToolLibraryItem.findToolLibraryItem(id);
         toolCatalogItem.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/console/toolcatalogitems";
+        return "redirect:/console/toollibraryitems";
     }
 
-	void populateEditForm(Model uiModel, ToolCatalogItem toolCatalogItem) {
+	void populateEditForm(Model uiModel, ToolLibraryItem toolCatalogItem) {
         uiModel.addAttribute("toolCatalogItem", toolCatalogItem);
         uiModel.addAttribute("toolcategorys", ToolCategory.findAllToolCategorys());
     }

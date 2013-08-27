@@ -3,41 +3,41 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolCatalogItem;
 import au.net.huni.model.ToolCategory;
+import au.net.huni.model.ToolLibraryItem;
 import java.util.Set;
 
-privileged aspect ToolCatalogItem_Roo_JavaBean {
+privileged aspect ToolLibraryItem_Roo_JavaBean {
     
-    public String ToolCatalogItem.getName() {
+    public String ToolLibraryItem.getName() {
         return this.name;
     }
     
-    public void ToolCatalogItem.setName(String name) {
+    public void ToolLibraryItem.setName(String name) {
         this.name = name;
     }
     
-    public String ToolCatalogItem.getDescription() {
+    public String ToolLibraryItem.getDescription() {
         return this.description;
     }
     
-    public void ToolCatalogItem.setDescription(String description) {
+    public void ToolLibraryItem.setDescription(String description) {
         this.description = description;
     }
     
-    public String ToolCatalogItem.getUrl() {
+    public String ToolLibraryItem.getUrl() {
         return this.url;
     }
     
-    public void ToolCatalogItem.setUrl(String url) {
+    public void ToolLibraryItem.setUrl(String url) {
         this.url = url;
     }
     
-    public Set<ToolCategory> ToolCatalogItem.getCategories() {
+    public Set<ToolCategory> ToolLibraryItem.getCategories() {
         return this.categories;
     }
     
-    public void ToolCatalogItem.setCategories(Set<ToolCategory> categories) {
+    public void ToolLibraryItem.setCategories(Set<ToolCategory> categories) {
         this.categories = categories;
     }
     

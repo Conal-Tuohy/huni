@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 
 
-@RooDataOnDemand(entity = ToolCatalogItem.class)
-public class ToolCatalogItemDataOnDemand {
+@RooDataOnDemand(entity = ToolLibraryItem.class)
+public class ToolLibraryItemDataOnDemand {
 
 	@Autowired
 	private ToolCategoryDataOnDemand toolCategoryDataOnDemand;
 
-	public ToolCatalogItem getNewTransientToolCatalogItem(int index) {
-        ToolCatalogItem obj = new ToolCatalogItem();
+	public ToolLibraryItem getNewTransientToolCatalogItem(int index) {
+        ToolLibraryItem obj = new ToolLibraryItem();
         setName(obj, index);
         setDescription(obj, index);
         setUrl(obj, index);
@@ -19,12 +19,12 @@ public class ToolCatalogItemDataOnDemand {
         return obj;
     }
 	
-	public void setCategoryList(ToolCatalogItem obj, int index) {
+	public void setCategoryList(ToolLibraryItem obj, int index) {
 		ToolCategory toolCategory = toolCategoryDataOnDemand.getRandomToolCategory();
 	    obj.getCategories().add(toolCategory);
 	}
 
-	public void setUrl(ToolCatalogItem obj, int index) {
+	public void setUrl(ToolLibraryItem obj, int index) {
         String url = "http://localhost/path_" + + index;
         obj.setUrl(url);
     }

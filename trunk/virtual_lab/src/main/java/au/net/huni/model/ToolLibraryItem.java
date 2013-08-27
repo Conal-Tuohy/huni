@@ -19,14 +19,14 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 @RooJson
-public class ToolCatalogItem {
+public class ToolLibraryItem {
 
     @NotNull
     @Column(unique = true)
     @Size(min = 5, max = 64)
     private String name = RandomStringUtils.random(10);
 
-    private String description;
+    private String description = "";
 
     @NotNull
     private String url = "/";
@@ -43,11 +43,11 @@ public class ToolCatalogItem {
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
-        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolCatalogItem.class))) {
+        } else if (!(HibernateProxyHelper.getClassWithoutInitializingProxy(obj).equals(ToolLibraryItem.class))) {
             return false;
         }
 
-        ToolCatalogItem candidate = (ToolCatalogItem) obj;
+        ToolLibraryItem candidate = (ToolLibraryItem) obj;
 
         return this.getName().equals(candidate.getName())
                 && this.getUrl().equals(candidate.getUrl())

@@ -26,7 +26,7 @@ import au.net.huni.model.Institution;
 import au.net.huni.model.Registration;
 import au.net.huni.model.RegistrationStatus;
 import au.net.huni.model.Researcher;
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import au.net.huni.model.UserRole;
 import au.net.huni.security.PasswordGenerator;
 
@@ -398,7 +398,7 @@ public class RegistrationControllerTest {
 		    oneOf (passwordGenerator).generate(); will(returnValue("password1"));
 		}});
 		
-		final ToolCatalogItem defaultToolCatalogItem = new ToolCatalogItem();
+		final ToolLibraryItem defaultToolCatalogItem = new ToolLibraryItem();
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -427,7 +427,7 @@ public class RegistrationControllerTest {
     	        return false;
     		}
 
-    		protected ToolCatalogItem findDefaultToolCatalogItem() {
+    		protected ToolLibraryItem findDefaultToolCatalogItem() {
     			return defaultToolCatalogItem;
     		}
 
@@ -551,7 +551,7 @@ public class RegistrationControllerTest {
 		    oneOf (mailTemplate).send(mailMessage);
 		}});
 
-		final ToolCatalogItem defaultToolCatalogItem = new ToolCatalogItem();
+		final ToolLibraryItem defaultToolCatalogItem = new ToolLibraryItem();
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -580,7 +580,7 @@ public class RegistrationControllerTest {
     	        return false;
     		}
 
-    		protected ToolCatalogItem findDefaultToolCatalogItem() {
+    		protected ToolLibraryItem findDefaultToolCatalogItem() {
     			return defaultToolCatalogItem;
     		}
         };
@@ -698,7 +698,7 @@ public class RegistrationControllerTest {
 		    oneOf (passwordGenerator).generate(); will(returnValue("12345678"));
 		}});
 		
-		final ToolCatalogItem defaultToolCatalogItem = new ToolCatalogItem();
+		final ToolLibraryItem defaultToolCatalogItem = new ToolLibraryItem();
 
 		final boolean wasApproved[] = new boolean[1];
 		wasApproved[0] = false;
@@ -727,7 +727,7 @@ public class RegistrationControllerTest {
     	        return false;
     		}
 
-    		protected ToolCatalogItem findDefaultToolCatalogItem() {
+    		protected ToolLibraryItem findDefaultToolCatalogItem() {
     			return defaultToolCatalogItem;
     		}
         };

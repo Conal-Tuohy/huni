@@ -23,7 +23,7 @@ public class ResearcherDataOnDemand {
 	private HistoryItemDataOnDemand historyItemDataOnDemand;
 
 	@Autowired
-	private ToolCatalogItemDataOnDemand toolCatalogItemDataOnDemand;
+	private ToolLibraryItemDataOnDemand toolCatalogItemDataOnDemand;
 
 	@Autowired
 	private ProjectDataOnDemand projectDataOnDemand;
@@ -83,12 +83,12 @@ public class ResearcherDataOnDemand {
     }
 
 	public void setDefaultTool(Researcher obj, int index) {
-        ToolCatalogItem defaultTool = toolCatalogItemDataOnDemand.getRandomToolCatalogItem();
+        ToolLibraryItem defaultTool = toolCatalogItemDataOnDemand.getRandomToolLibraryItem();
         obj.setDefaultTool(defaultTool);
     }
 	
 	public void setToolList(Researcher obj, int index) {
-		ToolCatalogItem toolCatalogItem = toolCatalogItemDataOnDemand.getRandomToolCatalogItem();
+		ToolLibraryItem toolCatalogItem = toolCatalogItemDataOnDemand.getRandomToolLibraryItem();
         obj.getToolkit().add(toolCatalogItem);
     }
 	

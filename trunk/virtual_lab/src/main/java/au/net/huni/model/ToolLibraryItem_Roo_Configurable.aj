@@ -3,11 +3,11 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect ToolCatalogItem_Roo_Configurable {
+privileged aspect ToolLibraryItem_Roo_Configurable {
     
-    declare @type: ToolCatalogItem: @Configurable;
+    declare @type: ToolLibraryItem: @Configurable;
     
 }

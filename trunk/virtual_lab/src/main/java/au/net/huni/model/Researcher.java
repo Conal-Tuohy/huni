@@ -89,11 +89,11 @@ public class Researcher {
 
     @NotNull
     @ManyToOne
-    private ToolCatalogItem defaultTool;
+    private ToolLibraryItem defaultTool;
 
     @NotNull
     @ManyToMany
-    private Set<ToolCatalogItem> toolkit = new HashSet<ToolCatalogItem>();
+    private Set<ToolLibraryItem> toolkit = new HashSet<ToolLibraryItem>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")
