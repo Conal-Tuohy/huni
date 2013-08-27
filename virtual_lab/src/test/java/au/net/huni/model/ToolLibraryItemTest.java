@@ -10,31 +10,31 @@ import org.springframework.mock.staticmock.MockStaticEntityMethods;
 
 @RunWith(JUnit4.class)
 @MockStaticEntityMethods
-public class ToolCatalogItemTest {
+public class ToolLibraryItemTest {
 
     @Test
     public void testMethod() {
         int expectedCount = 13;
-        ToolCatalogItem.countToolCatalogItems();
+        ToolLibraryItem.countToolLibraryItems();
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.expectReturn(expectedCount);
         org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
-        org.junit.Assert.assertEquals(expectedCount, ToolCatalogItem.countToolCatalogItems());
+        org.junit.Assert.assertEquals(expectedCount, ToolLibraryItem.countToolLibraryItems());
     }
 
     @Test
     public void testToString() {
-    	ToolCatalogItem toolCatalogItem = new ToolCatalogItem();
+    	ToolLibraryItem toolCatalogItem = new ToolLibraryItem();
     	toolCatalogItem.setName("toolcatalog0");
     	assertEquals("Tool category toString is name.", "toolcatalog0", toolCatalogItem.toString());
     }
 
     @Test
     public void testEquals() {
-    	ToolCatalogItem toolCatalogItem0 = new ToolCatalogItem();
+    	ToolLibraryItem toolCatalogItem0 = new ToolLibraryItem();
     	toolCatalogItem0.setUrl("/url0");
     	toolCatalogItem0.setName("toolCatalogItem name0");
     	
-    	ToolCatalogItem toolCatalogItem1 = new ToolCatalogItem();
+    	ToolLibraryItem toolCatalogItem1 = new ToolLibraryItem();
     	toolCatalogItem1.setUrl("/url0");
     	toolCatalogItem1.setName("toolCatalogItem name0");
     	
@@ -43,11 +43,11 @@ public class ToolCatalogItemTest {
 
     @Test
     public void testHashCode() {
-    	ToolCatalogItem toolCatalogItem0 = new ToolCatalogItem();
+    	ToolLibraryItem toolCatalogItem0 = new ToolLibraryItem();
     	toolCatalogItem0.setUrl("/url0");
     	toolCatalogItem0.setName("toolCatalogItem name0");
     	
-    	ToolCatalogItem toolCatalogItem1 = new ToolCatalogItem();
+    	ToolLibraryItem toolCatalogItem1 = new ToolLibraryItem();
     	toolCatalogItem1.setUrl("/url0");
     	toolCatalogItem1.setName("toolCatalogItem name0");
     	

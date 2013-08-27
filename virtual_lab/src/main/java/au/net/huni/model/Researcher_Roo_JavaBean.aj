@@ -7,7 +7,7 @@ import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Project;
 import au.net.huni.model.Researcher;
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import au.net.huni.model.UserRole;
 import java.util.Calendar;
 import java.util.Set;
@@ -86,19 +86,19 @@ privileged aspect Researcher_Roo_JavaBean {
         this.creationDate = creationDate;
     }
     
-    public ToolCatalogItem Researcher.getDefaultTool() {
+    public ToolLibraryItem Researcher.getDefaultTool() {
         return this.defaultTool;
     }
     
-    public void Researcher.setDefaultTool(ToolCatalogItem defaultTool) {
+    public void Researcher.setDefaultTool(ToolLibraryItem defaultTool) {
         this.defaultTool = defaultTool;
     }
     
-    public Set<ToolCatalogItem> Researcher.getToolkit() {
+    public Set<ToolLibraryItem> Researcher.getToolkit() {
         return this.toolkit;
     }
     
-    public void Researcher.setToolkit(Set<ToolCatalogItem> toolkit) {
+    public void Researcher.setToolkit(Set<ToolLibraryItem> toolkit) {
         this.toolkit = toolkit;
     }
     

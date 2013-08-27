@@ -3,73 +3,73 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect ToolCatalogItem_Roo_Jpa_ActiveRecord {
+privileged aspect ToolLibraryItem_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager ToolCatalogItem.entityManager;
+    transient EntityManager ToolLibraryItem.entityManager;
     
-    public static final EntityManager ToolCatalogItem.entityManager() {
-        EntityManager em = new ToolCatalogItem().entityManager;
+    public static final EntityManager ToolLibraryItem.entityManager() {
+        EntityManager em = new ToolLibraryItem().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long ToolCatalogItem.countToolCatalogItems() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM ToolCatalogItem o", Long.class).getSingleResult();
+    public static long ToolLibraryItem.countToolLibraryItems() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM ToolLibraryItem o", Long.class).getSingleResult();
     }
     
-    public static List<ToolCatalogItem> ToolCatalogItem.findAllToolCatalogItems() {
-        return entityManager().createQuery("SELECT o FROM ToolCatalogItem o", ToolCatalogItem.class).getResultList();
+    public static List<ToolLibraryItem> ToolLibraryItem.findAllToolLibraryItems() {
+        return entityManager().createQuery("SELECT o FROM ToolLibraryItem o", ToolLibraryItem.class).getResultList();
     }
     
-    public static ToolCatalogItem ToolCatalogItem.findToolCatalogItem(Long id) {
+    public static ToolLibraryItem ToolLibraryItem.findToolLibraryItem(Long id) {
         if (id == null) return null;
-        return entityManager().find(ToolCatalogItem.class, id);
+        return entityManager().find(ToolLibraryItem.class, id);
     }
     
-    public static List<ToolCatalogItem> ToolCatalogItem.findToolCatalogItemEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ToolCatalogItem o", ToolCatalogItem.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<ToolLibraryItem> ToolLibraryItem.findToolLibraryItemEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM ToolLibraryItem o", ToolLibraryItem.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void ToolCatalogItem.persist() {
+    public void ToolLibraryItem.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void ToolCatalogItem.remove() {
+    public void ToolLibraryItem.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            ToolCatalogItem attached = ToolCatalogItem.findToolCatalogItem(this.id);
+            ToolLibraryItem attached = ToolLibraryItem.findToolLibraryItem(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void ToolCatalogItem.flush() {
+    public void ToolLibraryItem.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void ToolCatalogItem.clear() {
+    public void ToolLibraryItem.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public ToolCatalogItem ToolCatalogItem.merge() {
+    public ToolLibraryItem ToolLibraryItem.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        ToolCatalogItem merged = this.entityManager.merge(this);
+        ToolLibraryItem merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }

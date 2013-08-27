@@ -8,6 +8,14 @@ import au.net.huni.model.ToolParameter;
 
 privileged aspect ToolParameter_Roo_JavaBean {
     
+    public HistoryItem ToolParameter.getOwner() {
+        return this.owner;
+    }
+    
+    public void ToolParameter.setOwner(HistoryItem owner) {
+        this.owner = owner;
+    }
+    
     public String ToolParameter.getName() {
         return this.name;
     }
@@ -30,14 +38,6 @@ privileged aspect ToolParameter_Roo_JavaBean {
     
     public void ToolParameter.setDisplayOrder(int displayOrder) {
         this.displayOrder = displayOrder;
-    }
-    
-    public HistoryItem ToolParameter.getOwner() {
-        return this.owner;
-    }
-    
-    public void ToolParameter.setOwner(HistoryItem owner) {
-        this.owner = owner;
     }
     
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_net_huni_model_ToolLibraryItem" items="${toollibraryitems}" z="jZk4op6MC5pW7o+vxEStGVX81mY=">
+        <table:table data="${toollibraryitems}" id="l_au_net_huni_model_ToolLibraryItem" path="/console/toollibraryitems" z="Ut8EM1dXAY2vGvaDXw4X+j+1h14=">
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_name" property="name" z="ngkFo6A7eu2btMwITJI2B4WiQZ4="/>
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_description" property="description" z="rRHTKr7Q9KIgestOiojLtPU3uxs="/>
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_url" property="url" z="v8QE667lzYvXCL5CszoyXoHuT5w="/>
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_categories" property="categories" z="H4gMRTmHWJuPK0NEV+ZVb7CFZXs="/>
+        </table:table>
+    </page:list>
+</div>

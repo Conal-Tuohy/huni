@@ -26,7 +26,7 @@ import org.springframework.web.util.WebUtils;
 import au.net.huni.model.HistoryItem;
 import au.net.huni.model.Institution;
 import au.net.huni.model.Researcher;
-import au.net.huni.model.ToolCatalogItem;
+import au.net.huni.model.ToolLibraryItem;
 import au.net.huni.model.UserRole;
 
 //Access by default is restricted to the ADMIN role within the console webapp.
@@ -135,7 +135,7 @@ public class ResearcherController {
         uiModel.addAttribute("institutions", Institution.findAllInstitutions());
         uiModel.addAttribute("historyitems", HistoryItem.findAllHistoryItems());
         uiModel.addAttribute("userroles", UserRole.findAllUserRoles());
-        uiModel.addAttribute("toolcatalogitems", ToolCatalogItem.findAllToolCatalogItems());
+        uiModel.addAttribute("toolcatalogitems", ToolLibraryItem.findAllToolLibraryItems());
     }
 
     void addDateTimeFormatPatterns(Model uiModel) {
