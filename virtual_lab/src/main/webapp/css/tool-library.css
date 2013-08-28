@@ -1,0 +1,21 @@
+
+.tool-listing {
+  list-style: none;
+}
+
+.tool-listing-thumb {
+  padding: 0.5em;
+  width: 100px;
+  vertical-align: text-top;
+}
+
+.tool-listing-item {
+	/* Nothing yet! */
+}
+
+.tool-listing li {
+  clear: both;
+  height: 100px;
+  padding: 5px;
+  margin: 5px;
+}

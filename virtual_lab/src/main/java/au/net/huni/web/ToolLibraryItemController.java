@@ -5,6 +5,9 @@ import au.net.huni.model.ToolCategory;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +27,14 @@ import org.springframework.web.util.WebUtils;
 public class ToolLibraryItemController {
 
 	@RequestMapping(value = "/console/toollibraryitems", method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid ToolLibraryItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String create(@Valid ToolLibraryItem toolLibraryItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, toolCatalogItem);
+            populateEditForm(uiModel, toolLibraryItem);
             return "toollibraryitems/create";
         }
         uiModel.asMap().clear();
-        toolCatalogItem.persist();
-        return "redirect:/console/toollibraryitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
+        toolLibraryItem.persist();
+        return "redirect:/console/toollibraryitems/" + encodeUrlPathSegment(toolLibraryItem.getId().toString(), httpServletRequest);
     }
 
 	@RequestMapping(value = "/console/toollibraryitems", params = "form", produces = "text/html")
@@ -42,6 +45,7 @@ public class ToolLibraryItemController {
 
 	@RequestMapping(value = "/console/toollibraryitems/{id}", produces = "text/html")
     public String show(@PathVariable("id") Long id, Model uiModel) {
+        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("toollibraryitem", ToolLibraryItem.findToolLibraryItem(id));
         uiModel.addAttribute("itemId", id);
         return "toollibraryitems/show";
@@ -58,18 +62,19 @@ public class ToolLibraryItemController {
         } else {
             uiModel.addAttribute("toollibraryitems", ToolLibraryItem.findAllToolLibraryItems());
         }
+        addDateTimeFormatPatterns(uiModel);
         return "toollibraryitems/list";
     }
 
 	@RequestMapping(value = "/console/toollibraryitems", method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid ToolLibraryItem toolCatalogItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String update(@Valid ToolLibraryItem toolLibraryItem, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, toolCatalogItem);
+            populateEditForm(uiModel, toolLibraryItem);
             return "toollibraryitems/update";
         }
         uiModel.asMap().clear();
-        toolCatalogItem.merge();
-        return "redirect:/console/toollibraryitems/" + encodeUrlPathSegment(toolCatalogItem.getId().toString(), httpServletRequest);
+        toolLibraryItem.merge();
+        return "redirect:/console/toollibraryitems/" + encodeUrlPathSegment(toolLibraryItem.getId().toString(), httpServletRequest);
     }
 
 	@RequestMapping(value = "/console/toollibraryitems/{id}", params = "form", produces = "text/html")
@@ -78,18 +83,21 @@ public class ToolLibraryItemController {
         return "toollibraryitems/update";
     }
 
+	// TODO RR: prevent deletion of tools.
+	// A tool may be in a researcher's toolkit.
 	@RequestMapping(value = "/console/toollibraryitems/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        ToolLibraryItem toolCatalogItem = ToolLibraryItem.findToolLibraryItem(id);
-        toolCatalogItem.remove();
+        ToolLibraryItem toolLibraryItem = ToolLibraryItem.findToolLibraryItem(id);
+        toolLibraryItem.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
         return "redirect:/console/toollibraryitems";
     }
 
-	void populateEditForm(Model uiModel, ToolLibraryItem toolCatalogItem) {
-        uiModel.addAttribute("toolCatalogItem", toolCatalogItem);
+	void populateEditForm(Model uiModel, ToolLibraryItem toolLibraryItem) {
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("toolLibraryItem", toolLibraryItem);
         uiModel.addAttribute("toolcategorys", ToolCategory.findAllToolCategorys());
     }
 
@@ -102,5 +110,9 @@ public class ToolLibraryItemController {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
         } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+
+	void addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("toolLibraryItem_creationdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
 }

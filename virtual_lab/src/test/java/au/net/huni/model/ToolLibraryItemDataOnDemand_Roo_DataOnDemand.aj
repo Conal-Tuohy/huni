@@ -7,6 +7,8 @@ import au.net.huni.model.ToolLibraryItem;
 import au.net.huni.model.ToolLibraryItemDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -24,10 +26,23 @@ privileged aspect ToolLibraryItemDataOnDemand_Roo_DataOnDemand {
     
     public ToolLibraryItem ToolLibraryItemDataOnDemand.getNewTransientToolLibraryItem(int index) {
         ToolLibraryItem obj = new ToolLibraryItem();
+        setAuthor(obj, index);
+        setCreationDate(obj, index);
         setDescription(obj, index);
         setName(obj, index);
+        setSoftwareVersion(obj, index);
         setUrl(obj, index);
         return obj;
+    }
+    
+    public void ToolLibraryItemDataOnDemand.setAuthor(ToolLibraryItem obj, int index) {
+        String author = "author_" + index;
+        obj.setAuthor(author);
+    }
+    
+    public void ToolLibraryItemDataOnDemand.setCreationDate(ToolLibraryItem obj, int index) {
+        Calendar creationDate = Calendar.getInstance();
+        obj.setCreationDate(creationDate);
     }
     
     public void ToolLibraryItemDataOnDemand.setDescription(ToolLibraryItem obj, int index) {
@@ -41,6 +56,11 @@ privileged aspect ToolLibraryItemDataOnDemand_Roo_DataOnDemand {
             name = new Random().nextInt(10) + name.substring(1, 64);
         }
         obj.setName(name);
+    }
+    
+    public void ToolLibraryItemDataOnDemand.setSoftwareVersion(ToolLibraryItem obj, int index) {
+        String softwareVersion = "softwareVersion_" + index;
+        obj.setSoftwareVersion(softwareVersion);
     }
     
     public ToolLibraryItem ToolLibraryItemDataOnDemand.getSpecificToolLibraryItem(int index) {

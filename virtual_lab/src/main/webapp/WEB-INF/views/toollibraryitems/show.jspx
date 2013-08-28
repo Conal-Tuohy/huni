@@ -4,8 +4,11 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_au_net_huni_model_ToolLibraryItem" object="${toollibraryitem}" path="/console/toollibraryitems" z="user-managed">
         <field:display field="name" id="s_au_net_huni_model_ToolLibraryItem_name" object="${toollibraryitem}" z="j8fLHqwA0Do0X7iR2MopHoU3wxs="/>
+        <field:display calendar="true" dateTimePattern="${toolLibraryItem_creationdate_date_format}" field="creationDate" id="s_au_net_huni_model_ToolLibraryItem_creationDate" object="${toollibraryitem}" z="VcXXPsabR+aHazKaAVoHoitXrEI="/>
+        <field:display field="author" id="s_au_net_huni_model_ToolLibraryItem_author" object="${toollibraryitem}" z="LTvXoifvUVZENaJCT3pWqAjunHM="/>
         <field:display field="description" id="s_au_net_huni_model_ToolLibraryItem_description" object="${toollibraryitem}" z="SLV6oJWyYCsxXaamzLTgh5Gj3l8="/>
         <field:display field="url" id="s_au_net_huni_model_ToolLibraryItem_url" object="${toollibraryitem}" z="c7ExPvgzdNcaxmWib0irROk0ANw="/>
         <field:display field="categories" id="s_au_net_huni_model_ToolLibraryItem_categories" object="${toollibraryitem}" z="CvxKPJhbWeO2KxnDpF3V+G7AzMY="/>
+        <field:display field="softwareVersion" id="s_au_net_huni_model_ToolLibraryItem_softwareVersion" object="${toollibraryitem}" z="I1/Z3IgGEryWULHYgyE7lb55wKM="/>
     </page:show>
 </div>

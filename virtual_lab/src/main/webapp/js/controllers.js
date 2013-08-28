@@ -166,10 +166,12 @@ function HistoryCtrl($scope, $routeParams, History) {
 
 //------------------------------------
 
-function ToolCatalogCtrl($scope, $routeParams, ToolCatalog) {
+function ToolLibraryCtrl($scope, $routeParams, ToolLibrary) {
+	$scope.toolLibrary = ToolLibrary.list();
+	$scope.orderProp = 'age';
 }
 
-//ToolCatalogCtrl.$inject = ['$scope', '$routeParams', 'ToolCatalog'];
+//ToolLibraryCtrl.$inject = ['$scope', '$routeParams', 'ToolLibrary'];
 
 //------------------------------------
 

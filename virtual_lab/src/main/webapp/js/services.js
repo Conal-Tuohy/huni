@@ -41,11 +41,6 @@ angular.module('workspaceServices', ['ngResource']).
   return null;
 });
 
-angular.module('datasetdirectoryServices', ['ngResource']).
-    factory('DatasetDirectory', function($resource){
-  return null;
-});
-
 angular.module('projectdirectoryServices', ['ngResource']).
     factory('ProjectDirectory', function($resource){
   	  return $resource(baseServiceURL + '/projects/directory.json', {}, {
@@ -60,9 +55,12 @@ angular.module('historyServices', ['ngResource', 'credentialsServices']).
 		  });
 });
 
-angular.module('toolcatalogServices', ['ngResource']).
-    factory('ToolCatalog', function($resource){
-  return null;
+angular.module('toolLibraryServices', ['ngResource']).
+factory('ToolLibrary', function($resource){
+	return $resource(baseServiceURL + '/toolLibrary', {}, {
+		list: {method:'GET', params:{}, isArray:true},
+		provider: {method:'GET'}
+	});
 });
 
 angular.module('toolkitServices', ['ngResource']).
@@ -79,16 +77,6 @@ angular.module('toolmanagerServices', ['ngResource']).
 
 angular.module('usermanagerServices', ['ngResource']).
     factory('UserManager', function($resource){
-  return null;
-});
-
-angular.module('profileditorServices', ['ngResource']).
-    factory('ProfileEditor', function($resource){
-  return null;
-});
-
-angular.module('registrationServices', ['ngResource']).
-    factory('Registration', function($resource){
   return null;
 });
 

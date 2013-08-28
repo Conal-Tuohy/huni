@@ -14,6 +14,7 @@
 		<link href="./css/simple-search.css" rel="stylesheet">
 		<link href="./css/deep-search.css" rel="stylesheet">
 		<link href="./css/data-provider.css" rel="stylesheet">
+		<link href="./css/tool-library.css" rel="stylesheet">	
 		<link href="lib/select2/select2.css" rel="stylesheet" >		
 		<style type="text/css">
 			body {
@@ -110,16 +111,25 @@
 									<li><a ng-href="#/contact">Contact</a></li>
 								</ul></li>
 							<li><a ng-href="#/advanced-search">Browse/Search</a></li>
-							<li><a ng-href="#/workspace">Workspace</a></li>
+							
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">My HuNI<b
+									class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a ng-href="#/workspace">Researcher Workspace</a></li>
+									<li><a ng-href="#/tool-library">Tool Library</a></li>
+								</ul>
+							</li>
+							
 							<li class="dropdown"><a class="dropdown-toggle"
 								data-toggle="dropdown" href="#">Humanities Data<b
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a ng-href="#/huni-aggregate">The HuNI Aggregate</a></li>
-									<li><a ng-href="#/data-providers">HuNI Data
-											Providers</a></li>
+									<li><a ng-href="#/data-providers">HuNI Data Providers</a></li>
 									<li><a ng-href="#/humanities-datasources">Internet Sources</a></li>
-								</ul></li>
+								</ul>
+							</li>
 							<li><a ng-href="#/help">Tutorials/Help</a></li>
 							<li class="dropdown"><a class="dropdown-toggle"
 								data-toggle="dropdown" href="#">Demo<b class="caret"></b></a>

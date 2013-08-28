@@ -3,8 +3,8 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.ToolLibraryItemDataOnDemand;
 import au.net.huni.model.ToolLibraryItem;
+import au.net.huni.model.ToolLibraryItemDataOnDemand;
 import au.net.huni.model.ToolLibraryItemIntegrationTest;
 import java.util.List;
 import org.junit.Assert;

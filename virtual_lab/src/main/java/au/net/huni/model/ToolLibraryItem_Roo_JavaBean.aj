@@ -5,6 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.ToolCategory;
 import au.net.huni.model.ToolLibraryItem;
+import java.util.Calendar;
 import java.util.Set;
 
 privileged aspect ToolLibraryItem_Roo_JavaBean {
@@ -15,6 +16,30 @@ privileged aspect ToolLibraryItem_Roo_JavaBean {
     
     public void ToolLibraryItem.setName(String name) {
         this.name = name;
+    }
+    
+    public Calendar ToolLibraryItem.getCreationDate() {
+        return this.creationDate;
+    }
+    
+    public void ToolLibraryItem.setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
+    
+    public String ToolLibraryItem.getSoftwareVersion() {
+        return this.softwareVersion;
+    }
+    
+    public void ToolLibraryItem.setSoftwareVersion(String softwareVersion) {
+        this.softwareVersion = softwareVersion;
+    }
+    
+    public String ToolLibraryItem.getAuthor() {
+        return this.author;
+    }
+    
+    public void ToolLibraryItem.setAuthor(String author) {
+        this.author = author;
     }
     
     public String ToolLibraryItem.getDescription() {
