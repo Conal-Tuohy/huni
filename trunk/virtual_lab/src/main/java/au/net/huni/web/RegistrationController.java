@@ -143,8 +143,8 @@ public class RegistrationController {
     }
 
     void populateEditForm(Model uiModel, Registration registration) {
-        uiModel.addAttribute("registration", registration);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("registration", registration);
         uiModel.addAttribute("institutions", Institution.findAllInstitutions());
         uiModel.addAttribute("registrationstatuses", Arrays.asList(RegistrationStatus.values()));
     }

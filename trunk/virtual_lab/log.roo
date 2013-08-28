@@ -316,3 +316,9 @@ perform package
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-26 22:06:56
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-27 15:40:18
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-27 17:14:12
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-28 13:03:55
+focus --class ~.model.ToolLibraryItem
+field date --fieldName creationDate --type Calendar
+field string --fieldName version --notNull 
+field string --fieldName author --notNull 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-28 14:05:39

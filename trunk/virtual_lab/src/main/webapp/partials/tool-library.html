@@ -1,79 +1,36 @@
 <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="age">Newest</option>
+      </select>
+
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="tool-listing">
+        <li ng-repeat="tool in toolLibrary | filter:query | orderBy:orderProp" class="tool-listing-item">
+	        <table>
+	        	<tr>
+	        		<td rowspan="2" class="tool-listing-thumb"><img ng-src="{{tool.imageUrl}}"></td>
+	        		<th style="text-align: left; ">{{tool.name}}<th>
+	        	</tr>
+	        	<tr>
+	        		<td style="text-align: left; "><p style="line-height: 1.5; height: 70px; overflow: auto;" >{{tool.description}}</p></td>
+	        	</tr>
+	        </table>
+        </li>
+      </ul>
+
+    </div>
+  </div>
 	<div class="row-fluid">
-		<div class="span4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn" href="#">View details &raquo;</a>
-			</p>
-		</div>
-		<!--/span-->
-		<div class="span4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn" href="#">View details &raquo;</a>
-			</p>
-		</div>
-		<!--/span-->
-		<div class="span4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn" href="#">View details &raquo;</a>
-			</p>
-		</div>
-		<!--/span-->
-	</div>
-	<!--/row-->
-	<div class="row-fluid">
-		<div class="span4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn" href="#">View details &raquo;</a>
-			</p>
-		</div>
-		<!--/span-->
-		<div class="span4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn" href="#">View details &raquo;</a>
-			</p>
-		</div>
-		<!--/span-->
-		<div class="span4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn" href="#">View details &raquo;</a>
-			</p>
-		</div>
-		<!--/span-->
-	</div>
-	<!--/row-->
-	<div class="row-fluid">
-		<!-- Button to trigger feedback modal - feedback-modal.html -->
-		<a href="#feedbackModal" role="button" data-toggle="modal"
-			class="btn btn-info">Feedback</a>
+		<div ng-include="'partials/feedback-button.html'"></div>
 	</div>
 </div>
