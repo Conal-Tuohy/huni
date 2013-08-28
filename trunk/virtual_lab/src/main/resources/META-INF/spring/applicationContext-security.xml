@@ -24,10 +24,12 @@
 		<intercept-url pattern="/rest/users/profile**" access="isAuthenticated()" />  <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/historyitems/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/toolparameters/**" access="isAuthenticated()" />
-		<intercept-url pattern="/rest/feedbackitems/**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/toollibraryitems/manage" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/toollibraryitems/**" access="permitAll" />
 		<intercept-url pattern="/rest/feedbackitems/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/registrations/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/institutions/**" access="permitAll" /> <!-- Need method level access control for finer control -->
+		<intercept-url pattern="/rest/toolcategorys/**" access="permitAll" />
  		<http-basic />
 	</http>
 
