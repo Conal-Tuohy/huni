@@ -57,7 +57,7 @@ angular.module('historyServices', ['ngResource', 'credentialsServices']).
 
 angular.module('toolLibraryServices', ['ngResource']).
 factory('ToolLibrary', function($resource){
-	return $resource(baseServiceURL + '/toolLibrary', {}, {
+	return $resource(baseServiceURL + '/rest/toollibraryitems', {}, {
 		list: {method:'GET', params:{}, isArray:true},
 		provider: {method:'GET'}
 	});
