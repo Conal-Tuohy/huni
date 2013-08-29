@@ -326,3 +326,7 @@ field string --fieldName author --notNull
 web mvc json add --jsonObject ~.model.ToolLibraryItem --class ~.web.ToolLibraryItemController
 web mvc json add --jsonObject ~.model.ToolLibraryItem --class ~.web.ToolLibraryItemController
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-28 17:02:14
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-29 14:53:32
+focus --class ~.model.ToolLibraryItem
+field string --fieldName thumbnailUrl --notNull
+// [failed] field string --fieldName thumbnailUrl --notNull

@@ -5,10 +5,11 @@
     <form:update id="fu_au_net_huni_model_ToolLibraryItem" modelAttribute="toolLibraryItem" path="/console/toollibraryitems" versionField="Version" z="user-managed">
         <field:input field="name" id="c_au_net_huni_model_ToolLibraryItem_name" required="true" type="text" z="user-managed"/>
         <field:datetime dateTimePattern="${toolLibraryItem_creationdate_date_format}" field="creationDate" id="c_au_net_huni_model_ToolLibraryItem_creationDate" required="true" z="Lw78dmtCS4wFD3YMPl8Mbv/j7fs="/>
+        <field:input field="softwareVersion" id="c_au_net_huni_model_ToolLibraryItem_softwareVersion" required="true" z="7vdZrcNUbir9e0RgB4F3sP+PYYE="/>
         <field:input field="author" id="c_au_net_huni_model_ToolLibraryItem_author" required="true" z="UVV7bnFjY/Np0iL4wIP1LMvQqTo="/>
         <field:textarea field="description" id="c_au_net_huni_model_ToolLibraryItem_description" z="user-managed"/>
-        <field:input field="url" id="c_au_net_huni_model_ToolLibraryItem_url" required="true" type="text" z="user-managed"/>
+        <field:input field="thumbnailFileName" id="c_au_net_huni_model_ToolLibraryItem_thumbnailFileName" required="true" z="5HZgqHwiiDLzgF2IqWlHsQsbYTM="/>
+        <field:input field="url" id="c_au_net_huni_model_ToolLibraryItem_url" required="true" type="text" z="user-managed" render="false"/>
         <field:select field="categories" id="c_au_net_huni_model_ToolLibraryItem_categories" itemValue="id" items="${toolcategorys}" multiple="true" path="/console/toolcategorys" required="true" z="user-managed"/>
-        <field:input field="softwareVersion" id="c_au_net_huni_model_ToolLibraryItem_softwareVersion" required="true" z="7vdZrcNUbir9e0RgB4F3sP+PYYE="/>
     </form:update>
 </div>

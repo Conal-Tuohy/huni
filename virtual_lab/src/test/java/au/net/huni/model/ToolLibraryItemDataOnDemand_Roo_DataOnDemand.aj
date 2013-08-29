@@ -31,6 +31,7 @@ privileged aspect ToolLibraryItemDataOnDemand_Roo_DataOnDemand {
         setDescription(obj, index);
         setName(obj, index);
         setSoftwareVersion(obj, index);
+        setThumbnailFileName(obj, index);
         setUrl(obj, index);
         return obj;
     }
@@ -61,6 +62,11 @@ privileged aspect ToolLibraryItemDataOnDemand_Roo_DataOnDemand {
     public void ToolLibraryItemDataOnDemand.setSoftwareVersion(ToolLibraryItem obj, int index) {
         String softwareVersion = "softwareVersion_" + index;
         obj.setSoftwareVersion(softwareVersion);
+    }
+    
+    public void ToolLibraryItemDataOnDemand.setThumbnailFileName(ToolLibraryItem obj, int index) {
+        String thumbnailFileName = "default-thumbnail.png_" + index;
+        obj.setThumbnailFileName(thumbnailFileName);
     }
     
     public ToolLibraryItem ToolLibraryItemDataOnDemand.getSpecificToolLibraryItem(int index) {

@@ -1,4 +1,4 @@
-INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWARE_VERSION, AUTHOR, DESCRIPTION, URL) VALUES
+INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWARE_VERSION, AUTHOR, DESCRIPTION, URL, THUMBNAIL_FILE_NAME) VALUES
 (
 	1,
 	0,
@@ -7,7 +7,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Create a new project in the workspace by a step-by-step process. ',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/project-wizard.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/project-wizard.xml',
+	'project_wizard.png'
  ),
  (
 	2,
@@ -17,7 +18,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Create an entity, fill in its fields and save it in the selected project. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-create-entity.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-create-entity.xml',
+	'create-entity.png'
  ),
  (
  	3,
@@ -27,7 +29,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Select an an entity in the selected project, change its fields and save it. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-edit-entity.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/dataentry-edit-entity.xml',
+	'edit-entity.png'
  ),
  (
  	4,
@@ -37,7 +40,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Edit data on the Heurist web site.',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/dataset-heurist.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/dataset-heurist.xml',
+     'heurist.png'
   ),
  (
  	5,
@@ -47,7 +51,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Search free data on the Austlit web site. ',
-     'http://www.austlit.edu.au/browse'
+     'http://www.austlit.edu.au/browse',
+     'default-thumbnail.png'
   ),
  (
  	6,
@@ -57,7 +62,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Create a CSV file on the desktop and derive its contents from the selected project. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/export-csv.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/export-csv.xml',
+	'export-csv.png'
  ),
  (
 	7,
@@ -67,7 +73,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Find people specified people in the friend-of-a-friend database and import them into the selected project. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/import-people-from-foaf.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/import-people-from-foaf.xml',
+     'import-people.png'
   ),
  (
 	8,
@@ -77,7 +84,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Select a CSV file on the desktop and import it into the selected project. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/import-csv.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/import-csv.xml',
+	'import-csv.png'
  ),
  (
 	9,
@@ -87,7 +95,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Count the number of people in the triple store. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/report-on-people.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/report-on-people.xml',
+     'report-on-people.png'
   ),
  (
 	10,
@@ -97,7 +106,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Use Lucene to return a list of entities containing specific text. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/search-fulltext.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/search-fulltext.xml',
+	'search-full-text.png'
  ),
  (
  	11,
@@ -107,7 +117,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Use SPARQL commands to find entities with specific properties or relationships. ',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/search-sparql.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/search-sparql.xml',
+	'search-sparql.png'
  ),
  (
  	12,
@@ -117,7 +128,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Find entities with a date within a certain data range',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/search-temporal.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/search-temporal.xml',
+	'search-temporal.png'
  ),
  (
  	13,
@@ -127,7 +139,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Find entities with a location within a certain location range',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/search-gis.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/search-gis.xml',
+	'search-gis.png'
  ),
  (
  	14,
@@ -137,7 +150,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
      'Find people related to a specified person',
-     '/virtual_lab/toolLibrary/opensocial-gadgets/search-relationship.xml'
+     '/virtual_lab/toolLibrary/opensocial-gadgets/search-relationship.xml',
+	'search-relationships.png'
  ),
 (
  	15,
@@ -147,7 +161,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Use entity GIS coordinates to plot the location of the entity in Google Maps. ',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/visualise-map.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/visualise-map.xml',
+	'visual-map-tool.png'
  ),
  (
  	16,
@@ -157,7 +172,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Use entity dates to plot the lifetime of the entity. ',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/visualise-timeline.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/visualise-timeline.xml',
+	'visualise-timeline.png'
  ),
  (
 	17,
@@ -167,7 +183,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Display an RDF graph using its network representation.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/visualise-network.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/visualise-network.xml',
+	'visualise-network.png'
  ),
  (
 	18,
@@ -177,7 +194,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Manage SKOS vocabularies.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-vocabulary-manager.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-vocabulary-manager.xml',
+	'concept-scheme-editor.png'
  ),
  (
  	19,
@@ -187,7 +205,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Bulk analysis of XML.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-gadget.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/corbicula-gadget.xml',
+	'gadget.png'
  ),
  (
 	20,
@@ -197,7 +216,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'OWL Mudmap ontology.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology.xml',
+	'web-protege.png'
  ),
  (
 	21,
@@ -207,7 +227,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'HuNI Ontology data types.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology-types.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-ontology-types.xml',
+	'huni-linked-data.png'
  ),
  (
 	22,
@@ -217,7 +238,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Search the HuNI aggregate by occupation.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-search-by-occupation.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-search-by-occupation.xml',
+	'sparql-occupation-search.png'
  ),
  (
 	23,
@@ -227,7 +249,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Search the HuNI aggregate using an arbitrary SPARQL query.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-sparql-query.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/huni-sparql-query.xml',
+	'search-sparql.png'
  ),
  (
 	24,
@@ -237,7 +260,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Send and request files.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstor.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstor.xml',
+	'aarnet-cloudstor.png'
  ),
  (
 	25,
@@ -247,7 +271,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Upload, download, organise files and collaborate.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstorplus.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/storage-cloudstorplus.xml',
+	'aarnet-cloudstor+.png'
  ),
  (
 	26,
@@ -257,7 +282,8 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Test RESTful web services against the HunI VL database.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/rest-test.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/rest-test.xml',
+	'restful-web-services-test.png'
  ),
  (
 	27,
@@ -267,5 +293,6 @@ INSERT INTO "APP"."TOOL_LIBRARY_ITEM" (ID, VERSION, NAME, CREATION_DATE, SOFTWAR
 	'1.0.1',
 	'Joe Bloggs',
     'Explore the HuNI aggregate using facets.',
-    '/virtual_lab/toolLibrary/opensocial-gadgets/search_faceted_browse.xml'
+    '/virtual_lab/toolLibrary/opensocial-gadgets/search_faceted_browse.xml',
+	'search-semantic-faceted.png'
  )     

@@ -50,6 +50,14 @@ privileged aspect ToolLibraryItem_Roo_JavaBean {
         this.description = description;
     }
     
+    public String ToolLibraryItem.getThumbnailFileName() {
+        return this.thumbnailFileName;
+    }
+    
+    public void ToolLibraryItem.setThumbnailFileName(String thumbnailFileName) {
+        this.thumbnailFileName = thumbnailFileName;
+    }
+    
     public String ToolLibraryItem.getUrl() {
         return this.url;
     }

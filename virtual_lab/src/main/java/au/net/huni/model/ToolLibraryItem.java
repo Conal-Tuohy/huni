@@ -1,7 +1,12 @@
 package au.net.huni.model;
 
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
@@ -17,11 +22,15 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
 @RooJson
 public class ToolLibraryItem {
+	
+	private final static String BASE_THUMBNAIL_URL = "/virtual_lab/img/tool-library/";
 
     @NotNull
     @Column(unique = true)
@@ -42,11 +51,39 @@ public class ToolLibraryItem {
     private String description = "";
 
     @NotNull
+    private String thumbnailFileName = "default-thumbnail.png";
+
+    @NotNull
     private String url = "/";
 
     @NotNull
     @ManyToMany
     private Set<ToolCategory> categories = new HashSet<ToolCategory>();
+
+
+	public String getThumbnailUrl() {
+        return BASE_THUMBNAIL_URL + this.thumbnailFileName;
+    }
+	
+	public void setThumbnailUrl(String thumbnailUrl) {
+		throw new NotImplementedException();
+    }
+
+	public String toJson() {
+        return new JSONSerializer().exclude("*.class").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
+    }
+
+	public static ToolLibraryItem fromJsonToToolLibraryItem(String json) {
+        return new JSONDeserializer<ToolLibraryItem>().use(null, ToolLibraryItem.class).deserialize(json);
+    }
+
+	public static String toJsonArray(Collection<ToolLibraryItem> collection) {
+        return new JSONSerializer().exclude("*.class").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(collection);
+    }
+
+	public static Collection<ToolLibraryItem> fromJsonArrayToToolLibraryItems(String json) {
+        return new JSONDeserializer<List<ToolLibraryItem>>().use(null, ArrayList.class).use("values", ToolLibraryItem.class).deserialize(json);
+    }
 
     public String toString() {
         return this.name;
