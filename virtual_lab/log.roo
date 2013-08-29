@@ -330,3 +330,10 @@ web mvc json add --jsonObject ~.model.ToolLibraryItem --class ~.web.ToolLibraryI
 focus --class ~.model.ToolLibraryItem
 field string --fieldName thumbnailUrl --notNull
 // [failed] field string --fieldName thumbnailUrl --notNull
+perform package
+perform package
+perform package
+perform package
+perform clean
+perform package
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-29 21:17:43

@@ -3,11 +3,6 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.HistoryItem;
-import au.net.huni.model.HistoryItemDataOnDemand;
-import au.net.huni.model.ResearcherDataOnDemand;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 
 privileged aspect HistoryItemDataOnDemand_Roo_DataOnDemand {
