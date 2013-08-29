@@ -7,10 +7,12 @@
             <table:column id="c_au_net_huni_model_ToolLibraryItem_name" property="name" z="ngkFo6A7eu2btMwITJI2B4WiQZ4="/>
             <table:column calendar="true" dateTimePattern="${toolLibraryItem_creationdate_date_format}" id="c_au_net_huni_model_ToolLibraryItem_creationDate" property="creationDate" z="AZYdQCH3ldSVgHhc6nhRKCjE5EY="/>
             <table:column id="c_au_net_huni_model_ToolLibraryItem_author" property="author" render="false" z="user-managed"/>
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_softwareVersion" property="softwareVersion" z="UlnG8VhwOO4oNQ7SRodpSH895qA="/>
             <table:column id="c_au_net_huni_model_ToolLibraryItem_description" property="description" z="rRHTKr7Q9KIgestOiojLtPU3uxs="/>
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_thumbnailFileName" property="thumbnailFileName" z="KLwnEi9V9y6/LGGYor2+gSk0BYE=" render="false"/>
+            <table:column id="c_au_net_huni_model_ToolLibraryItem_thumbnailUrl" property="thumbnailUrl" render="false" z="user-managed"/>
             <table:column id="c_au_net_huni_model_ToolLibraryItem_url" property="url" render="false" z="user-managed"/>
             <table:column id="c_au_net_huni_model_ToolLibraryItem_categories" property="categories" render="false" z="user-managed"/>
-            <table:column id="c_au_net_huni_model_ToolLibraryItem_softwareVersion" property="softwareVersion" z="UlnG8VhwOO4oNQ7SRodpSH895qA="/>
         </table:table>
     </page:list>
 </div>
