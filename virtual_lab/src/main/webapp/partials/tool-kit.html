@@ -5,7 +5,7 @@
 		    <li ng-repeat="category in toolKit" class="nav-header">{{category.name}}
 		    	<ul>
 			    	<li ng-repeat="tool in category.tools" >
-			          <a href="{{tool.url}}" ng-click="$parent.selectTool($event);">{{tool.name}}</a>
+			          <a href="{{tool.url}}" ng-click="selectTool($event);">{{tool.name}}</a>
 			       </li>
 		    	</ul>
 		    </li>

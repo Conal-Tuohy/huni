@@ -114,23 +114,22 @@ function ToolKitCtrl($scope, $routeParams, ToolKit) {
 		self.scope.toolKit = toolKit;
 	});
 
+	this.scope.selectTool = function(event) {
+		var target = event.target;
+		var url = target.href;
+		var gadgetURL = url.replace('index-3column.html#/', '');
+		// Prevent navigation due to link click.
+		event.stopPropagation();
+		event.preventDefault();
 
-//	this.scope.selectTool = function(event) {
-//		var target = event.target;
-//		var url = target.href;
-//		var gadgetURL = url.replace('index-3column.html#/', '');
-//		// Prevent navigation due to link click.
-//		event.stopPropagation();
-//		event.preventDefault();
-//
-//		var siteId = 'gadgetSite';
-//		var gadgetElement = document.getElementById(siteId);
-//		var renderParms = {};
-//		renderParms[osapi.container.RenderParam.WIDTH] = '100%';
-//	    renderParms['view'] = 'canvas';
-//		var gadgetSite = CommonContainer.newGadgetSite(gadgetElement);
-//		CommonContainer.navigateGadget(gadgetSite, gadgetURL, {}, renderParms);
-//	};
+		var siteId = 'gadgetSite';
+		var gadgetElement = document.getElementById(siteId);
+		var renderParms = {};
+		renderParms[osapi.container.RenderParam.WIDTH] = '100%';
+	    renderParms['view'] = 'canvas';
+		var gadgetSite = CommonContainer.newGadgetSite(gadgetElement);
+		CommonContainer.navigateGadget(gadgetSite, gadgetURL, {}, renderParms);
+	};
 }
 
 //ToolKitCtrl.$inject = ['$scope', '$routeParams', 'ToolKit'];
