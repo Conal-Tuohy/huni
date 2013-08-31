@@ -545,3 +545,24 @@ footer {
 {
     overflow:visible;
 }
+
+
+.huni-banner
+{
+	background-image: url("../img/huni-banner-13.jpg");
+	/* height: 50px; */
+	color: #4db3d0;
+	padding-left: 1em;
+}
+
+.huni-banner-heading
+{
+	background-color: rgba(70, 177, 225, 0.9);
+	/* background-color: #4db3d0; */
+	width: 100px;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	padding-left: 5px;
+	color: white;
+}

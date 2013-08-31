@@ -1,10 +1,32 @@
-<h3>Toolkit</h3>
+<style type="text/css">
+<!--    
+.tool-kit-category
+{
+	font-size: 16px;
+	margin: 0px;
+	text-align: left;
+    list-style-image: none;
+    color: #AAAAAA;
+}
+
+.tool-kit-name
+{
+	font-size: 12px;
+	margin: 0px;
+	text-align: left;
+    list-style-image: none;
+    line-height: 14px;
+}
+ -->
+</style>
+
+<h4>Toolkit</h4>
 <div ng-controller="ToolKitCtrl">
 	<div class="well" >
-		<ul class="nav nav-list"">
-		    <li ng-repeat="category in toolKit" class="nav-header">{{category.name}}
+		<ul>
+		    <li ng-repeat="category in toolKit" class="tool-kit-category" style="list-style-image: none;">{{category.name}}
 		    	<ul>
-			    	<li ng-repeat="tool in category.tools" >
+			    	<li ng-repeat="tool in category.tools"  class="tool-kit-name" style="list-style-image: none; line-height: 1.25;">
 			          <a href="{{tool.url}}" ng-click="selectTool($event);">{{tool.name}}</a>
 			       </li>
 		    	</ul>

@@ -2,7 +2,6 @@
 
 /* Controllers */
 
-
 function DataProviderListCtrl($scope, DataProvider) {
 	$scope.dataProviders = DataProvider.list();
 	$scope.orderProp = 'age';
@@ -824,6 +823,41 @@ function LoginModalCtrl($scope, dialog, CredentialService, ProfileService, UserS
 
 LoginModalCtrl.$inject = [ '$scope', 'dialog', 'CredentialService', 'ProfileService', 'UserService'];
 //------------------------------------
+
+function CarouselCtrl($scope, DataProvider) {
+	
+	$scope.cycleIndex = 0;
+	
+	$scope.carousel = [];
+	$scope.carousel0 = "";
+	$scope.carousel1 = "";
+	$scope.carousel2 = "";
+	$scope.carousel3 = "";
+	$scope.carousel4 = "";
+	$scope.carousel5 = "";
+	
+	var carouselCount = 6;
+	
+	$scope.dataProviders = DataProvider.list(
+		function(validResponse, status, headers, config) {
+		});
+	
+	$scope.dataProviders = DataProvider.list();
+	
+	
+	window.setInterval(function() {
+			var carousel = [];
+			for (var carouselIndex = 0; carouselIndex < carouselCount; carouselIndex++) {
+				var dataProviderIndex = (carouselIndex + $scope.cycleIndex) % carouselCount;
+				carousel.push($scope.dataProviders[dataProviderIndex].imageUrl);
+			}
+			$scope.cycleIndex++;
+			$scope.carousel = carousel;
+			$scope.$apply();
+		}, 5000);
+}
+
+CarouselCtrl.$inject = [ '$scope', 'DataProvider'];
 
 //==================================================
 
