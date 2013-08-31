@@ -1,28 +1,20 @@
 package au.net.huni.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TimeZone;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.springframework.mock.staticmock.MockStaticEntityMethods;
 
 @RunWith(JUnit4.class)
-@MockStaticEntityMethods
 public class ToolLibraryItemTest {
-
-    @Test
-    public void testMethod() {
-        int expectedCount = 13;
-        ToolLibraryItem.countToolLibraryItems();
-        org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.expectReturn(expectedCount);
-        org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
-        org.junit.Assert.assertEquals(expectedCount, ToolLibraryItem.countToolLibraryItems());
-    }
 
     @Test
     public void testToString() {
@@ -85,5 +77,97 @@ public class ToolLibraryItemTest {
     	assertTrue("JSON thumbnail url is correct", actualJson.contains("\"thumbnailUrl\":\"/virtual_lab/img/tool-library/defult_thumb.png\""));
     	assertTrue("JSON url is correct", actualJson.contains("\"url\":\"/tool-urn.xml\""));
     	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+    }
+    
+    @Test 
+    public void testToDeepJsonProducesCorrectJson() {
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+		calendar.setTimeZone(timeZone );
+		
+		ToolCategory toolCategory = new ToolCategory();
+		toolCategory.setId(106789L);
+		toolCategory.setVersion(101234);
+		toolCategory.setName("toolcategory0");
+		Set<ToolCategory> categories = new HashSet<ToolCategory>();
+		categories.add(toolCategory);
+
+		ToolLibraryItem toolLibraryItem = new ToolLibraryItem();
+    	toolLibraryItem.setId(25L);
+    	toolLibraryItem.setVersion(30);
+    	toolLibraryItem.setName("toolname0");
+		toolLibraryItem.setCreationDate(calendar);
+    	toolLibraryItem.setSoftwareVersion("1.1.1");
+		toolLibraryItem.setAuthor("Amerigo Verspucci");
+		toolLibraryItem.setDescription("A wonderful tool");
+		toolLibraryItem.setThumbnailFileName("defult_thumb.png");
+		toolLibraryItem.setUrl("/tool-urn.xml");
+		toolLibraryItem.setCategories(categories);
+    	
+    	String actualJson = toolLibraryItem.toDeepJson();
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"toolname0\""));
+     	assertTrue("JSON creation date is correct", actualJson.contains("\"creationDate\":\"25/12/2013 18:30:45 EST"));
+    	assertTrue("JSON software version is correct", actualJson.contains("\"softwareVersion\":\"1.1.1\""));
+    	assertTrue("JSON author is correct", actualJson.contains("\"author\":\"Amerigo Verspucci\""));
+    	assertTrue("JSON description is correct", actualJson.contains("\"description\":\"A wonderful tool\""));
+    	assertTrue("JSON thumbnail is correct", actualJson.contains("\"thumbnailFileName\":\"defult_thumb.png\""));
+    	assertTrue("JSON thumbnail url is correct", actualJson.contains("\"thumbnailUrl\":\"/virtual_lab/img/tool-library/defult_thumb.png\""));
+    	assertTrue("JSON url is correct", actualJson.contains("\"url\":\"/tool-urn.xml\""));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+
+    	assertFalse("JSON tool category id is not present", actualJson.contains("\"id\":106789"));
+    	assertFalse("JSON tool category version not preseent", actualJson.contains("\"version\":101234"));
+    	assertFalse("JSON tool category name property is not present", actualJson.contains("\"name\":\"toolcategory0\""));
+    	assertTrue("JSON tool category name is present", actualJson.contains("\"toolcategory0\""));
+    }
+    
+    @Test 
+    public void testToDeepJsonArrayProducesCorrectJson() {
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+		calendar.setTimeZone(timeZone );
+		
+		ToolCategory toolCategory = new ToolCategory();
+		toolCategory.setId(106789L);
+		toolCategory.setVersion(101234);
+		toolCategory.setName("toolcategory0");
+		Set<ToolCategory> categories = new HashSet<ToolCategory>();
+		categories.add(toolCategory);
+
+		ToolLibraryItem toolLibraryItem = new ToolLibraryItem();
+    	toolLibraryItem.setId(25L);
+    	toolLibraryItem.setVersion(30);
+    	toolLibraryItem.setName("toolname0");
+		toolLibraryItem.setCreationDate(calendar);
+    	toolLibraryItem.setSoftwareVersion("1.1.1");
+		toolLibraryItem.setAuthor("Amerigo Verspucci");
+		toolLibraryItem.setDescription("A wonderful tool");
+		toolLibraryItem.setThumbnailFileName("defult_thumb.png");
+		toolLibraryItem.setUrl("/tool-urn.xml");
+		toolLibraryItem.setCategories(categories);
+		Set<ToolLibraryItem> toolkit = new HashSet<ToolLibraryItem>();
+		toolkit.add(toolLibraryItem);
+    	
+    	String actualJson = ToolLibraryItem.toDeepJsonArray(toolkit);
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"toolname0\""));
+     	assertTrue("JSON creation date is correct", actualJson.contains("\"creationDate\":\"25/12/2013 18:30:45 EST"));
+    	assertTrue("JSON software version is correct", actualJson.contains("\"softwareVersion\":\"1.1.1\""));
+    	assertTrue("JSON author is correct", actualJson.contains("\"author\":\"Amerigo Verspucci\""));
+    	assertTrue("JSON description is correct", actualJson.contains("\"description\":\"A wonderful tool\""));
+    	assertTrue("JSON thumbnail is correct", actualJson.contains("\"thumbnailFileName\":\"defult_thumb.png\""));
+    	assertTrue("JSON thumbnail url is correct", actualJson.contains("\"thumbnailUrl\":\"/virtual_lab/img/tool-library/defult_thumb.png\""));
+    	assertTrue("JSON url is correct", actualJson.contains("\"url\":\"/tool-urn.xml\""));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+
+    	assertFalse("JSON tool category id is not present", actualJson.contains("\"id\":106789"));
+    	assertFalse("JSON tool category version not preseent", actualJson.contains("\"version\":101234"));
+    	assertFalse("JSON tool category name property is not present", actualJson.contains("\"name\":\"toolcategory0\""));
+    	assertTrue("JSON tool category name is present", actualJson.contains("\"toolcategory0\""));
     }
 }
