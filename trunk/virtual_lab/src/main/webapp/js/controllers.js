@@ -70,45 +70,57 @@ function ProjectDirectoryCtrl($scope, $routeParams, ProjectDirectory) {
 
 //------------------------------------
 
-function ToolKitCtrl($scope, $routeParams, ToolKit) {
+function ToolKitCtrl($scope, $routeParams, Researcher, CredentialService) {
 
 	this.scope = $scope;
 	var self = this;
 	
+	var userName = CredentialService.getUserName();
+	var userName = 'bdiaz';
+	
 	// Arrange a list of tools by categories and call it a tool kit.
-	ToolKit.tools(function(tools) {		
+	Researcher.tools({'userName': userName}, function(tools) {		
 		var toolKit = [];
 		var count = tools.length;
 		if (count > 0) {
+			var isSane = tools[0] != '<';
 			tools.sort(function (item0, item1) {
-				var aCategory = item0.categories[0];
-				var bCategory = item1.categories[0];
+				var aCategory = '[unknown]';
+				if (item0.categories && item0.categories[0]) {
+					aCategory = item0.categories[0];
+				}
+				var bCategory = '[unknown]';
+				if (item1.categories && item1.categories[0]) {
+					bCategory = item1.categories[0];
+				}
 				return ((aCategory < bCategory) ? -1
 						: ((aCategory > bCategory) ? 1 : 0));
 			});
-			var currentCategoryName = tools[0].categories[0];
-			var currentCategory = {
-				"name" : currentCategoryName,
-				"tools" : []
-			};
-			toolKit.push(currentCategory);
-			// Extract the list of unique category
-			for ( var index = 0; index < count; index++) {
-				var item = tools[index];
-				var categoryName = item.categories[0];
-				if (categoryName != currentCategoryName) {
-					currentCategoryName = categoryName;
-					currentCategory = {
-						"name" : currentCategoryName,
-						"tools" : []
-					};
-					toolKit.push(currentCategory);
+			if (tools[0].categories && tools[0].categories[0]) {
+				var currentCategoryName = tools[0].categories[0];
+				var currentCategory = {
+					"name" : currentCategoryName,
+					"tools" : []
+				};
+				toolKit.push(currentCategory);
+				// Extract the list of unique categories
+				for ( var index = 0; index < count; index++) {
+					var item = tools[index];
+					var categoryName = item.categories[0];
+					if (categoryName != currentCategoryName) {
+						currentCategoryName = categoryName;
+						currentCategory = {
+							"name" : currentCategoryName,
+							"tools" : []
+						};
+						toolKit.push(currentCategory);
+					}
+					currentCategory.tools.push({
+						"name" : item.name,
+						"description" : item.description,
+						"url" : item.url
+					});
 				}
-				currentCategory.tools.push({
-					"name" : item.name,
-					"description" : item.description,
-					"url" : item.url
-				});
 			}
 		}
 		self.scope.toolKit = toolKit;
@@ -132,7 +144,7 @@ function ToolKitCtrl($scope, $routeParams, ToolKit) {
 	};
 }
 
-//ToolKitCtrl.$inject = ['$scope', '$routeParams', 'ToolKit'];
+//ToolKitCtrl.$inject = ['$scope', '$routeParams', 'Researcher', 'CredentialService'];
 
 //------------------------------------
 
@@ -759,7 +771,7 @@ function LoginButtonCtrl($scope, $dialog) {
 LoginButtonCtrl.$inject = [ '$scope', '$dialog'];
 //------------------------------------
 
-function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, UserService) {
+function LoginModalCtrl($scope, dialog, CredentialService, ProfileService, UserService) {
 
 	$scope.master= {};
 	 
@@ -787,8 +799,8 @@ function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, User
 					if (validResponse.userName == userName) {
 						// we have a valid profile so apply the username and password 
 						// and update the profile.
-						CredentialsService.setUserName(userName);
-						CredentialsService.setPassword(password);
+						CredentialService.setUserName(userName);
+						CredentialService.setPassword(password);
 						ProfileService.setProfile(validResponse);				
 						dialog.close(result);
 					} else if (validResponse.status = 'failure') {
@@ -810,7 +822,7 @@ function LoginModalCtrl($scope, dialog, CredentialsService, ProfileService, User
 	};
 }
 
-LoginModalCtrl.$inject = [ '$scope', 'dialog', 'CredentialsService', 'ProfileService', 'UserService'];
+LoginModalCtrl.$inject = [ '$scope', 'dialog', 'CredentialService', 'ProfileService', 'UserService'];
 //------------------------------------
 
 //==================================================

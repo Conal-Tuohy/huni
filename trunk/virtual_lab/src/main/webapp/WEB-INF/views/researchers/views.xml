@@ -10,7 +10,10 @@
 	<definition extends="default" name="researchers/create">
         <put-attribute name="body" value="/WEB-INF/views/researchers/create.jspx"/>
     </definition>
-	<definition extends="default" name="researchers/update" >
+	<definition extends="default" name="researchers/update">
         <put-attribute name="body" value="/WEB-INF/views/researchers/update.jspx"/>
+    </definition>
+<definition extends="default" name="researchers/findResearchersByUserNameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/researchers/findResearchersByUserNameEquals.jspx"/>
     </definition>
 </tiles-definitions>

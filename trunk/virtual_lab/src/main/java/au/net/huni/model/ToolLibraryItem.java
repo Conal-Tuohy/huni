@@ -70,7 +70,19 @@ public class ToolLibraryItem {
     }
 
 	public String toJson() {
-        return new JSONSerializer().exclude("*.class").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
+        return new JSONSerializer()
+        .exclude("*.class")
+        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .serialize(this);
+    }
+
+	public String toDeepJson() {
+        return new JSONSerializer()
+        .exclude("*.class")
+        .include("categories.name")
+        .transform(Constant.CATEGORY_TRANSFORMER, ToolCategory.class)
+        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .serialize(this);
     }
 
 	public static ToolLibraryItem fromJsonToToolLibraryItem(String json) {
@@ -78,8 +90,20 @@ public class ToolLibraryItem {
     }
 
 	public static String toJsonArray(Collection<ToolLibraryItem> collection) {
-        return new JSONSerializer().exclude("*.class").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(collection);
+        return new JSONSerializer()
+        .exclude("*.class").include("categories")
+        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .serialize(collection);
     }
+
+	public static String toDeepJsonArray(Collection<ToolLibraryItem> collection) {
+        return new JSONSerializer()
+        .exclude("*.class")
+        .include("categories")
+        .transform(Constant.CATEGORY_TRANSFORMER, ToolCategory.class)
+        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .serialize(collection);
+	}
 
 	public static Collection<ToolLibraryItem> fromJsonArrayToToolLibraryItems(String json) {
         return new JSONDeserializer<List<ToolLibraryItem>>().use(null, ArrayList.class).use("values", ToolLibraryItem.class).deserialize(json);

@@ -26,6 +26,8 @@
 		<intercept-url pattern="/rest/toolparameters/**" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/toollibraryitems/manage" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/toollibraryitems/**" access="permitAll" />
+		<intercept-url pattern="/rest/researchers/**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/researchers?find=ByUserNameEquals*" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/feedbackitems/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/registrations/**" access="permitAll" /> <!-- Need method level access control for finer control -->
 		<intercept-url pattern="/rest/institutions/**" access="permitAll" /> <!-- Need method level access control for finer control -->
@@ -42,6 +44,7 @@
  		<intercept-url pattern="/console/historyitems/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/feedbackitems/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/researchers/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/console/researchers?find=ByUserNameEquals*" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/toolparameters/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/institutions/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/console/registrations/**" access="hasRole('ROLE_ADMIN')" />

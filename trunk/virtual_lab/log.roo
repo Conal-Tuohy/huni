@@ -337,3 +337,13 @@ perform package
 perform clean
 perform package
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-29 21:17:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-30 09:48:54
+finder list --class ~.model.Researcher
+finder add --finderName findResearchersByUserNameEquals 
+web mvc finder add --formBackingType ~.model.Researcher --class ~.web.ResearcherController
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-30 16:56:30
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-31 14:04:57
+focus --class ~.model.ToolCategory
+finder add --finderName findToolCategoryByNameEquals
+finder list --class ~.model.ToolCategory
+finder add --finderName findToolCategorysByNameEquals

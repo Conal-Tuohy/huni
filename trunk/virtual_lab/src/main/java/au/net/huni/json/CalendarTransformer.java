@@ -8,8 +8,6 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import au.net.huni.web.RegistrationController;
-
 import flexjson.ObjectBinder;
 import flexjson.ObjectFactory;
 import flexjson.transformer.AbstractTransformer;
@@ -17,7 +15,7 @@ import flexjson.transformer.AbstractTransformer;
 public class CalendarTransformer extends AbstractTransformer implements
 		ObjectFactory {
 	
-    static final Logger logger = Logger.getLogger(RegistrationController.class);
+    static final Logger logger = Logger.getLogger(CalendarTransformer.class);
 
     private SimpleDateFormat formatter;	 	
 			

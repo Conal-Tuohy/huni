@@ -49,9 +49,9 @@ angular.module('projectdirectoryServices', ['ngResource']).
 });
 
 angular.module('historyServices', ['ngResource', 'credentialsServices']).
-    factory('History', function($resource, CredentialsService){
+    factory('History', function($resource, CredentialService){
   	  return $resource(baseServiceURL + '/rest/historyitems/:historyItemId', {}, {
-		    query: {method:'GET', params:{}, isArray:true, headers: {Authorization: CredentialsService.basic()}}
+		    query: {method:'GET', params:{}, isArray:true, headers: {Authorization: CredentialService.basic()}}
 		  });
 });
 
@@ -63,10 +63,21 @@ factory('ToolLibrary', function($resource){
 	});
 });
 
-angular.module('toolkitServices', ['ngResource']).
-    factory('ToolKit', function($resource){
-	  return $resource(baseServiceURL + '/toolLibrary/catalog.json', {}, {
-		    tools: {method:'GET', params:{}, isArray:true}
+//angular.module('toolkitServices', ['ngResource']).
+//    factory('ToolKit', function($resource){
+//	  return $resource(baseServiceURL + '/toolLibrary/catalog.json', {}, {
+//		    tools: {method:'GET', params:{}, isArray:true}
+//		  });
+//});
+
+angular.module('researcherServices', ['ngResource', 'credentialsServices']).
+    factory('Researcher', function($resource, CredentialService){
+    	// Need to supply user name to retrieve Researcher details
+	  return $resource(baseServiceURL + '/rest/researchers/:items?find=ByUserNameEquals&userName=:userName', {}, {
+		    researcher: {method:'GET', params:{items: 'info', userName:''}, headers: {Authorization: CredentialService.basic()}, isArray:false},
+		    projects: {method:'GET', params:{items: 'projects', userName:''}, isArray:true, headers: {Authorization: CredentialService.basic()},},
+		    tools: {method:'GET', params:{items: 'tools', userName:''}, isArray:true, headers: {Authorization: CredentialService.basic()}},
+		    notebook: {method:'GET', params:{items: 'notebook', userName:''}, isArray:true, headers: {Authorization: CredentialService.basic()}}
 		  });
 });
 
@@ -177,11 +188,14 @@ factory('InstitutionService', function($resource){
 
 
 angular.module('credentialsServices', []).
-	service('CredentialsService', function(){
+	service('CredentialService', function(){
 		
         return {
             setUserName: function(user) {
             	this.userName = user;
+            },
+            getUserName: function() {
+            	return this.userName;
             },
             setPassword: function(passwd) {
             	this.password = passwd;
@@ -191,7 +205,7 @@ angular.module('credentialsServices', []).
             	var credentials = this.userName + ":" + this.password;
             	var base64Credentials = window.btoa(credentials);
             	return "Basic " + base64Credentials;
-            }
+ CredentialService}
         };
 });
 
@@ -213,10 +227,10 @@ angular.module('profileServices', []).
 //However it is also purposed for user authentication in the login dialog box.
 //http://localhost:8080/virtual_lab/rest/users
 angular.module('userServices', ['ngResource', 'credentialsServices']).
-factory('UserService', function($resource, CredentialsService){
+factory('UserService', function($resource, CredentialService){
 		var serviceUrl = baseServiceURL + '/rest/users/validate/:userName/:password';
 	  return $resource(serviceUrl, {}, {
-	    	login: {method:'GET', headers: {Authorization: CredentialsService.basic()}},
+	    	login: {method:'GET', headers: {Authorization: CredentialService.basic()}},
 	    	validateUser: {method:'GET', params:{userName: "", password: ""}, isArray:false}
 		  });
 });

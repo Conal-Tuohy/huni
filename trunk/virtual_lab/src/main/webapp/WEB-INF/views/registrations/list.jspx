@@ -7,8 +7,9 @@
             <table:column id="c_au_net_huni_model_Registration_userName" property="userName" z="nq25zpCaJccc14XbuE8/q09HBo8="/>
             <table:column id="c_au_net_huni_model_Registration_givenName" property="givenName" z="c22F/b7Hrpe/B3dVVDuC7MeEBx8="/>
             <table:column id="c_au_net_huni_model_Registration_familyName" property="familyName" z="gg0cAmRjEImd/DG7YIFMa2vVpwc="/>
-            <table:column id="c_au_net_huni_model_Registration_emailAddress" property="emailAddress" z="yxY/uTWODve+L0hM2ZTP8sZwchc="/>
-            <table:column id="c_au_net_huni_model_Registration_institution" property="institution" z="jAdzso6Hgy8IzZgJoJoh8GiToYA="/>
+            <table:column id="c_au_net_huni_model_Registration_emailAddress" property="emailAddress" render="false" z="user-managed"/>
+            <table:column id="c_au_net_huni_model_Registration_institution" property="institution.code" render="false" z="user-managed"/>
+            <table:column id="c_au_net_huni_model_Registration_status" property="status" render="true" z="user-managed"/>
             <table:column calendar="true" dateTimePattern="${registration_applicationdate_date_format}" id="c_au_net_huni_model_Registration_applicationDate" property="applicationDate" z="MqekwmHhBC4vXVUD7mj2VggMaOs="/>
         </table:table>
     </page:list>
