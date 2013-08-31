@@ -1,15 +1,39 @@
-<h3>Projects</h3>
+<style type="text/css">
+<!--    
+.project_name
+{
+	font-size: 16px;
+	margin: 0px;
+	text-align: left;
+    list-style-image: none;
+    color: #AAAAAA;
+}
+
+.data-source-name
+{
+	font-size: 12px;
+	margin: 0px;
+	text-align: left;
+    list-style-image: none;
+    line-height: 14px;
+}
+ -->
+</style>
+<h4>Projects</h4>
 <div ng-controller="ProjectDirectoryCtrl">
 	<div  class = "well" style= "{height:200px;}">
-		<ul class="nav nav-list">
-		    <li ng-repeat="project in projectDirectory()" class="nav-header">{{project.name}}
+		<ul>
+		    <li ng-repeat="project in projectDirectory()" class="project_name" style="list-style-image: none;">{{project.name}}
 		    	<ul>
-			    	<li ng-repeat="dataSource in project.dataSources" >
+			    	<li ng-repeat="dataSource in project.dataSources" class="data-source-name" style="list-style-image: none; line-height: 1.25;">
 			          <a href="#/tools{{dataSource.home}}">{{dataSource.name}}</a>
 			       </li>
 		    	</ul>
 		    </li>
 		</ul>
+	</div>
+	<div>
+		{{failedProjectFetch}}
 	</div>
 	<div style='display: block;'>
 		<button id="addProject">Add</button>

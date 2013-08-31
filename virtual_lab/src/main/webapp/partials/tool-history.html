@@ -1,3 +1,4 @@
+
 <style type="text/css">
 <!--    
 .notebook
@@ -5,12 +6,13 @@
 	line-height: 1.5;
 }
 
-.tool-name
+.tool-history-name
 {
-	font-size: 10px;
-	line-height: 1.5;
-	padding:2px;
+	font-size: 12px;
 	margin: 0px;
+	text-align: left;
+    list-style-image: none;
+    line-height: 12px;
 }
 
 .activity-date
@@ -47,12 +49,12 @@
  -->
 </style>
 
-<h3>Notebook</h3>
+<h4>Notebook</h4>
 <div ng-controller="HistoryCtrl" ng-init="fetchHistory()">
 	<div class = "well">
-		<ul class="nav nav-list notebook">
-		    <li ng-repeat="action in actions" class="nav-header" >
-		    	<div class="tool-name">{{action.toolName}}</div>
+		<ul class="notebook">
+		    <li ng-repeat="action in actions"  style="list-style-image: none; line-height: 1.25;">
+		    	<div class="tool-history-name" >{{action.toolName}}</div>
 			    <div class="activity-date"> ({{action.executionDate}})</div>
 		    	<div class="activity-item"  style="background:{{action.backgroundColour}};" >
 			    	<div class="parameter-item" ng-repeat="parameter in action.toolParameters">

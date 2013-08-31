@@ -11,7 +11,6 @@ var virtualLab = angular.module('virtualab', [
                              'advancedsearchServices',
                              'workspaceServices',
                              'projectdirectoryServices',
-                             //'toolkitServices',
                              'researcherServices',
                              'historyServices',
                              'toolLibraryServices',

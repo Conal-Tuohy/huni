@@ -17,48 +17,47 @@
  -->
 </style>
 
-<div class="row-fluid">
-	<h3>Objects</h3>
-</div>
-
-<!-- Layout the search form. -->
-<div class="row-fluid">      
-	<div>
-		<form id="objectname-search-form" class="form-horizontal">
-			<div class="control-group">
-				<label class="control-label" for="objectNameSearchQuery">Object name:</label>
-				<div class="controls">
-					<input type="text" class="input-xlarge" id="objectNameSearchQuery" placeholder="Stumpjump plough" ng-model="objectName"/>
-					<button type="submit" class="btn" ng-click="objectsByObjectName()">Search</button>
-					<span class="help-inline"><i class="icon-info-sign"></i>Help...</span>
+<h3 class="huni-banner">Objects</h3>
+<div class="container-fluid">
+	
+	<!-- Layout the search form. -->
+	<div class="row-fluid">      
+		<div>
+			<form id="objectname-search-form" class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="objectNameSearchQuery">Object name:</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge" id="objectNameSearchQuery" placeholder="Stumpjump plough" ng-model="objectName"/>
+						<button type="submit" class="btn" ng-click="objectsByObjectName()">Search</button>
+						<span class="help-inline"><i class="icon-info-sign"></i>Help...</span>
+					</div>
 				</div>
-			</div>
-  		</form>
+	  		</form>
+		</div>
+	</div>
+	
+	<!-- Layout the results table with pagination and an export button. -->
+	<div class="row-fluid">
+		<pagination on-select-page="turnPage(page)" num-pages="noOfPages" current-page="currentPage" previous-text="&laquo;" next-text="&raquo;" class="pagination-centered" ></pagination>
+	 	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Object name</th>
+					<th>Creation date</th>
+					<th>Location</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="object in response.results.bindings">
+					<th>{{object.objectName.value}}</th>
+					<td>{{object.creationDate.value}}</td>
+					<td>{{object.location.value}}</td>
+					<td>{{object.typeName.value}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="{{exportUrl}}" type="text/csv" target="_blank" class="btn btn-success">Export</a>
 	</div>
 </div>
-
-<!-- Layout the results table with pagination and an export button. -->
-<div class="row-fluid">
-	<pagination on-select-page="turnPage(page)" num-pages="noOfPages" current-page="currentPage" previous-text="&laquo;" next-text="&raquo;" class="pagination-centered" ></pagination>
- 	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Object name</th>
-				<th>Creation date</th>
-				<th>Location</th>
-				<th>Type</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="object in response.results.bindings">
-				<th>{{object.objectName.value}}</th>
-				<td>{{object.creationDate.value}}</td>
-				<td>{{object.location.value}}</td>
-				<td>{{object.typeName.value}}</td>
-			</tr>
-		</tbody>
-	</table>
-	<a href="{{exportUrl}}" type="text/csv" target="_blank" class="btn btn-success">Export</a>
-</div>
-
 
