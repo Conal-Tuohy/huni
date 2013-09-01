@@ -748,6 +748,79 @@ function RegistrationModalCtrl($scope, dialog, RegistrationService, InstitutionS
 RegistrationModalCtrl.$inject = [ '$scope', 'dialog', 'RegistrationService', 'InstitutionService' ];
 //------------------------------------
 
+function ProjectButtonCtrl($scope, $dialog) {
+
+	$scope.openDialog = function() {
+		var dlg = $dialog.dialog({
+					backdrop : true,
+					keyboard : true,
+					backdropClick : true,
+					templateUrl :  'partials/project-modal.html',
+					controller : 'ProjectModalCtrl'
+				});
+		dlg.open().then(function(result) {
+			if (result) {
+				//alert('Thank you for your project: ' + result.name + ' and start date: ' + result.startDate);
+			}
+		});
+	};
+}
+
+ProjectButtonCtrl.$inject = [ '$scope', '$dialog'];
+//------------------------------------
+
+function ProjectModalCtrl($scope, dialog, Researcher) {
+
+	$scope.master= {};
+ 
+	$scope.update = function(proposedProject) {
+		$scope.master= angular.copy(proposedProject);
+	};
+ 
+	$scope.reset = function() {
+		$scope.proposedProject = angular.copy($scope.master);
+	};
+ 
+	$scope.isUnchanged = function(proposedProject) {
+		return angular.equals(proposedProject, $scope.master);
+	};
+ 
+	$scope.reset();
+	  
+	$scope.apply = function(result) {
+		if (result) {
+			// Submit button.
+			var name = $scope.proposedProject.name;
+			var startDate = $scope.proposedProject.startDate;
+			result = {'name': name, 'startDate': startDate};
+			var researcherItem = new Researcher(result);
+			researcherItem.createProject( 
+				function(validResponse, status, headers, config) {
+					if (validResponse.status == 'failure') {
+						$scope.failedProject = validResponse.reason;
+					} else {
+						dialog.close(result);
+					}
+				}, 
+				function(inValidResponse, status, headers, config) {
+					if (status == '404') {
+						$scope.failedProject = "The requested resource is not available.";
+					}
+					else if (inValidResponse) {
+						$scope.failedProject = "Remote server failure";
+					}
+				});
+		} else {
+			// Cancel button.
+			dialog.close(result);
+		}
+			
+	};	
+}
+
+ProjectModalCtrl.$inject = [ '$scope', 'dialog', 'Researcher'];
+//------------------------------------
+
 function LoginButtonCtrl($scope, $dialog) {
 
 	$scope.openDialog = function() {

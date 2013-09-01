@@ -5,13 +5,6 @@ var baseServiceURL = '/virtual_lab';
 
 /* Services */
 
-angular.module('virtualabServices', ['ngResource']).
-    factory('Project', function($resource){
-  return $resource('projects/:projectId.json', {}, {
-    query: {method:'GET', params:{projectId:'projects'}, isArray:true}
-  });
-});
-
 angular.module('opensocialServices', ['ngResource']).
     factory('OpenSocial', function($resource){
   return null;
@@ -48,6 +41,13 @@ angular.module('projectdirectoryServices', ['ngResource']).
 		  });
 });
 
+angular.module('virtualabServices', ['ngResource']).
+    factory('Project', function($resource){
+  return $resource('projects/:projectId.json', {}, {
+    query: {method:'GET', params:{projectId:'projects'}, isArray:true}
+  });
+});
+
 angular.module('historyServices', ['ngResource', 'credentialsServices']).
     factory('History', function($resource, CredentialService){
   	  return $resource(baseServiceURL + '/rest/historyitems/:historyItemId', {}, {
@@ -76,6 +76,7 @@ angular.module('researcherServices', ['ngResource', 'credentialsServices']).
 	  return $resource(baseServiceURL + '/rest/researchers/:items?find=ByUserNameEquals&userName=:userName', {}, {
 		    researcher: {method:'GET', params:{items: 'info', userName:''}, headers: {Authorization: CredentialService.basic()}, isArray:false},
 		    projects: {method:'GET', params:{items: 'projects', userName:''}, isArray:true, headers: {Authorization: CredentialService.basic()},},
+		    createProject: {method:'POST', params:{items: 'projects', userName:''}, isArray:false, headers: {Authorization: CredentialService.basic()},},
 		    tools: {method:'GET', params:{items: 'tools', userName:''}, isArray:true, headers: {Authorization: CredentialService.basic()}},
 		    notebook: {method:'GET', params:{items: 'notebook', userName:''}, isArray:true, headers: {Authorization: CredentialService.basic()}}
 		  });

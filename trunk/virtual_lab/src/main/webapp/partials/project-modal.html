@@ -1,0 +1,43 @@
+<div id="projectModal" class="modal" tabindex="-1" role="dialog" 
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	
+	<form id="project-form" name="form" class="css-form" novalidate>
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="apply(false)">&times;</button>
+			<h3 id="projectModalLabel">Create a Project</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="projectName">Project name*</label>
+				<div class="controls">
+					<input type="text" id="projectName" name="projectName" placeholder="Name"  ng-model="proposedProject.name"  ng-required="true" ng-minlength="5" ng-maxlength="200">
+				</div>
+				<div ng-show="form.projectName.$dirty && form.projectName.$invalid">Invalid:
+					<span ng-show="form.projectName.$error.required">enter your preferred name.</span>
+					<span ng-show="form.projectName.$error.minlength">the name is too short.</span>
+					<span ng-show="form.projectName.$error.maxlength">the name is too long.</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="projectStartDate">Start date*</label>
+				<div class="controls">
+					<input type="text" id="projectStartDate" name="projectStartDate" placeholder="Start Date"  ng-model="proposedProject.startDate" ng-required="true"  required ng-minlength="1" ng-maxlength="60">
+				</div>
+				<div ng-show="form.projectStartDate.$dirty && form.projectStartDate.$invalid">Invalid:
+					<span ng-show="form.projectStartDate.$error.required">enter your start date.</span>
+					<span ng-show="form.projectStartDate.$error.minlength">the start date is too short.</span>
+					<span ng-show="form.projectStartDate.$error.maxlength">the start date is too long.</span>
+				</div>
+			</div>
+		</div>
+		<div>
+			{{failedRegistration}}
+		</div>
+		<div class="modal-footer">
+			<button class="btn" aria-hidden="true" ng-click="apply(false)">Cancel</button>
+			<button class="btn btn-primary" ng-click="apply(true)" ng-disabled="form.$invalid || isUnchanged(proposedProject)">Submit</button>
+		</div>
+	</form>
+	
+</div>
+
