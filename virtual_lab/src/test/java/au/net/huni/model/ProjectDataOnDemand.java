@@ -19,6 +19,7 @@ public class ProjectDataOnDemand {
     
 	public void setDataSources(Project obj, int index) {
 		DataSource dataSource = dataSourceDataOnDemand.getRandomDataSource();
+		//dataSource.setOwner(obj);
 	    obj.getDataSources().add(dataSource);
 	}
 }

@@ -4,25 +4,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TimeZone;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.springframework.mock.staticmock.MockStaticEntityMethods;
 
 @RunWith(JUnit4.class)
-@MockStaticEntityMethods
 public class ProjectTest {
-
-    @Test
-    public void testMethod() {
-        int expectedCount = 13;
-        Project.countProjects();
-        org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.expectReturn(expectedCount);
-        org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.playback();
-        org.junit.Assert.assertEquals(expectedCount, Project.countProjects());
-    }
 
     @Test
     public void testToString() {
@@ -65,5 +56,121 @@ public class ProjectTest {
     	project1.setStartDate(startDate);
     	
     	assertEquals("Project hashcode is based on name and start date.", project0.hashCode(), project1.hashCode());
+    }
+    
+    @Test 
+    public void testToJsonProducesCorrectJson() {
+    	Project project = new Project();
+    	project.setId(25L);
+    	project.setVersion(30);
+    	project.setName("project0");
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+		calendar.setTimeZone(timeZone );
+		project.setStartDate(calendar);
+    	
+    	String actualJson = project.toJson();
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"project0\""));
+     	assertTrue("JSON start date is correct", actualJson.contains("\"startDate\":\"25/12/2013 18:30:45 EST"));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+    	assertTrue("JSON id is present", actualJson.contains("\"id\":25"));
+    }
+    
+    @Test 
+    public void testToJsonArrayProducesCorrectJson() {
+
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+
+    	Project project = new Project();
+    	project.setId(25L);
+    	project.setVersion(30);
+    	project.setName("project0");
+		calendar.setTimeZone(timeZone );
+		project.setStartDate(calendar);
+		
+		Set<Project> projects = new HashSet<Project>();
+		projects.add(project);
+    	
+    	String actualJson = Project.toJsonArray(projects);
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"project0\""));
+     	assertTrue("JSON start date is correct", actualJson.contains("\"startDate\":\"25/12/2013 18:30:45 EST"));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+    	assertTrue("JSON id is present", actualJson.contains("\"id\":25"));
+    }
+    
+    @Test 
+    public void testToDeepJsonProducesCorrectJson() {
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+		calendar.setTimeZone(timeZone );
+		
+		DataSource dataSource = new DataSource();
+		dataSource.setId(106789L);
+		dataSource.setVersion(101234);
+		dataSource.setName("datasource0");
+		Set<DataSource> dataSources = new HashSet<DataSource>();
+		dataSources.add(dataSource);
+
+		Project project = new Project();
+    	project.setId(25L);
+    	project.setVersion(30);
+    	project.setName("toolname0");
+		project.setStartDate(calendar);
+		project.setDataSources(dataSources);
+    	
+    	String actualJson = project.toDeepJson();
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"toolname0\""));
+     	assertTrue("JSON start date is correct", actualJson.contains("\"startDate\":\"25/12/2013 18:30:45 EST"));
+    	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+    	assertTrue("JSON id is present", actualJson.contains("\"id\":25"));
+
+    	assertTrue("JSON data source id is present", actualJson.contains("\"id\":106789"));
+    	assertTrue("JSON data source version preseent", actualJson.contains("\"version\":101234"));
+    	assertTrue("JSON data source name property is present", actualJson.contains("\"name\":\"datasource0\""));
+    }
+    
+    @Test 
+    public void testToDeepJsonArrayProducesCorrectJson() {
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.set(2013, 11, 25, 2, 30, 45);
+    	TimeZone timeZone = TimeZone.getTimeZone("EST");
+		calendar.setTimeZone(timeZone );
+		
+		DataSource dataSource = new DataSource();
+		dataSource.setId(106789L);
+		dataSource.setVersion(101234);
+		dataSource.setName("datasource0");
+		Set<DataSource> dataSources = new HashSet<DataSource>();
+		dataSources.add(dataSource);
+
+		Project project = new Project();
+    	project.setId(25L);
+    	project.setVersion(30);
+    	project.setName("toolname0");
+		project.setStartDate(calendar);
+		project.setDataSources(dataSources);
+		
+		Set<Project> projects = new HashSet<Project>();
+		projects.add(project);
+
+    	String actualJson = Project.toDeepJsonArray(projects);
+    	
+    	assertTrue("JSON name is correct", actualJson.contains("\"name\":\"toolname0\""));
+     	assertTrue("JSON start date is correct", actualJson.contains("\"startDate\":\"25/12/2013 18:30:45 EST"));
+     	assertTrue("JSON version is present", actualJson.contains("\"version\":30"));
+     	assertTrue("JSON id is present", actualJson.contains("\"id\":25"));
+
+    	assertTrue("JSON data source id is present", actualJson.contains("\"id\":106789"));
+    	assertTrue("JSON data source version present", actualJson.contains("\"version\":101234"));
+    	assertTrue("JSON data source name property is present", actualJson.contains("\"name\":\"datasource0\""));
     }
 }
