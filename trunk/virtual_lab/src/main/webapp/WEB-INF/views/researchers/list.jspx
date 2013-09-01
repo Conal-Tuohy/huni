@@ -9,7 +9,7 @@
             <table:column id="c_au_net_huni_model_Researcher_givenName" property="givenName" z="7Rurb54yMheOjw8Ett2l3o+W3NY="/>
             <table:column id="c_au_net_huni_model_Researcher_familyName" property="familyName" z="EBVpdOSyB7tnNtz5RkOTBmMmhwU="/>
             <table:column id="c_au_net_huni_model_Researcher_emailAddress" property="emailAddress" z="3Xjxr+9L9s+xi+/l0HPFx7w3nAA="/>
-            <table:column id="c_au_net_huni_model_Researcher_institution" property="institution" z="HooJdjkj3YzlGfgbloeLzCE/B00="/>
+            <table:column id="c_au_net_huni_model_Researcher_institution" property="institution" z="user-managed"/>
         </table:table>
     </page:list>
 </div>

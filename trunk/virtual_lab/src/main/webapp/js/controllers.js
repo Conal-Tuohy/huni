@@ -54,18 +54,19 @@ function DatasetDirectoryCtrl($scope, $routeParams, DatasetDirectory) {
 
 //------------------------------------
 
-function ProjectDirectoryCtrl($scope, $routeParams, ProjectDirectory) {
+function ProjectDirectoryCtrl($scope, $routeParams, Researcher, CredentialService) {
 
 	this.scope = $scope;
 
-	this.scope.projects = ProjectDirectory.query();
+	var userName = CredentialService.getUserName();
+	this.scope.projects = Researcher.projects({'userName': userName});
 
 	this.scope.projectDirectory = function() {
 		return this.projects;
 	};
 }
 
-//ProjectDirectoryCtrl.$inject = ['$scope', '$routeParams', 'ProjectDirectory'];
+//ProjectDirectoryCtrl.$inject = ['$scope', '$routeParams', 'ProjectDirectory', 'CredentialService'];
 
 //------------------------------------
 
