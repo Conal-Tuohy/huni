@@ -89,7 +89,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Institution, String> ApplicationConversionServiceFactoryBean.getInstitutionToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Institution, java.lang.String>() {
             public String convert(Institution institution) {
-                return new StringBuilder().append(institution.getCode()).append(' ').append(institution.getName()).toString();
+                return institution.getCode();
             }
         };
     }
