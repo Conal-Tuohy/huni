@@ -111,9 +111,7 @@ public class Researcher {
 
     public void addHistoryItem(HistoryItem historyItem) {
         this.history.add(historyItem);
-        if (historyItem.getOwner() != this) {
             historyItem.setOwner(this);
-        }
     }
 
     public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {

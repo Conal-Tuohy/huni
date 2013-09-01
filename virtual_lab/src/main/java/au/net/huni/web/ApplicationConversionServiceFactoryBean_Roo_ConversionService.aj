@@ -22,14 +22,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
     
-    public Converter<DataSource, String> ApplicationConversionServiceFactoryBean.getDataSourceToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.DataSource, java.lang.String>() {
-            public String convert(DataSource dataSource) {
-                return new StringBuilder().append(dataSource.getName()).append(' ').append(dataSource.getImportDate()).append(' ').append(dataSource.getDescription()).toString();
-            }
-        };
-    }
-    
     public Converter<Long, DataSource> ApplicationConversionServiceFactoryBean.getIdToDataSourceConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.DataSource>() {
             public au.net.huni.model.DataSource convert(java.lang.Long id) {
@@ -86,34 +78,10 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Institution, String> ApplicationConversionServiceFactoryBean.getInstitutionToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Institution, java.lang.String>() {
-            public String convert(Institution institution) {
-                return institution.getCode();
-            }
-        };
-    }
-    
     public Converter<Long, Institution> ApplicationConversionServiceFactoryBean.getIdToInstitutionConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.net.huni.model.Institution>() {
             public au.net.huni.model.Institution convert(java.lang.Long id) {
                 return Institution.findInstitution(id);
-            }
-        };
-    }
-    
-    public Converter<String, Institution> ApplicationConversionServiceFactoryBean.getStringToInstitutionConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Institution>() {
-            public au.net.huni.model.Institution convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Institution.class);
-            }
-        };
-    }
-    
-    public Converter<Project, String> ApplicationConversionServiceFactoryBean.getProjectToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Project, java.lang.String>() {
-            public String convert(Project project) {
-                return new StringBuilder().append(project.getName()).append(' ').append(project.getStartDate()).toString();
             }
         };
     }

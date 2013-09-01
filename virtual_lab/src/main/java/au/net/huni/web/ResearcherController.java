@@ -151,6 +151,7 @@ public class ResearcherController {
         uiModel.addAttribute("historyitems", HistoryItem.findAllHistoryItems());
         uiModel.addAttribute("userroles", UserRole.findAllUserRoles());
         uiModel.addAttribute("toolcatalogitems", ToolLibraryItem.findAllToolLibraryItems());
+        uiModel.addAttribute("projects", Project.findAllProjects());
     }
 
     void addDateTimeFormatPatterns(Model uiModel) {
@@ -197,7 +198,7 @@ public class ResearcherController {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
     	}
         if ("projects".equals(items)) {       	
-	    	jsonContent = Project.toJsonArray(researcher.getProjects());
+	    	jsonContent = Project.toDeepJsonArray(researcher.getProjects());
         } else if ("tools".equals(items)) {
 	    	jsonContent = ToolLibraryItem.toDeepJsonArray(researcher.getToolkit());
 	    } else if ("notebook".equals(items)) {

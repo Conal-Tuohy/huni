@@ -5,10 +5,19 @@ package au.net.huni.model;
 
 import au.net.huni.model.DataSource;
 import au.net.huni.model.Project;
+import au.net.huni.model.Researcher;
 import java.util.Calendar;
 import java.util.Set;
 
 privileged aspect Project_Roo_JavaBean {
+    
+    public Researcher Project.getOwner() {
+        return this.owner;
+    }
+    
+    public void Project.setOwner(Researcher owner) {
+        this.owner = owner;
+    }
     
     public String Project.getName() {
         return this.name;

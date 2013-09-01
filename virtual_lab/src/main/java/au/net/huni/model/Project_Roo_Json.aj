@@ -5,23 +5,14 @@ package au.net.huni.model;
 
 import au.net.huni.model.Project;
 import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect Project_Roo_Json {
     
-    public String Project.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
     public static Project Project.fromJsonToProject(String json) {
         return new JSONDeserializer<Project>().use(null, Project.class).deserialize(json);
-    }
-    
-    public static String Project.toJsonArray(Collection<Project> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
     public static Collection<Project> Project.fromJsonArrayToProjects(String json) {
