@@ -5,6 +5,7 @@ package au.net.huni.model;
 
 import au.net.huni.model.Project;
 import au.net.huni.model.ProjectDataOnDemand;
+import au.net.huni.model.ResearcherDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect ProjectDataOnDemand_Roo_DataOnDemand {
@@ -23,6 +25,9 @@ privileged aspect ProjectDataOnDemand_Roo_DataOnDemand {
     private Random ProjectDataOnDemand.rnd = new SecureRandom();
     
     private List<Project> ProjectDataOnDemand.data;
+    
+    @Autowired
+    ResearcherDataOnDemand ProjectDataOnDemand.researcherDataOnDemand;
     
     public void ProjectDataOnDemand.setName(Project obj, int index) {
         String name = "name_" + index;

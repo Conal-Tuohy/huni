@@ -94,6 +94,7 @@ public class ResearcherDataOnDemand {
 	
 	public void setProjectList(Researcher obj, int index) {
 		Project project = projectDataOnDemand.getRandomProject();
+		project.setOwner(obj);
         obj.getProjects().add(project);
     }
 
