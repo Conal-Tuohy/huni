@@ -2,6 +2,8 @@ package au.net.huni.web;
 
 import au.net.huni.model.DataSource;
 import au.net.huni.model.Project;
+import au.net.huni.model.Researcher;
+
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -11,6 +13,7 @@ import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +35,12 @@ public class ProjectController {
             return "projects/create";
         }
         uiModel.asMap().clear();
+        // New project with existing researcher.
+        Researcher researcher = project.getOwner();
+        if (researcher != null) {
+        	// Set the reverse relation, so the researcher knows about the project.
+        	researcher.getProjects().add(project);
+        }
         project.persist();
         return "redirect:/console/projects/" + encodeUrlPathSegment(project.getId().toString(), httpServletRequest);
     }
@@ -71,6 +80,15 @@ public class ProjectController {
             populateEditForm(uiModel, project);
             return "projects/update";
         }
+        // Do not allow owner to be changed.
+        Researcher newOwner = project.getOwner();
+        Researcher oldOwner = Project.findProject(project.getId()).getOwner();
+        if (newOwner != oldOwner) {
+        	bindingResult.addError(new FieldError("project", "owner", "The owner of the project must not be changed. "));
+            populateEditForm(uiModel, project);
+            return "projects/update";
+        }
+        
         uiModel.asMap().clear();
         project.merge();
         return "redirect:/console/projects/" + encodeUrlPathSegment(project.getId().toString(), httpServletRequest);
@@ -92,14 +110,15 @@ public class ProjectController {
         return "redirect:/console/projects";
     }
 
-	void addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("project_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-
 	void populateEditForm(Model uiModel, Project project) {
         uiModel.addAttribute("project", project);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("researchers", Researcher.findAllResearchers());
         uiModel.addAttribute("datasources", DataSource.findAllDataSources());
+    }
+
+	void addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("project_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
 
 	String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -4,6 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_au_net_huni_model_Project" items="${projects}" z="pecCOsSjxA4s0kZWba7YEe9blCA=">
         <table:table data="${projects}" id="l_au_net_huni_model_Project" path="/console/projects" z="user-managed">
+            <table:column id="c_au_net_huni_model_Project_owner" property="owner" z="LkNZEtCrA4admjzyKj18f22louY="/>
             <table:column id="c_au_net_huni_model_Project_name" property="name" z="DcK3xvth4+RjTsTglbqyJWb224k="/>
             <table:column calendar="true" dateTimePattern="${project_startdate_date_format}" id="c_au_net_huni_model_Project_startDate" property="startDate" z="gmQOWxvKG+V6BHScg7mjQQrB5W8="/>
         </table:table>

@@ -1,21 +1,26 @@
 package au.net.huni.web;
 
-import au.net.huni.model.DataSource;
 import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import au.net.huni.model.DataSource;
+import au.net.huni.model.Project;
 
 //Access by default is restricted to the ADMIN role within the console webapp.
 //This is over-ridden by annotations in this file.
@@ -31,6 +36,12 @@ public class DataSourceController {
             return "datasources/create";
         }
         uiModel.asMap().clear();
+        // New data source with existing researcher.
+        Project project = dataSource.getOwner();
+        if (project != null) {
+        	// Set the reverse relation, so the researcher knows about the project.
+        	project.getDataSources().add(dataSource);
+        }
         dataSource.persist();
         return "redirect:/console/datasources/" + encodeUrlPathSegment(dataSource.getId().toString(), httpServletRequest);
     }
@@ -70,6 +81,14 @@ public class DataSourceController {
             populateEditForm(uiModel, dataSource);
             return "datasources/update";
         }
+        // Do not allow owner to be changed.
+        Project newOwner = dataSource.getOwner();
+        Project oldOwner = DataSource.findDataSource(dataSource.getId()).getOwner();
+        if (newOwner != oldOwner) {
+        	bindingResult.addError(new FieldError("datasource", "owner", "The owner of the data source must not be changed. "));
+            populateEditForm(uiModel, dataSource);
+            return "datasources/update";
+        }
         uiModel.asMap().clear();
         dataSource.merge();
         return "redirect:/console/datasources/" + encodeUrlPathSegment(dataSource.getId().toString(), httpServletRequest);
@@ -91,13 +110,16 @@ public class DataSourceController {
         return "redirect:/console/datasources";
     }
 
-	void addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("dataSource_importdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-
 	void populateEditForm(Model uiModel, DataSource dataSource) {
         uiModel.addAttribute("dataSource", dataSource);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("projects", Project.findAllProjects());
+        addDateTimeFormatPatterns(uiModel);
+    }
+
+
+	void addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("dataSource_importdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
 
 	String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -3,7 +3,8 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_au_net_huni_model_DataSource" modelAttribute="dataSource" path="/console/datasources" versionField="Version" z="user-managed">
-        <field:input type="text" field="name" id="c_au_net_huni_model_DataSource_name" required="true" z="user-managed"/>
+        <field:select field="owner" id="c_au_net_huni_model_DataSource_owner" itemValue="id" items="${projects}" path="/console/projects" z="user-managed"/>
+        <field:input field="name" id="c_au_net_huni_model_DataSource_name" required="true" type="text" z="user-managed"/>
         <field:datetime dateTimePattern="${dataSource_importdate_date_format}" field="importDate" id="c_au_net_huni_model_DataSource_importDate" required="true" z="ffRtyTam31ViLA0ATWUuvEREltc="/>
         <field:input field="description" id="c_au_net_huni_model_DataSource_description" z="uAhMzoj9fNsGfuHxPCyNPlBCqdE="/>
     </form:update>

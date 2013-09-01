@@ -3,17 +3,17 @@
 
 package au.net.huni.model;
 
-import au.net.huni.model.DataSource;
-import au.net.huni.model.DataSourceDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect DataSourceDataOnDemand_Roo_DataOnDemand {
@@ -23,6 +23,9 @@ privileged aspect DataSourceDataOnDemand_Roo_DataOnDemand {
     private Random DataSourceDataOnDemand.rnd = new SecureRandom();
     
     private List<DataSource> DataSourceDataOnDemand.data;
+    
+    @Autowired
+    ProjectDataOnDemand DataSourceDataOnDemand.projectDataOnDemand;
     
     public void DataSourceDataOnDemand.setDescription(DataSource obj, int index) {
         String description = "description_" + index;

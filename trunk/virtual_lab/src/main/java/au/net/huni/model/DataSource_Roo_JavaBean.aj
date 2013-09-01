@@ -4,9 +4,18 @@
 package au.net.huni.model;
 
 import au.net.huni.model.DataSource;
+import au.net.huni.model.Project;
 import java.util.Calendar;
 
 privileged aspect DataSource_Roo_JavaBean {
+    
+    public Project DataSource.getOwner() {
+        return this.owner;
+    }
+    
+    public void DataSource.setOwner(Project owner) {
+        this.owner = owner;
+    }
     
     public String DataSource.getName() {
         return this.name;

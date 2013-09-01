@@ -349,3 +349,9 @@ finder list --class ~.model.ToolCategory
 finder add --finderName findToolCategorysByNameEquals
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-01 01:14:01
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-01 13:19:28
+focus --class ~.model.Project
+field reference --fieldName owner --type ~.model.Researcher --cardinality MANY_TO_ONE 
+focus --class ~.model.Researcher
+// [failed] field set --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy owner 
+focus --class ~.model.DataSource
+field reference --fieldName owner --type ~.model.Project --cardinality MANY_TO_ONE 

@@ -7,25 +7,37 @@ import au.net.huni.model.DataSource;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect DataSource_Roo_Json {
     
     public String DataSource.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
+        return new JSONSerializer()
+        .exclude("*.class")
+        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .serialize(this);
     }
     
     public static DataSource DataSource.fromJsonToDataSource(String json) {
-        return new JSONDeserializer<DataSource>().use(null, DataSource.class).deserialize(json);
+        return new JSONDeserializer<DataSource>()
+        		.use(null, DataSource.class)
+        		.deserialize(json);
     }
     
     public static String DataSource.toJsonArray(Collection<DataSource> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
+        return new JSONSerializer()
+        .exclude("*.class")
+        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .serialize(collection);
     }
     
     public static Collection<DataSource> DataSource.fromJsonArrayToDataSources(String json) {
-        return new JSONDeserializer<List<DataSource>>().use(null, ArrayList.class).use("values", DataSource.class).deserialize(json);
+        return new JSONDeserializer<List<DataSource>>()
+        		.use(null, ArrayList.class)
+        		.use("values", DataSource.class)
+        		.deserialize(json);
     }
     
 }

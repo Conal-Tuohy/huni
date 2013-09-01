@@ -75,11 +75,6 @@ public class HistoryItem {
 
     public void setOwner(Researcher researcher) {
         this.owner = researcher;
-        // Ensure that we have a valid object before we execute contains.
-        // Do this by initialising the tool name to some random string.
-        if (!researcher.getHistory().contains(this)) {
-        	researcher.getHistory().add(this);
-        }
     }
     
     @Override

@@ -1,6 +1,9 @@
 package au.net.huni.web;
 
+import au.net.huni.model.DataSource;
 import au.net.huni.model.HistoryItem;
+import au.net.huni.model.Institution;
+import au.net.huni.model.Project;
 import au.net.huni.model.Researcher;
 import au.net.huni.model.ToolLibraryItem;
 import org.springframework.core.convert.converter.Converter;
@@ -48,7 +51,7 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 	public Converter<ToolLibraryItem, String> getToolLibraryItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.ToolLibraryItem, java.lang.String>() {
             public String convert(ToolLibraryItem toolCatalogItem) {
-                return new StringBuilder().append(toolCatalogItem.getName()).toString();
+                return toolCatalogItem.getName();
             }
         };
     }
@@ -57,6 +60,38 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         return new org.springframework.core.convert.converter.Converter<au.net.huni.model.HistoryItem, java.lang.String>() {
             public String convert(HistoryItem historyItem) {
                 return historyItem.toString();
+            }
+        };
+    }
+
+	public Converter<Project, String> getProjectToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Project, java.lang.String>() {
+            public String convert(Project project) {
+                return project.getName();
+            }
+        };
+    }
+
+	public Converter<String, Institution> getStringToInstitutionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.net.huni.model.Institution>() {
+            public au.net.huni.model.Institution convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Institution.class);
+            }
+        };
+    }
+
+	public Converter<Institution, String> getInstitutionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.Institution, java.lang.String>() {
+            public String convert(Institution institution) {
+                return institution.getCode();
+            }
+        };
+    }
+
+	public Converter<DataSource, String> getDataSourceToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.net.huni.model.DataSource, java.lang.String>() {
+            public String convert(DataSource dataSource) {
+                return dataSource.getName();
             }
         };
     }
