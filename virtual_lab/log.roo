@@ -347,3 +347,4 @@ focus --class ~.model.ToolCategory
 finder add --finderName findToolCategoryByNameEquals
 finder list --class ~.model.ToolCategory
 finder add --finderName findToolCategorysByNameEquals
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-01 01:14:01

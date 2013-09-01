@@ -186,16 +186,15 @@ factory('InstitutionService', function($resource){
 		  });
 });
 
-
-angular.module('credentialsServices', []).
-	service('CredentialService', function(){
+angular.module('credentialsServices', ['ngCookies']).
+	service('CredentialService', function($cookies){
 		
-        return {
+        return {        	
             setUserName: function(user) {
-            	this.userName = user;
+            	$cookies.userName = user;
             },
             getUserName: function() {
-            	return this.userName;
+            	return $cookies.userName;
             },
             setPassword: function(passwd) {
             	this.password = passwd;
@@ -205,7 +204,7 @@ angular.module('credentialsServices', []).
             	var credentials = this.userName + ":" + this.password;
             	var base64Credentials = window.btoa(credentials);
             	return "Basic " + base64Credentials;
- CredentialService}
+            }
         };
 });
 

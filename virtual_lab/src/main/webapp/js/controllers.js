@@ -75,7 +75,6 @@ function ToolKitCtrl($scope, $routeParams, Researcher, CredentialService) {
 	var self = this;
 	
 	var userName = CredentialService.getUserName();
-	var userName = 'bdiaz';
 	
 	// Arrange a list of tools by categories and call it a tool kit.
 	Researcher.tools({'userName': userName}, function(tools) {		
