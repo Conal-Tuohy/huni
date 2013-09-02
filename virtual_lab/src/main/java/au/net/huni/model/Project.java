@@ -1,5 +1,6 @@
 package au.net.huni.model;
 
+import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import java.util.Calendar;
 import java.util.Collection;
@@ -21,6 +22,8 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import static au.net.huni.json.Transformer.*;
 
 @RooJavaBean
 @RooToString
@@ -68,14 +71,14 @@ public class Project {
 	public String toJson() {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
 
 	public static String toJsonArray(Collection<Project> collection) {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
     }
 
@@ -83,7 +86,7 @@ public class Project {
         return new JSONSerializer()
         .exclude("*.class")
         .include("dataSources")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
 
@@ -91,7 +94,56 @@ public class Project {
         return new JSONSerializer()
         .exclude("*.class")
         .include("dataSources")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
     }
+	
+	public static class Summary {
+		
+		private String userName;
+	    private String projectName;
+	    private Calendar startDate;
+
+
+	    public Summary() {
+			super();
+		}
+
+	    public Summary(String userName, String projectName, Calendar startDate) {
+			super();
+			this.userName = userName;
+			this.projectName = projectName;
+			this.startDate = startDate;
+		}
+
+		
+	    public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public String getProjectName() {
+			return projectName;
+		}
+
+		public void setProjectName(String projectName) {
+			this.projectName = projectName;
+		}
+
+		public Calendar getStartDate() {
+			return startDate;
+		}
+
+		public void setStartDate(Calendar startDate) {
+			this.startDate = startDate;
+		}
+
+		public static Summary fromJsonToSummary(String json) {
+	        return new JSONDeserializer<Summary>().use("startDate", CALENDAR_TRANSFORMER).use(null, Summary.class).deserialize(json);
+	    }
+	    
+	}
 }

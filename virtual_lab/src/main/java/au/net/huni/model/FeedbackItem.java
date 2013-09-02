@@ -1,7 +1,5 @@
 package au.net.huni.model;
 
-import static au.net.huni.model.Constant.CALENDAR_TRANSFORMER;
-
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -43,14 +41,14 @@ public class FeedbackItem {
 	public static String toJsonArray(Collection<FeedbackItem> collection) {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(au.net.huni.json.Transformer.CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
     }
 
 	public String toJson() {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(au.net.huni.json.Transformer.CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
 

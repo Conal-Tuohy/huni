@@ -2,9 +2,6 @@ package au.net.huni.model;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
-import flexjson.ObjectBinder;
-import flexjson.ObjectFactory;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -31,21 +28,13 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import static au.net.huni.json.Transformer.*;
+
 @RooJavaBean
 @RooToString
 @RooJson
 @RooJpaActiveRecord(finders = { "findResearchersByUserNameEquals" })
 public class Researcher {
-
-    private static final ObjectFactory INSTITUTION_OBJECT_FACTORY = new ObjectFactory() {
-
-        @SuppressWarnings("rawtypes")
-        @Override
-        public Object instantiate(ObjectBinder context, Object value, Type targetType, Class targetClass) {
-            Long id = Long.valueOf((String) value);
-            return Institution.findInstitution(id);
-        }
-    };
 
     @NotNull
     @Column(unique = true)
@@ -115,15 +104,15 @@ public class Researcher {
     }
 
     public static String toJsonArray(Collection<au.net.huni.model.Researcher> collection) {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(collection);
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").transform(CALENDAR_TRANSFORMER, Calendar.class).serialize(collection);
     }
 
     public String toJson() {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").transform(CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
     }
 
     public String toDeepJson() {
-        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").include("toolkit", "toolkit.categories").transform(Constant.CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
+        return new JSONSerializer().exclude("*.class", "password", "encryptedPassword").include("toolkit", "toolkit.categories").transform(CALENDAR_TRANSFORMER, Calendar.class).serialize(this);
     }
 
     public static au.net.huni.model.Researcher fromJsonToResearcher(String json) {

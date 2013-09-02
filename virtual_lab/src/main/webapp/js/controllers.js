@@ -769,8 +769,11 @@ function ProjectButtonCtrl($scope, $dialog) {
 ProjectButtonCtrl.$inject = [ '$scope', '$dialog'];
 //------------------------------------
 
-function ProjectModalCtrl($scope, dialog, Researcher) {
+function ProjectModalCtrl($scope, $timeout, dialog, Researcher, CredentialService) {
 
+	//---------
+	// Form validation
+	
 	$scope.master= {};
  
 	$scope.update = function(proposedProject) {
@@ -786,15 +789,57 @@ function ProjectModalCtrl($scope, dialog, Researcher) {
 	};
  
 	$scope.reset();
-	  
+	
+	//---------
+	// Calendar
+	
+	 $scope.today = function() {
+		    $scope.proposedProject.startDate = new Date();
+		  };
+	$scope.today();
+
+	$scope.showWeeks = true;
+	$scope.toggleWeeks = function () {
+			$scope.showWeeks = ! $scope.showWeeks;
+		};
+
+	$scope.clear = function () {
+		$scope.proposedProject.startDate = null;
+	};
+
+	// Disable weekend selection
+	$scope.disabled = function(date, mode) {
+		return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	};
+
+	$scope.toggleMin = function() {
+		$scope.minDate = ( $scope.minDate ) ? null : new Date();
+	};
+	$scope.toggleMin();
+
+	$scope.open = function() {
+		$timeout(function() {
+			$scope.opened = true;
+		});
+	};
+
+	$scope.dateOptions = {
+			'year-format': "'yy'",
+			'starting-day': 1
+	};	
+	
+	//---------
+	// Submit handler
+	
 	$scope.apply = function(result) {
 		if (result) {
 			// Submit button.
-			var name = $scope.proposedProject.name;
+			var projectName = $scope.proposedProject.name;
 			var startDate = $scope.proposedProject.startDate;
-			result = {'name': name, 'startDate': startDate};
+			var userName = CredentialService.getUserName();
+			result = {'projectName': projectName, 'startDate': startDate, 'userName': userName};
 			var researcherItem = new Researcher(result);
-			researcherItem.createProject( 
+			researcherItem.$addProject( 
 				function(validResponse, status, headers, config) {
 					if (validResponse.status == 'failure') {
 						$scope.failedProject = validResponse.reason;
@@ -818,7 +863,7 @@ function ProjectModalCtrl($scope, dialog, Researcher) {
 	};	
 }
 
-ProjectModalCtrl.$inject = [ '$scope', 'dialog', 'Researcher'];
+ProjectModalCtrl.$inject = [ '$scope', '$timeout', 'dialog', 'Researcher', 'CredentialService'];
 //------------------------------------
 
 function LoginButtonCtrl($scope, $dialog) {

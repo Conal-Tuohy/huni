@@ -24,6 +24,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import static au.net.huni.json.Transformer.*;
+
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
@@ -72,7 +74,7 @@ public class ToolLibraryItem {
 	public String toJson() {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
 
@@ -80,8 +82,8 @@ public class ToolLibraryItem {
         return new JSONSerializer()
         .exclude("*.class")
         .include("categories.name")
-        .transform(Constant.CATEGORY_TRANSFORMER, ToolCategory.class)
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CATEGORY_TRANSFORMER, ToolCategory.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
 
@@ -92,7 +94,7 @@ public class ToolLibraryItem {
 	public static String toJsonArray(Collection<ToolLibraryItem> collection) {
         return new JSONSerializer()
         .exclude("*.class").include("categories")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
     }
 
@@ -100,8 +102,8 @@ public class ToolLibraryItem {
         return new JSONSerializer()
         .exclude("*.class")
         .include("categories")
-        .transform(Constant.CATEGORY_TRANSFORMER, ToolCategory.class)
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(CATEGORY_TRANSFORMER, ToolCategory.class)
+        .transform(CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
 	}
 

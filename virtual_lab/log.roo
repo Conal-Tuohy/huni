@@ -355,3 +355,4 @@ focus --class ~.model.Researcher
 // [failed] field set --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy owner 
 focus --class ~.model.DataSource
 field reference --fieldName owner --type ~.model.Project --cardinality MANY_TO_ONE 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-02 15:56:25

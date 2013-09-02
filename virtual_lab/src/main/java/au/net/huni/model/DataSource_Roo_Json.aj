@@ -16,7 +16,7 @@ privileged aspect DataSource_Roo_Json {
     public String DataSource.toJson() {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(au.net.huni.json.Transformer.CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(this);
     }
     
@@ -29,7 +29,7 @@ privileged aspect DataSource_Roo_Json {
     public static String DataSource.toJsonArray(Collection<DataSource> collection) {
         return new JSONSerializer()
         .exclude("*.class")
-        .transform(Constant.CALENDAR_TRANSFORMER, Calendar.class)
+        .transform(au.net.huni.json.Transformer.CALENDAR_TRANSFORMER, Calendar.class)
         .serialize(collection);
     }
     
