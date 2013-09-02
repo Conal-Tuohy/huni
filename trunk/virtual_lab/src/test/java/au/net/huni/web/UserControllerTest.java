@@ -1,19 +1,15 @@
 package au.net.huni.web;
 
 import static org.junit.Assert.assertTrue;
-import static org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.*;
 
 import java.util.Calendar;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.staticmock.MockStaticEntityMethods;
 import org.springframework.security.authentication.AuthenticationManager;

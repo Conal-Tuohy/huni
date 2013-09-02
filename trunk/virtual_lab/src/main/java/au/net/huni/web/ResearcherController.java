@@ -210,7 +210,27 @@ public class ResearcherController {
 	    }
         return new ResponseEntity<String>(jsonContent, headers, HttpStatus.OK);
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+	@RequestMapping(value = "/rest/researchers/addProject", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> jsonForResearcherAddProject(@RequestBody String requestJson, HttpServletRequest httpServletRequest) {
+        HttpHeaders headers = createJsonHeader();
+        Project.Summary projectSummary =  Project.Summary.fromJsonToSummary(requestJson);
+     	Researcher researcher = finderExistingResearcher(projectSummary.getUserName());
+     	if (researcher == null) {
+             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+     	} else {
+     		Project project = new Project();
+     		project.setOwner(researcher);
+     		researcher.getProjects().add(project);
+     		project.setName(projectSummary.getProjectName());
+     		project.setStartDate(projectSummary.getStartDate());
+     		project.persist();
+     	}
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+    }
+
 	protected Researcher finderExistingResearcher(String userName) {
 		Researcher existingResearcher = null;
         try {
@@ -226,6 +246,12 @@ public class ResearcherController {
         	logger.info(message);
         }         
         return existingResearcher;
+	}
+	
+	protected HttpHeaders createJsonHeader() {
+		HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+		return headers;
 	}
 
 }

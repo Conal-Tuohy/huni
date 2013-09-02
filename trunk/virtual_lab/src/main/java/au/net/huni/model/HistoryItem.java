@@ -1,7 +1,5 @@
 package au.net.huni.model;
 
-import static au.net.huni.model.Constant.CALENDAR_TRANSFORMER;
-
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -26,6 +24,8 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
 import flexjson.JSONSerializer;
+
+import static au.net.huni.json.Transformer.*;
 
 @RooJavaBean
 @RooToString

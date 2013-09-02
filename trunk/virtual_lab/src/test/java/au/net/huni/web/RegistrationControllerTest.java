@@ -10,7 +10,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jmock.Expectations;

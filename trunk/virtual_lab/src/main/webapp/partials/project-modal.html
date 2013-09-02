@@ -18,6 +18,7 @@
 					<span ng-show="form.projectName.$error.maxlength">the name is too long.</span>
 				</div>
 			</div>
+<!-- 			
 			<div class="control-group">
 				<label class="control-label" for="projectStartDate">Start date*</label>
 				<div class="controls">
@@ -29,9 +30,38 @@
 					<span ng-show="form.projectStartDate.$error.maxlength">the start date is too long.</span>
 				</div>
 			</div>
+ -->			
+ 			<div class="control-group">
+				<label class="control-label" for="projectStartDate">Start date* {{proposedProject.startDate | date:'fullDate' }}</label>
+ 					<div class="controls">
+<!-- 						
+						<div class="form-horizontal">
+							<input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="proposedProject.startDate" open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
+							<button class="btn" ng-click="open()"><i class="icon-calendar"></i></button>
+						</div>
+						<pre>Selected date is: <em>{{proposedProject.startDate | date:'fullDate' }}</em></pre>
+ -->						
+ 						<div class="well well-small pull-left" ng-model="proposedProject.startDate">
+							<datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+						</div>
+<!-- 						
+						<button class="btn btn-small btn-inverse" ng-click="today()">Today</button>
+						<button class="btn btn-small btn-inverse" ng-click="proposedProject.startDate = '2009-08-24'">2009-08-24</button>
+						<button class="btn btn-small btn-success" ng-click="toggleWeeks()" tooltip="For inline datepicker">Toggle Weeks</button>
+						<button class="btn btn-small btn-danger" ng-click="clear()">Clear</button>
+						<button class="btn btn-small" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
+						<hr />
+ -->						
+<!-- 					
+						<div ng-show="form.projectStartDate.$dirty && form.projectStartDate.$invalid">Invalid:
+							<span ng-show="form.projectStartDate.$error.required">enter your start date.</span>
+						</div>
+-->				
+ 				</div>
+			</div>			
 		</div>
 		<div>
-			{{failedRegistration}}
+			{{failedProject}}
 		</div>
 		<div class="modal-footer">
 			<button class="btn" aria-hidden="true" ng-click="apply(false)">Cancel</button>

@@ -173,4 +173,30 @@ public class ProjectTest {
     	assertTrue("JSON data source version present", actualJson.contains("\"version\":101234"));
     	assertTrue("JSON data source name property is present", actualJson.contains("\"name\":\"datasource0\""));
     }
+    
+    @Test 
+    public void testFromJsonToSummaryProducesSummary() {
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.clear();
+    	calendar.set(2013, 10, 25, 02, 30, 45);	// Values for GMT by default. Month is zero-base so dec = 11, nov = 10.
+    	// Switch to EST and then force calculation of time. Don't do this.
+    	// It seems to think the time zone has changed so it recalculates as if its a GMT to EST conversion.
+    	//TimeZone timeZone = TimeZone.getTimeZone("EST");
+    	//calendar.setTimeZone(timeZone);
+    	calendar.get(0);	// Force calculation of time
+		
+		String json = "{"
+				+ "userName: username0,"
+				+ "projectName: projectname0,"
+				+ "startDate: \"25/11/2013 02:30:45 EST\"}"
+				;
+
+    	Project.Summary summary = Project.Summary.fromJsonToSummary(json);
+
+    	assertEquals("Summary project name is correct", "projectname0", summary.getProjectName());
+    	assertEquals("Summary user name is correct", "username0", summary.getUserName());
+    	assertEquals("Summary start date is correct", calendar.getTime(), summary.getStartDate().getTime());
+
+    }
 }
