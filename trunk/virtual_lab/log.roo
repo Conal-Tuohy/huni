@@ -356,3 +356,4 @@ focus --class ~.model.Researcher
 focus --class ~.model.DataSource
 field reference --fieldName owner --type ~.model.Project --cardinality MANY_TO_ONE 
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-02 15:56:25
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-03 07:52:39
